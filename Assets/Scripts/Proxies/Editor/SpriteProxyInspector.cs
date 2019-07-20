@@ -12,7 +12,7 @@ public class SpriteProxyInspector : Editor {
         base.OnInspectorGUI();
 
         GUILayout.Space(20);
-        if(true == GUILayout.Button("Initialize Sprites")) {
+        if(true == GUILayout.Button("Set clips and then click.")) {
             InitializeSprites(target as SpriteProxy);
         }
     }

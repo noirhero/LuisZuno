@@ -6,6 +6,7 @@ using Unity.Entities;
 using Unity.Collections;
 using Unity.Mathematics;
 
+[Serializable]
 public struct SpriteMeshComponent : ISharedComponentData, IEquatable<SpriteMeshComponent> {
     public Mesh mesh;
     public Material material;
@@ -23,14 +24,14 @@ public struct SpriteMeshComponent : ISharedComponentData, IEquatable<SpriteMeshC
 
     public bool Equals(SpriteMeshComponent other) {
         int hash = 0;
-        if(null != nameHashes) {
+        if (null != nameHashes) {
             foreach (var nameHash in nameHashes) {
                 hash += nameHash;
             }
         }
 
         int otherHash = 0;
-        foreach(var nameHash in other.nameHashes) {
+        foreach (var nameHash in other.nameHashes) {
             otherHash += nameHash;
         }
 

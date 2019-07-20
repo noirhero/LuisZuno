@@ -15,6 +15,9 @@ public class SpriteAnimSystem : ComponentSystem {
                 }
                 ++animComp.index;
             }
+            if(meshComp.nameHashes.Length == animComp.index) {
+                return;
+            }
 
             animComp.accumTime += deltaTime;
             if (meshComp.lengths[animComp.index] <= animComp.accumTime) {

@@ -12,6 +12,7 @@ Shader "Custom/InstancedShader"
         LOD 100
         Blend SrcAlpha OneMinusSrcAlpha
         ColorMask RGB
+        Cull Off
 
         Pass
         {

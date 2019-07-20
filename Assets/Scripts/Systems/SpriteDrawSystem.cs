@@ -9,15 +9,19 @@ public class SpriteDrawSystem : ComponentSystem {
     protected override void OnUpdate() {
         var mtrlPropBlock = new MaterialPropertyBlock();
         var uv = new Vector4[1];
+        var drawPos = new float3();
 
         Entities.ForEach((SpriteMeshComponent meshComp, ref SpriteAnimComponent animComp, ref Rotation rotation, ref Translation pos) => {
             uv[0] = animComp.rect;
             mtrlPropBlock.SetVectorArray("_MainTex_UV", uv);
             mtrlPropBlock.SetTexture("_MainTex", meshComp.textures[animComp.index]);
 
+            drawPos = pos.Value + meshComp.posOffsets[animComp.index];
+            drawPos.z = pos.Value.y;
+
             Graphics.DrawMesh(
                 meshComp.mesh,
-                float4x4.TRS(pos.Value + meshComp.posOffsets[animComp.index], rotation.Value, meshComp.scales[animComp.index]),
+                float4x4.TRS(drawPos, rotation.Value, meshComp.scales[animComp.index]),
                 meshComp.material,
                 0/*layer*/,
                 Camera.main,

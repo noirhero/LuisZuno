@@ -16,14 +16,21 @@ public struct SpriteData {
 
 [RequiresEntityConversion]
 public class SpriteProxy : MonoBehaviour, IConvertGameObjectToEntity {
+    [Header("Geometry")]
     public Mesh mesh = null;
     public Material material = null;
+
+    [Header("To do insert animation clips")]
     public List<AnimationClip> clips = new List<AnimationClip>();
 
+    [Header("Do not touch")]
     public List<SpriteData> spriteDatas = new List<SpriteData>();
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         int dataCount = spriteDatas.Count;
+        if (0 == dataCount) {
+            return;
+        }
 
         Texture[] textures = new Texture[dataCount];
 
@@ -37,10 +44,10 @@ public class SpriteProxy : MonoBehaviour, IConvertGameObjectToEntity {
 
         Vector4[] rects = new Vector4[dataCount * 16];
 
-
         int idx = 0;
         int offset = 0;
-        foreach(var spriteData in spriteDatas) {
+        int spriteIdx = 0;
+        foreach (var spriteData in spriteDatas) {
             textures[idx] = spriteData.sprites[0].texture;
 
             foreach (var b in Encoding.ASCII.GetBytes(spriteData.clip.name)) {
@@ -56,12 +63,11 @@ public class SpriteProxy : MonoBehaviour, IConvertGameObjectToEntity {
             float pixelRatioY = spriteData.sprites[0].texture.height / 100.0f;
             float scaleX = spriteData.sprites[0].rect.width / spriteData.sprites[0].texture.width * pixelRatioX;
             float scaleY = spriteData.sprites[0].rect.height / spriteData.sprites[0].texture.height * pixelRatioY;
-            
+
             scales[idx] = new float3(scaleX, scaleY, 1.0f);
             posOffsets[idx] = new float3(0.0f, scaleY * 0.5f, 0.0f);
 
-            int spriteIdx = 0;
-            foreach(var sprite in spriteData.sprites) {
+            foreach (var sprite in spriteData.sprites) {
                 rects[spriteIdx++].Set(
                     sprite.rect.width / sprite.texture.width,
                     sprite.rect.height / sprite.texture.height,
@@ -91,5 +97,7 @@ public class SpriteProxy : MonoBehaviour, IConvertGameObjectToEntity {
         dstManager.AddComponentData(entity, new SpriteAnimComponent() {
             nameHash = nameHashes[0]
         });
+
+        dstManager.AddComponentData(entity, new MovementComponent());
     }
 }

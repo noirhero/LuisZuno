@@ -134,9 +134,13 @@ namespace SuperTiled2Unity.Editor
             goGrid.transform.SetParent(m_MapComponent.gameObject.transform);
 
             // The grid is added to the asset because without it we get prefab modifications for all collision geometry and tile matrices
+            // Note: this is crashing Unity 2018.3. Unfortunately prefab instances will be fatter in those versions of Unity. :(
+#if UNITY_2019_1_OR_NEWER
             SuperImportContext.AddObjectToAsset("_grid", goGrid);
+#endif
 
             m_GridComponent = goGrid.AddComponent<Grid>();
+
 
             // Grid cell size always has a z-value of 1 so that we can use custom axis sorting
             float sx = SuperImportContext.MakeScalar(m_MapComponent.m_TileWidth);
@@ -346,8 +350,10 @@ namespace SuperTiled2Unity.Editor
                 if (prefab != null)
                 {
                     // Replace the super object with the instantiated prefab
-                    var instance = Instantiate(prefab, so.transform.position + prefab.transform.localPosition, so.transform.rotation);
+                    var instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
                     instance.transform.SetParent(so.transform.parent);
+                    instance.transform.position = so.transform.position + prefab.transform.localPosition;
+                    instance.transform.rotation = so.transform.rotation;
 
                     // Apply custom properties as messages to the instanced prefab
                     var props = so.GetComponent<SuperCustomProperties>();

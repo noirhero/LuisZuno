@@ -1,3 +1,5 @@
+// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
+
 Shader "Custom/InstancedShader"
 {
     Properties

@@ -62,6 +62,8 @@ Shader "Custom/InstancedShader"
             {
                 UNITY_SETUP_INSTANCE_ID(i);
                 fixed4 c = tex2D(_MainTex, i.uv) * UNITY_ACCESS_INSTANCED_PROP(Props, _Color);
+                if(0 == c.a)
+                    discard;
 
                 return c;
             }

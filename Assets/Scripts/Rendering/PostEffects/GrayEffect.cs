@@ -5,8 +5,8 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
 [Serializable]
-[PostProcess(typeof(GrayscaleRenderer), PostProcessEvent.AfterStack, "Custom/Grayscale")]
-public sealed class Grayscale : PostProcessEffectSettings {
+[PostProcess(typeof(GrayEffectRenderer), PostProcessEvent.AfterStack, "Custom/GrayEffect")]
+public sealed class GrayEffect : PostProcessEffectSettings {
     [Range(0f, 1f), Tooltip("Grayscale effect intensity.")]
     public FloatParameter blend = new FloatParameter { value = 0.0f };
 
@@ -15,7 +15,7 @@ public sealed class Grayscale : PostProcessEffectSettings {
     }
 }
 
-public sealed class GrayscaleRenderer : PostProcessEffectRenderer<Grayscale> {
+public sealed class GrayEffectRenderer : PostProcessEffectRenderer<GrayEffect> {
     private readonly Shader _grayShader = Shader.Find("Hidden/GrayEffect");
     private readonly string _strBlend = "_Blend";
     

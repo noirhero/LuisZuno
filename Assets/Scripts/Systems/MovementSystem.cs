@@ -2,7 +2,6 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -16,12 +15,12 @@ public class MovementSystem : JobComponentSystem {
             var currentKeyboard = Keyboard.current;
 
             moveComp.value = float3.zero;
-            if (true == currentKeyboard.wKey.isPressed) {
-                moveComp.value.y += 1.0f;
-            }
-            if (true == currentKeyboard.sKey.isPressed) {
-                moveComp.value.y -= 1.0f;
-            }
+            //if (true == currentKeyboard.wKey.isPressed) {
+            //    moveComp.value.y += 1.0f;
+            //}
+            //if (true == currentKeyboard.sKey.isPressed) {
+            //    moveComp.value.y -= 1.0f;
+            //}
             if (true == currentKeyboard.dKey.isPressed) {
                 moveComp.value.x += 1.0f;
                 moveComp.xValue = 1.0f;

@@ -9,14 +9,14 @@ using Unity.Mathematics;
 public class AnimStateSystem : JobComponentSystem {
     struct AnimStateSystemJob : IJobForEach<SpriteAnimComponent, MovementComponent> {
         public void Execute(ref SpriteAnimComponent animComp, [ReadOnly] ref MovementComponent moveComp) {
+            animComp.nameHash = 0;
+
             if (math.FLT_MIN_NORMAL < math.lengthsq(moveComp.value)) {
-                animComp.nameHash = 0;
                 foreach (var b in Encoding.ASCII.GetBytes("Walk")) {
                     animComp.nameHash += b;
                 }
             }
             else {
-                animComp.nameHash = 0;
                 foreach (var b in Encoding.ASCII.GetBytes("Idle")) {
                     animComp.nameHash += b;
                 }

@@ -120,6 +120,116 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &275111883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 275111885}
+  - component: {fileID: 275111884}
+  m_Layer: 0
+  m_Name: ManPreset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &275111884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275111883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487afbc3e18e65145adabdef0826f2ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 2100000, guid: f465191987c564b459808e81a9ea7fea, type: 2}
+  clips:
+  - {fileID: 7400000, guid: ba6684823e1adaf4280a8797447187f7, type: 2}
+  - {fileID: 7400000, guid: f5271fc73199c5d4e856500c15c15991, type: 2}
+  datas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 7e0100008f010000
+    _keys: 7e0100008f010000
+    _values:
+    - texture: {fileID: 2800000, guid: 979404b161faa454c94510eccd64a1d6, type: 3}
+      length: 0.33333334
+      frameRate: 0.083333336
+      scale:
+        x: 0.45
+        y: 0.57
+        z: 1
+      posOffset:
+        x: 0
+        y: 0.285
+        z: 0
+      rects:
+      - {x: 0.3515625, y: 0.4453125, z: 0, w: 0.5546875}
+      - {x: 0.3515625, y: 0.4453125, z: 0.3515625, w: 0.5546875}
+      - {x: 0.3515625, y: 0.4453125, z: 0, w: 0.109375}
+      - {x: 0.3515625, y: 0.4453125, z: 0.3515625, w: 0.109375}
+    - texture: {fileID: 2800000, guid: 8dd7008552ccf96449efe8ffb3ac945d, type: 3}
+      length: 0.6666666
+      frameRate: 0.08333333
+      scale:
+        x: 0.45
+        y: 0.57
+        z: 1
+      posOffset:
+        x: 0
+        y: 0.285
+        z: 0
+      rects:
+      - {x: 0.17578125, y: 0.4453125, z: 0, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0.17578125, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0.3515625, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0.52734375, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0.703125, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0, w: 0.109375}
+      - {x: 0.17578125, y: 0.4453125, z: 0.17578125, w: 0.109375}
+      - {x: 0.17578125, y: 0.4453125, z: 0.3515625, w: 0.109375}
+--- !u!4 &275111885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275111883}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,28 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57fcca6b6451a64382ad29e4097420e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: f465191987c564b459808e81a9ea7fea, type: 2}
-  clips:
-  - {fileID: 7400000, guid: ba6684823e1adaf4280a8797447187f7, type: 2}
-  - {fileID: 7400000, guid: f5271fc73199c5d4e856500c15c15991, type: 2}
-  spriteDatas:
-  - clip: {fileID: 7400000, guid: ba6684823e1adaf4280a8797447187f7, type: 2}
-    sprites:
-    - {fileID: 6447309389302211790, guid: 979404b161faa454c94510eccd64a1d6, type: 3}
-    - {fileID: -9217039764094678607, guid: 979404b161faa454c94510eccd64a1d6, type: 3}
-    - {fileID: -9049329326073271048, guid: 979404b161faa454c94510eccd64a1d6, type: 3}
-    - {fileID: -2213779565476403461, guid: 979404b161faa454c94510eccd64a1d6, type: 3}
-  - clip: {fileID: 7400000, guid: f5271fc73199c5d4e856500c15c15991, type: 2}
-    sprites:
-    - {fileID: 4688049884173561275, guid: 8dd7008552ccf96449efe8ffb3ac945d, type: 3}
-    - {fileID: -6475192222305087496, guid: 8dd7008552ccf96449efe8ffb3ac945d, type: 3}
-    - {fileID: 7413562434916515683, guid: 8dd7008552ccf96449efe8ffb3ac945d, type: 3}
-    - {fileID: -7259467143461478816, guid: 8dd7008552ccf96449efe8ffb3ac945d, type: 3}
-    - {fileID: 7733968936868235250, guid: 8dd7008552ccf96449efe8ffb3ac945d, type: 3}
-    - {fileID: -2795602449731309977, guid: 8dd7008552ccf96449efe8ffb3ac945d, type: 3}
-    - {fileID: -5716676080825540963, guid: 8dd7008552ccf96449efe8ffb3ac945d, type: 3}
-    - {fileID: 2003112577007213906, guid: 8dd7008552ccf96449efe8ffb3ac945d, type: 3}
+  preset: {fileID: 275111884}
 --- !u!114 &1312177593
 MonoBehaviour:
   m_ObjectHideFlags: 0

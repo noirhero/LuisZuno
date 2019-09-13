@@ -34,7 +34,7 @@ public class CustomRenderPipeline : RenderPipeline {
     // post-process
     private readonly int _colorNameId = Shader.PropertyToID("_CameraColorTexture");
     private readonly int _depthNameId = Shader.PropertyToID("_CameraDepthTexture");
-    private PostProcessRenderContext _ppContext = new PostProcessRenderContext();
+    private readonly PostProcessRenderContext _ppContext = new PostProcessRenderContext();
 
     protected override void Render(ScriptableRenderContext context, Camera[] cameras) {
         BeginFrameRendering(context, cameras);

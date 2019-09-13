@@ -5,7 +5,11 @@ using Unity.Entities;
 
 [Serializable]
 public struct SpritePresetComponent : ISharedComponentData, IEquatable<SpritePresetComponent> {
-    public SpritePreset preset;
+    public readonly SpritePreset preset;
+
+    public SpritePresetComponent(SpritePreset inPreset) {
+        preset = inPreset;
+    }
 
     public bool Equals(SpritePresetComponent other) {
         return other.preset == preset;

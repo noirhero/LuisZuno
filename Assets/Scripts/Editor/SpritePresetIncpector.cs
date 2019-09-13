@@ -14,11 +14,11 @@ public class SpritePresetIncpector : Editor {
 
         GUILayout.Space(20);
         if (true == GUILayout.Button("Set clips and then click.")) {
-            InitializePrseet(target as SpritePreset);
+            InitializePrset(target as SpritePreset);
         }
     }
 
-    private void InitializePrseet(SpritePreset preset) {
+    private void InitializePrset(SpritePreset preset) {
         preset.datas.Clear();
 
         foreach (var clip in preset.clips) {

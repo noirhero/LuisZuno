@@ -38,8 +38,9 @@ public class MovementSystem : JobComponentSystem {
     }
 
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
-        var job = new MovementSystemJob();
-        job.deltaTime = Time.deltaTime;
+        var job = new MovementSystemJob {
+            deltaTime = Time.deltaTime
+        };
 
         return job.Schedule(this, inputDependencies);
     }

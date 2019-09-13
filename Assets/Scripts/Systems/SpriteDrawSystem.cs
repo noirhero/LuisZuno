@@ -6,22 +6,25 @@ using Unity.Transforms;
 using Unity.Mathematics;
 
 public class SpriteDrawSystem : ComponentSystem {
+    private static readonly int MainTexUv = Shader.PropertyToID("_MainTex_UV");
+    private static readonly int MainTex = Shader.PropertyToID("_MainTex");
+
     protected override void OnUpdate() {
-        var mtrlPropBlock = new MaterialPropertyBlock();
+        var propertyBlock = new MaterialPropertyBlock();
         var uv = new Vector4[1];
-        var drawPos = new float3();
+        float3 drawPos;
 
         Entities.ForEach((SpritePresetComponent presetComp, ref SpriteAnimComponent animComp, ref Rotation rotation, ref Translation pos) => {
-            if (false == presetComp.preset.datas.TryGetValue(animComp.nameHash, out SpritePresetData presetData)) {
+            if (false == presetComp.preset.datas.TryGetValue(animComp.nameHash, out var presetData)) {
                 return;
             }
 
             uv[0] = presetData.rects[animComp.frame];
-            mtrlPropBlock.SetVectorArray("_MainTex_UV", uv);
-            mtrlPropBlock.SetTexture("_MainTex", presetData.texture);
+            propertyBlock.SetVectorArray(MainTexUv, uv);
+            propertyBlock.SetTexture(MainTex, presetData.texture);
 
             drawPos = pos.Value + presetData.posOffset;
-            drawPos.z = pos.Value.y;
+            //drawPos.z = pos.Value.y;
 
             Graphics.DrawMesh(
                 presetComp.preset.mesh,
@@ -30,7 +33,7 @@ public class SpriteDrawSystem : ComponentSystem {
                 0/*layer*/,
                 Camera.main,
                 0/*sub mesh index*/,
-                mtrlPropBlock);
+                propertyBlock);
         });
     }
 }

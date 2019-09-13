@@ -13,10 +13,8 @@ public class SpriteProxy : MonoBehaviour, IConvertGameObjectToEntity {
             Debug.LogError("Set preset, now!!!!!!");
             return;
         }
-        
-        dstManager.AddSharedComponentData(entity, new SpritePresetComponent() {
-            preset = preset
-        });
+
+        dstManager.AddSharedComponentData(entity, new SpritePresetComponent(preset));
 
         dstManager.AddComponentData(entity, new SpriteAnimComponent() {
             nameHash = preset.datas.Keys.First()

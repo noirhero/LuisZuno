@@ -11,12 +11,7 @@ public class RotationSystem : JobComponentSystem {
     [BurstCompile]
     struct RotationSystemJob : IJobForEach<Rotation, MovementComponent> {
         public void Execute(ref Rotation rotation, [ReadOnly] ref MovementComponent moveComp) {
-            if (0.0f < moveComp.xValue) {
-                rotation.Value = quaternion.RotateY(math.radians(180.0f));
-            }
-            else {
-                rotation.Value = quaternion.identity;
-            }
+            rotation.Value = (0.0f < moveComp.xValue) ? quaternion.RotateY(math.radians(180.0f)) : quaternion.identity;
         }
     }
 

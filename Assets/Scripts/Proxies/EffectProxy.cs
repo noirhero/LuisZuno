@@ -4,8 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Unity.Entities;
 
-[RequiresEntityConversion]
-public class SpriteProxy : MonoBehaviour, IConvertGameObjectToEntity {
+public class EffectProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public SpritePreset preset = null;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
@@ -18,7 +17,5 @@ public class SpriteProxy : MonoBehaviour, IConvertGameObjectToEntity {
         dstManager.AddComponentData(entity, new SpriteAnimComponent() {
             nameHash = preset.datas.Keys.First()
         });
-
-        dstManager.AddComponentData(entity, new MovementComponent());
     }
 }

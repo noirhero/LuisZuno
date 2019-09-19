@@ -7,7 +7,7 @@ using Unity.Jobs;
 using Unity.Mathematics;
 
 public class AnimStateSystem : JobComponentSystem {
-    struct AnimStateSystemJob : IJobForEach<SpriteAnimComponent, MovementComponent> {
+    private struct AnimStateSystemJob : IJobForEach<SpriteAnimComponent, MovementComponent> {
         public void Execute(ref SpriteAnimComponent animComp, [ReadOnly] ref MovementComponent moveComp) {
             animComp.nameHash = 0;
 

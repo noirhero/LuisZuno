@@ -12,8 +12,6 @@ public class AutoMovementSystem : JobComponentSystem {
     private EntityQuery _group;
 
     protected override void OnCreate() {
-        base.OnCreate();
-
         var query = new EntityQueryDesc() {
             All = new ComponentType[] {
                 typeof(MovementComponent),
@@ -49,7 +47,7 @@ public class AutoMovementSystem : JobComponentSystem {
                         movements[i] = moveComp;
                         break;
                     }
-                    
+
                     if (0.0f >= at) {
                         moveComp.value.x = -1.0f;
                         moveComp.xValue = -1.0f;

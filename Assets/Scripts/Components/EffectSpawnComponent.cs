@@ -3,7 +3,12 @@
 using System;
 using Unity.Entities;
 
-//[Serializable]
+[Serializable]
 public struct EffectSpawnComponent : IComponentData {
     public Entity preset;
+}
+
+[Serializable]
+public struct EffectSpawnExistComponent : IComponentData {
+    
 }

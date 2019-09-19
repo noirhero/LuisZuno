@@ -8,7 +8,7 @@ public class SpriteAnimSystem : ComponentSystem {
         var deltaTime = Time.deltaTime;
 
         Entities.ForEach((SpritePresetComponent presetComp, ref SpriteAnimComponent animComp) => {
-            if (false == presetComp.preset.datas.TryGetValue(animComp.nameHash, out SpritePresetData presetData)) {
+            if (false == presetComp.preset.datas.TryGetValue(animComp.nameHash, out var presetData)) {
                 return;
             }
 

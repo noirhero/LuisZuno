@@ -136,48 +136,4 @@
 0,0,0,0,0,0,0,0,0,379,0,0,0,0,0,0,0,0,381,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,380,0,0,0,0,381,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="8" name="collision" locked="1">
-  <object id="3" name="collision" x="-28.6667" y="-22" width="77.3333" height="292"/>
-  <object id="4" name="collision" x="1254.67" y="-17.3333" width="75.3333" height="286.667"/>
- </objectgroup>
- <objectgroup id="10" name="bgm" locked="1">
-  <object id="17" name="bgm" x="959.333" y="-55.3333" width="406.667" height="382">
-   <properties>
-    <property name="file" value="porfondo_rosso"/>
-   </properties>
-  </object>
-  <object id="18" name="bgm" x="-33.3333" y="-48" width="829.333" height="369.333">
-   <properties>
-    <property name="file" value="quiet_hill"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup id="9" name="spawn" locked="1">
-  <object id="14" name="player_start" x="87.8182" y="193.818">
-   <point/>
-  </object>
-  <object id="15" name="enemy_spawn" x="1219.25" y="193.375">
-   <properties>
-    <property name="entity" value="entity_mummy"/>
-   </properties>
-   <point/>
-  </object>
- </objectgroup>
- <objectgroup id="11" name="camera" locked="1">
-  <object id="19" name="camera" type="follow_smooth" x="946.667" y="-69.3333" width="477.333" height="418.667"/>
- </objectgroup>
- <objectgroup id="12" name="madness" locked="1">
-  <object id="20" name="madness" type="once" x="1071.5" y="32.5" width="208.5" height="160">
-   <properties>
-    <property name="value" type="int" value="-100"/>
-   </properties>
-  </object>
- </objectgroup>
- <objectgroup id="14" name="instancing" locked="1">
-  <object id="22" x="0" y="0" width="256" height="240"/>
-  <object id="23" x="256" y="0" width="256" height="240"/>
-  <object id="24" x="512" y="0" width="256" height="240"/>
-  <object id="25" x="1024" y="0" width="256" height="240"/>
-  <object id="26" x="768" y="0" width="256" height="240"/>
- </objectgroup>
 </map>

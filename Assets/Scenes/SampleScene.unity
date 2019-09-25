@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: f465191987c564b459808e81a9ea7fea, type: 2}
+  statePreset: {fileID: 0}
   clips:
   - {fileID: 7400000, guid: ba6684823e1adaf4280a8797447187f7, type: 2}
   - {fileID: 7400000, guid: f5271fc73199c5d4e856500c15c15991, type: 2}

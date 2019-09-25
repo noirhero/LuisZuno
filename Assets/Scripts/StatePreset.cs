@@ -14,4 +14,8 @@ public class StatePreset : MonoBehaviour {
     [Header("To to insert states.")] public List<string> states = new List<string>();
 
     [Header("Do not touch!")] public NameToKeyDictionary stateToKeys = new NameToKeyDictionary();
+
+    public int StateToKey(string state) {
+        return (false == stateToKeys.TryGetValue(state, out var stateKey)) ? 0 : stateKey;
+    }
 }

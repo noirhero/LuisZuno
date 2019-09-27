@@ -41,7 +41,7 @@ public class AutoMovementSystem : JobComponentSystem {
                         continue;
                     }
 
-                    float at = translations[j].Value.x - currentPos.x;
+                    var at = translations[j].Value.x - currentPos.x;
                     if (0.5f >= math.abs(at)) {
                         moveComp.value = 0.0f;
                         movements[i] = moveComp;

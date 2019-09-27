@@ -19,17 +19,18 @@ public class MovementSystem : JobComponentSystem {
                 moveComp.value.x += 1.0f;
                 moveComp.xValue = 1.0f;
             }
+
             if (true == currentKeyboard.aKey.isPressed) {
                 moveComp.value.x -= 1.0f;
                 moveComp.xValue = -1.0f;
             }
 
-            float lengthSq = math.lengthsq(moveComp.value);
+            var lengthSq = math.lengthsq(moveComp.value);
             if (math.FLT_MIN_NORMAL >= lengthSq) {
                 return;
             }
 
-            float length = math.sqrt(lengthSq);
+            var length = math.sqrt(lengthSq);
             moveComp.value.x /= length;
             moveComp.value.y /= length;
 

@@ -30,9 +30,9 @@ public class SpriteDrawSystem : ComponentSystem {
                 presetComp.preset.mesh,
                 float4x4.TRS(drawPos, rotation.Value, presetData.scale),
                 presetComp.preset.material,
-                0/*layer*/,
+                0 /*layer*/,
                 Camera.main,
-                0/*sub mesh index*/,
+                0 /*sub mesh index*/,
                 propertyBlock);
         });
     }

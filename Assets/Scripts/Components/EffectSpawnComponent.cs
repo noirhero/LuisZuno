@@ -2,10 +2,11 @@
 
 using System;
 using Unity.Entities;
+using UnityEngine.Serialization;
 
 [Serializable]
 public struct EffectSpawnComponent : IComponentData {
-    public Entity preset;
+    public Entity prefab;
 }
 
 [Serializable]

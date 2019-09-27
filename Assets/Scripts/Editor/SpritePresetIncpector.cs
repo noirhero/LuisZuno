@@ -14,16 +14,15 @@ public class SpritePresetIncpector : Editor {
 
         GUILayout.Space(20);
         if (true == GUILayout.Button("Set clips and then click.")) {
-            InitializePrset(target as SpritePreset);
+            InitializePreset(target as SpritePreset);
         }
     }
 
-    private void InitializePrset(SpritePreset preset) {
+    private static void InitializePreset(SpritePreset preset) {
         preset.datas.Clear();
 
         foreach (var clip in preset.clips) {
-            List<Sprite> sprites = new List<Sprite>();
-
+            var sprites = new List<Sprite>();
             foreach (var binding in AnimationUtility.GetObjectReferenceCurveBindings(clip)) {
                 foreach (var frame in AnimationUtility.GetObjectReferenceCurve(clip, binding)) {
                     sprites.Add((Sprite) frame.value);
@@ -35,10 +34,10 @@ public class SpritePresetIncpector : Editor {
             }
 
             var firstSprite = sprites[0];
-            float pixelRatioX = firstSprite.texture.width / 100.0f;
-            float pixelRatioY = firstSprite.texture.height / 100.0f;
-            float scaleX = firstSprite.rect.width / firstSprite.texture.width * pixelRatioX;
-            float scaleY = firstSprite.rect.height / firstSprite.texture.height * pixelRatioY;
+            var pixelRatioX = firstSprite.texture.width / 100.0f;
+            var pixelRatioY = firstSprite.texture.height / 100.0f;
+            var scaleX = firstSprite.rect.width / firstSprite.texture.width * pixelRatioX;
+            var scaleY = firstSprite.rect.height / firstSprite.texture.height * pixelRatioY;
 
             var presetData = new SpritePresetData() {
                 texture = sprites[0].texture,
@@ -56,7 +55,7 @@ public class SpritePresetIncpector : Editor {
                     sprite.rect.y / sprite.texture.height));
             }
 
-            int hash = 0;
+            var hash = 0;
             foreach (var b in Encoding.ASCII.GetBytes(clip.name)) {
                 hash += b;
             }

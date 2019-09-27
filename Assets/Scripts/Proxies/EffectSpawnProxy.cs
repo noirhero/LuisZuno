@@ -7,6 +7,7 @@ using UnityEngine;
 [RequiresEntityConversion]
 public class EffectSpawnProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
     public GameObject prefab = null;
+
     public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs) {
         referencedPrefabs.Add(prefab);
     }
@@ -16,9 +17,9 @@ public class EffectSpawnProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConve
             Debug.LogError("Set prefab, now!!!!!!");
             return;
         }
-        
+
         dstManager.AddComponentData(entity, new EffectSpawnComponent() {
-            preset = conversionSystem.GetPrimaryEntity(prefab)
+            prefab = conversionSystem.GetPrimaryEntity(prefab)
         });
     }
 }

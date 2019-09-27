@@ -26,9 +26,6 @@ public class SpritePreset : MonoBehaviour {
     public Mesh mesh = null;
     public Material material = null;
 
-    [Header("State")]
-    public StatePreset statePreset = null;
-
     [Header("Animation clips")]
     public List<AnimationClip> clips = new List<AnimationClip>();
 

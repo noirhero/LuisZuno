@@ -619,6 +619,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4176254893482644964, guid: baa15a8cb912a4d48ba122362b3bce7e,
+        type: 3}
+      propertyPath: m_Name
+      value: Hallway
+      objectReference: {fileID: 0}
     - target: {fileID: 750666506758258209, guid: baa15a8cb912a4d48ba122362b3bce7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -673,11 +678,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4176254893482644964, guid: baa15a8cb912a4d48ba122362b3bce7e,
-        type: 3}
-      propertyPath: m_Name
-      value: Hallway
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -2695619058785784247, guid: baa15a8cb912a4d48ba122362b3bce7e,

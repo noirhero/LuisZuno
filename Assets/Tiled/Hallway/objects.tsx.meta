@@ -19,5 +19,5 @@ ScriptedImporter:
   edgesPerEllipse: 32
   numberOfObjectsImported: 21
   useSpriteAtlas: 1
-  atlasWidth: 2048
-  atlasHeight: 2048
+  atlasWidth: 256
+  atlasHeight: 256

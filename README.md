@@ -11,6 +11,9 @@ UnityECS. (https://docs.google.com/document/d/1JEdIMBmjJqCBLbBxpVsxoUYGAvqx3h7jQ
 # 기획서
 https://docs.google.com/document/d/1x79iT6RTI8gAFUlALh8Vxqx2wL5x0lIWrjUW7sgavMo/edit?usp=sharing  
 
+# 스크럼
+https://docs.google.com/spreadsheets/d/1r5IbZYfxHLblOCRZ3xz7i1QaxGpBqnICjyC6fyHIOuY/edit?usp=sharing  
+
 # 언어에 대한 고찰
 C#을 잘 해 봅시다.  
 https://docs.google.com/document/d/1SVo2gkj6v-9PGD6Y9L3c3KMfFbgAH4u6Vwf1gF-tinY/edit?usp=sharing  

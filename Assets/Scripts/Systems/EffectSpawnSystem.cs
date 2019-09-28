@@ -17,7 +17,7 @@ public class EffectSpawnSystem : JobComponentSystem {
 
     [ExcludeComponent(typeof(EffectSpawnExistComponent))]
     private struct EffectSpawnSystemJob : IJobForEachWithEntity<MovementComponent, Translation> {
-        [ReadOnly] public Entity preset;
+        [ReadOnly] public Entity prefab;
         public EntityCommandBuffer.Concurrent cmdBuf;
 
         public void Execute(Entity entity, int index, [ReadOnly] ref MovementComponent moveComp, [ReadOnly] ref Translation posComp) {
@@ -25,7 +25,7 @@ public class EffectSpawnSystem : JobComponentSystem {
                 return;
             }
 
-            var effectEntity = cmdBuf.Instantiate(index, preset);
+            var effectEntity = cmdBuf.Instantiate(index, prefab);
             cmdBuf.SetComponent(index, effectEntity, posComp);
             cmdBuf.AddComponent<EffectSpawnExistComponent>(index, entity);
         }
@@ -40,10 +40,9 @@ public class EffectSpawnSystem : JobComponentSystem {
         foreach (var entity in entities.Where(entity =>
             true == EntityManager.HasComponent(entity, typeof(EffectSpawnComponent)))) {
             var effectSpawnComp = EntityManager.GetComponentData<EffectSpawnComponent>(entity);
-            job.preset = effectSpawnComp.preset;
+            job.prefab = effectSpawnComp.prefab;
             break;
         }
-
         entities.Dispose();
 
         var handle = job.Schedule(this, inputDependencies);

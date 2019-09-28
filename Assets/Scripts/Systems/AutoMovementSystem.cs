@@ -36,25 +36,31 @@ public class AutoMovementSystem : JobComponentSystem {
                 var moveComp = movements[i];
                 var currentPos = translations[i].Value;
 
+                if (moveComp.xValue == 0.0f) {
+                    moveComp.xValue = -1.0f;
+                }
+
                 for (var j = 0; j < chunk.Count; ++j) {
                     if (i == j) {
                         continue;
                     }
 
                     var at = translations[j].Value.x - currentPos.x;
+                    bool isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
+                    if (!isHeadingForward)
+                        continue;
+
                     if (0.5f >= math.abs(at)) {
                         moveComp.value = 0.0f;
                         movements[i] = moveComp;
                         break;
                     }
 
-                    if (0.0f >= at) {
+                    if (moveComp.xValue < 0.0f) {
                         moveComp.value.x = -1.0f;
-                        moveComp.xValue = -1.0f;
                     }
                     else {
                         moveComp.value.x = 1.0f;
-                        moveComp.xValue = 1.0f;
                     }
 
                     currentPos.x += moveComp.value.x * deltaTime;

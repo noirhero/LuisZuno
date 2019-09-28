@@ -315,6 +315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
+  bTemporaryFlag: 1
+  reactiveNameHash: 8f010000
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 275111884}
+  bTemporaryFlag: 0
+  reactiveNameHash: 
 --- !u!114 &931772987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -616,10 +620,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1312177588}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a30164d5c17c44b8a180bca1d3381f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d27d2c5f3424614fad86ef8ea22ebb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 275111884}
+  bTemporaryFlag: 0
+  reactiveNameHash: 
 --- !u!212 &1312177590
 SpriteRenderer:
   m_ObjectHideFlags: 0

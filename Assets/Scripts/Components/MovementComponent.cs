@@ -8,4 +8,9 @@ using Unity.Mathematics;
 public struct MovementComponent : IComponentData {
     public float3 value;
     public float xValue;
+
+    public MovementComponent(float x) {
+        value = float3.zero;
+        xValue = x;
+    }
 }

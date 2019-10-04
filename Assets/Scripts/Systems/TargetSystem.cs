@@ -9,7 +9,6 @@ public class TargetSystem : ComponentSystem {
     protected override void OnUpdate() {
         var targetIndex = int.MaxValue;
         var targetDistance = float.PositiveInfinity;
-        var targetReactiveLength = float.PositiveInfinity;
         var compareIndex = int.MaxValue;
         var comparePos = Vector2.zero;
         var compareType = EntityType.None;
@@ -36,7 +35,6 @@ public class TargetSystem : ComponentSystem {
                 if (Mathf.Abs(distance) < targetDistance) {
                     targetIndex = entity.Index;
                     targetDistance = Mathf.Abs(distance);
-                    targetReactiveLength = reactiveComp.reactiveLength;
                 }
             });
 

@@ -18,7 +18,7 @@ public class AnimStateSystem : JobComponentSystem {
             }
             else {
                 foreach (var b in Encoding.ASCII.GetBytes("Idle")) {
-                    animComp.nameHash += reactiveComp.pendingAnim != 0 ? reactiveComp.pendingAnim : b;
+                    animComp.nameHash += b;
                 }
             }
         }

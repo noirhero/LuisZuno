@@ -2,12 +2,11 @@
 
 using System;
 using Unity.Entities;
+using GlobalDefine;
 
 [Serializable]
 public struct ReactiveComponent : IComponentData {
     public float colliderSizeX;
     public float colliderSizeY;
-
-    public int[] reactiveAnimList;
-    public int pendingAnim;
+    public EntityType type;
 }

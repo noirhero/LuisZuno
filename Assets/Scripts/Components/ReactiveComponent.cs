@@ -9,4 +9,5 @@ public struct ReactiveComponent : IComponentData {
     public float colliderSizeX;
     public float colliderSizeY;
     public EntityType type;
+    public float startAnimTime;
 }

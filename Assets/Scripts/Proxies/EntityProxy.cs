@@ -34,6 +34,7 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
             colliderSizeX = cachedSize.x,
             colliderSizeY = cachedSize.y,
             type = entityType,
+            startAnimTime = float.PositiveInfinity,
         });
 
         dstManager.AddComponentData(entity, new TargetComponent() {

@@ -7,8 +7,8 @@ using Unity.Jobs;
 using Unity.Mathematics;
 
 public class AnimStateSystem : JobComponentSystem {
-    private struct AnimStateSystemJob : IJobForEach<SpriteAnimComponent, MovementComponent> {
-        public void Execute(ref SpriteAnimComponent animComp, [ReadOnly] ref MovementComponent moveComp) {
+    private struct AnimStateSystemJob : IJobForEach<SpriteAnimComponent, MovementComponent, ReactiveComponent> {
+        public void Execute(ref SpriteAnimComponent animComp, [ReadOnly] ref MovementComponent moveComp, [ReadOnly] ref ReactiveComponent reactiveComp) {
             animComp.nameHash = 0;
 
             if (math.FLT_MIN_NORMAL < math.lengthsq(moveComp.value)) {

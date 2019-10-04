@@ -5,5 +5,5 @@ using Unity.Entities;
 
 [Serializable]
 public struct TargetComponent : IComponentData {
-    public bool bOn;
+    public int targetIndex;
 }

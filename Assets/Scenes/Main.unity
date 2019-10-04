@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 275111884}
-  entityType: 3
+  entityType: 2
 --- !u!114 &931772987
 MonoBehaviour:
   m_ObjectHideFlags: 0

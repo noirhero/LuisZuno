@@ -8,8 +8,9 @@ using GlobalDefine;
 public class TargetSystem : ComponentSystem {
     protected override void OnUpdate() {
         var targetIndex = int.MaxValue;
-        var compareIndex = int.MaxValue;
         var targetDistance = float.PositiveInfinity;
+        var targetReactiveLength = float.PositiveInfinity;
+        var compareIndex = int.MaxValue;
         var comparePos = Vector2.zero;
         var compareType = EntityType.None;
 
@@ -27,17 +28,15 @@ public class TargetSystem : ComponentSystem {
                 if (compareType == EntityType.None)
                     return;
 
-                if (compareType == EntityType.Player && reactiveComp.type == EntityType.Player)
-                    return;
-
-                if (compareType != EntityType.Player && reactiveComp.type != EntityType.Player)
+                if (compareType == reactiveComp.type)
                     return;
 
                 // todo : check boundary or check look direction
                 float distance = Vector2.Distance(comparePos, new Vector2(pos.Value.x, pos.Value.y));
                 if (Mathf.Abs(distance) < targetDistance) {
-                    targetDistance = Mathf.Abs(distance);
                     targetIndex = entity.Index;
+                    targetDistance = Mathf.Abs(distance);
+                    targetReactiveLength = reactiveComp.reactiveLength;
                 }
             });
 

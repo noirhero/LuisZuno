@@ -1,6 +1,7 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved
 
 using System.Text;
+using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using GlobalDefine;
@@ -26,9 +27,10 @@ public class ReactiveSystem : ComponentSystem {
                     foreach (var b in Encoding.ASCII.GetBytes(AnimationType.Walk.ToString())) {
                         chooseNameHash += b;
                     }
+                    reactiveComp.reactivingDuration = 0.0f;
                 }
                 else {
-                    if (compareDistance <= 0.0f) {
+                    if (reactiveComp.reactiveLength < reactiveComp.reactivingDuration) {
                         foreach (var b in Encoding.ASCII.GetBytes(AnimationType.SomethingDoIt.ToString())) {
                             chooseNameHash += b;
                         }
@@ -38,10 +40,13 @@ public class ReactiveSystem : ComponentSystem {
                             chooseNameHash += b;
                         }
                     }
+                    reactiveComp.reactivingDuration += Time.deltaTime;
                 }
             });
 
-            baseAnimComp.nameHash = chooseNameHash;
+            if (baseAnimComp.nameHash != chooseNameHash) {
+                baseAnimComp.nameHash = chooseNameHash;
+            }
         });
     }
 }

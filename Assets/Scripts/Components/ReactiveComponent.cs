@@ -9,4 +9,6 @@ public struct ReactiveComponent : IComponentData {
     public float colliderSizeX;
     public float colliderSizeY;
     public EntityType type;
+    public float reactiveLength;
+    public float reactivingDuration;
 }

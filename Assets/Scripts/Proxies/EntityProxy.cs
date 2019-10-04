@@ -9,7 +9,8 @@ using GlobalDefine;
 public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
 
     public SpritePreset preset = null;
-    public EntityType entityType = EntityType.Static;
+    public EntityType entityType = EntityType.None;
+    public float entityReactiveLength = 3.0f;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
@@ -34,10 +35,13 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
             colliderSizeX = cachedSize.x,
             colliderSizeY = cachedSize.y,
             type = entityType,
+            reactiveLength = entityReactiveLength,
+            reactivingDuration = 0.0f,
         });
 
         dstManager.AddComponentData(entity, new TargetComponent() {
             targetIndex = int.MaxValue,
+            targetDistance = float.PositiveInfinity,
         });
     }
 }

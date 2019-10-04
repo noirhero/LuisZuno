@@ -24,18 +24,18 @@ public class ReactiveSystem : ComponentSystem {
 
                 if (bMoving) {
                     foreach (var b in Encoding.ASCII.GetBytes(AnimationType.Walk.ToString())) {
-                        chooseNameHash = b;
+                        chooseNameHash += b;
                     }
                 }
                 else {
-                    if (compareDistance <= 0.1f) {
+                    if (compareDistance <= 0.0f) {
                         foreach (var b in Encoding.ASCII.GetBytes(AnimationType.SomethingDoIt.ToString())) {
-                            chooseNameHash = b;
+                            chooseNameHash += b;
                         }
                     }
                     else {
                         foreach (var b in Encoding.ASCII.GetBytes(AnimationType.Idle.ToString())) {
-                            chooseNameHash = b;
+                            chooseNameHash += b;
                         }
                     }
                 }

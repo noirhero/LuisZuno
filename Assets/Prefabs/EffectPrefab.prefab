@@ -48,7 +48,7 @@ MonoBehaviour:
   mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: f465191987c564b459808e81a9ea7fea, type: 2}
   clips:
-  - {fileID: 7400000, guid: e9a792c6240476c4297a9cdb2f0b1fed, type: 2}
+  - {fileID: 7400000, guid: f46264c0d239cd540aad29e567ad6970, type: 2}
   datas:
     reorderableList:
       canAdd: 1
@@ -72,8 +72,8 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 0
-    _keyValues: 11040000
-    _keys: 11040000
+    _keyValues: 21040000
+    _keys: 21040000
     _values:
     - texture: {fileID: 2800000, guid: 05aaa1889a1a3cf4d85bac531df1bdae, type: 3}
       length: 0.5

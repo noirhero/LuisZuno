@@ -8,6 +8,6 @@ public class AvatarProxy : EntityProxy {
     public override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
 
-        dstManager.AddComponentData(entity, new MovementComponent());
+        dstManager.AddComponentData(entity, new MovementComponent(1.0f));
     }
 }

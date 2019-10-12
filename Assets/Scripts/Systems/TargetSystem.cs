@@ -14,12 +14,13 @@ public class TargetSystem : ComponentSystem {
         var comparePos = Vector2.zero;
         var compareType = EntityType.None;
 
-        Entities.ForEach((Entity baseEntity, ref ReactiveComponent baseReactiveComp, ref Translation basePos, ref TargetComponent baseTargetComp) => {
+        Entities.ForEach((Entity baseEntity, ref ReactiveComponent baseReactiveComp, ref Translation basePos, ref TargetComponent baseTargetComp, ref MovementComponent baseMoveComp) => {
             targetIndex = int.MaxValue;
             compareIndex = baseEntity.Index;
             targetDistance = float.PositiveInfinity;
             comparePos = new Vector2(basePos.Value.x, basePos.Value.y);
             compareType = baseReactiveComp.type;
+            var baseMoveComponent = baseMoveComp;
 
             Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref Translation pos, ref TargetComponent targetComp) => {
                 if (compareIndex == entity.Index)
@@ -29,6 +30,12 @@ public class TargetSystem : ComponentSystem {
                     return;
 
                 if (compareType == reactiveComp.type)
+                    return;
+
+                // If the entity is movable, check it is heading forward
+                float xDistance = pos.Value.x - comparePos.x;
+                bool isHeadingForward = (baseMoveComponent.xValue < 0.0f && xDistance < 0.0f) || (baseMoveComponent.xValue > 0.0f && xDistance > 0.0f);
+                if (false == isHeadingForward)
                     return;
 
                 // todo : check boundary or check look direction

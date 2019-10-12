@@ -15,22 +15,22 @@ public class AutoMovementSystem : ComponentSystem {
             // Initialize to know if it is changed
             desiredPos.Value.z = -5.0f;
 
-            TargetComponent currentTarget = targetComp;
+            // get target location
+            int targetIndex = targetComp.targetIndex;
             Entities.ForEach((Entity targetEntity, ref Translation targetPos) => {
-                if (currentTarget.targetIndex == targetEntity.Index) {
+                if (targetIndex == int.MaxValue)
+                    return;
+
+                if (targetIndex == targetEntity.Index) {
                     desiredPos = targetPos;
                 }
             });
 
-            // if it is not initialized
+            // not initialized
             if (-5.0f == desiredPos.Value.z)
                 return;
 
             var at = desiredPos.Value.x - currentPos.Value.x;
-            bool isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
-            if (false == isHeadingForward)
-                return;
-
             if (0.5f >= math.abs(at)) {
                 moveComp.value = 0.0f;
                 return;

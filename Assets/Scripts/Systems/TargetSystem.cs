@@ -9,18 +9,23 @@ public class TargetSystem : ComponentSystem {
     protected override void OnUpdate() {
         var targetIndex = int.MaxValue;
         var targetDistance = float.PositiveInfinity;
+        var compareLastTargetIndex = int.MinValue;
         var compareIndex = int.MaxValue;
         var comparePos = Vector2.zero;
         var compareType = EntityType.None;
 
         Entities.ForEach((Entity baseEntity, ref ReactiveComponent baseReactiveComp, ref Translation basePos, ref TargetComponent baseTargetComp) => {
             targetIndex = int.MaxValue;
-            compareIndex = baseEntity.Index;
             targetDistance = float.PositiveInfinity;
+            compareLastTargetIndex = baseTargetComp.lastTargetIndex;
+            compareIndex = baseEntity.Index;
             comparePos = new Vector2(basePos.Value.x, basePos.Value.y);
             compareType = baseReactiveComp.type;
 
             Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref Translation pos, ref TargetComponent targetComp) => {
+                if (compareLastTargetIndex == entity.Index)
+                    return;
+
                 if (compareIndex == entity.Index)
                     return;
 

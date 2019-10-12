@@ -331,6 +331,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: ba6684823e1adaf4280a8797447187f7, type: 2}
   - {fileID: 7400000, guid: f5271fc73199c5d4e856500c15c15991, type: 2}
   - {fileID: 7400000, guid: 0ad6b33025e2bd640a1f75b6f652ecd1, type: 2}
+  - {fileID: 7400000, guid: 5839d3494e151ba418cf1b39f8a1103a, type: 2}
   datas:
     reorderableList:
       canAdd: 1
@@ -354,25 +355,9 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 1
-    _keyValues: 1e0500007e0100008f010000
-    _keys: 1e0500007e0100008f010000
+    _keyValues: 7e0100008f0100001e0500006c020000
+    _keys: 7e0100008f0100001e0500006c020000
     _values:
-    - texture: {fileID: 2800000, guid: 7e214de37e6cea547bd5c355cc4dfd8f, type: 3}
-      length: 0.33333334
-      frameRate: 0.083333336
-      scale:
-        x: 0.45
-        y: 0.57
-        z: 1
-      posOffset:
-        x: 0
-        y: 0.285
-        z: 0
-      rects:
-      - {x: 0.3515625, y: 0.4453125, z: 0, w: 0.5546875}
-      - {x: 0.3515625, y: 0.4453125, z: 0.3515625, w: 0.5546875}
-      - {x: 0.3515625, y: 0.4453125, z: 0, w: 0.109375}
-      - {x: 0.3515625, y: 0.4453125, z: 0.3515625, w: 0.109375}
     - texture: {fileID: 2800000, guid: 979404b161faa454c94510eccd64a1d6, type: 3}
       length: 0.33333334
       frameRate: 0.083333336
@@ -409,6 +394,40 @@ MonoBehaviour:
       - {x: 0.17578125, y: 0.4453125, z: 0, w: 0.109375}
       - {x: 0.17578125, y: 0.4453125, z: 0.17578125, w: 0.109375}
       - {x: 0.17578125, y: 0.4453125, z: 0.3515625, w: 0.109375}
+    - texture: {fileID: 2800000, guid: 7e214de37e6cea547bd5c355cc4dfd8f, type: 3}
+      length: 0.33333334
+      frameRate: 0.083333336
+      scale:
+        x: 0.45
+        y: 0.57
+        z: 1
+      posOffset:
+        x: 0
+        y: 0.285
+        z: 0
+      rects:
+      - {x: 0.3515625, y: 0.4453125, z: 0, w: 0.5546875}
+      - {x: 0.3515625, y: 0.4453125, z: 0.3515625, w: 0.5546875}
+      - {x: 0.3515625, y: 0.4453125, z: 0, w: 0.109375}
+      - {x: 0.3515625, y: 0.4453125, z: 0.3515625, w: 0.109375}
+    - texture: {fileID: 2800000, guid: 52d616981e3a5d1419c98b9204d64bb1, type: 3}
+      length: 0.5
+      frameRate: 0.083333336
+      scale:
+        x: 0.45
+        y: 0.57
+        z: 1
+      posOffset:
+        x: 0
+        y: 0.285
+        z: 0
+      rects:
+      - {x: 0.17578125, y: 0.4453125, z: 0, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0.17578125, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0.3515625, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0.52734375, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0.703125, w: 0.5546875}
+      - {x: 0.17578125, y: 0.4453125, z: 0, w: 0.109375}
 --- !u!4 &275111885
 Transform:
   m_ObjectHideFlags: 0

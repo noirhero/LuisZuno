@@ -15,7 +15,7 @@ public class ReactiveSystem : ComponentSystem {
         var bMoving = false;
 
         Entities.ForEach((ref ReactiveComponent baseReactiveComp, ref MovementComponent baseMoveComp, ref TargetComponent baseTargetComp, ref SpriteAnimComponent baseAnimComp) => {
-            chooseNameHash = baseAnimComp.nameHash;
+            chooseNameHash = 0;
             chooseIndex = baseTargetComp.lastTargetIndex;
             compareIndex = baseTargetComp.targetIndex;
             compareDistance = baseTargetComp.targetDistance;
@@ -32,7 +32,7 @@ public class ReactiveSystem : ComponentSystem {
                 }
                 else {
                     if (reactiveComp.reactiveLength > reactiveComp.reactivingDuration) {
-                        foreach (var b in Encoding.ASCII.GetBytes(AnimationType.SomethingDoIt.ToString())) {
+                        foreach (var b in Encoding.ASCII.GetBytes(AnimationType.NyoNyo.ToString())) {
                             chooseNameHash += b;
                         }
                         reactiveComp.reactivingDuration += Time.deltaTime;

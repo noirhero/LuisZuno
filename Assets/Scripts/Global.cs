@@ -2,5 +2,5 @@
 
 namespace GlobalDefine {
     public enum EntityType { None, Player, NonePlayer }
-    public enum AnimationType { Walk, Idle, SomethingDoIt }
+    public enum AnimationType { Walk, Idle, SomethingDoIt, NyoNyo }
 }

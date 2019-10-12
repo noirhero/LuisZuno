@@ -47,8 +47,12 @@ public class ReactiveSystem : ComponentSystem {
                 }
             });
 
-            baseAnimComp.nameHash = chooseNameHash;
-            baseTargetComp.lastTargetIndex = chooseIndex;
+            if (baseAnimComp.nameHash != chooseNameHash) {
+                baseAnimComp.nameHash = chooseNameHash;
+            }
+            if (baseTargetComp.lastTargetIndex != chooseIndex) {
+                baseTargetComp.lastTargetIndex = chooseIndex;
+            }
         });
     }
 }

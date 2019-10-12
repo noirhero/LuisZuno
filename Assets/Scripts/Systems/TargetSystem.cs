@@ -43,8 +43,10 @@ public class TargetSystem : ComponentSystem {
                 }
             });
 
-            baseTargetComp.targetIndex = targetIndex;
-            baseTargetComp.targetDistance = targetDistance;
+            if (baseTargetComp.targetIndex != targetIndex) {
+                baseTargetComp.targetIndex = targetIndex;
+                baseTargetComp.targetDistance = targetDistance;
+            }
         });
     }
 }

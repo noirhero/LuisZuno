@@ -148,27 +148,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: SomethingDoIt 3
-      rect:
-        serializedVersion: 2
-        x: 45
-        y: 14
-        width: 45
-        height: 57
-      alignment: 7
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 
-      internalID: 6813438730510068627
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []

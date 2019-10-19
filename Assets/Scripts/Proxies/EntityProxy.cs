@@ -1,6 +1,7 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
 
 using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using GlobalDefine;
@@ -10,6 +11,7 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public SpritePreset preset = null;
     public EntityType entityType = EntityType.None;
     public float entityReactiveLength = 3.0f;
+    public List<ItemStruct> dropItems = new List<ItemStruct>();
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
@@ -25,7 +27,7 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
 
         Vector2 cachedSize = Vector2.zero;
         BoxCollider2D cachedBox = GetComponent<BoxCollider2D>();
-        if (cachedBox != null) {
+        if (null != cachedBox) {
             cachedSize.x = cachedBox.size.x;
             cachedSize.y = cachedBox.size.y;
         }
@@ -43,5 +45,10 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
             targetIndex = int.MaxValue,
             targetDistance = float.PositiveInfinity,
         });
+
+        for (int i = 0; i < dropItems.Count; i++) {
+            dstManager.AddComponentData(entity, new ItemComponet(dropItems[i]) {
+            });
+        }
     }
 }

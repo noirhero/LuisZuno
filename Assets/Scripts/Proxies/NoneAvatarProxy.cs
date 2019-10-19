@@ -8,7 +8,7 @@ using Unity.Entities;
 public class NoneAvatarProxy : EntityProxy {
     public Int32 chakra;
     public Int32 reactedCount;
-    public Int32 tempting;
+    public Int32 temptation;
 
     public override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
@@ -16,7 +16,7 @@ public class NoneAvatarProxy : EntityProxy {
         dstManager.AddComponentData(entity, new NoneAvatarStatusComponent() {
             chakra = chakra,
             reactedCount = reactedCount,
-            tempting = tempting
+            temptation = temptation
         });
     }
 }

@@ -8,16 +8,17 @@ using GlobalDefine;
 
 public class CameraSystem : ComponentSystem {
     protected override void OnUpdate() {
-        Entities.ForEach((CameraComponent cameraComp) => {
-            var desiredPos = cameraComp.defaultPos;
-            var velocity = math.clamp(cameraComp.velocity * Time.deltaTime, 0.0f, 1.0f);
+        Entities.ForEach((CameraPresetComponent presetComp, ref CameraComopnent cameraComp) => {
+            var desiredPos = presetComp.defaultPos;
+            var currentPosX = presetComp.myTransform.position.x;
 
             Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref Translation pos) => {
                 if (reactiveComp.type == EntityType.Player) {
-                    desiredPos.x = Mathf.Lerp(cameraComp.myTransform.position.x, pos.Value.x, velocity);
+                    var velocity = (currentPosX / pos.Value.x) * Time.deltaTime;
+                    desiredPos.x = math.lerp(currentPosX, pos.Value.x, velocity);
                 }
             });
-            cameraComp.myTransform.position = desiredPos;
+            presetComp.myTransform.position = desiredPos;
         });
     }
 }

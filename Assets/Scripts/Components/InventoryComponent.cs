@@ -20,8 +20,8 @@ public struct InventoryComponent : IComponentData {
         bHasPendingItem = false;
     }
 
-    public void AddItem(ItemStruct inData) {
-        pendingItem = inData;
+    public void AddItem(ItemComponet inItem) {
+        pendingItem = inItem.data;
         bHasPendingItem = true;
     }
 

@@ -78,7 +78,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -96,7 +96,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 71
+        y: 7
         width: 45
         height: 57
       alignment: 7
@@ -117,7 +117,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 45
-        y: 71
+        y: 7
         width: 45
         height: 57
       alignment: 7
@@ -129,90 +129,6 @@ TextureImporter:
       bones: []
       spriteID: 
       internalID: 2365989049562923634
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NyoNyo 2
-      rect:
-        serializedVersion: 2
-        x: 90
-        y: 71
-        width: 45
-        height: 57
-      alignment: 7
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 
-      internalID: -1230732922027839269
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NyoNyo 3
-      rect:
-        serializedVersion: 2
-        x: 135
-        y: 71
-        width: 45
-        height: 57
-      alignment: 7
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 
-      internalID: 3758403304654017994
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NyoNyo 4
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 71
-        width: 45
-        height: 57
-      alignment: 7
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 
-      internalID: 2227774789423404287
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: NyoNyo 5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 14
-        width: 45
-        height: 57
-      alignment: 7
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 
-      internalID: -8394962979977952410
       vertices: []
       indices: 
       edges: []

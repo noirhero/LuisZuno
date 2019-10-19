@@ -17,12 +17,12 @@ public class AutoMovementSystem : ComponentSystem {
 
             // get target location
             int targetIndex = targetComp.targetIndex;
-            Entities.ForEach((Entity targetEntity, ref Translation targetPos) => {
+            Entities.ForEach((Entity otherEntity, ref Translation entityPos) => {
                 if (targetIndex == int.MaxValue)
                     return;
 
-                if (targetIndex == targetEntity.Index) {
-                    desiredPos = targetPos;
+                if (targetIndex == otherEntity.Index) {
+                    desiredPos = entityPos;
                 }
             });
 

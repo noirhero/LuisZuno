@@ -23,6 +23,10 @@ public class TargetSystem : ComponentSystem {
             compareType = baseReactiveComp.type;
             var baseMoveComponent = baseMoveComp;
 
+
+            // DebugDraw
+            //var target = baseTargetComp;
+
             Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref Translation pos, ref TargetComponent targetComp) => {
                 if (compareLastTargetIndex == entity.Index)
                     return;
@@ -47,6 +51,13 @@ public class TargetSystem : ComponentSystem {
                 if (Mathf.Abs(distance) < targetDistance) {
                     targetIndex = entity.Index;
                     targetDistance = Mathf.Abs(distance);
+
+                    // DebugDraw
+                    //if (target.targetIndex == targetIndex) {
+                    //    if (compareType == EntityType.Player)
+                    //        Debug.DrawLine(comparePos, new Vector2(pos.Value.x, pos.Value.y), Color.red);
+                    //}
+
                 }
             });
 

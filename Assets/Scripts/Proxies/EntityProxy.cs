@@ -7,7 +7,6 @@ using GlobalDefine;
 
 [RequiresEntityConversion]
 public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
-
     public SpritePreset preset = null;
     public EntityType entityType = EntityType.None;
     public float entityReactiveLength = 3.0f;

@@ -758,14 +758,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   entityType: 2
-  entityReactiveLength: 1
-  dropItem:
-    id: 0
-    madness: 0
+  entityReactionTime: 3
+  entityReactionLimitCount: 3
+  dropItem: 0
   Status:
-    madness: 0
-    attractiveness: 0
-    reactionLimitCount: 0
+    madness: 10
 --- !u!1 &451163677
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,14 +809,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   entityType: 3
-  entityReactiveLength: 1
-  dropItem:
-    id: 0
-    madness: 0
+  entityReactionTime: 3
+  entityReactionLimitCount: 3
+  dropItem: 0
   Status:
     madness: 0
-    attractiveness: 0
-    reactionLimitCount: 0
 --- !u!61 &451163680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1382,7 +1376,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 1049945743}
   entityType: 2
-  entityReactiveLength: 3
+  entityReactionTime: 3
+  entityReactionLimitCount: 3
   defaultInventory:
   - id: 0
     madness: 0
@@ -1392,10 +1387,9 @@ MonoBehaviour:
     madness: 0
   Status:
     health: 0
-    madness: 0
-    moveSpeed: 0
-    attractiveness: 0
-    curiosity: 0
+    madness: 20
+    agility: 0
+    eyeSight: 0
 --- !u!114 &985620909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1877,7 +1871,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 275111884}
   entityType: 1
-  entityReactiveLength: 3
+  entityReactionTime: 3
+  entityReactionLimitCount: 3
   defaultInventory:
   - id: 1
     madness: 0
@@ -1890,9 +1885,8 @@ MonoBehaviour:
   Status:
     health: 0
     madness: 0
-    moveSpeed: 1
-    attractiveness: 0
-    curiosity: 0
+    agility: 0
+    eyeSight: 0
 --- !u!212 &1312177590
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2143,14 +2137,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   entityType: 3
-  entityReactiveLength: 1
-  dropItem:
-    id: 0
-    madness: 0
+  entityReactionTime: 3
+  entityReactionLimitCount: 3
+  dropItem: 0
   Status:
     madness: 0
-    attractiveness: 0
-    reactionLimitCount: 0
 --- !u!61 &1808311619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2294,14 +2285,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   entityType: 2
-  entityReactiveLength: 1
-  dropItem:
-    id: 0
-    madness: 0
+  entityReactionTime: 3
+  entityReactionLimitCount: 3
+  dropItem: 0
   Status:
     madness: 0
-    attractiveness: 0
-    reactionLimitCount: 0
 --- !u!114 &1843038006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2499,14 +2487,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   entityType: 2
-  entityReactiveLength: 1
-  dropItem:
-    id: 0
-    madness: 0
+  entityReactionTime: 3
+  entityReactionLimitCount: 3
+  dropItem: 0
   Status:
     madness: 0
-    attractiveness: 0
-    reactionLimitCount: 0
 --- !u!114 &1959053451
 MonoBehaviour:
   m_ObjectHideFlags: 0

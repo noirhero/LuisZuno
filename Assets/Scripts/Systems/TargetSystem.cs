@@ -23,6 +23,9 @@ public class TargetSystem : ComponentSystem {
             compareType = baseReactiveComp.type;
             var baseMoveComponent = baseMoveComp;
 
+            if (baseReactiveComp.ReactionElapsedTime > 0.0f)
+                return;
+
 
             //// DebugDraw
             //var target = baseTargetComp;
@@ -40,19 +43,17 @@ public class TargetSystem : ComponentSystem {
                 if (compareType == reactiveComp.type)
                     return;
 
+                if (reactiveComp.type != EntityType.Wall && reactiveComp.ReactedCount >= reactiveComp.reactionLimitCount)
+                    return;
+
                 // If the entity is movable, check it is heading forward
                 float xDistance = pos.Value.x - comparePos.x;
                 bool isHeadingForward = (baseMoveComponent.xValue < 0.0f && xDistance < 0.0f) || (baseMoveComponent.xValue > 0.0f && xDistance > 0.0f);
                 if (false == isHeadingForward)
                     return;
 
-                // always reactive or already done
-                if (reactiveComp.type != EntityType.Wall && reactiveComp.ReactedCount >= reactiveComp.reactionLimitCount) {
-                    return;
-                }
-
                 // todo : check boundary or check look direction
-                    float distance = Vector2.Distance(comparePos, new Vector2(pos.Value.x, pos.Value.y));
+                float distance = Vector2.Distance(comparePos, new Vector2(pos.Value.x, pos.Value.y));
                 if (Mathf.Abs(distance) < targetDistance) {
                     targetIndex = entity.Index;
                     targetDistance = Mathf.Abs(distance);

@@ -38,6 +38,10 @@ public class AutoMovementSystem : ComponentSystem {
                 return;
             }
 
+            bool isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
+            if (false == isHeadingForward)
+                return;
+
             if (moveComp.xValue < 0.0f) {
                 moveComp.value.x = -1.0f;
             }

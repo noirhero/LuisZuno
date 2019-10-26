@@ -12,23 +12,25 @@ public class AutoMovementSystem : ComponentSystem {
         var desiredPos = new Translation();
 
         Entities.ForEach((Entity entity, ref TargetComponent targetComp, ref MovementComponent moveComp, ref Translation currentPos) => {
-            // Initialize to know if it is changed
-            desiredPos.Value.z = -5.0f;
 
-            // get target location
+            Entity targetEntity = Entity.Null;
+
+            // get target
             int targetIndex = targetComp.targetIndex;
+            int lastTargetIndex = targetComp.lastTargetIndex;
             Entities.ForEach((Entity otherEntity, ref Translation entityPos) => {
-                if (targetIndex == int.MaxValue)
+                if (targetIndex == int.MaxValue || lastTargetIndex == otherEntity.Index)
                     return;
 
                 if (targetIndex == otherEntity.Index) {
-                    desiredPos = entityPos;
+                    targetEntity = otherEntity;
                 }
             });
 
-            // not initialized
-            if (-5.0f == desiredPos.Value.z)
+            if (targetEntity.Equals(Entity.Null))
                 return;
+
+            desiredPos = EntityManager.GetComponentData<Translation>(targetEntity);
 
             var at = desiredPos.Value.x - currentPos.Value.x;
             if (0.5f >= math.abs(at)) {
@@ -43,7 +45,8 @@ public class AutoMovementSystem : ComponentSystem {
                 moveComp.value.x = 1.0f;
             }
 
-            currentPos.Value.x += moveComp.value.x * deltaTime;
+            var StatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(entity);
+            currentPos.Value.x += moveComp.value.x * deltaTime * StatusComp.moveSpeed;
         });
     }
 }

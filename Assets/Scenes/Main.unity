@@ -312,9 +312,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootCanvas: {fileID: 233822090}
   endingMsg: {fileID: 1043247765}
-  madness: {fileID: 278837674}
   bubble: {fileID: 813633665}
   bubbleMsg: {fileID: 1080996637}
+  madness: {fileID: 278837674}
   item0: {fileID: 743405256}
   item1: {fileID: 84418562}
   item2: {fileID: 1946033145}
@@ -759,13 +759,13 @@ MonoBehaviour:
   preset: {fileID: 0}
   entityType: 2
   entityReactiveLength: 1
-  dropItems: []
-  chakra: 0
-  reactedCount: 0
-  temptation: 0
   dropItem:
     id: 0
     madness: 0
+  Status:
+    madness: 0
+    attractiveness: 0
+    reactionLimitCount: 0
 --- !u!1 &451163677
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,13 +813,13 @@ MonoBehaviour:
   preset: {fileID: 0}
   entityType: 3
   entityReactiveLength: 1
-  dropItems: []
-  chakra: 0
-  reactedCount: 0
-  temptation: 0
   dropItem:
     id: 0
     madness: 0
+  Status:
+    madness: 0
+    attractiveness: 0
+    reactionLimitCount: 0
 --- !u!61 &451163680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1383,7 +1383,6 @@ MonoBehaviour:
   preset: {fileID: 1049945743}
   entityType: 2
   entityReactiveLength: 3
-  dropItems: []
   defaultInventory:
   - id: 0
     madness: 0
@@ -1391,6 +1390,12 @@ MonoBehaviour:
     madness: 0
   - id: 0
     madness: 0
+  Status:
+    health: 0
+    madness: 0
+    moveSpeed: 0
+    attractiveness: 0
+    curiosity: 0
 --- !u!114 &985620909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1873,7 +1878,6 @@ MonoBehaviour:
   preset: {fileID: 275111884}
   entityType: 1
   entityReactiveLength: 3
-  dropItems: []
   defaultInventory:
   - id: 1
     madness: 0
@@ -1883,6 +1887,12 @@ MonoBehaviour:
     madness: 0
   - id: 4
     madness: 0
+  Status:
+    health: 0
+    madness: 0
+    moveSpeed: 1
+    attractiveness: 0
+    curiosity: 0
 --- !u!212 &1312177590
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2134,13 +2144,13 @@ MonoBehaviour:
   preset: {fileID: 0}
   entityType: 3
   entityReactiveLength: 1
-  dropItems: []
-  chakra: 0
-  reactedCount: 0
-  temptation: 0
   dropItem:
     id: 0
     madness: 0
+  Status:
+    madness: 0
+    attractiveness: 0
+    reactionLimitCount: 0
 --- !u!61 &1808311619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2285,13 +2295,13 @@ MonoBehaviour:
   preset: {fileID: 0}
   entityType: 2
   entityReactiveLength: 1
-  dropItems: []
-  chakra: 0
-  reactedCount: 0
-  temptation: 0
   dropItem:
     id: 0
     madness: 0
+  Status:
+    madness: 0
+    attractiveness: 0
+    reactionLimitCount: 0
 --- !u!114 &1843038006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2490,13 +2500,13 @@ MonoBehaviour:
   preset: {fileID: 0}
   entityType: 2
   entityReactiveLength: 1
-  dropItems: []
-  chakra: 0
-  reactedCount: 0
-  temptation: 0
   dropItem:
     id: 0
     madness: 0
+  Status:
+    madness: 0
+    attractiveness: 0
+    reactionLimitCount: 0
 --- !u!114 &1959053451
 MonoBehaviour:
   m_ObjectHideFlags: 0

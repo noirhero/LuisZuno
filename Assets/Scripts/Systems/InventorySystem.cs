@@ -5,9 +5,11 @@ using GlobalDefine;
 
 public class InventorySystem : ComponentSystem {
     protected override void OnUpdate() {
+        // set inventory
         Entities.ForEach((Entity entity, ref InventoryComponent inventoryComp) => {
             if (inventoryComp.bHasPendingItem == false)
                 return;
+
 
             // TODO
         });

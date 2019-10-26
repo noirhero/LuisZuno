@@ -8,7 +8,14 @@ namespace GlobalDefine {
 
     [Serializable]
     public struct ItemStruct {
-        public Int32 chakra;
-        public Int32 sane;
+        public Int64 id;
+        public Int32 madness;
+
+        public bool IsVaild() {
+            return id != 0;
+        }
+        public bool Empty() {
+            return id != 0;
+        }
     }
 }

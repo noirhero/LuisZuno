@@ -1,14 +1,15 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
 
 using System;
-using UnityEngine;
 using Unity.Entities;
+using GlobalDefine;
 
 [RequiresEntityConversion]
 public class NoneAvatarProxy : EntityProxy {
     public Int32 chakra;
     public Int32 reactedCount;
     public Int32 temptation;
+    public ItemStruct dropItem;
 
     public override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
@@ -18,5 +19,7 @@ public class NoneAvatarProxy : EntityProxy {
             reactedCount = reactedCount,
             temptation = temptation
         });
+
+        dstManager.AddComponentData(entity, new ItemComponet(dropItem));
     }
 }

@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &84418561
 RectTransform:
   m_ObjectHideFlags: 0
@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 233822090}
   - component: {fileID: 233822089}
   - component: {fileID: 233822088}
+  - component: {fileID: 233822092}
   m_Layer: 5
   m_Name: GUICanvas
   m_TagString: Untagged
@@ -296,6 +297,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &233822092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 233822087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb3f94c005570d48b834038b8526976, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 2075827276}
+  item0: {fileID: 743405256}
+  item1: {fileID: 84418562}
+  item2: {fileID: 1946033145}
+  itemDatas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 0100000000000000020000000000000003000000000000000400000000000000
+    _keys: 0100000000000000020000000000000003000000000000000400000000000000
+    _values:
+    - sprite: {fileID: 21300000, guid: adc820eb73d6c744498d7cc35540814e, type: 3}
+    - sprite: {fileID: 21300000, guid: 15b0b0180a1d20740b2ad717a05a68e7, type: 3}
+    - sprite: {fileID: 21300000, guid: d884e736474610d478a9b44f24a043d1, type: 3}
+    - sprite: {fileID: 21300000, guid: 564d90672bb8acb418a465a9be39f0fd, type: 3}
 --- !u!1 &275111883
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +758,9 @@ MonoBehaviour:
   chakra: 0
   reactedCount: 0
   temptation: 0
+  dropItem:
+    id: 0
+    madness: 0
 --- !u!1 &451163677
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +812,9 @@ MonoBehaviour:
   chakra: 0
   reactedCount: 0
   temptation: 0
+  dropItem:
+    id: 0
+    madness: 0
 --- !u!61 &451163680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1116,7 +1169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &743405255
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1324,15 +1377,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 1049945743}
   entityType: 2
-  entityReactiveLength: 2
+  entityReactiveLength: 3
   dropItems: []
   defaultInventory:
-  - chakra: 0
-    sane: 0
-  - chakra: 0
-    sane: 0
-  - chakra: 0
-    sane: 0
+  - id: 0
+    madness: 0
+  - id: 0
+    madness: 0
+  - id: 0
+    madness: 0
 --- !u!114 &985620909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,15 +1741,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 275111884}
   entityType: 1
-  entityReactiveLength: 1
+  entityReactiveLength: 3
   dropItems: []
   defaultInventory:
-  - chakra: 0
-    sane: 0
-  - chakra: 0
-    sane: 0
-  - chakra: 0
-    sane: 0
+  - id: 1
+    madness: 0
+  - id: 2
+    madness: 0
+  - id: 3
+    madness: 0
+  - id: 4
+    madness: 0
 --- !u!212 &1312177590
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1952,6 +2007,9 @@ MonoBehaviour:
   chakra: 0
   reactedCount: 0
   temptation: 0
+  dropItem:
+    id: 0
+    madness: 0
 --- !u!61 &1808311619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2100,6 +2158,9 @@ MonoBehaviour:
   chakra: 0
   reactedCount: 0
   temptation: 0
+  dropItem:
+    id: 0
+    madness: 0
 --- !u!114 &1843038006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2206,7 +2267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1946033144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2302,6 +2363,9 @@ MonoBehaviour:
   chakra: 0
   reactedCount: 0
   temptation: 0
+  dropItem:
+    id: 0
+    madness: 0
 --- !u!114 &1959053451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2354,6 +2418,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2026583854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2026583857}
+  - component: {fileID: 2026583856}
+  - component: {fileID: 2026583855}
+  m_Layer: 0
+  m_Name: GUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2026583855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026583854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 0
+--- !u!114 &2026583856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026583854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ed904845777b54f9432515d21ccfbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preset: {fileID: 233822092}
+--- !u!4 &2026583857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026583854}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.97117, y: 2.6457188, z: -2.6009028}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2075827276
 GameObject:

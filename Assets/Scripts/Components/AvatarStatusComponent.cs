@@ -6,9 +6,17 @@ using GlobalDefine;
 
 [Serializable]
 public struct AvatarStatusComponent : IComponentData {
-    public Int32 chakra;        // 차크라 ^~^
-    public Int32 temptation;    // 이것이 얼마나 갖고 싶게 생겼는가
-    public Int32 sane;          // 현재 이성 수치
-    public Int32 curiosity;     // 호기심 수치
-    public bool bInPanic;       // 패닉 상태
+    public Int32 health;
+    public Int32 madness;
+    public float moveSpeed;
+    public Int32 attractiveness;    // 이목을 끄는 수치 (눈에 얼마나 띄는가)
+    public Int32 curiosity;         // 호기심
+
+    public AvatarStatusComponent(ref AvatarStatusComponent rhs) {
+        health = rhs.health;
+        madness = rhs.madness;
+        moveSpeed = rhs.moveSpeed;
+        attractiveness = rhs.attractiveness;
+        curiosity = rhs.curiosity;
+    }
 }

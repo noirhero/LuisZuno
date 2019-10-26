@@ -24,7 +24,7 @@ public class TargetSystem : ComponentSystem {
             var baseMoveComponent = baseMoveComp;
 
 
-            // DebugDraw
+            //// DebugDraw
             //var target = baseTargetComp;
 
             Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref Translation pos, ref TargetComponent targetComp) => {
@@ -46,18 +46,22 @@ public class TargetSystem : ComponentSystem {
                 if (false == isHeadingForward)
                     return;
 
+                // always reactive or already done
+                if (reactiveComp.type != EntityType.Wall && reactiveComp.ReactedCount >= reactiveComp.reactionLimitCount) {
+                    return;
+                }
+
                 // todo : check boundary or check look direction
-                float distance = Vector2.Distance(comparePos, new Vector2(pos.Value.x, pos.Value.y));
+                    float distance = Vector2.Distance(comparePos, new Vector2(pos.Value.x, pos.Value.y));
                 if (Mathf.Abs(distance) < targetDistance) {
                     targetIndex = entity.Index;
                     targetDistance = Mathf.Abs(distance);
 
-                    // DebugDraw
+                    //// DebugDraw
                     //if (target.targetIndex == targetIndex) {
                     //    if (compareType == EntityType.Player)
                     //        Debug.DrawLine(comparePos, new Vector2(pos.Value.x, pos.Value.y), Color.red);
                     //}
-
                 }
             });
 

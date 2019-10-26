@@ -46,7 +46,7 @@ public class AutoMovementSystem : ComponentSystem {
             }
 
             var StatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(entity);
-            currentPos.Value.x += moveComp.value.x * deltaTime * StatusComp.moveSpeed;
+            currentPos.Value.x += moveComp.value.x * deltaTime * StatusComp.MoveSpeed;
         });
     }
 }

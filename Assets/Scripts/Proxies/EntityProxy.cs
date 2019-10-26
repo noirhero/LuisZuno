@@ -1,5 +1,6 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
 
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,8 @@ using GlobalDefine;
 public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public SpritePreset preset = null;
     public EntityType entityType = EntityType.None;
-    public float entityReactiveLength = 3.0f;
+    public float entityReactionTime = 3.0f;
+    public Int32 entityReactionLimitCount = 3;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
@@ -32,11 +34,9 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
         }
 
         dstManager.AddComponentData(entity, new ReactiveComponent() {
-            colliderSizeX = cachedSize.x,
-            colliderSizeY = cachedSize.y,
             type = entityType,
-            reactiveLength = entityReactiveLength,
-            reactivingDuration = 0.0f,
+            reactionTime = entityReactionTime,
+            reactionLimitCount = entityReactionLimitCount
         });
 
         dstManager.AddComponentData(entity, new TargetComponent() {

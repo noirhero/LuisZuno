@@ -6,9 +6,19 @@ using GlobalDefine;
 
 [Serializable]
 public struct ReactiveComponent : IComponentData {
-    public float colliderSizeX;
-    public float colliderSizeY;
     public EntityType type;
-    public float reactiveLength;
-    public float reactivingDuration;
+    public float reactionTime;
+    public Int32 reactionLimitCount;
+    private float reactionElapsedTime;
+    private Int32 reactedCount;
+
+    public float ReactionElapsedTime {
+        get { return reactionElapsedTime; }
+        set { reactionElapsedTime = value; }
+    }
+
+    public Int32 ReactedCount {
+        get { return reactedCount; }
+        set { reactedCount = value; }
+    }
 }

@@ -13,9 +13,7 @@ public class AvatarProxy : EntityProxy {
         base.SetupComponents(entity, dstManager, conversionSystem);
 
         dstManager.AddComponentData(entity, new MovementComponent(-1.0f));
-
         dstManager.AddComponentData(entity, new InventoryComponent(defaultInventory));
-
         dstManager.AddComponentData(entity, new AvatarStatusComponent(ref Status));
     }
 }

@@ -6,17 +6,20 @@ using GlobalDefine;
 
 [Serializable]
 public struct InventoryComponent : IComponentData {
+    public ItemStruct item0;
     public ItemStruct item1;
     public ItemStruct item2;
-    public ItemStruct item3;
     public ItemStruct pendingItem { get; private set; }
     public bool bHasPendingItem { get; private set; }
 
     public InventoryComponent(ItemStruct[] inData) {
-        item1 = inData.Length > 1 ? inData[0] : new ItemStruct();
-        item2 = inData.Length > 2 ? inData[1] : new ItemStruct();
-        item3 = inData.Length > 3 ? inData[2] : new ItemStruct();
-        pendingItem = new ItemStruct();
+        ItemStruct cacehdItem = new ItemStruct();
+        cacehdItem.Empty();
+
+        item0 = inData.Length > 0 ? inData[0] : cacehdItem;
+        item1 = inData.Length > 1 ? inData[1] : cacehdItem;
+        item2 = inData.Length > 2 ? inData[2] : cacehdItem;
+        pendingItem = inData.Length > 3 ? inData[3] : cacehdItem;
         bHasPendingItem = false;
     }
 

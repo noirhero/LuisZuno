@@ -11,7 +11,6 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public SpritePreset preset = null;
     public EntityType entityType = EntityType.None;
     public float entityReactiveLength = 3.0f;
-    public List<ItemStruct> dropItems = new List<ItemStruct>();
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
@@ -45,10 +44,5 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
             targetIndex = int.MaxValue,
             targetDistance = float.PositiveInfinity,
         });
-
-        for (int i = 0; i < dropItems.Count; i++) {
-            dstManager.AddComponentData(entity, new ItemComponet(dropItems[i]) {
-            });
-        }
     }
 }

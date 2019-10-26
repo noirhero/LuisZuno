@@ -5,7 +5,7 @@ using GlobalDefine;
 
 [RequiresEntityConversion]
 public class AvatarProxy : EntityProxy {
-    public ItemStruct[] defaultInventory = new ItemStruct[3];
+    public ItemStruct[] defaultInventory = new ItemStruct[0];
 
     public override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);

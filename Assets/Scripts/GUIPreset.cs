@@ -68,17 +68,29 @@ public class GUIPreset : MonoBehaviour {
     }
 
     public void SetItem0(ItemStruct inData) {
+        ItemPresetData data;
+        if (false == itemDatas.TryGetValue(inData.id, out data))
+            return;
+
         item0.gameObject.SetActive(inData.IsVaild());
-        item0.sprite = itemDatas[inData.id].sprite;
+        item0.sprite = data.sprite;
     }
 
     public void SetItem1(ItemStruct inData) {
+        ItemPresetData data;
+        if (false == itemDatas.TryGetValue(inData.id, out data))
+            return;
+
         item1.gameObject.SetActive(inData.IsVaild());
-        item1.sprite = itemDatas[inData.id].sprite;
+        item1.sprite = data.sprite;
     }
 
     public void SetItem2(ItemStruct inData) {
+        ItemPresetData data;
+        if (false == itemDatas.TryGetValue(inData.id, out data))
+            return;
+
         item2.gameObject.SetActive(inData.IsVaild());
-        item2.sprite = itemDatas[inData.id].sprite;
+        item2.sprite = data.sprite;
     }
 }

@@ -1,7 +1,6 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
 
 using UnityEngine;
-using UnityEngine.UI;
 using Unity.Entities;
 
 [RequiresEntityConversion]

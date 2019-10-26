@@ -17,8 +17,17 @@ public class ItemPresetDataDictionary : SerializableDictionaryBase<Int64, ItemPr
 
 [Serializable]
 public class GUIPreset : MonoBehaviour {
+    public Canvas rootCanvas;    
+    public Text endingMsg;
+
+    [Header("Taking Info")]
+    public Transform bubble;
+    public Text bubbleMsg;
+
+    [Header("Status Info")]
+    public Slider madness;
+
     [Header("Inventory Info")]
-    public GameObject inventory;
     public Image item0;
     public Image item1;
     public Image item2;
@@ -26,15 +35,49 @@ public class GUIPreset : MonoBehaviour {
     [Header("Item Table")]
     public ItemPresetDataDictionary itemDatas = new ItemPresetDataDictionary();
 
-    public void ShowItem0(ItemStruct inData) {
+    public void Initialize() {
+        HideEnding();
+        HideBubble();
+        SetMadness(0.0f);
+
+        // items
+        item0.gameObject.SetActive(false);
+        item1.gameObject.SetActive(false);
+        item2.gameObject.SetActive(false);
+    }
+
+    public void ShowEnding() {
+        endingMsg.gameObject.SetActive(true);
+    }
+
+    public void HideEnding() {
+        endingMsg.gameObject.SetActive(false);
+    }
+
+    public void ShowBubble(Vector3 inPos, string inMsg = "...") {
+        bubble.gameObject.SetActive(true);
+        bubbleMsg.text = inMsg;
+    }
+
+    public void HideBubble() {
+        bubble.gameObject.SetActive(false);
+    }
+
+    public void SetMadness(float inValue) {
+        madness.value = inValue;
+    }
+
+    public void SetItem0(ItemStruct inData) {
         item0.gameObject.SetActive(inData.IsVaild());
         item0.sprite = itemDatas[inData.id].sprite;
     }
-    public void ShowItem1(ItemStruct inData) {
+
+    public void SetItem1(ItemStruct inData) {
         item1.gameObject.SetActive(inData.IsVaild());
         item1.sprite = itemDatas[inData.id].sprite;
     }
-    public void ShowItem2(ItemStruct inData) {
+
+    public void SetItem2(ItemStruct inData) {
         item2.gameObject.SetActive(inData.IsVaild());
         item2.sprite = itemDatas[inData.id].sprite;
     }

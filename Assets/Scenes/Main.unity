@@ -310,7 +310,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb3f94c005570d48b834038b8526976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 2075827276}
+  rootCanvas: {fileID: 233822090}
+  endingMsg: {fileID: 1043247765}
+  madness: {fileID: 278837674}
+  bubble: {fileID: 813633665}
+  bubbleMsg: {fileID: 1080996637}
   item0: {fileID: 743405256}
   item1: {fileID: 84418562}
   item2: {fileID: 1946033145}
@@ -497,7 +501,7 @@ GameObject:
   - component: {fileID: 278837674}
   - component: {fileID: 278837673}
   m_Layer: 5
-  m_Name: SaneGauge
+  m_Name: MadnessGauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1247,7 +1251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &813633665
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1266,7 +1270,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 39, y: 36.875}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813633666
 MonoBehaviour:
@@ -1713,10 +1717,10 @@ RectTransform:
   m_Father: {fileID: 813633665}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 19.5, y: -10.9375}
-  m_SizeDelta: {x: 23, y: 11.875}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080996637
 MonoBehaviour:

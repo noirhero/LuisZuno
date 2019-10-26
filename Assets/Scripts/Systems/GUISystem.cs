@@ -19,6 +19,10 @@ public class GUISystem : ComponentSystem {
 
             _player = entity;
         });
+
+        if (null != _guiPreset) {
+            _guiPreset.Initialize();
+        }
     }
 
     protected override void OnUpdate() {
@@ -30,8 +34,8 @@ public class GUISystem : ComponentSystem {
 
         // set gui - inventory
         InventoryComponent InventoryComp = EntityManager.GetComponentData<InventoryComponent>(_player);
-        _guiPreset.ShowItem0(InventoryComp.item0);
-        _guiPreset.ShowItem1(InventoryComp.item1);
-        _guiPreset.ShowItem2(InventoryComp.item2);
+        _guiPreset.SetItem0(InventoryComp.item0);
+        _guiPreset.SetItem1(InventoryComp.item1);
+        _guiPreset.SetItem2(InventoryComp.item2);
     }
 }

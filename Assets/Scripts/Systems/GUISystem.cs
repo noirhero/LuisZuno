@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Entities;
+using Unity.Transforms;
 using GlobalDefine;
 
 public class GUISystem : ComponentSystem {
@@ -34,10 +35,14 @@ public class GUISystem : ComponentSystem {
     private void UpdateBubbleUI() {
         _guiPreset.HideBubble();
 
+        // get ui position
+        Translation playerPos = EntityManager.GetComponentData<Translation>(_playerEntity);
+        Vector3 convert2DPos = Camera.main.WorldToScreenPoint(playerPos.Value);
+
         if (EntityManager.HasComponent<AvatarStatusComponent>(_playerEntity)) {
             AvatarStatusComponent avatarStatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
             if(avatarStatusComp.InPanic) {
-                _guiPreset.ShowBubble(Vector3.zero, "#$%^");
+                _guiPreset.ShowBubble(convert2DPos, "#$%^");
                 return;
             }
         }
@@ -45,10 +50,16 @@ public class GUISystem : ComponentSystem {
         if (EntityManager.HasComponent<ReactiveComponent>(_playerEntity)) {
             ReactiveComponent reactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_playerEntity);
             if (reactiveComp.ReactionElapsedTime > 0) {
-                _guiPreset.ShowBubble(Vector3.zero, "...");
+                _guiPreset.ShowBubble(convert2DPos, "...");
                 return;
             }
         }
+    }
+
+
+    private void UpdateGaugeUI() {
+        AvatarStatusComponent statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
+        _guiPreset.SetMadness((float)(statusComp.madness) / (float)(statusComp.maxMadness));
     }
 
 
@@ -91,7 +102,6 @@ public class GUISystem : ComponentSystem {
         UpdateBubbleUI();
 
         // set gui - madness
-        AvatarStatusComponent statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
-        _guiPreset.SetMadness((float)(statusComp.madness) / (float)(statusComp.maxMadness));
+        UpdateGaugeUI();
     }
 }

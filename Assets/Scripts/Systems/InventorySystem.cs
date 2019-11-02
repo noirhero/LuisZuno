@@ -56,8 +56,7 @@ public class InventorySystem : ComponentSystem {
                 (_inventoryComp.item1.AddedTime < _inventoryComp.item3.AddedTime)) {
                     slotIndex = 1;
             }
-            else if ((_inventoryComp.item2.AddedTime < _inventoryComp.item3.AddedTime) && 
-                (_inventoryComp.item2.AddedTime < _inventoryComp.item3.AddedTime)) {
+            else if (_inventoryComp.item2.AddedTime < _inventoryComp.item3.AddedTime) {
                     slotIndex = 2;
             }
             else {

@@ -89,5 +89,9 @@ public class GUISystem : ComponentSystem {
 
         // set gui - bubble
         UpdateBubbleUI();
+
+        // set gui - madness
+        AvatarStatusComponent statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
+        _guiPreset.SetMadness((float)(statusComp.madness) / (float)(statusComp.maxMadness));
     }
 }

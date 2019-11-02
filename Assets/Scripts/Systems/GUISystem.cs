@@ -35,25 +35,36 @@ public class GUISystem : ComponentSystem {
     private void UpdateBubbleUI() {
         _guiPreset.HideBubble();
 
-        // get ui position
+        if (false == EntityManager.HasComponent<ReactiveComponent>(_playerEntity)) {
+            return;
+        }
+
+        ReactiveComponent reactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_playerEntity);
+        if (reactiveComp.ReactionElapsedTime <= 0) {
+            return;
+        }
+
+        // bubble default
+        string bubbleMassage = "... ";
+        float timeRate = reactiveComp.ReactionElapsedTime / reactiveComp.reactionTime;
+
+        // bubble position
         Translation playerPos = EntityManager.GetComponentData<Translation>(_playerEntity);
         Vector3 convert2DPos = Camera.main.WorldToScreenPoint(playerPos.Value);
 
+        // panic check
         if (EntityManager.HasComponent<AvatarStatusComponent>(_playerEntity)) {
             AvatarStatusComponent avatarStatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
             if(avatarStatusComp.InPanic) {
-                _guiPreset.ShowBubble(convert2DPos, "#$%^");
-                return;
+                bubbleMassage = "#$%^";
             }
         }
 
-        if (EntityManager.HasComponent<ReactiveComponent>(_playerEntity)) {
-            ReactiveComponent reactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_playerEntity);
-            if (reactiveComp.ReactionElapsedTime > 0) {
-                _guiPreset.ShowBubble(convert2DPos, "...");
-                return;
-            }
-        }
+        // todo - temporary
+        int showMessageLength = (int)((float)bubbleMassage.Length * timeRate);
+
+        // set
+        _guiPreset.ShowBubble(convert2DPos, bubbleMassage.Substring(0, showMessageLength));
     }
 
 

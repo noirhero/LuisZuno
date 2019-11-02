@@ -1459,6 +1459,7 @@ MonoBehaviour:
   Status:
     health: 0
     madness: 20
+    maxMadness: 0
     agility: 0
     eyeSight: 0
 --- !u!114 &985620909
@@ -1948,6 +1949,7 @@ MonoBehaviour:
   Status:
     health: 0
     madness: 0
+    maxMadness: 100
     agility: 0
     eyeSight: 0
 --- !u!212 &1312177590

@@ -40,27 +40,43 @@ public class InventorySystem : ComponentSystem {
         EntityManager.RemoveComponent<PendingItemComponent>(_playerEntity);
 
         //
-        if (_inventoryComp.IsEmptySlot0()) {
-            ItemPresetData data;
-            if (_tablePreset.itemDatas.TryGetValue(pendingItemID, out data)) {
-                _inventoryComp.SetSlot0(pendingItemID, data);
-            }
-        }
-        else if (_inventoryComp.IsEmptySlot1()) {
-            ItemPresetData data;
-            if (_tablePreset.itemDatas.TryGetValue(pendingItemID, out data)) {
-                _inventoryComp.SetSlot1(pendingItemID, data);
-            }
+        UInt16 slotIndex = 0;
+        if (_inventoryComp.IsEmptySlot1()) {
+            slotIndex = 1;
         }
         else if (_inventoryComp.IsEmptySlot2()) {
-            ItemPresetData data;
-            if (_tablePreset.itemDatas.TryGetValue(pendingItemID, out data)) {
-                _inventoryComp.SetSlot2(pendingItemID, data);
-            }
+            slotIndex = 2;
+        }
+        else if (_inventoryComp.IsEmptySlot3()) {
+            slotIndex = 3;
         }
         else {
-            // full todo
+            // condition - time
+            if ((_inventoryComp.item1.AddedTime < _inventoryComp.item2.AddedTime) && 
+                (_inventoryComp.item1.AddedTime < _inventoryComp.item3.AddedTime)) {
+                    slotIndex = 1;
+            }
+            else if ((_inventoryComp.item2.AddedTime < _inventoryComp.item3.AddedTime) && 
+                (_inventoryComp.item2.AddedTime < _inventoryComp.item3.AddedTime)) {
+                    slotIndex = 2;
+            }
+            else {
+                slotIndex = 3;
+            }
         }
+
+        ItemPresetData data;
+        if (_tablePreset.itemDatas.TryGetValue(pendingItemID, out data)) {
+            switch (slotIndex) {
+                case 1:
+                    _inventoryComp.SetSlot1(pendingItemID, data); break;
+                case 2:
+                    _inventoryComp.SetSlot2(pendingItemID, data); break;
+                case 3:
+                    _inventoryComp.SetSlot3(pendingItemID, data); break;
+            }
+        }
+
         EntityManager.SetComponentData<InventoryComponent>(_playerEntity, _inventoryComp);
     }
 }

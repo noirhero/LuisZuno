@@ -62,7 +62,6 @@ public class ReactiveSystem : ComponentSystem {
         ++_targetReactiveComp.ReactedCount;
 
         AdjustAllModifiedComponents();
-        PendRewardItem();
     }
 
 
@@ -147,6 +146,9 @@ public class ReactiveSystem : ComponentSystem {
                 else {
                     FinishReaction();
                 }
+
+                // 탐사가 끝나면 아이템을 얻고자함
+                PendRewardItem();
             }
             // Doing something
             else if (_currentTargetComp.lastTargetIndex != _currentTargetComp.targetIndex) {

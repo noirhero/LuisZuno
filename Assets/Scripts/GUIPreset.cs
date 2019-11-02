@@ -3,6 +3,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using GlobalDefine;
 
 [Serializable]
 public class GUIPreset : MonoBehaviour {

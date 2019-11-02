@@ -1,6 +1,7 @@
 ﻿// Copyrighgt 2018-2019 TAP, Inc. All Rights Reserved.
 
 using System;
+using UnityEngine;
 using UnityEngine.UI;
 using Unity.Entities;
 using GlobalDefine;
@@ -11,22 +12,43 @@ public class GUISystem : ComponentSystem {
     private Entity _playerEntity = Entity.Null;
     
 
+    private void UpdateInventoryUI() {
+        if (EntityManager.HasComponent<InventoryComponent>(_playerEntity)) {
+            InventoryComponent inventoryComp = EntityManager.GetComponentData<InventoryComponent>(_playerEntity);
+            SetItemSprite(inventoryComp.item1.id, _guiPreset.item1);
+            SetItemSprite(inventoryComp.item2.id, _guiPreset.item2);
+            SetItemSprite(inventoryComp.item3.id, _guiPreset.item3);
+        }
+    }
+
+
     private void SetItemSprite(Int64 inID, Image inImg) {
-        if (null == _tablePreset) {
-            return;
-        }
-
-        if (false == Utility.IsVaild(inID)) {
-            return;
-        }
-
         ItemPresetData data;
-        if (false == _tablePreset.itemDatas.TryGetValue(inID, out data)) {
-            return;
+        if (_tablePreset.itemDatas.TryGetValue(inID, out data)) {
+            inImg.gameObject.SetActive(Utility.IsVaild(inID));
+            inImg.sprite = data.sprite;
+        }
+    }
+
+
+    private void UpdateBubbleUI() {
+        _guiPreset.HideBubble();
+
+        if (EntityManager.HasComponent<AvatarStatusComponent>(_playerEntity)) {
+            AvatarStatusComponent avatarStatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
+            if(avatarStatusComp.InPanic) {
+                _guiPreset.ShowBubble(Vector3.zero, "#$%^");
+                return;
+            }
         }
 
-        inImg.gameObject.SetActive(Utility.IsVaild(inID));
-        inImg.sprite = data.sprite;
+        if (EntityManager.HasComponent<ReactiveComponent>(_playerEntity)) {
+            ReactiveComponent reactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_playerEntity);
+            if (reactiveComp.ReactionElapsedTime > 0) {
+                _guiPreset.ShowBubble(Vector3.zero, "...");
+                return;
+            }
+        }
     }
 
 
@@ -62,14 +84,10 @@ public class GUISystem : ComponentSystem {
             return;
         }
 
-        if (false == EntityManager.HasComponent<InventoryComponent>(_playerEntity)) {
-            return;
-        }
-
         // set gui - inventory
-        InventoryComponent inventoryComp = EntityManager.GetComponentData<InventoryComponent>(_playerEntity);
-        SetItemSprite(inventoryComp.item1.id, _guiPreset.item1);
-        SetItemSprite(inventoryComp.item2.id, _guiPreset.item2);
-        SetItemSprite(inventoryComp.item3.id, _guiPreset.item3);
+        UpdateInventoryUI();
+
+        // set gui - bubble
+        UpdateBubbleUI();
     }
 }

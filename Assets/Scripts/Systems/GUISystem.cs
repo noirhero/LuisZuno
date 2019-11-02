@@ -71,5 +71,9 @@ public class GUISystem : ComponentSystem {
         SetItemSprite(inventoryComp.item0.id, _guiPreset.item0);
         SetItemSprite(inventoryComp.item1.id, _guiPreset.item1);
         SetItemSprite(inventoryComp.item2.id, _guiPreset.item2);
+
+        // set gui - madness
+        AvatarStatusComponent statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
+        _guiPreset.SetMadness((float)(statusComp.madness) / (float)(statusComp.maxMadness));
     }
 }

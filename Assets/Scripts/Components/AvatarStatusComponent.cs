@@ -8,6 +8,7 @@ using GlobalDefine;
 public struct AvatarStatusComponent : IComponentData {
     public Int32 health;
     public Int32 madness;
+    public Int32 maxMadness;
     public float agility;
     public float eyeSight;
     private float moveSpeed;
@@ -26,6 +27,7 @@ public struct AvatarStatusComponent : IComponentData {
     public AvatarStatusComponent(ref AvatarStatusComponent rhs) {
         health = rhs.health;
         madness = rhs.madness;
+        maxMadness = rhs.maxMadness;
         agility = rhs.agility;
         eyeSight = rhs.eyeSight;
         moveSpeed = 1.0f; //rhs.moveSpeed;

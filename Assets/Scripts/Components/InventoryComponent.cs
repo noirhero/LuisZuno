@@ -6,23 +6,18 @@ using GlobalDefine;
 
 [Serializable]
 public struct InventoryComponent : IComponentData {
-    public ItemStruct item0;
     public ItemStruct item1;
     public ItemStruct item2;
+    public ItemStruct item3;
 
 
     public InventoryComponent(ItemStruct[] inData) {
         ItemStruct cacehdItem = new ItemStruct();
         cacehdItem.Empty();
 
-        item0 = inData.Length > 0 ? inData[0] : cacehdItem;
-        item1 = inData.Length > 1 ? inData[1] : cacehdItem;
-        item2 = inData.Length > 2 ? inData[2] : cacehdItem;
-    }
-
-
-    public bool IsEmptySlot0() {
-        return false == Utility.IsVaild(item0.id);
+        item1 = inData.Length > 0 ? inData[0] : cacehdItem;
+        item2 = inData.Length > 1 ? inData[1] : cacehdItem;
+        item3 = inData.Length > 2 ? inData[2] : cacehdItem;
     }
 
 
@@ -36,10 +31,8 @@ public struct InventoryComponent : IComponentData {
     }
 
 
-    public void SetSlot0(Int64 inID, ItemPresetData inData) {
-        item0.id = inID;
-        item0.madness = inData.madness;
-        item0.AddedTime = DateTime.UtcNow.Ticks;
+    public bool IsEmptySlot3() {
+        return false == Utility.IsVaild(item3.id);
     }
 
 
@@ -54,5 +47,12 @@ public struct InventoryComponent : IComponentData {
         item2.id = inID;
         item2.madness = inData.madness;
         item2.AddedTime = DateTime.UtcNow.Ticks;
+    }
+
+
+    public void SetSlot3(Int64 inID, ItemPresetData inData) {
+        item3.id = inID;
+        item3.madness = inData.madness;
+        item3.AddedTime = DateTime.UtcNow.Ticks;
     }
 }

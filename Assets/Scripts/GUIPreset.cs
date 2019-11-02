@@ -17,9 +17,9 @@ public class GUIPreset : MonoBehaviour {
     public Slider madness;
 
     [Header("Inventory Info")]
-    public Image item0;
     public Image item1;
     public Image item2;
+    public Image item3;
 
 
     public void Initialize() {
@@ -28,9 +28,9 @@ public class GUIPreset : MonoBehaviour {
         SetMadness(0.0f);
 
         // items
-        item0.gameObject.SetActive(false);
         item1.gameObject.SetActive(false);
         item2.gameObject.SetActive(false);
+        item3.gameObject.SetActive(false);
     }
 
 

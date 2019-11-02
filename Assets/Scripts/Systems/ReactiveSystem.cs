@@ -8,55 +8,47 @@ using Unity.Mathematics;
 using GlobalDefine;
 
 public class ReactiveSystem : ComponentSystem {
-    private int[] _animNameHashes;
-    private AnimationType _currentAnim = AnimationType.Idle;
-    private bool bInPanic = false;
+    private Entity _currentEntity = Entity.Null;
+    private Entity _targetEntity = Entity.Null;
+    private MovementComponent _currentMoveComp;
+    private AvatarStatusComponent _currentStatusComp;
+    private TargetComponent _currentTargetComp;
+    private ReactiveComponent _currentReactiveComp;
+    private ReactiveComponent _targetReactiveComp;
 
-    // caching anim information
-    protected override void OnCreate() {
-        int totalAnimCount = Enum.GetNames(typeof(AnimationType)).Length;
-        _animNameHashes = new int[totalAnimCount];
 
-        foreach (AnimationType type in Enum.GetValues(typeof(AnimationType))) {
-            var nameHash = 0;
-            foreach (var b in Encoding.ASCII.GetBytes(type.ToString())) {
-                nameHash += b;
+    private Entity GetTargetEntity(int targetIndex) {
+        Entity targetEntity = Entity.Null;
+        Entities.WithAll<ReactiveComponent>().ForEach((Entity e) => {
+            if (targetIndex != int.MaxValue && targetIndex == e.Index) {
+                targetEntity = e;
             }
-            _animNameHashes[(int)type] = nameHash;
-        }
+        });
+        return targetEntity;
     }
 
 
-    private void FinishReaction(ref TargetComponent targetComp, ref ReactiveComponent targetReactiveComp) {
-        targetComp.lastTargetIndex = targetComp.targetIndex;
-        targetReactiveComp.reactivingDuration = 0.0f;
-        bInPanic = false;
-    }
-
-
-    private bool ShouldBePanic(ref Entity targetEntity, ref AvatarStatusComponent baseStatusComp) {
-        // 플레이어 대상으로 몬스터가 패닉하지는 않음
-        var reactiveComp = EntityManager.GetComponentData<ReactiveComponent>(targetEntity);
-        if (reactiveComp.type == EntityType.Player)
+    private bool ShouldBePanic() {
+        // 타겟이 플레이어인 경우 무시 (몬스터가 플레이어에게 패닉하지 않음)
+        var targetReactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_targetEntity);
+        if (targetReactiveComp.type == EntityType.Player)
             return false;
 
         // Non-avatar
-        if (EntityManager.HasComponent<NoneAvatarStatusComponent>(targetEntity)) {
-            var targetStatusComp = EntityManager.GetComponentData<NoneAvatarStatusComponent>(targetEntity);
-
+        if (EntityManager.HasComponent<NoneAvatarStatusComponent>(_targetEntity)) {
+            var targetStatusComp = EntityManager.GetComponentData<NoneAvatarStatusComponent>(_targetEntity);
             if (targetStatusComp.madness > 0) {
-                baseStatusComp.madness += targetStatusComp.madness;
-                EntityManager.SetComponentData<NoneAvatarStatusComponent>(targetEntity, targetStatusComp);
+                _currentStatusComp.madness += targetStatusComp.madness;     // todo : need some formula
+                _currentStatusComp.InPanic = true;
                 return true;
             }
         }
         // Avatar
-        else if (EntityManager.HasComponent<AvatarStatusComponent>(targetEntity)) {
-            var targetStatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(targetEntity);
-
+        else if (EntityManager.HasComponent<AvatarStatusComponent>(_targetEntity)) {
+            var targetStatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_targetEntity);
             if (targetStatusComp.madness > 0) {
-                baseStatusComp.madness += targetStatusComp.madness;
-                EntityManager.SetComponentData<AvatarStatusComponent>(targetEntity, targetStatusComp);
+                _currentStatusComp.madness += targetStatusComp.madness;     // todo : need some formula
+                _currentStatusComp.InPanic = true;
                 return true;
             }
         }
@@ -64,85 +56,77 @@ public class ReactiveSystem : ComponentSystem {
     }
 
 
+    private void FinishReaction() {
+        _currentTargetComp.lastTargetIndex = _currentTargetComp.targetIndex;
+        _currentReactiveComp.ReactionElapsedTime = 0.0f;
+        _currentStatusComp.InPanic = false;
+        ++_targetReactiveComp.ReactedCount;
+
+        AdjustAllModifiedComponents();
+    }
+
+
+    private void AdjustAllModifiedComponents() {
+        EntityManager.SetComponentData<TargetComponent>(_currentEntity, _currentTargetComp);
+        EntityManager.SetComponentData<MovementComponent>(_currentEntity, _currentMoveComp);
+        EntityManager.SetComponentData<AvatarStatusComponent>(_currentEntity, _currentStatusComp);
+        EntityManager.SetComponentData<ReactiveComponent>(_currentEntity, _currentReactiveComp);
+        EntityManager.SetComponentData<ReactiveComponent>(_targetEntity, _targetReactiveComp);
+    }
+
+
     protected override void OnUpdate() {
-        var lastTargetIndex = int.MinValue;
-        var currentTargetIndex = int.MaxValue;
-
-        Entities.ForEach((Entity e, ref ReactiveComponent baseReactiveComp, ref MovementComponent baseMoveComp, ref TargetComponent baseTargetComp, ref SpriteAnimComponent baseAnimComp, ref AvatarStatusComponent baseStatusComp) => {
-            currentTargetIndex = baseTargetComp.targetIndex;
-            lastTargetIndex = baseTargetComp.lastTargetIndex;
-
-            Entity targetEntity = Entity.Null;
-            Entities.WithAll<ReactiveComponent>().ForEach((Entity entity) => {
-                if (currentTargetIndex != int.MaxValue && currentTargetIndex == entity.Index) {
-                    targetEntity = entity;
-                }
-            });
-
-            if (targetEntity.Equals(Entity.Null))
+        Entities.WithAll<MovementComponent>().ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref TargetComponent targetComp) => {
+            _targetEntity = GetTargetEntity(targetComp.targetIndex);
+            if (_targetEntity.Equals(Entity.Null))
                 return;
 
-            ReactiveComponent targetReactiveComp = EntityManager.GetComponentData<ReactiveComponent>(targetEntity);
-            
-            bool bMoving = math.FLT_MIN_NORMAL < math.lengthsq(baseMoveComp.value);
-            if (bMoving) {
-                _currentAnim = AnimationType.Walk;
+            // get and keep all components we need
+            _currentEntity = entity;
+            _currentTargetComp = targetComp;
+            _currentMoveComp = EntityManager.GetComponentData<MovementComponent>(_currentEntity);
+            _currentStatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_currentEntity);
+            _currentReactiveComp = reactiveComp;
+            _targetReactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_targetEntity);
 
-                if (bInPanic) {
-                    Debug.LogFormat(baseReactiveComp.type.ToString() + " Panic and moving / my index : " + e.Index);
-                }
+            bool bMoving = math.FLT_MIN_NORMAL < math.lengthsq(_currentMoveComp.value);
+            if (bMoving) {
+                return;
             }
-            // you've been arrived at the target
-            else {
-                if (targetReactiveComp.type == EntityType.Wall) {
-                    
-                    baseMoveComp.xValue *= -1.0f;
-                    FinishReaction(ref baseTargetComp, ref targetReactiveComp);
+
+            if (_targetReactiveComp.type == EntityType.Wall) {
+                _currentMoveComp.xValue *= -1.0f;
+                FinishReaction();
+                return;
+            }
+
+            // 타겟 reaction time을 아바타에게 넘김
+            if (_targetReactiveComp.reactionTime > 0.0f) {
+                _currentReactiveComp.reactionTime = _targetReactiveComp.reactionTime;
+            }
+
+            // Done
+            if (reactiveComp.reactionTime <= reactiveComp.ReactionElapsedTime) {
+                // 뇨뇨 끝
+                if (_currentStatusComp.InPanic) {
+                    FinishReaction();
                     return;
                 }
 
-                // Doing something
-                if (targetReactiveComp.reactiveLength > targetReactiveComp.reactivingDuration) {
-                    if (false == bInPanic)
-                        _currentAnim = AnimationType.SomethingDoIt;
-
-                    targetReactiveComp.reactivingDuration += Time.deltaTime;
-                }
-                // Done
-                else if ((targetReactiveComp.reactiveLength <= targetReactiveComp.reactivingDuration) && (baseTargetComp.lastTargetIndex != currentTargetIndex)) {
-                    // 2번째 상호작용(패닉)이 끝남
-                    if (bInPanic) {
-                        FinishReaction(ref baseTargetComp, ref targetReactiveComp);
-                    }
-                    // 1번째 상호작용이 끝남
-                    else {
-                        // 타겟이 광기에 영향을 미친다면 패닉 상태로 전환
-                        bInPanic = ShouldBePanic(ref targetEntity, ref baseStatusComp);
-
-                        // 일단 패닉시간 1초로 하드코딩
-                        if (bInPanic) {
-                            _currentAnim = AnimationType.NyoNyo;
-                            targetReactiveComp.reactivingDuration -= 1.0f;
-
-                            Debug.LogFormat(baseReactiveComp.type.ToString() + " Panic start / my index : " + e.Index);
-                        }
-                        // 광기 카드를 받지 않으면 다음 타겟으로
-                        else {
-                            FinishReaction(ref baseTargetComp, ref targetReactiveComp);
-                        }
-                    }
+                // 이성에 타격을 입었다면 패닉(1초로 임시 지정)
+                if (ShouldBePanic()) {
+                    _currentReactiveComp.ReactionElapsedTime -= 1.0f;
                 }
                 else {
-                    _currentAnim = AnimationType.Idle;
+                    FinishReaction();
                 }
             }
+            // Doing something
+            else if (_currentTargetComp.lastTargetIndex != _currentTargetComp.targetIndex) {
+                _currentReactiveComp.ReactionElapsedTime += Time.deltaTime;
+            }
 
-            
-            EntityManager.SetComponentData<ReactiveComponent>(targetEntity, targetReactiveComp);
-
-
-            if (baseAnimComp.nameHash != _animNameHashes[(int)_currentAnim])
-                baseAnimComp.nameHash = _animNameHashes[(int)_currentAnim];
+            AdjustAllModifiedComponents();
         });
     }
 }

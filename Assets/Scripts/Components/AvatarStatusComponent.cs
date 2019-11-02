@@ -8,15 +8,27 @@ using GlobalDefine;
 public struct AvatarStatusComponent : IComponentData {
     public Int32 health;
     public Int32 madness;
-    public float moveSpeed;
-    public Int32 attractiveness;    // 이목을 끄는 수치 (눈에 얼마나 띄는가)
-    public Int32 curiosity;         // 호기심
+    public float agility;
+    public float eyeSight;
+    private float moveSpeed;
+    private bool bInPanic;
+
+    public bool InPanic {
+        get { return bInPanic; }
+        set { bInPanic = value; }
+    }
+
+    public float MoveSpeed {
+        get { return moveSpeed; }
+        set { moveSpeed = value; }
+    }
 
     public AvatarStatusComponent(ref AvatarStatusComponent rhs) {
         health = rhs.health;
         madness = rhs.madness;
-        moveSpeed = rhs.moveSpeed;
-        attractiveness = rhs.attractiveness;
-        curiosity = rhs.curiosity;
+        agility = rhs.agility;
+        eyeSight = rhs.eyeSight;
+        moveSpeed = 1.0f; //rhs.moveSpeed;
+        bInPanic = false;
     }
 }

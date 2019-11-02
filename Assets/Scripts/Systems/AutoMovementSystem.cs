@@ -38,6 +38,10 @@ public class AutoMovementSystem : ComponentSystem {
                 return;
             }
 
+            bool isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
+            if (false == isHeadingForward)
+                return;
+
             if (moveComp.xValue < 0.0f) {
                 moveComp.value.x = -1.0f;
             }
@@ -46,7 +50,7 @@ public class AutoMovementSystem : ComponentSystem {
             }
 
             var StatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(entity);
-            currentPos.Value.x += moveComp.value.x * deltaTime * StatusComp.moveSpeed;
+            currentPos.Value.x += moveComp.value.x * deltaTime * StatusComp.MoveSpeed;
         });
     }
 }

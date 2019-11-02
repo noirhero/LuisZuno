@@ -23,8 +23,11 @@ public class TargetSystem : ComponentSystem {
             compareType = baseReactiveComp.type;
             var baseMoveComponent = baseMoveComp;
 
+            if (baseReactiveComp.ReactionElapsedTime > 0.0f)
+                return;
 
-            // DebugDraw
+
+            //// DebugDraw
             //var target = baseTargetComp;
 
             Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref Translation pos, ref TargetComponent targetComp) => {
@@ -40,6 +43,9 @@ public class TargetSystem : ComponentSystem {
                 if (compareType == reactiveComp.type)
                     return;
 
+                if (reactiveComp.type != EntityType.Wall && reactiveComp.ReactedCount >= reactiveComp.reactionLimitCount)
+                    return;
+
                 // If the entity is movable, check it is heading forward
                 float xDistance = pos.Value.x - comparePos.x;
                 bool isHeadingForward = (baseMoveComponent.xValue < 0.0f && xDistance < 0.0f) || (baseMoveComponent.xValue > 0.0f && xDistance > 0.0f);
@@ -52,12 +58,11 @@ public class TargetSystem : ComponentSystem {
                     targetIndex = entity.Index;
                     targetDistance = Mathf.Abs(distance);
 
-                    // DebugDraw
+                    //// DebugDraw
                     //if (target.targetIndex == targetIndex) {
                     //    if (compareType == EntityType.Player)
                     //        Debug.DrawLine(comparePos, new Vector2(pos.Value.x, pos.Value.y), Color.red);
                     //}
-
                 }
             });
 

@@ -1,7 +1,6 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved
 
 using System;
-using System.Text;
 using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -63,6 +62,7 @@ public class ReactiveSystem : ComponentSystem {
         ++_targetReactiveComp.ReactedCount;
 
         AdjustAllModifiedComponents();
+        PendRewardItem();
     }
 
 
@@ -75,11 +75,38 @@ public class ReactiveSystem : ComponentSystem {
     }
 
 
+    private void PendRewardItem() {
+        if (false == EntityManager.HasComponent<DropComponent>(_targetEntity)) {
+            return;
+        }
+
+        DropComponent dropComponent = EntityManager.GetComponentData<DropComponent>(_targetEntity);
+        if (false == Utility.IsVaild(dropComponent.dropItemID)) {
+            return;
+        }
+        
+        Int64 dropItemID = dropComponent.dropItemID;
+        EntityManager.RemoveComponent<DropComponent>(_targetEntity);
+
+        if (EntityManager.HasComponent<PendingItemComponent>(_currentEntity)) {
+            PendingItemComponent pendingItemComp = EntityManager.GetComponentData<PendingItemComponent>(_currentEntity);
+            pendingItemComp.pendingItemID = dropItemID;
+            EntityManager.SetComponentData<PendingItemComponent>(_currentEntity, pendingItemComp);
+        }
+        else {
+            EntityManager.AddComponentData<PendingItemComponent>(_currentEntity, new PendingItemComponent() {
+                pendingItemID = dropItemID,
+            });
+        }
+    }
+
+
     protected override void OnUpdate() {
         Entities.WithAll<MovementComponent>().ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref TargetComponent targetComp) => {
             _targetEntity = GetTargetEntity(targetComp.targetIndex);
-            if (_targetEntity.Equals(Entity.Null))
+            if (_targetEntity.Equals(Entity.Null)) {
                 return;
+            }
 
             // get and keep all components we need
             _currentEntity = entity;

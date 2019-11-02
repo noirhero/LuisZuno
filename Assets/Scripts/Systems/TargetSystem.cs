@@ -23,34 +23,41 @@ public class TargetSystem : ComponentSystem {
             compareType = baseReactiveComp.type;
             var baseMoveComponent = baseMoveComp;
 
-            if (baseReactiveComp.ReactionElapsedTime > 0.0f)
+            if (baseReactiveComp.ReactionElapsedTime > 0.0f) {
                 return;
+            }
 
 
             //// DebugDraw
             //var target = baseTargetComp;
 
             Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref Translation pos, ref TargetComponent targetComp) => {
-                if (compareLastTargetIndex == entity.Index)
+                if (compareLastTargetIndex == entity.Index) {
                     return;
+                }
 
-                if (compareIndex == entity.Index)
+                if (compareIndex == entity.Index) {
                     return;
+                }
 
-                if (compareType == EntityType.None)
+                if (compareType == EntityType.None) {
                     return;
+                }
 
-                if (compareType == reactiveComp.type)
+                if (compareType == reactiveComp.type) {
                     return;
+                }
 
-                if (reactiveComp.type != EntityType.Wall && reactiveComp.ReactedCount >= reactiveComp.reactionLimitCount)
+                if (reactiveComp.type != EntityType.Wall && reactiveComp.ReactedCount >= reactiveComp.reactionLimitCount) {
                     return;
+                }
 
                 // If the entity is movable, check it is heading forward
                 float xDistance = pos.Value.x - comparePos.x;
                 bool isHeadingForward = (baseMoveComponent.xValue < 0.0f && xDistance < 0.0f) || (baseMoveComponent.xValue > 0.0f && xDistance > 0.0f);
-                if (false == isHeadingForward)
+                if (false == isHeadingForward) {
                     return;
+                }
 
                 // todo : check boundary or check look direction
                 float distance = Vector2.Distance(comparePos, new Vector2(pos.Value.x, pos.Value.y));

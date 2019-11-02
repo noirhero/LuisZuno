@@ -1,6 +1,7 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
 
 using System;
+using UnityEngine;
 
 namespace GlobalDefine {
     public enum EntityType { None, Player, NonePlayer, Wall }
@@ -10,12 +11,21 @@ namespace GlobalDefine {
     public struct ItemStruct {
         public Int64 id;
         public Int32 madness;
-
-        public bool IsVaild() {
-            return id != 0;
+        public Int64 AddedTime;
+        
+        public void Empty() {
+            id = 0;
+            madness = 0;
+            AddedTime = 0;
         }
-        public bool Empty() {
-            return id != 0;
+    }
+
+    public static class Utility {
+        public static bool IsVaild(int index) {
+            return index != 0;
+        }
+        public static bool IsVaild(Int64 index) {
+            return index != 0;
         }
     }
 }

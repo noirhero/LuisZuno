@@ -19,16 +19,18 @@ public class AutoMovementSystem : ComponentSystem {
             int targetIndex = targetComp.targetIndex;
             int lastTargetIndex = targetComp.lastTargetIndex;
             Entities.ForEach((Entity otherEntity, ref Translation entityPos) => {
-                if (targetIndex == int.MaxValue || lastTargetIndex == otherEntity.Index)
+                if (targetIndex == int.MaxValue || lastTargetIndex == otherEntity.Index) {
                     return;
+                }
 
                 if (targetIndex == otherEntity.Index) {
                     targetEntity = otherEntity;
                 }
             });
 
-            if (targetEntity.Equals(Entity.Null))
+            if (targetEntity.Equals(Entity.Null)) {
                 return;
+            }
 
             desiredPos = EntityManager.GetComponentData<Translation>(targetEntity);
 
@@ -39,8 +41,9 @@ public class AutoMovementSystem : ComponentSystem {
             }
 
             bool isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
-            if (false == isHeadingForward)
+            if (false == isHeadingForward) {
                 return;
+            }
 
             if (moveComp.xValue < 0.0f) {
                 moveComp.value.x = -1.0f;

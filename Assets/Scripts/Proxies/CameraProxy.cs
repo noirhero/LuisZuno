@@ -5,11 +5,11 @@ using Unity.Entities;
 
 [RequiresEntityConversion]
 public class CameraProxy : MonoBehaviour, IConvertGameObjectToEntity {
-    public Camera peset = null;
+    public Camera preset = null;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        if (null != peset) {
-            dstManager.AddSharedComponentData(entity, new CameraPresetComponent(peset));
+        if (null != preset) {
+            dstManager.AddSharedComponentData(entity, new CameraPresetComponent(preset));
             dstManager.AddComponentData(entity, new CameraComopnent());
         }
     }

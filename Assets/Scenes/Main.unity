@@ -318,36 +318,6 @@ MonoBehaviour:
   item0: {fileID: 743405256}
   item1: {fileID: 84418562}
   item2: {fileID: 1946033145}
-  itemDatas:
-    reorderableList:
-      canAdd: 1
-      canRemove: 1
-      draggable: 1
-      expandable: 1
-      multipleSelection: 1
-      isExpanded: 1
-      label:
-        m_Text: Keys
-        m_Image: {fileID: 0}
-        m_Tooltip: 
-      headerHeight: 18
-      footerHeight: 13
-      slideEasing: 0.15
-      verticalSpacing: 2
-      showDefaultBackground: 1
-      elementDisplayType: 0
-      elementNameProperty: 
-      elementNameOverride: 
-      elementIcon: {fileID: 0}
-    reqReferences: {fileID: 0}
-    isExpanded: 1
-    _keyValues: 0100000000000000020000000000000003000000000000000400000000000000
-    _keys: 0100000000000000020000000000000003000000000000000400000000000000
-    _values:
-    - sprite: {fileID: 21300000, guid: adc820eb73d6c744498d7cc35540814e, type: 3}
-    - sprite: {fileID: 21300000, guid: 15b0b0180a1d20740b2ad717a05a68e7, type: 3}
-    - sprite: {fileID: 21300000, guid: d884e736474610d478a9b44f24a043d1, type: 3}
-    - sprite: {fileID: 21300000, guid: 564d90672bb8acb418a465a9be39f0fd, type: 3}
 --- !u!1 &275111883
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,7 +730,7 @@ MonoBehaviour:
   entityType: 2
   entityReactionTime: 3
   entityReactionLimitCount: 3
-  dropItem: 0
+  dropItem: 1
   Status:
     madness: 10
 --- !u!1 &451163677
@@ -1048,7 +1018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47558db84e11b164699bb81f377bda4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  peset: {fileID: 519420031}
+  preset: {fileID: 0}
 --- !u!114 &521843686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1381,10 +1351,13 @@ MonoBehaviour:
   defaultInventory:
   - id: 0
     madness: 0
+    AddedTime: 0
   - id: 0
     madness: 0
+    AddedTime: 0
   - id: 0
     madness: 0
+    AddedTime: 0
   Status:
     health: 0
     madness: 20
@@ -1876,12 +1849,16 @@ MonoBehaviour:
   defaultInventory:
   - id: 1
     madness: 0
+    AddedTime: 0
   - id: 2
     madness: 0
+    AddedTime: 0
   - id: 3
     madness: 0
+    AddedTime: 0
   - id: 4
     madness: 0
+    AddedTime: 0
   Status:
     health: 0
     madness: 0
@@ -2181,6 +2158,83 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1819535012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1819535014}
+  - component: {fileID: 1819535013}
+  m_Layer: 0
+  m_Name: TablePreset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1819535013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819535012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb5a03f234a78474685de716710e80c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDatas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 0100000000000000020000000000000003000000000000000400000000000000
+    _keys: 0100000000000000020000000000000003000000000000000400000000000000
+    _values:
+    - sprite: {fileID: 21300000, guid: adc820eb73d6c744498d7cc35540814e, type: 3}
+      madness: 0
+    - sprite: {fileID: 21300000, guid: 15b0b0180a1d20740b2ad717a05a68e7, type: 3}
+      madness: 0
+    - sprite: {fileID: 21300000, guid: d884e736474610d478a9b44f24a043d1, type: 3}
+      madness: 0
+    - sprite: {fileID: 21300000, guid: 564d90672bb8acb418a465a9be39f0fd, type: 3}
+      madness: 0
+--- !u!4 &1819535014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819535012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 310.4504, y: 373.47873, z: -73.375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1831841432
 PrefabInstance:

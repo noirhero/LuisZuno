@@ -8,6 +8,10 @@ using Unity.Mathematics;
 using Unity.Transforms;
 
 public class MovementSystem : JobComponentSystem {
+    protected override void OnCreate() {
+        Enabled = false;
+    }
+
     struct MovementSystemJob : IJobForEach<MovementComponent, Translation> {
         public float deltaTime;
 

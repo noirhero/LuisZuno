@@ -6,22 +6,22 @@ using GlobalDefine;
 
 [Serializable]
 public struct AvatarStatusComponent : IComponentData {
-    public Int32 health;
-    public Int32 madness;
-    public Int32 maxMadness;
+    public int health;
+    public int madness;
+    public int maxMadness;
     public float agility;
     public float eyeSight;
-    private float moveSpeed;
-    private bool bInPanic;
+    private float _moveSpeed;
+    private bool _bInPanic;
 
     public bool InPanic {
-        get { return bInPanic; }
-        set { bInPanic = value; }
+        get => _bInPanic;
+        set => _bInPanic = value;
     }
 
     public float MoveSpeed {
-        get { return moveSpeed; }
-        set { moveSpeed = value; }
+        get => _moveSpeed;
+        set => _moveSpeed = value;
     }
 
     public AvatarStatusComponent(ref AvatarStatusComponent rhs) {
@@ -30,7 +30,7 @@ public struct AvatarStatusComponent : IComponentData {
         maxMadness = rhs.maxMadness;
         agility = rhs.agility;
         eyeSight = rhs.eyeSight;
-        moveSpeed = 1.0f; //rhs.moveSpeed;
-        bInPanic = false;
+        _moveSpeed = 1.0f; //rhs.moveSpeed;
+        _bInPanic = false;
     }
 }

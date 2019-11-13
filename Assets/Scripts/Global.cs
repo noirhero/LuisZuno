@@ -1,7 +1,6 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
 
 using System;
-using UnityEngine;
 
 namespace GlobalDefine {
     public enum EntityType { None, Player, NonePlayer, Wall }
@@ -10,7 +9,7 @@ namespace GlobalDefine {
     [Serializable]
     public struct ItemStruct {
         public Int64 id;
-        public Int32 madness;
+        public int madness;
         public Int64 AddedTime;
         
         public void Empty() {

@@ -8,17 +8,17 @@ using GlobalDefine;
 public struct ReactiveComponent : IComponentData {
     public EntityType type;
     public float reactionTime;
-    public Int32 reactionLimitCount;
-    private float reactionElapsedTime;
-    private Int32 reactedCount;
+    public int reactionLimitCount;
+    private float _reactionElapsedTime;
+    private int _reactedCount;
 
     public float ReactionElapsedTime {
-        get { return reactionElapsedTime; }
-        set { reactionElapsedTime = value; }
+        get => _reactionElapsedTime;
+        set => _reactionElapsedTime = value;
     }
 
-    public Int32 ReactedCount {
-        get { return reactedCount; }
-        set { reactedCount = value; }
+    public int ReactedCount {
+        get => _reactedCount;
+        set => _reactedCount = value;
     }
 }

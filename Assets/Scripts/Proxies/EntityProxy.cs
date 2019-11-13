@@ -12,7 +12,7 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public SpritePreset preset = null;
     public EntityType entityType = EntityType.None;
     public float entityReactionTime = 3.0f;
-    public Int32 entityReactionLimitCount = 3;
+    public int entityReactionLimitCount = 3;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);

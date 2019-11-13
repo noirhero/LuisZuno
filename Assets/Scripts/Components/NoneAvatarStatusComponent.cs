@@ -2,11 +2,10 @@
 
 using System;
 using Unity.Entities;
-using GlobalDefine;
 
 [Serializable]
 public struct NoneAvatarStatusComponent : IComponentData {
-    public Int32 madness;
+    public int madness;
 
     public NoneAvatarStatusComponent(ref NoneAvatarStatusComponent rhs) {
         madness = rhs.madness;

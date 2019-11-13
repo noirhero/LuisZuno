@@ -22,7 +22,10 @@ public class GUIPreset : MonoBehaviour {
     public Image item1;
     public Image item2;
     public Image item3;
-
+       
+    [Header("Customize Info")]
+    public Transform customize;
+    public ToggleGroup backgroundGroup;
 
     public void Initialize() {
         HideEnding();

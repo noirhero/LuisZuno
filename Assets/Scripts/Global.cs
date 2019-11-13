@@ -5,6 +5,9 @@ using System;
 namespace GlobalDefine {
     public enum EntityType { None, Player, NonePlayer, Wall }
     public enum AnimationType { Walk, Idle, SomethingDoIt, NyoNyo }
+    public enum BackgroundType { BackStreetBoy, Poem, VeteranSoldier, Priest, Professor, Detective }
+    public enum ValuesType { Mercy, Greedy, Curiosity, SenseOfDuty }
+    public enum GoalType { TraceOfParents, CreateOfMasterpiece, Rich }
 
     [Serializable]
     public struct ItemStruct {
@@ -20,11 +23,14 @@ namespace GlobalDefine {
     }
 
     public static class Utility {
-        public static bool IsVaild(int index) {
-            return index != 0;
+        public static bool IsVaild(int inIndex) {
+            return inIndex != 0;
         }
-        public static bool IsVaild(Int64 index) {
-            return index != 0;
+        public static bool IsVaild(Int64 inIndex) {
+            return inIndex != 0;
+        }
+        public static T ToEnum<T>(string inValue) {
+            return (T)Enum.Parse(typeof(T), inValue);
         }
     }
 }

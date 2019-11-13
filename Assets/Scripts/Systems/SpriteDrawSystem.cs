@@ -6,8 +6,8 @@ using Unity.Transforms;
 using Unity.Mathematics;
 
 public class SpriteDrawSystem : ComponentSystem {
-    private static readonly int MainTexUv = Shader.PropertyToID("_MainTex_UV");
-    private static readonly int MainTex = Shader.PropertyToID("_MainTex");
+    private static readonly int _mainTexUv = Shader.PropertyToID("_MainTex_UV");
+    private static readonly int _mainTex = Shader.PropertyToID("_MainTex");
 
     protected override void OnUpdate() {
         var propertyBlock = new MaterialPropertyBlock();
@@ -20,8 +20,8 @@ public class SpriteDrawSystem : ComponentSystem {
             }
 
             uv[0] = presetData.rects[animComp.frame];
-            propertyBlock.SetVectorArray(MainTexUv, uv);
-            propertyBlock.SetTexture(MainTex, presetData.texture);
+            propertyBlock.SetVectorArray(_mainTexUv, uv);
+            propertyBlock.SetTexture(_mainTex, presetData.texture);
 
             drawPos = pos.Value + presetData.posOffset;
             //drawPos.z = pos.Value.y;

@@ -7,7 +7,7 @@ using RotaryHeart.Lib.SerializableDictionary;
 [Serializable]
 public struct ItemPresetData {
     public Sprite sprite;
-    public Int32 madness;
+    public int madness;
 }
 
 [Serializable]

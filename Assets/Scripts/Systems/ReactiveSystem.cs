@@ -80,7 +80,7 @@ public class ReactiveSystem : ComponentSystem {
         }
 
         DropComponent dropComponent = EntityManager.GetComponentData<DropComponent>(_targetEntity);
-        if (false == Utility.IsVaild(dropComponent.dropItemID)) {
+        if (false == Utility.IsValid(dropComponent.dropItemID)) {
             return;
         }
         

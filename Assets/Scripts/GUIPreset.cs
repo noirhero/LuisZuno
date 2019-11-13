@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using GlobalDefine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class GUIPreset : MonoBehaviour {
@@ -13,7 +14,7 @@ public class GUIPreset : MonoBehaviour {
     [Header("Taking Info")]
     public Transform bubble;
     public Text bubbleMsg;
-    public Vector3 Pivot = new Vector3(20.0f, 170.0f, 0.0f);
+    [FormerlySerializedAs("Pivot")] public Vector3 pivot = new Vector3(20.0f, 170.0f, 0.0f);
 
     [Header("Status Info")]
     public Slider madness;
@@ -51,7 +52,7 @@ public class GUIPreset : MonoBehaviour {
 
     public void ShowBubble(Vector3 inPos, string inMsg = "...") {
         bubble.gameObject.SetActive(true);
-        bubble.position = inPos + Pivot;
+        bubble.position = inPos + pivot;
         bubbleMsg.text = inMsg;
     }
 

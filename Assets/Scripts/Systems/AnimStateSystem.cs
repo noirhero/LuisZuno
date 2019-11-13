@@ -2,13 +2,11 @@
 
 using System;
 using System.Text;
-using Unity.Collections;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using GlobalDefine;
-using UnityEngine;
 
 public class AnimStateSystem : JobComponentSystem {
     private EntityQuery _group;

@@ -1464,7 +1464,7 @@ MonoBehaviour:
   endingMsg: {fileID: 1043247765}
   bubble: {fileID: 813633665}
   bubbleMsg: {fileID: 1080996637}
-  Pivot: {x: 20, y: 170, z: 0}
+  pivot: {x: 20, y: 170, z: 0}
   madness: {fileID: 278837674}
   item1: {fileID: 743405256}
   item2: {fileID: 84418562}
@@ -2445,7 +2445,7 @@ MonoBehaviour:
   entityReactionTime: 3
   entityReactionLimitCount: 3
   dropItem: 1
-  Status:
+  status:
     madness: 10
 --- !u!1 &336018378
 GameObject:
@@ -2771,7 +2771,7 @@ MonoBehaviour:
   entityReactionTime: 3
   entityReactionLimitCount: 3
   dropItem: 0
-  Status:
+  status:
     madness: 0
 --- !u!61 &451163680
 BoxCollider2D:
@@ -2893,7 +2893,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 465256963}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152165963}
+        m_MethodName: OnSelectedInLuck
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &465256963
@@ -4291,7 +4302,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 715922883}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152165963}
+        m_MethodName: OnSelectedInPhysical
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &715922883
@@ -5343,14 +5365,14 @@ MonoBehaviour:
   defaultInventory:
   - id: 0
     madness: 0
-    AddedTime: 0
+    addedTime: 0
   - id: 0
     madness: 0
-    AddedTime: 0
+    addedTime: 0
   - id: 0
     madness: 0
-    AddedTime: 0
-  Status:
+    addedTime: 0
+  status:
     health: 0
     madness: 20
     maxMadness: 0
@@ -5513,7 +5535,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1012531422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152165963}
+        m_MethodName: OnSelectedInPhysical
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1012531422
@@ -5634,7 +5667,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1018896474}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152165963}
+        m_MethodName: OnSelectedInMentality
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1018896474
@@ -6560,10 +6604,15 @@ MonoBehaviour:
   backgroundGroup: {fileID: 231284098}
   valuesGroup: {fileID: 233574870}
   goalGroup: {fileID: 281808218}
-  decision: {fileID: 970477192}
   backgroundText: {fileID: 674273516}
   valuesText: {fileID: 1087634131}
   goalText: {fileID: 1980163453}
+  remainText: {fileID: 201443536}
+  mentalityText: {fileID: 1825087383}
+  agilityText: {fileID: 328100955}
+  physicalText: {fileID: 1506324833}
+  luckText: {fileID: 569349346}
+  decision: {fileID: 970477192}
 --- !u!1 &1156119532
 GameObject:
   m_ObjectHideFlags: 0
@@ -7355,7 +7404,7 @@ MonoBehaviour:
   entityReactionTime: 3
   entityReactionLimitCount: 3
   defaultInventory: []
-  Status:
+  status:
     health: 0
     madness: 0
     maxMadness: 100
@@ -7594,7 +7643,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1348998500}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152165963}
+        m_MethodName: OnSelectedInMentality
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1348998500
@@ -8049,7 +8109,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1433389257}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152165963}
+        m_MethodName: OnSelectedInLuck
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1433389257
@@ -9090,7 +9161,7 @@ MonoBehaviour:
   entityReactionTime: 3
   entityReactionLimitCount: 3
   dropItem: 0
-  Status:
+  status:
     madness: 0
 --- !u!61 &1808311619
 BoxCollider2D:
@@ -9633,7 +9704,7 @@ MonoBehaviour:
   entityReactionTime: 3
   entityReactionLimitCount: 3
   dropItem: 0
-  Status:
+  status:
     madness: 0
 --- !u!114 &1843038006
 MonoBehaviour:
@@ -10522,7 +10593,7 @@ MonoBehaviour:
   entityReactionTime: 3
   entityReactionLimitCount: 3
   dropItem: 0
-  Status:
+  status:
     madness: 0
 --- !u!114 &1959053451
 MonoBehaviour:
@@ -10736,7 +10807,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1998892426}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152165963}
+        m_MethodName: OnSelectedInAgility
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1998892426
@@ -11509,7 +11591,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2140100784}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1152165963}
+        m_MethodName: OnSelectedInAgility
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: -1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2140100784

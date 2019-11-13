@@ -52,11 +52,11 @@ public class InventorySystem : ComponentSystem {
         }
         else {
             // condition - time
-            if ((_inventoryComp.item1.AddedTime < _inventoryComp.item2.AddedTime) && 
-                (_inventoryComp.item1.AddedTime < _inventoryComp.item3.AddedTime)) {
+            if ((_inventoryComp.item1.addedTime < _inventoryComp.item2.addedTime) && 
+                (_inventoryComp.item1.addedTime < _inventoryComp.item3.addedTime)) {
                     slotIndex = 1;
             }
-            else if (_inventoryComp.item2.AddedTime < _inventoryComp.item3.AddedTime) {
+            else if (_inventoryComp.item2.addedTime < _inventoryComp.item3.addedTime) {
                     slotIndex = 2;
             }
             else {

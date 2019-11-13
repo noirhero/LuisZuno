@@ -9,4 +9,21 @@ public struct CustomizeComponent : IComponentData {
     public BackgroundType backgroundType;
     public ValuesType valuesType;
     public GoalType goalType;
+
+    public int remain;
+    public int mentality;
+    public int agility;
+    public int physical;
+    public int luck;
+
+    public CustomizeComponent(int inRemain) {
+        backgroundType = BackgroundType.BackStreetBoy;
+        valuesType = ValuesType.Curiosity;
+        goalType = GoalType.CreateOfMasterpiece;
+        remain = inRemain;
+        mentality = 0;
+        agility = 0;
+        physical = 0;
+        luck = 0;
+    }
 }

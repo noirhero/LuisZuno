@@ -100,6 +100,11 @@ public class ReactiveSystem : ComponentSystem {
     }
 
 
+    protected override void OnCreate() {
+        Enabled = false;
+    }
+
+
     protected override void OnUpdate() {
         Entities.WithAll<MovementComponent>().ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref TargetComponent targetComp) => {
             _targetEntity = GetTargetEntity(targetComp.targetIndex);

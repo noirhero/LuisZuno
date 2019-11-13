@@ -363,7 +363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Luckl :'
+  m_Text: 'Luck :'
 --- !u!222 &31868264
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6607,7 +6607,7 @@ MonoBehaviour:
   backgroundText: {fileID: 674273516}
   valuesText: {fileID: 1087634131}
   goalText: {fileID: 1980163453}
-  remainText: {fileID: 201443536}
+  remainText: {fileID: 134583772}
   mentalityText: {fileID: 1825087383}
   agilityText: {fileID: 328100955}
   physicalText: {fileID: 1506324833}

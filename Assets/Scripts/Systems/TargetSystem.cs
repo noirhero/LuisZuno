@@ -6,6 +6,11 @@ using Unity.Entities;
 using GlobalDefine;
 
 public class TargetSystem : ComponentSystem {
+    protected override void OnCreate() {
+        Enabled = false;
+    }
+
+
     protected override void OnUpdate() {
         var targetIndex = int.MaxValue;
         var targetDistance = float.PositiveInfinity;

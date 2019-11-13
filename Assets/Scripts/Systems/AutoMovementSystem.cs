@@ -7,6 +7,10 @@ using UnityEngine;
 
 [UpdateAfter(typeof(MovementSystem))]
 public class AutoMovementSystem : ComponentSystem {
+    protected override void OnCreate() {
+        Enabled = false;
+    }
+
     protected override void OnUpdate() {
         var deltaTime = Time.deltaTime;
         var desiredPos = new Translation();

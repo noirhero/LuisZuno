@@ -95,6 +95,18 @@ public class CustomizeUI : MonoBehaviour {
     public void OnSelectedInConfirm() {
         decision.SetActive(false);
         this.gameObject.SetActive(false);
+
+        foreach (var system in World.Active.Systems) {
+            if (system.GetType() == typeof(TargetSystem)) {
+                system.Enabled = true;
+            }
+            else if (system.GetType() == typeof(ReactiveSystem)) {
+                system.Enabled = true;
+            }
+            else if (system.GetType() == typeof(AutoMovementSystem)) {
+                system.Enabled = true;
+            }
+        }
     }
 
 

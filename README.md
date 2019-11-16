@@ -3,8 +3,8 @@
 # 개요
 TAP 이 만들어내는 첫 유니티 엔진 게임.  
 픽셀아트 형식.  
-[UnityECS](https://docs.google.com/document/d/1JEdIMBmjJqCBLbBxpVsxoUYGAvqx3h7jQn8vBwJCM7o/edit?usp=sharing)  
 [Unity ECS Manual](https://docs.google.com/document/d/1xGop8KKkX6eC7LDmQFWlHCujC4UH-gPfNriNnxE0_xk/edit)  
+[UnityECS ](https://docs.google.com/document/d/1JEdIMBmjJqCBLbBxpVsxoUYGAvqx3h7jQn8vBwJCM7o/edit?usp=sharing)  
 
 # 코딩 관례
 ![](./ReadMe/coding_conventions_0.png)

@@ -27,30 +27,44 @@ public class ReactiveSystem : ComponentSystem {
     }
 
 
-    private bool ShouldBePanic() {
+    private bool HasEffectOnMadness() {
         // 타겟이 플레이어인 경우 무시 (몬스터가 플레이어에게 패닉하지 않음)
         var targetReactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_targetEntity);
         if (targetReactiveComp.type == EntityType.Player)
             return false;
 
+        // 타겟의 광기(= 현재 아바타가 받아야 하는 광기)
+        float targetMadness = 0.0f;
+
         // Non-avatar
         if (EntityManager.HasComponent<NoneAvatarStatusComponent>(_targetEntity)) {
-            var targetStatusComp = EntityManager.GetComponentData<NoneAvatarStatusComponent>(_targetEntity);
-            if (targetStatusComp.madness > 0) {
-                _currentStatusComp.madness += targetStatusComp.madness;     // todo : need some formula
-                _currentStatusComp.InPanic = true;
-                return true;
-            }
+            targetMadness = EntityManager.GetComponentData<NoneAvatarStatusComponent>(_targetEntity).madness;
         }
         // Avatar
         else if (EntityManager.HasComponent<AvatarStatusComponent>(_targetEntity)) {
-            var targetStatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_targetEntity);
-            if (targetStatusComp.madness > 0) {
-                _currentStatusComp.madness += targetStatusComp.madness;     // todo : need some formula
-                _currentStatusComp.InPanic = true;
-                return true;
-            }
+            targetMadness = EntityManager.GetComponentData<AvatarStatusComponent>(_targetEntity).madness;
         }
+
+        if (targetMadness > 0) {
+            // 이미 광기에 영향을 받고 있으면 덮어 쓰기
+            if (EntityManager.HasComponent<MadnessInfluenceComponent>(_currentEntity)) {
+                var madnessComp = EntityManager.GetComponentData<MadnessInfluenceComponent>(_currentEntity);
+                madnessComp.totalTransitionValue = targetMadness;
+                madnessComp.transitionAccel = (targetMadness / _currentStatusComp.mentality);
+                madnessComp.transitionStartMadness = 0.0f;
+                madnessComp.elapsedTransitionTime = 0.0f;
+                EntityManager.SetComponentData<MadnessInfluenceComponent>(_currentEntity, madnessComp);
+            }
+            else {
+                EntityManager.AddComponentData<MadnessInfluenceComponent>(_currentEntity, new MadnessInfluenceComponent() {
+                    totalTransitionValue = targetMadness,
+                    transitionAccel = (targetMadness / _currentStatusComp.mentality)
+                });
+            }
+            _currentStatusComp.InPanic = true;
+            return true;
+        }
+
         return false;
     }
 
@@ -139,9 +153,10 @@ public class ReactiveSystem : ComponentSystem {
                     return;
                 }
 
-                // 이성에 타격을 입었다면 패닉(1초로 임시 지정)
-                if (ShouldBePanic()) {
-                    _currentReactiveComp.ReactionElapsedTime -= 1.0f;
+                // 이성에 타격을 입었다면 패닉
+                bool bIsInPanic = HasEffectOnMadness();
+                if (bIsInPanic) {
+                    _currentReactiveComp.ReactionElapsedTime -= _currentReactiveComp.panicReactionTime;
                 }
                 else {
                     FinishReaction();

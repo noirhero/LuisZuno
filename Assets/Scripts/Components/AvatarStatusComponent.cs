@@ -2,15 +2,17 @@
 
 using System;
 using Unity.Entities;
-using GlobalDefine;
 
 [Serializable]
 public struct AvatarStatusComponent : IComponentData {
     public int health;
-    public int madness;
-    public int maxMadness;
+    public float madness;
+    public float maxMadness;
     public float agility;
-    public float eyeSight;
+    public float physical;
+    public float mentality;
+    public float search;
+    public float luck;
     private float _moveSpeed;
     private bool _bInPanic;
 
@@ -29,8 +31,11 @@ public struct AvatarStatusComponent : IComponentData {
         madness = rhs.madness;
         maxMadness = rhs.maxMadness;
         agility = rhs.agility;
-        eyeSight = rhs.eyeSight;
-        _moveSpeed = 1.0f; //rhs.moveSpeed;
+        physical = rhs.physical;
+        mentality = rhs.mentality;
+        search = rhs.search;
+        luck = rhs.luck;
+        _moveSpeed = 1.0f;
         _bInPanic = false;
     }
 }

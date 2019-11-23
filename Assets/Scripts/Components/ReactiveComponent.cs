@@ -9,6 +9,7 @@ public struct ReactiveComponent : IComponentData {
     public EntityType type;
     public float reactionTime;
     public int reactionLimitCount;
+    public float panicReactionTime;
     private float _reactionElapsedTime;
     private int _reactedCount;
 

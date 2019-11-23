@@ -13,6 +13,7 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public EntityType entityType = EntityType.None;
     public float entityReactionTime = 3.0f;
     public int entityReactionLimitCount = 3;
+    public float entityPanicReactionTime = 1.0f;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
@@ -36,7 +37,8 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
         dstManager.AddComponentData(entity, new ReactiveComponent() {
             type = entityType,
             reactionTime = entityReactionTime,
-            reactionLimitCount = entityReactionLimitCount
+            reactionLimitCount = entityReactionLimitCount,
+            panicReactionTime = entityPanicReactionTime
         });
 
         dstManager.AddComponentData(entity, new TargetComponent() {

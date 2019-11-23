@@ -70,7 +70,7 @@ public class GUISystem : ComponentSystem {
 
     private void UpdateGaugeUI() {
         AvatarStatusComponent statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
-        _guiPreset.SetMadness((float)(statusComp.madness) / (float)(statusComp.maxMadness));
+        _guiPreset.SetMadness(statusComp.madness / statusComp.maxMadness);
     }
 
 

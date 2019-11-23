@@ -22,4 +22,13 @@ public struct ReactiveComponent : IComponentData {
         get => _reactedCount;
         set => _reactedCount = value;
     }
+
+    public ReactiveComponent(ref ReactiveComponent rhs) {
+        type = rhs.type;
+        reactionTime = rhs.reactionTime;
+        reactionLimitCount = rhs.reactionLimitCount;
+        panicReactionTime = rhs.panicReactionTime;
+        _reactionElapsedTime = 0.0f;
+        _reactedCount = 0;
+    }
 }

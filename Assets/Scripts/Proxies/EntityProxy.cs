@@ -1,19 +1,14 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
 
-using System;
 using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
-using GlobalDefine;
+using UnityEngine.Serialization;
 
 [RequiresEntityConversion]
 public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public SpritePreset preset = null;
-    public EntityType entityType = EntityType.None;
-    public float entityReactionTime = 3.0f;
-    public int entityReactionLimitCount = 3;
-    public float entityPanicReactionTime = 1.0f;
+    [FormerlySerializedAs("Reactive")] public ReactiveComponent reactive;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
@@ -27,12 +22,7 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
             });
         }
 
-        dstManager.AddComponentData(entity, new ReactiveComponent() {
-            type = entityType,
-            reactionTime = entityReactionTime,
-            reactionLimitCount = entityReactionLimitCount,
-            panicReactionTime = entityPanicReactionTime
-        });
+        dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
 
         dstManager.AddComponentData(entity, new TargetComponent() {
             lastTargetIndex = int.MinValue,

@@ -26,7 +26,6 @@ public class GUIPreset : MonoBehaviour {
        
     [Header("Customize Info")]
     public Transform customize;
-    public ToggleGroup backgroundGroup;
 
     public void Initialize() {
         HideEnding();
@@ -37,6 +36,8 @@ public class GUIPreset : MonoBehaviour {
         item1.gameObject.SetActive(false);
         item2.gameObject.SetActive(false);
         item3.gameObject.SetActive(false);
+
+        customize.gameObject.SetActive(true);
     }
 
 

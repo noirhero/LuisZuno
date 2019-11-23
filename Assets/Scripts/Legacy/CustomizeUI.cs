@@ -20,6 +20,7 @@ public class CustomizeUI : MonoBehaviour {
     public Text mentalityText;
     public Text agilityText;
     public Text physicalText;
+    public Text searchText;
     public Text luckText;
 
     public GameObject decision;
@@ -47,6 +48,7 @@ public class CustomizeUI : MonoBehaviour {
         OnSelectedInMentality(0);
         OnSelectedInAgility(0);
         OnSelectedInPhysical(0);
+        OnSelectedInSearch(0);
         OnSelectedInLuck(0);
     }
 
@@ -172,6 +174,26 @@ public class CustomizeUI : MonoBehaviour {
 
         remainText.text = customizeComp.remain.ToString();
         physicalText.text = customizeComp.physical.ToString();
+    }
+
+
+    public void OnSelectedInSearch(int inValue) {
+        var customizeComp = World.Active.EntityManager.GetComponentData<CustomizeComponent>(_playerEntity);
+        if (-inValue < 0 && customizeComp.remain <= 0) {
+            return;
+        }
+
+        int pendingValue = customizeComp.search + inValue;
+        if (pendingValue < 0) {
+            return;
+        }
+
+        customizeComp.remain -= inValue;
+        customizeComp.search = pendingValue;
+        World.Active.EntityManager.SetComponentData<CustomizeComponent>(_playerEntity, customizeComp);
+
+        remainText.text = customizeComp.remain.ToString();
+        searchText.text = customizeComp.search.ToString();
     }
 
 

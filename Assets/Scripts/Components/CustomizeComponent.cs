@@ -14,6 +14,7 @@ public struct CustomizeComponent : IComponentData {
     public int mentality;
     public int agility;
     public int physical;
+    public int search;
     public int luck;
 
     public CustomizeComponent(int inRemain) {
@@ -24,6 +25,7 @@ public struct CustomizeComponent : IComponentData {
         mentality = 0;
         agility = 0;
         physical = 0;
+        search = 0;
         luck = 0;
     }
 }

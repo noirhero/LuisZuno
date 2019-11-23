@@ -47,16 +47,16 @@ public class ReactiveSystem : ComponentSystem {
 
         if (targetMadness > 0) {
             // 이미 광기에 영향을 받고 있으면 덮어 쓰기
-            if (EntityManager.HasComponent<MadnessInfluenceComponent>(_currentEntity)) {
-                var madnessComp = EntityManager.GetComponentData<MadnessInfluenceComponent>(_currentEntity);
+            if (EntityManager.HasComponent<MadnessComponent>(_currentEntity)) {
+                var madnessComp = EntityManager.GetComponentData<MadnessComponent>(_currentEntity);
                 madnessComp.totalTransitionValue = targetMadness;
                 madnessComp.transitionAccel = (targetMadness / _currentStatusComp.mentality);
                 madnessComp.transitionStartMadness = 0.0f;
                 madnessComp.elapsedTransitionTime = 0.0f;
-                EntityManager.SetComponentData<MadnessInfluenceComponent>(_currentEntity, madnessComp);
+                EntityManager.SetComponentData<MadnessComponent>(_currentEntity, madnessComp);
             }
             else {
-                EntityManager.AddComponentData<MadnessInfluenceComponent>(_currentEntity, new MadnessInfluenceComponent() {
+                EntityManager.AddComponentData<MadnessComponent>(_currentEntity, new MadnessComponent() {
                     totalTransitionValue = targetMadness,
                     transitionAccel = (targetMadness / _currentStatusComp.mentality)
                 });

@@ -7,17 +7,21 @@ using UnityEngine;
 
 [UpdateAfter(typeof(MovementSystem))]
 public class AutoMovementSystem : ComponentSystem {
+    protected override void OnCreate() {
+        Enabled = false;
+    }
+
     protected override void OnUpdate() {
         var deltaTime = Time.deltaTime;
-        var desiredPos = new Translation();
+        float3 desiredPos;
 
         Entities.ForEach((Entity entity, ref TargetComponent targetComp, ref MovementComponent moveComp, ref Translation currentPos) => {
 
-            Entity targetEntity = Entity.Null;
+            var targetEntity = Entity.Null;
 
             // get target
-            int targetIndex = targetComp.targetIndex;
-            int lastTargetIndex = targetComp.lastTargetIndex;
+            var targetIndex = targetComp.targetIndex;
+            var lastTargetIndex = targetComp.lastTargetIndex;
             Entities.ForEach((Entity otherEntity, ref Translation entityPos) => {
                 if (targetIndex == int.MaxValue || lastTargetIndex == otherEntity.Index) {
                     return;
@@ -32,15 +36,15 @@ public class AutoMovementSystem : ComponentSystem {
                 return;
             }
 
-            desiredPos = EntityManager.GetComponentData<Translation>(targetEntity);
+            desiredPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
 
-            var at = desiredPos.Value.x - currentPos.Value.x;
+            var at = desiredPos.x - currentPos.Value.x;
             if (0.5f >= math.abs(at)) {
                 moveComp.value = 0.0f;
                 return;
             }
 
-            bool isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
+            var isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
             if (false == isHeadingForward) {
                 return;
             }
@@ -52,8 +56,8 @@ public class AutoMovementSystem : ComponentSystem {
                 moveComp.value.x = 1.0f;
             }
 
-            var StatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(entity);
-            currentPos.Value.x += moveComp.value.x * deltaTime * StatusComp.MoveSpeed;
+            var statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(entity);
+            currentPos.Value.x += moveComp.value.x * deltaTime * statusComp.MoveSpeed;
         });
     }
 }

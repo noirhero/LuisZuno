@@ -19,19 +19,12 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
         SetupComponents(entity, dstManager, conversionSystem);
     }
 
-    public virtual void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
+    protected virtual void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         if (null != preset) {
             dstManager.AddSharedComponentData(entity, new SpritePresetComponent(preset));
             dstManager.AddComponentData(entity, new SpriteAnimComponent() {
                 nameHash = preset.datas.Keys.First()
             });
-        }
-
-        Vector2 cachedSize = Vector2.zero;
-        BoxCollider2D cachedBox = GetComponent<BoxCollider2D>();
-        if (null != cachedBox) {
-            cachedSize.x = cachedBox.size.x;
-            cachedSize.y = cachedBox.size.y;
         }
 
         dstManager.AddComponentData(entity, new ReactiveComponent() {

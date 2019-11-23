@@ -26,7 +26,7 @@ public class GUISystem : ComponentSystem {
     private void SetItemSprite(Int64 inID, Image inImg) {
         ItemPresetData data;
         if (_tablePreset.itemDatas.TryGetValue(inID, out data)) {
-            inImg.gameObject.SetActive(Utility.IsVaild(inID));
+            inImg.gameObject.SetActive(Utility.IsValid(inID));
             inImg.sprite = data.sprite;
         }
     }

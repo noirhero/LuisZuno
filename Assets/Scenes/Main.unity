@@ -8144,7 +8144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 275111884}
   reactive:
-    type: 0
+    type: 1
     reactionTime: 3
     reactionLimitCount: 3
     panicReactionTime: 1

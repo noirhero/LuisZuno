@@ -1235,7 +1235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &231284096
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1299,7 +1299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &233574868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1469,8 +1469,7 @@ MonoBehaviour:
   item1: {fileID: 743405256}
   item2: {fileID: 84418562}
   item3: {fileID: 1946033145}
-  customize: {fileID: 0}
-  backgroundGroup: {fileID: 0}
+  customize: {fileID: 1152165959}
 --- !u!1 &275111883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1869,7 +1868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &281808216
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4370,7 +4369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &736648975
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5249,7 +5248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &970477193
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6662,7 +6661,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1152165963}
-        m_MethodName: OnSelectedInLuck
+        m_MethodName: OnSelectedInSearch
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6731,7 +6730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1152165959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6841,6 +6840,7 @@ MonoBehaviour:
   mentalityText: {fileID: 1825087383}
   agilityText: {fileID: 328100955}
   physicalText: {fileID: 1506324833}
+  searchText: {fileID: 1111566058}
   luckText: {fileID: 569349346}
   decision: {fileID: 970477192}
 --- !u!1 &1156119532
@@ -11792,7 +11792,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1152165963}
-        m_MethodName: OnSelectedInLuck
+        m_MethodName: OnSelectedInSearch
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

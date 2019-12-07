@@ -16,9 +16,8 @@ public class AutoMovementSystem : ComponentSystem {
 
         Entities.WithAll<PlayerComponent>().ForEach((Entity playerEntity, ref MovementComponent moveComp, ref Translation playerPos) => {
 
-            var targetEntity = Entity.Null;
-
             // get target
+            var targetEntity = Entity.Null;
             var targetIndex = moveComp.targetEntityIndex;
             Entities.ForEach((Entity entity, ref Translation entityPos) => {
                 if (targetIndex == int.MaxValue /*|| lastTargetIndex == otherEntity.Index*/) {
@@ -35,12 +34,10 @@ public class AutoMovementSystem : ComponentSystem {
                 return;
             }
 
-            
-
             float3 targetPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
 
             // DebugDraw
-            //Debug.DrawLine(new Vector2(targetPos.x, targetPos.y), new Vector2(playerPos.Value.x, playerPos.Value.y), Color.red);
+            Debug.DrawLine(new Vector2(targetPos.x, targetPos.y), new Vector2(playerPos.Value.x, playerPos.Value.y), Color.red);
 
             // arrived !
             var at = targetPos.x - playerPos.Value.x;
@@ -64,12 +61,5 @@ public class AutoMovementSystem : ComponentSystem {
             //var statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(playerEntity);
             playerPos.Value.x += moveComp.value.x * deltaTime;
         });
-
-
-
-
-
-
-
     }
 }

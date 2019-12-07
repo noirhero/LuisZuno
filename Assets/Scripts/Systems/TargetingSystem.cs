@@ -20,8 +20,8 @@ public class TargetingSystem : ComponentSystem {
             var lastNearestEntityIndex = int.MaxValue;
             var lastNearestDistance = float.PositiveInfinity;
             Entities.ForEach((Entity targetEntity, ref ReactiveComponent reactiveComp, ref Translation targetPos) => {
-                var playerPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
-                float xDistance = playerPos.x - targetPos.Value.x;
+                var playerPos = EntityManager.GetComponentData<Translation>(playerEntity).Value;
+                float xDistance = targetPos.Value.x - playerPos.x;
 
                 PlayerComponent playerComp = EntityManager.GetComponentData<PlayerComponent>(playerEntity);
                 bool isHeadingForward = (playerComp.playerDirection < 0.0f && xDistance < 0.0f) || (playerComp.playerDirection > 0.0f && xDistance > 0.0f);
@@ -36,7 +36,7 @@ public class TargetingSystem : ComponentSystem {
                 }
             });
 
-            if (lastNearestEntityIndex > 0) {
+            if (lastNearestEntityIndex != int.MaxValue) {
                 EntityManager.AddComponentData<MovementComponent>(playerEntity, new MovementComponent(lastNearestEntityIndex));
             }
         });

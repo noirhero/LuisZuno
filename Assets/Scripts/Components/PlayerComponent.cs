@@ -6,4 +6,8 @@ using Unity.Entities;
 [Serializable]
 public struct PlayerComponent : IComponentData {
     public float playerDirection;        // -1 or 1
+
+    public PlayerComponent(float initialDir) {
+        playerDirection = initialDir;
+    }
 }

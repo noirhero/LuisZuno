@@ -4,11 +4,13 @@ using System.Linq;
 using UnityEngine;
 using Unity.Entities;
 using UnityEngine.Serialization;
+using GlobalDefine;
 
 [RequiresEntityConversion]
 public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public SpritePreset preset = null;
     [FormerlySerializedAs("Reactive")] public ReactiveComponent reactive;
+    public EntityType type;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
@@ -29,5 +31,14 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
         //    targetIndex = int.MaxValue,
         //    targetDistance = float.PositiveInfinity,
         //});
+        
+        switch (type) {
+            case EntityType.Player:
+                dstManager.AddComponentData(entity, new PlayerComponent());
+                break;
+            case EntityType.Wall:
+                dstManager.AddComponentData(entity, new TurningComponent());
+                break;
+        }
     }
 }

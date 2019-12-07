@@ -14,19 +14,19 @@ public class AutoMovementSystem : ComponentSystem {
     protected override void OnUpdate() {
         var deltaTime = Time.deltaTime;
 
-        Entities.With<PlayerComponent>.ForEach((Entity playerEntity, ref MovementComponent moveComp, ref Translation playerPos) => {
+        Entities.WithAll<PlayerComponent>().ForEach((Entity playerEntity, ref MovementComponent moveComp, ref Translation playerPos) => {
 
             var targetEntity = Entity.Null;
 
             // get target
-            var targetIndex = moveComp.targetIndex;
-            Entities.ForEach((Entity otherEntity, ref Translation entityPos) => {
+            var targetIndex = moveComp.targetEntityIndex;
+            Entities.ForEach((Entity entity, ref Translation entityPos) => {
                 if (targetIndex == int.MaxValue /*|| lastTargetIndex == otherEntity.Index*/) {
                     return;
                 }
 
-                if (targetIndex == otherEntity.Index) {
-                    targetEntity = otherEntity;
+                if (targetIndex == entity.Index) {
+                    targetEntity = entity;
                     return;
                 }
             });
@@ -40,7 +40,7 @@ public class AutoMovementSystem : ComponentSystem {
             float3 targetPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
 
             // DebugDraw
-            Debug.DrawLine(new Vector2(targetPos.x, targetPos.y), new Vector2(playerPos.Value.x, playerPos.Value.y), Color.red);
+            //Debug.DrawLine(new Vector2(targetPos.x, targetPos.y), new Vector2(playerPos.Value.x, playerPos.Value.y), Color.red);
 
             // arrived !
             var at = targetPos.x - playerPos.Value.x;
@@ -53,12 +53,8 @@ public class AutoMovementSystem : ComponentSystem {
                 return;
             }
 
-            //var isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
-            //if (false == isHeadingForward) {
-            //    return;
-            //}
-
-            if (moveComp.xValue < 0.0f) {
+            PlayerComponent playerComp = EntityManager.GetComponentData<PlayerComponent>(playerEntity);
+            if (playerComp.playerDirection < 0.0f) {
                 moveComp.value.x = -1.0f;
             }
             else {

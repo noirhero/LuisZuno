@@ -33,12 +33,9 @@ public class CustomizeUI : MonoBehaviour {
 
         var entities = World.Active.EntityManager.GetAllEntities();
         foreach (var entity in entities) {
-            if (true == World.Active.EntityManager.HasComponent(entity, typeof(ReactiveComponent))) {
-                var reactiveComp = World.Active.EntityManager.GetComponentData<ReactiveComponent>(entity);
-                if (EntityType.Player == reactiveComp.type) {
-                    World.Active.EntityManager.AddComponentData<CustomizeComponent>(entity, new CustomizeComponent(10));
-                    _playerEntity = entity;
-                }
+            if (World.Active.EntityManager.HasComponent(entity, typeof(PlayerComponent))) {
+                World.Active.EntityManager.AddComponentData<CustomizeComponent>(entity, new CustomizeComponent(10));
+                _playerEntity = entity;
             }
         }
 

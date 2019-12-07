@@ -21,12 +21,12 @@ public class MovementSystem : JobComponentSystem {
             moveComp.value = float3.zero;
             if (true == currentKeyboard.dKey.isPressed) {
                 moveComp.value.x += 1.0f;
-                moveComp.xValue = 1.0f;
+                //moveComp.xValue = 1.0f;
             }
 
             if (true == currentKeyboard.aKey.isPressed) {
                 moveComp.value.x -= 1.0f;
-                moveComp.xValue = -1.0f;
+                //moveComp.xValue = -1.0f;
             }
 
             var lengthSq = math.lengthsq(moveComp.value);

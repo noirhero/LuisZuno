@@ -7,12 +7,10 @@ using Unity.Mathematics;
 [Serializable]
 public struct MovementComponent : IComponentData {
     public float3 value;
-    public float xValue;
-    public int targetIndex;
+    public int targetEntityIndex;
 
     public MovementComponent(int targetIndex) {
         value = float3.zero;
-        xValue = 0;
-        targetIndex = targetIndex;
+        targetEntityIndex = targetIndex;
     }
 }

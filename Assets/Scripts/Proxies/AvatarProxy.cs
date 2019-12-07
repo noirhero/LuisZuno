@@ -1,6 +1,5 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
 
-using System;
 using Unity.Entities;
 using GlobalDefine;
 using UnityEngine.Serialization;
@@ -13,7 +12,7 @@ public class AvatarProxy : EntityProxy {
     protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
 
-        dstManager.AddComponentData(entity, new MovementComponent(-1.0f));
+        dstManager.AddComponentData(entity, new MovementComponent());
         dstManager.AddComponentData(entity, new InventoryComponent(defaultInventory));
         dstManager.AddComponentData(entity, new AvatarStatusComponent(ref status));
     }

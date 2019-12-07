@@ -9,9 +9,9 @@ using Unity.Transforms;
 
 public class SpriteInverseSystem : JobComponentSystem {
     [BurstCompile]
-    struct SpriteInverseSystemJob : IJobForEach<Rotation, MovementComponent> {
-        public void Execute(ref Rotation rotation, [ReadOnly] ref MovementComponent moveComp) {
-            rotation.Value = (0.0f < moveComp.xValue) ? quaternion.RotateY(math.radians(180.0f)) : quaternion.identity;
+    struct SpriteInverseSystemJob : IJobForEach<Rotation, PlayerComponent> {
+        public void Execute(ref Rotation rotation, [ReadOnly] ref PlayerComponent playerComp) {
+            rotation.Value = (0.0f < playerComp.playerDirection) ? quaternion.RotateY(math.radians(180.0f)) : quaternion.identity;
         }
     }
 

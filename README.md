@@ -12,6 +12,7 @@ TAP 이 만들어내는 첫 유니티 엔진 게임.
 # 기획서
 [링크](https://docs.google.com/document/d/1x79iT6RTI8gAFUlALh8Vxqx2wL5x0lIWrjUW7sgavMo/edit?usp=sharing)  
 [시스템 마인드 맵](https://www.mindmeister.com/ko/1311994396?t=XACWlPEApD)  
+[시스템 구조](https://docs.google.com/presentation/d/11Y11naucwtzrSTgNwI3TG-mWeq2o081MsvwQyuD6YAg/edit?usp=sharing)  
 
 # 스크럼
 [링크](https://docs.google.com/spreadsheets/d/1r5IbZYfxHLblOCRZ3xz7i1QaxGpBqnICjyC6fyHIOuY/edit?usp=sharing)  

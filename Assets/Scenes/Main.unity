@@ -2664,10 +2664,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   reactive:
-    type: 0
     reactionTime: 0
     reactionLimitCount: 0
     panicReactionTime: 0
+  type: 0
   dropItem: 1
   status:
     madness: 10
@@ -3029,10 +3029,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   reactive:
-    type: 0
     reactionTime: 0
     reactionLimitCount: 0
     panicReactionTime: 0
+  type: 0
   dropItem: 0
   status:
     madness: 0
@@ -5835,10 +5835,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 1049945743}
   reactive:
-    type: 0
     reactionTime: 1
     reactionLimitCount: 2
     panicReactionTime: 1
+  type: 0
   defaultInventory:
   - id: 0
     madness: 0
@@ -8144,10 +8144,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 275111884}
   reactive:
-    type: 1
     reactionTime: 3
     reactionLimitCount: 3
     panicReactionTime: 1
+  type: 1
   defaultInventory: []
   status:
     health: 0
@@ -10068,10 +10068,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   reactive:
-    type: 0
     reactionTime: 0
     reactionLimitCount: 0
     panicReactionTime: 0
+  type: 0
   dropItem: 0
   status:
     madness: 0
@@ -10619,10 +10619,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   reactive:
-    type: 0
     reactionTime: 0
     reactionLimitCount: 0
     panicReactionTime: 0
+  type: 0
   dropItem: 0
   status:
     madness: 0
@@ -11754,10 +11754,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   reactive:
-    type: 0
     reactionTime: 0
     reactionLimitCount: 0
     panicReactionTime: 0
+  type: 0
   dropItem: 0
   status:
     madness: 0

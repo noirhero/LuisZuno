@@ -6,7 +6,6 @@ using GlobalDefine;
 
 [Serializable]
 public struct ReactiveComponent : IComponentData {
-    public EntityType type;
     public float reactionTime;
     public int reactionLimitCount;
     public float panicReactionTime;
@@ -24,7 +23,6 @@ public struct ReactiveComponent : IComponentData {
     }
 
     public ReactiveComponent(ref ReactiveComponent rhs) {
-        type = rhs.type;
         reactionTime = rhs.reactionTime;
         reactionLimitCount = rhs.reactionLimitCount;
         panicReactionTime = rhs.panicReactionTime;

@@ -23,18 +23,9 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
                 nameHash = preset.datas.Keys.First()
             });
         }
-        
-        switch (type) {
-            case EntityType.Player:
-                dstManager.AddComponentData(entity, new PlayerComponent());
-                break;
-            case EntityType.Wall:
-                dstManager.AddComponentData(entity, new TurningComponent());
-                dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
-                break;
-            default:
-                dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
-                break;
+
+        if (EntityType.Player != type) {
+            dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
         }
     }
 }

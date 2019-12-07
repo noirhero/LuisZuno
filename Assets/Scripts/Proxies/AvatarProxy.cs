@@ -14,10 +14,9 @@ public class AvatarProxy : EntityProxy {
         
         dstManager.AddComponentData(entity, new AvatarStatusComponent(ref status));
 
-        switch (type) {
-            case EntityType.Player:
-                dstManager.AddComponentData(entity, new InventoryComponent(defaultInventory));
-                break;
+        if (EntityType.Player == type) {
+            dstManager.AddComponentData(entity, new PlayerComponent());
+            dstManager.AddComponentData(entity, new InventoryComponent(defaultInventory));
         }
     }
 }

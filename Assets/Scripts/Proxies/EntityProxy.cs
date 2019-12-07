@@ -23,14 +23,6 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
                 nameHash = preset.datas.Keys.First()
             });
         }
-
-        dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
-
-        //dstManager.AddComponentData(entity, new TargetComponent() {
-        //    lastTargetIndex = int.MinValue,
-        //    targetIndex = int.MaxValue,
-        //    targetDistance = float.PositiveInfinity,
-        //});
         
         switch (type) {
             case EntityType.Player:
@@ -38,6 +30,10 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
                 break;
             case EntityType.Wall:
                 dstManager.AddComponentData(entity, new TurningComponent());
+                dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
+                break;
+            default:
+                dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
                 break;
         }
     }

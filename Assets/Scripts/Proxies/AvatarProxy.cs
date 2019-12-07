@@ -12,7 +12,12 @@ public class AvatarProxy : EntityProxy {
     protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
         
-        dstManager.AddComponentData(entity, new InventoryComponent(defaultInventory));
         dstManager.AddComponentData(entity, new AvatarStatusComponent(ref status));
+
+        switch (type) {
+            case EntityType.Player:
+                dstManager.AddComponentData(entity, new InventoryComponent(defaultInventory));
+                break;
+        }
     }
 }

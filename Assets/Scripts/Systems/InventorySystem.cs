@@ -15,11 +15,7 @@ public class InventorySystem : ComponentSystem {
             _tablePreset = presetComp.preset;
         });
 
-        Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref InventoryComponent inventoryComp) => {
-            if (EntityType.Player != reactiveComp.type) {
-                return;
-            }
-
+        Entities.WithAll<PlayerComponent>().ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref InventoryComponent inventoryComp) => {
             _playerEntity = entity;
             _inventoryComp = inventoryComp;
         });

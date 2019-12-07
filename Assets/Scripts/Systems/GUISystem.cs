@@ -83,11 +83,7 @@ public class GUISystem : ComponentSystem {
             _guiPreset = presetComp.preset;
         });
 
-        Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp) => {
-            if (GlobalDefine.EntityType.Player != reactiveComp.type) {
-                return;
-            }
-
+        Entities.WithAll<PlayerComponent>().ForEach((Entity entity) => {
             _playerEntity = entity;
         });
 

@@ -6,6 +6,10 @@ using GlobalDefine;
 
 public class MadnessSystem : ComponentSystem {
 
+    protected override void OnCreate() {
+        Enabled = false;
+    }
+
     protected override void OnUpdate() {
         var deltaTime = Time.deltaTime;
 

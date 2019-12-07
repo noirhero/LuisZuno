@@ -12,11 +12,9 @@ public class CameraSystem : ComponentSystem {
             var desiredPos = presetComp.defaultPos;
             var currentPosX = presetComp.myTransform.position.x;
 
-            Entities.ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref Translation pos) => {
-                if (reactiveComp.type == EntityType.Player) {
-                    var velocity = (currentPosX / pos.Value.x) * Time.deltaTime;
-                    desiredPos.x = math.lerp(currentPosX, pos.Value.x, velocity);
-                }
+            Entities.WithAll<PlayerComponent>().ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref Translation pos) => {
+                var velocity = (currentPosX / pos.Value.x) * Time.deltaTime;
+                desiredPos.x = math.lerp(currentPosX, pos.Value.x, velocity);
             });
             presetComp.myTransform.position = desiredPos;
         });

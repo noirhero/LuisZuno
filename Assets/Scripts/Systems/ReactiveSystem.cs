@@ -29,8 +29,7 @@ public class ReactiveSystem : ComponentSystem {
 
     private bool HasEffectOnMadness() {
         // 타겟이 플레이어인 경우 무시 (몬스터가 플레이어에게 패닉하지 않음)
-        var targetReactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_targetEntity);
-        if (targetReactiveComp.type == EntityType.Player)
+        if (EntityManager.HasComponent<PlayerComponent>(_targetEntity))
             return false;
 
         // 타겟의 광기(= 현재 아바타가 받아야 하는 광기)
@@ -139,7 +138,7 @@ public class ReactiveSystem : ComponentSystem {
                 return;
             }
 
-            if (_targetReactiveComp.type == EntityType.Wall) {
+            if (EntityManager.HasComponent<TurningComponent>(_targetEntity)) { 
                 _currentMoveComp.xValue *= -1.0f;
                 FinishReaction();
                 return;

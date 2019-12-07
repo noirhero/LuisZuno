@@ -9,10 +9,8 @@ public class MadnessSystem : ComponentSystem {
     protected override void OnUpdate() {
         var deltaTime = Time.deltaTime;
 
-        Entities.ForEach((Entity entity, ref AvatarStatusComponent statusComp) => {
-            // 광기 카드를 받은 상태다!
-            if (EntityManager.HasComponent<MadnessComponent>(entity)) {
-                MadnessComponent madnessComp = EntityManager.GetComponentData<MadnessComponent>(entity);
+        Entities.ForEach((Entity entity, ref AvatarStatusComponent statusComp, ref MadnessComponent madnessComp) => {
+                //MadnessComponent madnessComp = EntityManager.GetComponentData<MadnessComponent>(entity);
 
                 if (madnessComp.transitionStartMadness <= 0.0f) {
                     madnessComp.transitionStartMadness = statusComp.madness;
@@ -32,8 +30,7 @@ public class MadnessSystem : ComponentSystem {
                     madnessComp.elapsedTransitionTime = 0.0f;
                 }
 
-                EntityManager.SetComponentData<MadnessComponent>(entity, madnessComp);
-            }
+                //EntityManager.SetComponentData<MadnessComponent>(entity, madnessComp);
         });
     }
 }

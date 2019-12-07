@@ -99,7 +99,7 @@ public class CustomizeUI : MonoBehaviour {
         this.gameObject.SetActive(false);
 
         foreach (var system in World.Active.Systems) {
-            if (system.GetType() == typeof(TargetSystem)) {
+            if (system.GetType() == typeof(TargetingSystem)) {
                 system.Enabled = true;
             }
             else if (system.GetType() == typeof(ReactiveSystem)) {

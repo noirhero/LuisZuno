@@ -24,10 +24,10 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
 
         dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
 
-        dstManager.AddComponentData(entity, new TargetComponent() {
-            lastTargetIndex = int.MinValue,
-            targetIndex = int.MaxValue,
-            targetDistance = float.PositiveInfinity,
-        });
+        //dstManager.AddComponentData(entity, new TargetComponent() {
+        //    lastTargetIndex = int.MinValue,
+        //    targetIndex = int.MaxValue,
+        //    targetDistance = float.PositiveInfinity,
+        //});
     }
 }

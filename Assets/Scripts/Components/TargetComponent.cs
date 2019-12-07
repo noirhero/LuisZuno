@@ -5,7 +5,8 @@ using Unity.Entities;
 
 [Serializable]
 public struct TargetComponent : IComponentData {
-    public int lastTargetIndex;
     public int targetIndex;
-    public float targetDistance;
+
+
+    public int lastTargetIndex; // deprecate
 }

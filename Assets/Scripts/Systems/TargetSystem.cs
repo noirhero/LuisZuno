@@ -5,13 +5,41 @@ using Unity.Transforms;
 using Unity.Entities;
 using GlobalDefine;
 
-public class TargetSystem : ComponentSystem {
+public class TargetingSystem : ComponentSystem {
     protected override void OnCreate() {
         Enabled = false;
     }
 
 
     protected override void OnUpdate() {
+        Entities.With<PlayerComponent>.ForEach((Entity playerEntity) => {
+            if (EntityManager.HasComponent<MovementComponent>(playerEntity)) {
+                return;
+            }
+
+            var lastNearestEntityIndex = int.MaxValue;
+            var lastNearestDistance = float.PositiveInfinity;
+            Entities.ForEach((Entity targetEntity, ref ReactiveComponent reactiveComp, ref Translation targetPos) => {
+                var playerPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
+                float xDistance = playerPos.x - targetPos.Value.x;
+                //bool isHeadingForward = (baseMoveComponent.xValue < 0.0f && xDistance < 0.0f) || (baseMoveComponent.xValue > 0.0f && xDistance > 0.0f);
+                //if (false == isHeadingForward) {
+                //    return;
+                //}
+
+                float distance = Vector2.Distance(new Vector2(targetPos.Value.x, targetPos.Value.y), new Vector2(playerPos.x, playerPos.y));
+                if (Mathf.Abs(distance) < lastNearestDistance) {
+                    lastNearestEntityIndex = targetEntity.Index;
+                    lastNearestDistance = Mathf.Abs(distance);
+                }
+            });
+
+            if (lastNearestEntityIndex > 0) {
+                EntityManager.AddComponentData<MovementComponent>(playerEntity, new MovementComponent(lastNearestEntityIndex));
+            }
+        });
+
+        /*
         var targetIndex = int.MaxValue;
         var targetDistance = float.PositiveInfinity;
         var compareLastTargetIndex = int.MinValue;
@@ -82,6 +110,9 @@ public class TargetSystem : ComponentSystem {
                 baseTargetComp.targetIndex = targetIndex;
                 baseTargetComp.targetDistance = targetDistance;
             }
+            
+
         });
+        */
     }
 }

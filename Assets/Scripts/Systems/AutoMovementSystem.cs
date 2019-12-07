@@ -13,22 +13,21 @@ public class AutoMovementSystem : ComponentSystem {
 
     protected override void OnUpdate() {
         var deltaTime = Time.deltaTime;
-        float3 desiredPos;
 
-        Entities.ForEach((Entity entity, ref TargetComponent targetComp, ref MovementComponent moveComp, ref Translation currentPos) => {
+        Entities.With<PlayerComponent>.ForEach((Entity playerEntity, ref MovementComponent moveComp, ref Translation playerPos) => {
 
             var targetEntity = Entity.Null;
 
             // get target
-            var targetIndex = targetComp.targetIndex;
-            var lastTargetIndex = targetComp.lastTargetIndex;
+            var targetIndex = moveComp.targetIndex;
             Entities.ForEach((Entity otherEntity, ref Translation entityPos) => {
-                if (targetIndex == int.MaxValue || lastTargetIndex == otherEntity.Index) {
+                if (targetIndex == int.MaxValue /*|| lastTargetIndex == otherEntity.Index*/) {
                     return;
                 }
 
                 if (targetIndex == otherEntity.Index) {
                     targetEntity = otherEntity;
+                    return;
                 }
             });
 
@@ -36,18 +35,28 @@ public class AutoMovementSystem : ComponentSystem {
                 return;
             }
 
-            desiredPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
+            
 
-            var at = desiredPos.x - currentPos.Value.x;
+            float3 targetPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
+
+            // DebugDraw
+            Debug.DrawLine(new Vector2(targetPos.x, targetPos.y), new Vector2(playerPos.Value.x, playerPos.Value.y), Color.red);
+
+            // arrived !
+            var at = targetPos.x - playerPos.Value.x;
             if (0.5f >= math.abs(at)) {
-                moveComp.value = 0.0f;
+
+                EntityManager.RemoveComponent<MovementComponent>(playerEntity);
+
+                //EntityManager.AddComponent<>();
+
                 return;
             }
 
-            var isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
-            if (false == isHeadingForward) {
-                return;
-            }
+            //var isHeadingForward = (moveComp.xValue < 0.0f && at < 0.0f) || (moveComp.xValue > 0.0f && at > 0.0f);
+            //if (false == isHeadingForward) {
+            //    return;
+            //}
 
             if (moveComp.xValue < 0.0f) {
                 moveComp.value.x = -1.0f;
@@ -56,8 +65,15 @@ public class AutoMovementSystem : ComponentSystem {
                 moveComp.value.x = 1.0f;
             }
 
-            var statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(entity);
-            currentPos.Value.x += moveComp.value.x * deltaTime * statusComp.MoveSpeed;
+            //var statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(playerEntity);
+            playerPos.Value.x += moveComp.value.x * deltaTime;
         });
+
+
+
+
+
+
+
     }
 }

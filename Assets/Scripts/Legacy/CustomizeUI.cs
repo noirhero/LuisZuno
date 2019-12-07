@@ -54,6 +54,10 @@ public class CustomizeUI : MonoBehaviour {
         foreach (var toggle in backgroundGroup.ActiveToggles()) {
             backgroundText.text = toggle.name;
 
+            if (false == World.Active.EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+                continue;
+            }
+
             var customizeComp = World.Active.EntityManager.GetComponentData<CustomizeComponent>(_playerEntity);
             customizeComp.backgroundType = Utility.ToEnum<BackgroundType>(toggle.name);
             World.Active.EntityManager.SetComponentData<CustomizeComponent>(_playerEntity, customizeComp);
@@ -66,6 +70,10 @@ public class CustomizeUI : MonoBehaviour {
         foreach (var toggle in valuesGroup.ActiveToggles()) {
             valuesText.text = toggle.name;
 
+            if (false == World.Active.EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+                continue;
+            }
+
             var customizeComp = World.Active.EntityManager.GetComponentData<CustomizeComponent>(_playerEntity);
             customizeComp.valuesType = Utility.ToEnum<ValuesType>(toggle.name);
             World.Active.EntityManager.SetComponentData<CustomizeComponent>(_playerEntity, customizeComp);
@@ -77,6 +85,10 @@ public class CustomizeUI : MonoBehaviour {
     public void OnSelectedInGoal() {
         foreach (var toggle in goalGroup.ActiveToggles()) {
             goalText.text = toggle.name;
+
+            if (false == World.Active.EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+                continue;
+            }
 
             var customizeComp = World.Active.EntityManager.GetComponentData<CustomizeComponent>(_playerEntity);
             customizeComp.goalType = Utility.ToEnum<GoalType>(toggle.name);
@@ -115,6 +127,10 @@ public class CustomizeUI : MonoBehaviour {
 
     
     public void OnSelectedInMentality(int inValue) {
+        if (false == World.Active.EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+            return;
+        }
+
         var customizeComp = World.Active.EntityManager.GetComponentData<CustomizeComponent>(_playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;
@@ -135,6 +151,10 @@ public class CustomizeUI : MonoBehaviour {
 
 
     public void OnSelectedInAgility(int inValue) {
+        if (false == World.Active.EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+            return;
+        }
+
         var customizeComp = World.Active.EntityManager.GetComponentData<CustomizeComponent>(_playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;
@@ -155,6 +175,10 @@ public class CustomizeUI : MonoBehaviour {
 
 
     public void OnSelectedInPhysical(int inValue) {
+        if (false == World.Active.EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+            return;
+        }
+
         var customizeComp = World.Active.EntityManager.GetComponentData<CustomizeComponent>(_playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;
@@ -175,6 +199,10 @@ public class CustomizeUI : MonoBehaviour {
 
 
     public void OnSelectedInSearch(int inValue) {
+        if (false == World.Active.EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+            return;
+        }
+
         var customizeComp = World.Active.EntityManager.GetComponentData<CustomizeComponent>(_playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;
@@ -195,6 +223,10 @@ public class CustomizeUI : MonoBehaviour {
 
 
     public void OnSelectedInLuck(int inValue) {
+        if (false == World.Active.EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+            return;
+        }
+
         var customizeComp = World.Active.EntityManager.GetComponentData<CustomizeComponent>(_playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;

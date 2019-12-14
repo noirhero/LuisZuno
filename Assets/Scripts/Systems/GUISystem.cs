@@ -39,14 +39,14 @@ public class GUISystem : ComponentSystem {
             return;
         }
 
-        ReactiveComponent reactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_playerEntity);
-        if (reactiveComp.ReactionElapsedTime <= 0) {
+        SearchingComponent searchingComp = EntityManager.GetComponentData<SearchingComponent>(_playerEntity);
+        if (searchingComp.elapsedSearchingTime <= 0) {
             return;
         }
 
         // bubble default
         string bubbleMassage = "... ";
-        float timeRate = reactiveComp.ReactionElapsedTime / reactiveComp.reactionTime;
+        float timeRate = searchingComp.elapsedSearchingTime / searchingComp.searchingTime;
 
         // bubble position
         Translation playerPos = EntityManager.GetComponentData<Translation>(_playerEntity);

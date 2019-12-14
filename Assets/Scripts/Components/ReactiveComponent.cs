@@ -6,27 +6,26 @@ using GlobalDefine;
 
 [Serializable]
 public struct ReactiveComponent : IComponentData {
-    public float reactionTime;
-    public int reactionLimitCount;
-    public float panicReactionTime;
-    private float _reactionElapsedTime;
-    private int _reactedCount;
+    // searching
+    public float searchingTime;
+    public AnimationType searchingAnim;
 
-    public float ReactionElapsedTime {
-        get => _reactionElapsedTime;
-        set => _reactionElapsedTime = value;
-    }
+    // panic
+    public float panicTime;
+    public AnimationType panicAnim;
 
-    public int ReactedCount {
-        get => _reactedCount;
-        set => _reactedCount = value;
-    }
+    // madness
+    public float madness;
+
+    // items
+    public Int64 itemID;
 
     public ReactiveComponent(ref ReactiveComponent rhs) {
-        reactionTime = rhs.reactionTime;
-        reactionLimitCount = rhs.reactionLimitCount;
-        panicReactionTime = rhs.panicReactionTime;
-        _reactionElapsedTime = 0.0f;
-        _reactedCount = 0;
+        searchingTime = rhs.searchingTime;
+        searchingAnim = rhs.searchingAnim;
+        panicTime = rhs.panicTime;
+        panicAnim = rhs.panicAnim;
+        madness = rhs.madness;
+        itemID = rhs.itemID;
     }
 }

@@ -11,6 +11,7 @@ public class AutoMovementSystem : ComponentSystem {
         Enabled = false;
     }
 
+
     protected override void OnUpdate() {
         Entities.WithAll<PlayerComponent>().ForEach((Entity playerEntity, ref Translation playerPos) => {
             if (false == EntityManager.HasComponent<MovementComponent>(playerEntity)) {
@@ -36,7 +37,7 @@ public class AutoMovementSystem : ComponentSystem {
             var at = targetPos.x - playerPos.Value.x;
             if (0.5f >= math.abs(at)) {
                 EntityManager.RemoveComponent<MovementComponent>(playerEntity);
-                EntityManager.AddComponent<IntelligenceComponent>(playerEntity);
+                EntityManager.AddComponentData<IntelligenceComponent>(playerEntity, new IntelligenceComponent(targetEntity.Index));
                 return;
             }
 

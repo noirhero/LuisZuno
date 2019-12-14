@@ -1,18 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
+
+using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 using UnityEngine;
 
-public class IntelligenceComponent : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class IntelligenceSystem : ComponentSystem {
+    protected override void OnCreate() {
+        Enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    protected override void OnUpdate() {
     }
 }

@@ -4,9 +4,7 @@ using System;
 using Unity.Entities;
 
 [Serializable]
-public struct TargetComponent : IComponentData {
+public struct TargetingComponent : IComponentData {
     public int targetIndex;
-
-
     public int lastTargetIndex; // deprecate
 }

@@ -31,4 +31,14 @@ namespace GlobalDefine {
             return (T)Enum.Parse(typeof(T), inValue);
         }
     }
+
+    public static class BehaviorState {
+        public const int searching = 0x1;
+        public const int panic = 0x2;
+        public const int madness = 0x4;
+        public const int pendingItem = 0x8;
+        public const int holding = 0x10;    // 16
+
+        public static bool HasState(PlayerComponent playerComp, int compareState) { return ((playerComp.currentBehaviors & compareState) != 0); }
+    }
 }

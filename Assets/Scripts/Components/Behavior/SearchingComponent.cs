@@ -10,9 +10,9 @@ public struct SearchingComponent : IComponentData {
     public AnimationType searchingAnim;
     public float elapsedSearchingTime;
 
-    public SearchingComponent(SearchingComponent rhs) {
-        searchingTime = rhs.searchingTime;
-        searchingAnim = rhs.searchingAnim;
+    public SearchingComponent(float time, AnimationType anim) {
+        searchingTime = time;
+        searchingAnim = anim;
         elapsedSearchingTime = 0.0f;
     }
 }

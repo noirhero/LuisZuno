@@ -4,6 +4,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
+using GlobalDefine;
 
 [UpdateAfter(typeof(MovementSystem))]
 public class AutoMovementSystem : ComponentSystem {
@@ -13,11 +14,12 @@ public class AutoMovementSystem : ComponentSystem {
 
 
     protected override void OnUpdate() {
-        Entities.WithAll<PlayerComponent>().ForEach((Entity playerEntity, ref Translation playerPos) => {
-            if (false == EntityManager.HasComponent<MovementComponent>(playerEntity)) {
-                return;
+        Entities.WithAll<MovementComponent>(). ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref Translation playerPos) => {
+            // initialize
+            if (playerComp.currentAnim != AnimationType.Walk) {
+                playerComp.currentAnim = AnimationType.Walk;
             }
-            
+
             var moveComp = EntityManager.GetComponentData<MovementComponent>(playerEntity);
 
             var targetEntity = Entity.Null;
@@ -38,10 +40,10 @@ public class AutoMovementSystem : ComponentSystem {
             if (0.5f >= math.abs(at)) {
                 EntityManager.RemoveComponent<MovementComponent>(playerEntity);
                 EntityManager.AddComponentData<IntelligenceComponent>(playerEntity, new IntelligenceComponent(targetEntity.Index));
+                playerComp.currentAnim = AnimationType.Idle;    // MovementComponent를 삭제하면서 기본으로 돌림
                 return;
             }
 
-            var playerComp = EntityManager.GetComponentData<PlayerComponent>(playerEntity);
             if (0.0f > playerComp.playerDirection) {
                 moveComp.value.x = -1.0f;
             }

@@ -2,7 +2,7 @@
 
 using Unity.Entities;
 using Unity.Transforms;
-using UnityEngine;
+using GlobalDefine;
 
 public class IntelligenceSystem : ComponentSystem {
     protected override void OnCreate() {
@@ -12,14 +12,15 @@ public class IntelligenceSystem : ComponentSystem {
 
     protected override void OnUpdate() {
 
-        Entities.WithAll<PlayerComponent>().ForEach((Entity playerEntity, ref IntelligenceComponent intelComp) => {
+        Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref IntelligenceComponent intelComp) => {
+            if (playerComp.currentBehaviors > 0)
+                return;
 
             // all behaviours have done!
-            if (intelComp.hasDoneSettingCopmonents) {
-                if (false == EntityManager.HasComponent<BehaviorComponent>(playerEntity) && false == EntityManager.HasComponent<BehaviorCompleteComponent>(playerEntity)) {
-                    EntityManager.RemoveComponent<IntelligenceComponent>(playerEntity);
-                    EntityManager.AddComponentData<TargetingComponent>(playerEntity, new TargetingComponent());
-                }
+            if (intelComp.isWaitingForOtherSystems) {
+                intelComp.isWaitingForOtherSystems = false;
+                EntityManager.RemoveComponent<IntelligenceComponent>(playerEntity);
+                EntityManager.AddComponentData<TargetingComponent>(playerEntity, new TargetingComponent());
             }
 
             // get target
@@ -33,19 +34,23 @@ public class IntelligenceSystem : ComponentSystem {
             });
 
             ReactiveComponent targetReactiveComp = EntityManager.GetComponentData<ReactiveComponent>(targetEntity);
-            //if (targetReactiveComp.SearchingTime > 0.0f) {
-            //    EntityManager.AddComponentData<SearchingComponent>(playerEntity, new SearchingComponent(targetReactiveComp.SearchingTime));
-            //}
 
-            //if (targetReactiveComp.PanicTime > 0.0f) {
-            //}
+            bool shouldSearch = (targetReactiveComp.searchingTime > 0.0f) && (false == BehaviorState.HasState(playerComp, BehaviorState.searching));
+            bool shouldPanic = (targetReactiveComp.panicTime > 0.0f) && (false == BehaviorState.HasState(playerComp, BehaviorState.panic));
 
-            //if (targetReactiveComp.Items.Length > 0) {
-            //}
+            if (shouldSearch) {
+                EntityManager.AddComponentData<SearchingComponent>(playerEntity, new SearchingComponent(targetReactiveComp.searchingTime, targetReactiveComp.searchingAnim));
+                playerComp.currentBehaviors |= BehaviorState.searching;
+            }
 
-            //if (targetReactiveComp.Madness > 0.0f) {
+            if (shouldPanic) {
+                EntityManager.AddComponentData<PanicComponent>(playerEntity, new PanicComponent(targetReactiveComp.panicTime, targetReactiveComp.panicAnim));
+                playerComp.currentBehaviors |= BehaviorState.panic;
+            }
 
-            //}
+            if (playerComp.currentBehaviors > 0) {
+                intelComp.isWaitingForOtherSystems = true;
+            }
         });
     }
 }

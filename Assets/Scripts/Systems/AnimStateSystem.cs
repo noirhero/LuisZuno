@@ -15,10 +15,7 @@ public class AnimStateSystem : JobComponentSystem {
     protected override void OnCreate() {
         var query = new EntityQueryDesc() {
             All = new ComponentType[] {
-                typeof(SpriteAnimComponent),
-                typeof(MovementComponent),
-                typeof(ReactiveComponent),
-                typeof(AvatarStatusComponent),
+                typeof(SpriteAnimComponent)
             },
             Options = EntityQueryOptions.FilterWriteGroup
         };
@@ -40,9 +37,6 @@ public class AnimStateSystem : JobComponentSystem {
     [BurstCompile]
     struct AnimStateSystemJob : IJobChunk {
         public ArchetypeChunkComponentType<SpriteAnimComponent> animCompType;
-        public ArchetypeChunkComponentType<MovementComponent> moveCompType;
-        public ArchetypeChunkComponentType<ReactiveComponent> reactiveCompType;
-        public ArchetypeChunkComponentType<AvatarStatusComponent> avatarStatusCompType;
         public int idleNameHash;
         public int walkNameHash;
         public int somethingDoItNameHash;
@@ -50,28 +44,9 @@ public class AnimStateSystem : JobComponentSystem {
 
         public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex) {
             var animations = chunk.GetNativeArray(animCompType);
-            var movements = chunk.GetNativeArray(moveCompType);
-            var reactives = chunk.GetNativeArray(reactiveCompType);
-            var statuses = chunk.GetNativeArray(avatarStatusCompType);
             var nameHash = idleNameHash;
 
             for (var i = 0; i < chunk.Count; ++i) {
-                var bMoving = math.FLT_MIN_NORMAL < math.lengthsq(movements[i].value);
-                if (bMoving) {
-                    nameHash = walkNameHash;
-                }
-                else {
-                    if (statuses[i].InPanic) {
-                        nameHash = nyonyoNameHash;
-                    }
-                    else if (reactives[i].ReactionElapsedTime > 0) {
-                        nameHash = somethingDoItNameHash;
-                    }
-                    else {
-                        nameHash = idleNameHash;
-                    }
-                }
-
                 var animComp = animations[i];
                 if (animComp.nameHash != nameHash) {
                     animComp.nameHash = nameHash;
@@ -84,9 +59,6 @@ public class AnimStateSystem : JobComponentSystem {
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
         var job = new AnimStateSystemJob() {
             animCompType = GetArchetypeChunkComponentType<SpriteAnimComponent>(),
-            moveCompType = GetArchetypeChunkComponentType<MovementComponent>(),
-            reactiveCompType = GetArchetypeChunkComponentType<ReactiveComponent>(),
-            avatarStatusCompType = GetArchetypeChunkComponentType<AvatarStatusComponent>(),
             idleNameHash = _animNameHashes[(int)AnimationType.Idle],
             walkNameHash = _animNameHashes[(int)AnimationType.Walk],
             somethingDoItNameHash = _animNameHashes[(int)AnimationType.SomethingDoIt],

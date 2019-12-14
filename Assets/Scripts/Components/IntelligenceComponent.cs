@@ -4,5 +4,6 @@ using System;
 using Unity.Entities;
 
 [Serializable]
-public class IntelligenceComponent : IComponentData {
+public struct IntelligenceComponent : IComponentData {
+    public int targetEntityIndex;
 }

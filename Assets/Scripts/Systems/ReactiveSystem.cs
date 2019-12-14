@@ -11,7 +11,7 @@ public class ReactiveSystem : ComponentSystem {
     private Entity _targetEntity = Entity.Null;
     private MovementComponent _currentMoveComp;
     private AvatarStatusComponent _currentStatusComp;
-    private TargetComponent _currentTargetComp;
+    private TargetingComponent _currentTargetComp;
     private ReactiveComponent _currentReactiveComp;
     private ReactiveComponent _targetReactiveComp;
 
@@ -79,7 +79,7 @@ public class ReactiveSystem : ComponentSystem {
 
 
     private void AdjustAllModifiedComponents() {
-        EntityManager.SetComponentData<TargetComponent>(_currentEntity, _currentTargetComp);
+        EntityManager.SetComponentData<TargetingComponent>(_currentEntity, _currentTargetComp);
         EntityManager.SetComponentData<MovementComponent>(_currentEntity, _currentMoveComp);
         EntityManager.SetComponentData<AvatarStatusComponent>(_currentEntity, _currentStatusComp);
         EntityManager.SetComponentData<ReactiveComponent>(_currentEntity, _currentReactiveComp);
@@ -119,7 +119,7 @@ public class ReactiveSystem : ComponentSystem {
 
 
     protected override void OnUpdate() {
-        Entities.WithAll<MovementComponent>().ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref TargetComponent targetComp) => {
+        Entities.WithAll<MovementComponent>().ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref TargetingComponent targetComp) => {
             _targetEntity = GetTargetEntity(targetComp.targetIndex);
             if (_targetEntity.Equals(Entity.Null)) {
                 return;

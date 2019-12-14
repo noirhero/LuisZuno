@@ -111,10 +111,28 @@ public class CustomizeUI : MonoBehaviour {
             if (system.GetType() == typeof(TargetingSystem)) {
                 system.Enabled = true;
             }
-            else if (system.GetType() == typeof(ReactiveSystem)) {
+            else if (system.GetType() == typeof(AutoMovementSystem)) {
                 system.Enabled = true;
             }
-            else if (system.GetType() == typeof(AutoMovementSystem)) {
+            else if (system.GetType() == typeof(MovementSystem)) {
+                system.Enabled = true;
+            }
+            else if (system.GetType() == typeof(IntelligenceSystem)) {
+                system.Enabled = true;
+            }
+            else if (system.GetType() == typeof(EffectSpawnSystem)) {
+                system.Enabled = true;
+            }
+            else if (system.GetType() == typeof(HoldingSystem)) {
+                system.Enabled = true;
+            }
+            else if (system.GetType() == typeof(SearchingSystem)) {
+                system.Enabled = true;
+            }
+            else if (system.GetType() == typeof(PanicSystem)) {
+                system.Enabled = true;
+            }
+            else if (system.GetType() == typeof(MadnessSystem)) {
                 system.Enabled = true;
             }
         }

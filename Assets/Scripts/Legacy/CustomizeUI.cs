@@ -120,7 +120,7 @@ public class CustomizeUI : MonoBehaviour {
             else if (system.GetType() == typeof(IntelligenceSystem)) {
                 system.Enabled = true;
             }
-            else if (system.GetType() == typeof(EffectSpawnSystem)) {
+            else if (system.GetType() == typeof(EntitySpawnSystem)) {
                 system.Enabled = true;
             }
             else if (system.GetType() == typeof(HoldingSystem)) {

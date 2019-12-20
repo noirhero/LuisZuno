@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using Unity.Entities;
 
-public class EffectProxy : MonoBehaviour, IConvertGameObjectToEntity {
+public class SpawnPresetProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public SpritePreset preset = null;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {

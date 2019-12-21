@@ -13,7 +13,7 @@
  <tile id="4">
   <image width="256" height="240" source="backgrounds/background-pattern-window.png"/>
  </tile>
- <tile id="12">
-  <image width="256" height="240" source="backgrounds/background-pattern-empty-bookcase.png"/>
+ <tile id="13">
+  <image width="256" height="240" source="backgrounds/background-pattern-empty.png"/>
  </tile>
 </tileset>

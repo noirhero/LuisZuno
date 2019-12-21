@@ -2664,10 +2664,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   reactive:
-    searchingTime: 0
-    searchingAnim: 0
-    panicTime: 0
-    panicAnim: 0
+    searchingTime: 2
+    searchingAnim: 2
+    panicTime: 1
+    panicAnim: 3
     madness: 0
     itemID: 0
   type: 0

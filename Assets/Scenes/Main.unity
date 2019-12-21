@@ -7623,11 +7623,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8745074425327356244, guid: 71603cc88cbf4c94b9a04874e14955fc, type: 3}
-  count: 3
-  direction:
-    x: 0
-    y: 0
-    z: 0
+  spawnEffect: {fileID: 0}
+  destroyEffect: {fileID: 7969398887402685004, guid: 4d04c30370a8b674a92f200675fd7867,
+    type: 3}
+  number: 100
+  lifetime: 3
+  velocityMin: 0.1
+  velocityMax: 1
 --- !u!1 &1244254207
 GameObject:
   m_ObjectHideFlags: 0

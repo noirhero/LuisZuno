@@ -15,7 +15,8 @@ public class AnimStateSystem : JobComponentSystem {
     protected override void OnCreate() {
         var query = new EntityQueryDesc() {
             All = new ComponentType[] {
-                typeof(SpriteAnimComponent)
+                typeof(SpriteAnimComponent),
+                typeof(PlayerComponent)
             },
             Options = EntityQueryOptions.FilterWriteGroup
         };
@@ -37,6 +38,7 @@ public class AnimStateSystem : JobComponentSystem {
     [BurstCompile]
     struct AnimStateSystemJob : IJobChunk {
         public ArchetypeChunkComponentType<SpriteAnimComponent> animCompType;
+        public ArchetypeChunkComponentType<PlayerComponent> playerCompType;
         public int idleNameHash;
         public int walkNameHash;
         public int somethingDoItNameHash;
@@ -44,7 +46,17 @@ public class AnimStateSystem : JobComponentSystem {
 
         public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex) {
             var animations = chunk.GetNativeArray(animCompType);
+            var playerData = chunk.GetNativeArray(playerCompType);
             var nameHash = idleNameHash;
+
+            for (var i = 0; i < chunk.Count; ++i) {
+                switch (playerData[i].currentAnim) {
+                    case AnimationType.Idle: { nameHash = idleNameHash; } break;
+                    case AnimationType.Walk: { nameHash = walkNameHash; } break;
+                    case AnimationType.SomethingDoIt: { nameHash = somethingDoItNameHash; } break;
+                    case AnimationType.NyoNyo: { nameHash = nyonyoNameHash; } break;
+                }
+            }
 
             for (var i = 0; i < chunk.Count; ++i) {
                 var animComp = animations[i];
@@ -59,6 +71,7 @@ public class AnimStateSystem : JobComponentSystem {
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
         var job = new AnimStateSystemJob() {
             animCompType = GetArchetypeChunkComponentType<SpriteAnimComponent>(),
+            playerCompType = GetArchetypeChunkComponentType<PlayerComponent>(),
             idleNameHash = _animNameHashes[(int)AnimationType.Idle],
             walkNameHash = _animNameHashes[(int)AnimationType.Walk],
             somethingDoItNameHash = _animNameHashes[(int)AnimationType.SomethingDoIt],

@@ -17,18 +17,23 @@ public class EffectSpawnSystem : JobComponentSystem {
     }
 
     [ExcludeComponent(typeof(EffectSpawnExistComponent))]
-    private struct EffectSpawnSystemJob : IJobForEachWithEntity<MovementComponent, Translation> {
-        [ReadOnly] public Entity prefab;
+    private struct EffectSpawnSystemJob : IJobForEachWithEntity<EffectSpawnComponent, Translation> {
         public EntityCommandBuffer.Concurrent cmdBuf;
 
-        public void Execute(Entity entity, int index, [ReadOnly] ref MovementComponent moveComp, [ReadOnly] ref Translation posComp) {
-            if (0.0f < math.abs(moveComp.value.x)) {
+        public void Execute(Entity entity, int index, ref EffectSpawnComponent effectComp, [ReadOnly] ref Translation posComp) {
+            if (Entity.Null == effectComp.prefab) {
                 return;
             }
 
-            var effectEntity = cmdBuf.Instantiate(index, prefab);
+            var effectEntity = cmdBuf.Instantiate(index, effectComp.prefab);
             cmdBuf.SetComponent(index, effectEntity, posComp);
             cmdBuf.AddComponent<EffectSpawnExistComponent>(index, entity);
+            cmdBuf.AddComponent(index, effectEntity, new LifeCycleComponent() {
+                spawnEffect = Entity.Null,
+                destroyEffect = Entity.Null,
+                lifetime = 0.4f,
+                duration = 0.0f,
+            });
         }
     }
 
@@ -36,15 +41,6 @@ public class EffectSpawnSystem : JobComponentSystem {
         var job = new EffectSpawnSystemJob() {
             cmdBuf = _cmdSystem.CreateCommandBuffer().ToConcurrent()
         };
-
-        var entities = EntityManager.GetAllEntities();
-        foreach (var entity in entities.Where(entity =>
-            true == EntityManager.HasComponent(entity, typeof(EffectSpawnComponent)))) {
-            var effectSpawnComp = EntityManager.GetComponentData<EffectSpawnComponent>(entity);
-            job.prefab = effectSpawnComp.prefab;
-            break;
-        }
-        entities.Dispose();
 
         var handle = job.Schedule(this, inputDependencies);
         _cmdSystem.AddJobHandleForProducer(handle);

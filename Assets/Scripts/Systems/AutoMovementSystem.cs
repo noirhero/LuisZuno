@@ -13,7 +13,17 @@ public class AutoMovementSystem : ComponentSystem {
     }
 
 
+    protected void OnUpdate_Velocity() {
+        Entities.WithAll<VelocityComponent>().ForEach((Entity entity, ref Translation posComp) => {
+            var velocityComp = EntityManager.GetComponentData<VelocityComponent>(entity);
+            posComp.Value.x += velocityComp.velocity * Time.deltaTime;
+        });
+     }
+
+
     protected override void OnUpdate() {
+        OnUpdate_Velocity();
+
         Entities.WithAll<MovementComponent>(). ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref Translation playerPos) => {
             // initialize
             if (playerComp.currentAnim != AnimationType.Walk) {

@@ -7,6 +7,8 @@ using UnityEngine.Serialization;
 [Serializable]
 public struct EffectSpawnComponent : IComponentData {
     public Entity prefab;
+    public float lifetime;
+    public float duration;
 }
 
 [Serializable]

@@ -21,7 +21,12 @@ public class TargetingSystem : ComponentSystem {
             var lastNearestDistance = float.PositiveInfinity;
             var playerComp = EntityManager.GetComponentData<PlayerComponent>(playerEntity);
             var playerPos = EntityManager.GetComponentData<Translation>(playerEntity).Value;
+
             Entities.WithNone<PlayerComponent>().ForEach((Entity targetEntity) => {
+                if (false == EntityManager.HasComponent<ReactiveComponent>(targetEntity)) {
+                    return;
+                }
+
                 var targetPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
                 var xDistance = targetPos.x - playerPos.x;
 

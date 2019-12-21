@@ -2668,12 +2668,16 @@ MonoBehaviour:
     searchingAnim: 2
     panicTime: 1
     panicAnim: 3
-    madness: 0
-    itemID: 0
+    madness: 20
+    madnessDuration: 5
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
+    itemID: 1
   type: 0
-  dropItem: 1
   status:
     madness: 10
+    search: 0
 --- !u!1 &336018378
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,11 +3041,15 @@ MonoBehaviour:
     panicTime: 0
     panicAnim: 0
     madness: 0
+    madnessDuration: 0
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
     itemID: 0
   type: 0
-  dropItem: 0
   status:
     madness: 0
+    search: 0
 --- !u!61 &451163680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8089,6 +8097,10 @@ MonoBehaviour:
     panicTime: 0
     panicAnim: 0
     madness: 0
+    madnessDuration: 0
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
     itemID: 0
   type: 1
   defaultInventory: []
@@ -10092,11 +10104,15 @@ MonoBehaviour:
     panicTime: 0
     panicAnim: 0
     madness: 0
+    madnessDuration: 0
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
     itemID: 0
   type: 0
-  dropItem: 0
   status:
     madness: 0
+    search: 0
 --- !u!61 &1808311619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10717,16 +10733,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   reactive:
-    searchingTime: 0
-    searchingAnim: 0
-    panicTime: 0
-    panicAnim: 0
+    searchingTime: 2
+    searchingAnim: 2
+    panicTime: 1
+    panicAnim: 3
     madness: 0
-    itemID: 0
+    madnessDuration: 0
+    linearMadness: 1
+    linearMadnessTickTime: 0.5
+    linearMadnessDuration: 10
+    itemID: 2
   type: 0
-  dropItem: 0
   status:
     madness: 0
+    search: 0
 --- !u!114 &1843038006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11860,11 +11880,15 @@ MonoBehaviour:
     panicTime: 0
     panicAnim: 0
     madness: 0
+    madnessDuration: 0
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
     itemID: 0
   type: 0
-  dropItem: 0
   status:
     madness: 0
+    search: 0
 --- !u!114 &1959053451
 MonoBehaviour:
   m_ObjectHideFlags: 0

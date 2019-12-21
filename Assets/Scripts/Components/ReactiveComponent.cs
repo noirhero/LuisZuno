@@ -16,6 +16,10 @@ public struct ReactiveComponent : IComponentData {
 
     // madness
     public float madness;
+    public float madnessDuration;
+    public float linearMadness;
+    public float linearMadnessTickTime;
+    public float linearMadnessDuration;
 
     // items
     public Int64 itemID;
@@ -26,6 +30,10 @@ public struct ReactiveComponent : IComponentData {
         panicTime = rhs.panicTime;
         panicAnim = rhs.panicAnim;
         madness = rhs.madness;
+        madnessDuration = rhs.madnessDuration;
+        linearMadness = rhs.linearMadness;
+        linearMadnessTickTime = rhs.linearMadnessTickTime;
+        linearMadnessDuration = rhs.linearMadnessDuration;
         itemID = rhs.itemID;
     }
 }

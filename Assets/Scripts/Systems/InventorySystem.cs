@@ -15,7 +15,7 @@ public class InventorySystem : ComponentSystem {
             _tablePreset = presetComp.preset;
         });
 
-        Entities.WithAll<PlayerComponent>().ForEach((Entity entity, ref ReactiveComponent reactiveComp, ref InventoryComponent inventoryComp) => {
+        Entities.WithAll<PlayerComponent>().ForEach((Entity entity, ref InventoryComponent inventoryComp) => {
             _playerEntity = entity;
             _inventoryComp = inventoryComp;
         });
@@ -23,7 +23,7 @@ public class InventorySystem : ComponentSystem {
 
 
     protected override void OnUpdate() {
-        if(_playerEntity.Equals(Entity.Null)) {
+        if (_playerEntity.Equals(Entity.Null)) {
             return;
         }
 
@@ -31,9 +31,20 @@ public class InventorySystem : ComponentSystem {
             return;
         }
 
+        var playerComp = EntityManager.GetComponentData<PlayerComponent>(_playerEntity);
+        if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
+            return;
+        }
+
         PendingItemComponent pendingItemComp = EntityManager.GetComponentData<PendingItemComponent>(_playerEntity);
         Int64 pendingItemID = pendingItemComp.pendingItemID;
+        if (false == Utility.IsValid(pendingItemID)) {
+            return;
+        }
         EntityManager.RemoveComponent<PendingItemComponent>(_playerEntity);
+
+        playerComp.currentBehaviors ^= BehaviorState.pendingItem;
+        EntityManager.SetComponentData<PlayerComponent>(_playerEntity, playerComp);
 
         //
         UInt16 slotIndex = 0;

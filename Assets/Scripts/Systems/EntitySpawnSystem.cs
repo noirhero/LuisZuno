@@ -30,7 +30,7 @@ public class EntitySpawnSystem : JobComponentSystem {
                 
                 var randForward = rand.NextBool();
                 cmdBuf.SetComponent(index, instantiateEntity, new Rotation() {
-                    Value = quaternion.RotateY(randForward ? 180.0f : 0.0f),
+                    Value = quaternion.RotateY(randForward ? math.radians(180.0f) : 0.0f),
                 });
 
                 var randDir = randForward ? 1.0f : -1.0f;

@@ -15,6 +15,8 @@ public class EntitySpawnProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConve
     [FormerlySerializedAs("LifeTime")] public float lifetime;
     [FormerlySerializedAs("VelocityMin")] public float velocityMin;
     [FormerlySerializedAs("VelocityMax")] public float velocityMax;
+    public float posOffsetMin;
+    public float posOffsetMax;
 
 
     public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs) {
@@ -36,6 +38,8 @@ public class EntitySpawnProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConve
             spawnPosition = transform.position,
             velocityMin = velocityMin,
             velocityMax = velocityMax,
+            posOffsetMin = posOffsetMin,
+            posOffsetMax = posOffsetMax
         });
 
 

@@ -11,4 +11,6 @@ public struct EntitySpawnComponent : IComponentData {
     public int number;
     public float velocityMin;
     public float velocityMax;
+    public float posOffsetMin;
+    public float posOffsetMax;
 }

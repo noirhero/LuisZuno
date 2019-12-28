@@ -3524,6 +3524,8 @@ MonoBehaviour:
   m_AfterStackBundles:
   - assemblyQualifiedName: GrayEffect, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  - assemblyQualifiedName: FadeInOutEffect, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

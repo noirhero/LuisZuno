@@ -26,14 +26,15 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
         }
 
         // TODO : 개별 프록시로?
+        if (EntityType.MadnessEnvironment == type) {
+            dstManager.AddComponentData(entity, new PassiveMadnessComponent(passiveMadness));
+        }
+
         if (EntityType.Player != type) {
             dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
 
             if (EntityType.Wall == type) {
                 dstManager.AddComponentData(entity, new TurningComponent());
-            }
-            if (EntityType.MadnessEnvironment == type) {
-                dstManager.AddComponentData(entity, new PassiveMadnessComponent(passiveMadness));
             }
         }
     }

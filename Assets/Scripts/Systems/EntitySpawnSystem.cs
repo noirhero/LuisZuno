@@ -22,15 +22,16 @@ public class EntitySpawnSystem : JobComponentSystem {
         public void Execute(Entity entity, int index, [ReadOnly] ref EntitySpawnComponent entityComp, ref LifeCycleComponent lifeComp) {
             var rand = new Random((uint)(entityComp.number));
 
-            for (int i = 0; i < entityComp.number; ++i) {
+            for (var i = 0; i < entityComp.number; ++i) {
                 var instantiateEntity = cmdBuf.Instantiate(index, entityComp.prefab);
+                var randPosOffset = new float3(rand.NextFloat(entityComp.posOffsetMin, entityComp.posOffsetMax), 0.0f, 0.0f);
                 cmdBuf.SetComponent(index, instantiateEntity, new Translation() {
-                    Value = entityComp.spawnPosition,
+                    Value = entityComp.spawnPosition + randPosOffset,
                 });
                 
                 var randForward = rand.NextBool();
                 cmdBuf.SetComponent(index, instantiateEntity, new Rotation() {
-                    Value = quaternion.RotateY(randForward ? 180.0f : 0.0f),
+                    Value = quaternion.RotateY(randForward ? math.radians(180.0f) : 0.0f),
                 });
 
                 var randDir = randForward ? 1.0f : -1.0f;

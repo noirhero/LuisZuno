@@ -1,8 +1,8 @@
 {
   "dependencies": {
     "com.unity.entities": "0.1.1-preview",
-    "com.unity.ide.rider": "1.1.0",
-    "com.unity.inputsystem": "0.9.6-preview",
+    "com.unity.ide.rider": "1.1.4",
+    "com.unity.inputsystem": "1.0.0-preview.3",
     "com.unity.package-manager-ui": "2.2.0",
     "com.unity.postprocessing": "2.1.7",
     "com.unity.render-pipelines.core": "6.9.1",

@@ -539,7 +539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &69493360
 Transform:
   m_ObjectHideFlags: 0
@@ -2635,7 +2635,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &331034080
 MonoBehaviour:
@@ -2668,13 +2668,12 @@ MonoBehaviour:
     searchingAnim: 2
     panicTime: 1
     panicAnim: 3
-    madness: 30
-    madnessDuration: 2
+    madness: 20
+    madnessDuration: 5
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
     itemID: 1
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
   type: 0
   status:
     madness: 10
@@ -3043,12 +3042,11 @@ MonoBehaviour:
     panicAnim: 0
     madness: 0
     madnessDuration: 0
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
     itemID: 0
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
-  type: 2
+  type: 0
   status:
     madness: 0
     search: 0
@@ -3090,7 +3088,7 @@ Transform:
   m_LocalScale: {x: 1, y: 6.991094, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &465256960
 GameObject:
@@ -3449,6 +3447,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: CameraPreset
   m_TagString: MainCamera
@@ -3526,6 +3525,8 @@ MonoBehaviour:
   m_AfterStackBundles:
   - assemblyQualifiedName: GrayEffect, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  - assemblyQualifiedName: FadeInOutEffect, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3600,6 +3601,18 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29109792e27f0844abb4f765146abeac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &520447750
 GameObject:
   m_ObjectHideFlags: 0
@@ -4162,12 +4175,12 @@ PrefabInstance:
     - target: {fileID: 5831266675030256771, guid: 407e51c135f24ba46ab258fb48c29053,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.99
+      value: 5.22
       objectReference: {fileID: 0}
     - target: {fileID: 5831266675030256771, guid: 407e51c135f24ba46ab258fb48c29053,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.85
+      value: 12.22
       objectReference: {fileID: 0}
     - target: {fileID: 5831266675030256771, guid: 407e51c135f24ba46ab258fb48c29053,
         type: 3}
@@ -4965,7 +4978,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &762941860
 MonoBehaviour:
@@ -5100,104 +5113,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &803283055
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 803283056}
-  - component: {fileID: 803283059}
-  - component: {fileID: 803283058}
-  - component: {fileID: 803283057}
-  m_Layer: 0
-  m_Name: MadnessEnvironment
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &803283056
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803283055}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.284, y: 3.285, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 925548671}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &803283057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803283055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e617b86b99f733746af66a40f339ff31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  preset: {fileID: 0}
-  reactive:
-    searchingTime: 0
-    searchingAnim: 0
-    panicTime: 0
-    panicAnim: 0
-    madness: 0
-    madnessDuration: 0
-    itemID: 0
-  passiveMadness:
-    value: 0.2
-    tickTime: 0.2
-    duration: 60
-  type: 3
---- !u!114 &803283058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803283055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConversionMode: 0
---- !u!61 &803283059
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803283055}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.3}
-  m_EdgeRadius: 0
 --- !u!1 &813633664
 GameObject:
   m_ObjectHideFlags: 0
@@ -5653,7 +5568,6 @@ Transform:
   - {fileID: 1436325522}
   - {fileID: 521843687}
   - {fileID: 1312177591}
-  - {fileID: 803283056}
   - {fileID: 331034079}
   - {fileID: 1843038008}
   - {fileID: 1959053453}
@@ -7700,11 +7614,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235867368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.796, y: 1.8, z: 0}
+  m_LocalPosition: {x: 7.796, y: 1.714, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1235867370
 MonoBehaviour:
@@ -7736,9 +7650,11 @@ MonoBehaviour:
   destroyEffect: {fileID: 7969398887402685004, guid: 4d04c30370a8b674a92f200675fd7867,
     type: 3}
   number: 100
-  lifetime: 3
-  velocityMin: 0.1
-  velocityMax: 1
+  lifetime: 5
+  velocityMin: 1
+  velocityMax: 2
+  posOffsetMin: -1
+  posOffsetMax: 1
 --- !u!1 &1244254207
 GameObject:
   m_ObjectHideFlags: 0
@@ -8199,11 +8115,10 @@ MonoBehaviour:
     panicAnim: 0
     madness: 0
     madnessDuration: 0
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
     itemID: 0
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
   type: 1
   defaultInventory: []
   status:
@@ -8273,7 +8188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312177588}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.5, y: 1.7400002, z: 0}
+  m_LocalPosition: {x: 5.8499994, y: 1.7400002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}
@@ -9409,7 +9324,7 @@ PrefabInstance:
     - target: {fileID: -7944639511062098446, guid: 2149fb2aefbeb9a4693f07fbe6c8f1fc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -7944639511062098446, guid: 2149fb2aefbeb9a4693f07fbe6c8f1fc,
         type: 3}
@@ -10207,12 +10122,11 @@ MonoBehaviour:
     panicAnim: 0
     madness: 0
     madnessDuration: 0
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
     itemID: 0
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
-  type: 2
+  type: 0
   status:
     madness: 0
     search: 0
@@ -10254,7 +10168,7 @@ Transform:
   m_LocalScale: {x: 1, y: 6.991094, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1813409000
 PrefabInstance:
@@ -10306,7 +10220,7 @@ PrefabInstance:
     - target: {fileID: -5150462845133882282, guid: 3afe482c099fcc140a5475f667d04d74,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -5150462845133882282, guid: 3afe482c099fcc140a5475f667d04d74,
         type: 3}
@@ -10696,7 +10610,7 @@ PrefabInstance:
     - target: {fileID: 750666506758258209, guid: baa15a8cb912a4d48ba122362b3bce7e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 750666506758258209, guid: baa15a8cb912a4d48ba122362b3bce7e,
         type: 3}
@@ -10840,13 +10754,12 @@ MonoBehaviour:
     searchingAnim: 2
     panicTime: 1
     panicAnim: 3
-    madness: 20
-    madnessDuration: 1
+    madness: 0
+    madnessDuration: 0
+    linearMadness: 1
+    linearMadnessTickTime: 0.5
+    linearMadnessDuration: 10
     itemID: 2
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
   type: 0
   status:
     madness: 0
@@ -10902,7 +10815,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1851515241
 GameObject:
@@ -11985,11 +11898,10 @@ MonoBehaviour:
     panicAnim: 0
     madness: 0
     madnessDuration: 0
+    linearMadness: 0
+    linearMadnessTickTime: 0
+    linearMadnessDuration: 0
     itemID: 0
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
   type: 0
   status:
     madness: 0
@@ -12045,7 +11957,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1980163451
 GameObject:
@@ -12412,7 +12324,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2033395093
 GameObject:

@@ -45,7 +45,7 @@ public class TargetingSystem : ComponentSystem {
 
             if (lastNearestEntityIndex != int.MaxValue) {
                 EntityManager.RemoveComponent<TargetingComponent>(playerEntity);
-                EntityManager.AddComponentData<MovementComponent>(playerEntity, new MovementComponent(lastNearestEntityIndex));
+                EntityManager.AddComponentData(playerEntity, new MovementComponent(lastNearestEntityIndex));
             }
         });
     }

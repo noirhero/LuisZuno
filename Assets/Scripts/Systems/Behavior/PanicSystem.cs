@@ -30,7 +30,7 @@ public class PanicSystem : ComponentSystem {
             }
             // create
             else {
-                EntityManager.AddComponentData<MadnessComponent>(playerEntity, new MadnessComponent() {
+                EntityManager.AddComponentData(playerEntity, new MadnessComponent() {
                     value = panicComp.madness,
                     duration = panicComp.madnessDuration
                 });

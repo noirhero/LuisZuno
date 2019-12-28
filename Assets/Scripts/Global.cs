@@ -4,7 +4,7 @@ using System;
 using UnityEngine.Serialization;
 
 namespace GlobalDefine {
-    public enum EntityType { None, Player, NonePlayer, Wall }
+    public enum EntityType { None, Player, Wall, MadnessEnvironment }
     public enum AnimationType { Walk, Idle, SomethingDoIt, NyoNyo }
     public enum BackgroundType { BackStreetBoy, Poem, VeteranSoldier, Priest, Professor, Detective }
     public enum ValuesType { Mercy, Greedy, Curiosity, SenseOfDuty }
@@ -35,9 +35,7 @@ namespace GlobalDefine {
     public static class BehaviorState {
         public const int searching = 0x1;
         public const int panic = 0x2;
-        public const int madness = 0x4;
-        public const int pendingItem = 0x8;
-        public const int holding = 0x10;    // 16
+        public const int pendingItem = 0x4;
 
         public static bool HasState(PlayerComponent playerComp, int compareState) { return ((playerComp.currentBehaviors & compareState) != 0); }
     }

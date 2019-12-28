@@ -7,12 +7,10 @@ using GlobalDefine;
 [Serializable]
 public struct PanicComponent : IComponentData {
     public float panicTime;
-    public AnimationType panicAnim;
     public float elapsedPanicTime;
+    public AnimationType panicAnim;
 
-    public PanicComponent(float time, AnimationType anim) {
-        panicTime = time;
-        panicAnim = anim;
-        elapsedPanicTime = 0.0f;
-    }
+    // 패닉 시스템에서 매드니스 컴포넌트를 붙여주기 위한 전달값
+    public float madness;
+    public float madnessDuration;
 }

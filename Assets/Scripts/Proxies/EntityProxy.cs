@@ -10,6 +10,7 @@ using GlobalDefine;
 public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public SpritePreset preset = null;
     [FormerlySerializedAs("Reactive")] public ReactiveComponent reactive;
+    [FormerlySerializedAs("Environment")] public PassiveMadnessComponent passiveMadness;
     public EntityType type;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
@@ -24,8 +25,16 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
             });
         }
 
+        // TODO : 개별 프록시로?
         if (EntityType.Player != type) {
             dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
+
+            if (EntityType.Wall == type) {
+                dstManager.AddComponentData(entity, new TurningComponent());
+            }
+            if (EntityType.MadnessEnvironment == type) {
+                dstManager.AddComponentData(entity, new PassiveMadnessComponent(passiveMadness));
+            }
         }
     }
 }

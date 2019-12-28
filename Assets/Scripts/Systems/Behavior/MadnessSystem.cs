@@ -13,19 +13,58 @@ public class MadnessSystem : ComponentSystem {
     protected override void OnUpdate() {
         var deltaTime = Time.deltaTime;
 
-        Entities.ForEach((Entity entity, ref AvatarStatusComponent statusComp, ref MadnessComponent madnessComp, ref PlayerComponent playerComp) => {
-            if (madnessComp.valueForInterrupted > 0.0f) {
-                statusComp.madness = madnessComp.valueForInterrupted;
-                madnessComp.valueForInterrupted = 0.0f;
+        // 패시브
+        Entities.ForEach((Entity entity, ref PassiveMadnessComponent passiveMadnessComp) => {
+            // Get Player entity
+            Entity playerEntity = Entity.Null;
+            Entities.WithAll<PlayerComponent>().ForEach((Entity e) => {
+                playerEntity = e;
+            });
+
+            var statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(playerEntity);
+
+            passiveMadnessComp.ElapsedTickTime += deltaTime;
+
+            var finished = false;
+            if (passiveMadnessComp.ElapsedDuration >= passiveMadnessComp.duration) {    // 광기에 영향을 주는 총 시간이 지남
+                finished = true;
             }
 
-            // 이상한 걸 보고 직접적으로 광기에 영향받음
-            if (madnessComp.value > 0.0f) {
-                // 직접 영향은 서칭 중에 받지 않음
-                if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
-                    return;
+            if (passiveMadnessComp.ElapsedTickTime >= passiveMadnessComp.tickTime) {    // 광기 받을 시간이 왔어요
+                passiveMadnessComp.ElapsedDuration += passiveMadnessComp.tickTime;
+                passiveMadnessComp.ElapsedTickTime = 0.0f;
+
+                statusComp.madness += passiveMadnessComp.value;
+
+                if (statusComp.madness >= statusComp.maxMadness) {
+                    statusComp.madness = statusComp.maxMadness;
+                    finished = true;
+                }
+            }
+
+            EntityManager.SetComponentData<AvatarStatusComponent>(playerEntity, statusComp);
+
+            if (finished) {
+                EntityManager.RemoveComponent<PassiveMadnessComponent>(entity);
+
+                // TODO : GameOver
+            }
+        });
+
+        Entities.ForEach((Entity playerEntity, ref AvatarStatusComponent statusComp, ref PlayerComponent playerComp) => {
+            // 액티브
+            if (EntityManager.HasComponent<MadnessComponent>(playerEntity)) {
+                var madnessComp = EntityManager.GetComponentData<MadnessComponent>(playerEntity);
+
+                // 이미 올라갈 매드니스가 있는데 또 들어왔을 경우 이전값 바로 적용
+                if (madnessComp.valueForInterrupted > 0.0f) {
+                    statusComp.madness += madnessComp.valueForInterrupted;
+                    madnessComp.valueForInterrupted = 0.0f;
+                    madnessComp.elapsedTransitionTime = 0.0f;
+                    madnessComp.transitionStartValue = statusComp.madness;
                 }
 
+                // initialize
                 if (madnessComp.transitionStartValue <= 0.0f) {
                     madnessComp.transitionStartValue = statusComp.madness;
                 }
@@ -34,52 +73,18 @@ public class MadnessSystem : ComponentSystem {
 
                 float dest = madnessComp.transitionStartValue + madnessComp.value;
                 float speed = madnessComp.elapsedTransitionTime / madnessComp.duration;
+
                 statusComp.madness = Mathf.Lerp(madnessComp.transitionStartValue, dest, speed);
+
+                EntityManager.SetComponentData<MadnessComponent>(playerEntity, madnessComp);
 
                 // finished
                 if ((statusComp.madness >= dest) || (madnessComp.elapsedTransitionTime >= madnessComp.duration)) {
                     statusComp.madness = dest;
-                    madnessComp.value = 0.0f;
-                    madnessComp.duration = 0.0f;
-                    madnessComp.transitionStartValue = 0.0f;
-                    madnessComp.elapsedTransitionTime = 0.0f;
-
-                    if (madnessComp.linearValue == 0.0f) {
-                        EntityManager.RemoveComponent<MadnessComponent>(entity);
-                    }
+                    EntityManager.RemoveComponent<MadnessComponent>(playerEntity);
                 }
             }
 
-            // 이상한 환경에서 간접적으로 광기에 영향받음
-            if (madnessComp.linearValue > 0.0f) {
-                madnessComp.elapsedLinearTransitionTime += deltaTime;
-
-                // finished
-                if (madnessComp.elapsedLinearTransitionTime >= madnessComp.linearDuration) {
-                    madnessComp.linearValue = 0.0f;
-                    madnessComp.linearTickTime = 0.0f;
-                    madnessComp.linearDuration = 0.0f;
-                    madnessComp.elapsedLinearTransitionTime = 0.0f;
-
-                    if (madnessComp.value == 0.0f) {
-                        EntityManager.RemoveComponent<MadnessComponent>(entity);
-                    }
-                }
-
-                if (madnessComp.elapsedLinearTransitionTime >= madnessComp.linearTickTime) {
-                    madnessComp.linearDuration -= madnessComp.elapsedLinearTransitionTime;
-                    madnessComp.elapsedLinearTransitionTime = 0.0f;
-                    
-                    statusComp.madness += madnessComp.linearValue;
-                }
-            }
-
-            statusComp.madness = Mathf.Clamp(statusComp.madness, 0, statusComp.maxMadness);
-
-            // update player's behaviour
-            if (madnessComp.value == 0.0f || madnessComp.linearValue == 0.0f) {
-                playerComp.currentBehaviors ^= BehaviorState.madness;
-            }
         });
     }
 }

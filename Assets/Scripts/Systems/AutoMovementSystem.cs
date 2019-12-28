@@ -48,9 +48,17 @@ public class AutoMovementSystem : ComponentSystem {
             // arrived !
             var at = targetPos.x - playerPos.Value.x;
             if (0.5f >= math.abs(at)) {
-                EntityManager.RemoveComponent<MovementComponent>(playerEntity);
-                EntityManager.AddComponentData<IntelligenceComponent>(playerEntity, new IntelligenceComponent(targetEntity.Index));
-                playerComp.currentAnim = AnimationType.Idle;    // MovementComponent를 삭제하면서 기본으로 돌림
+                // 벽꿍
+                if (EntityManager.HasComponent<TurningComponent>(targetEntity)) {
+                    EntityManager.AddComponentData<TargetingComponent>(playerEntity, new TargetingComponent());
+                    EntityManager.RemoveComponent<MovementComponent>(playerEntity);
+                    playerComp.playerDirection *= -1.0f;
+                }
+                else {
+                    EntityManager.RemoveComponent<MovementComponent>(playerEntity);
+                    EntityManager.AddComponentData<IntelligenceComponent>(playerEntity, new IntelligenceComponent(targetEntity.Index));
+                    playerComp.currentAnim = AnimationType.Idle;    // MovementComponent를 삭제하면서 기본으로 돌림
+                }
                 return;
             }
 

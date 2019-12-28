@@ -49,7 +49,7 @@ public class AutoMovementSystem : ComponentSystem {
             var at = targetPos.x - playerPos.Value.x;
             if (0.5f >= math.abs(at)) {
                 EntityManager.RemoveComponent<MovementComponent>(playerEntity);
-                EntityManager.AddComponentData<IntelligenceComponent>(playerEntity, new IntelligenceComponent(targetEntity.Index));
+                EntityManager.AddComponentData(playerEntity, new IntelligenceComponent(targetEntity.Index));
                 playerComp.currentAnim = AnimationType.Idle;    // MovementComponent를 삭제하면서 기본으로 돌림
                 return;
             }

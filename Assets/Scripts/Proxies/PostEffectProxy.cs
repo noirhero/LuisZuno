@@ -13,7 +13,6 @@ public class PostEffectProxy : MonoBehaviour {
         }
 
         var postEffectEntity = World.Active.EntityManager.CreateEntity();
-        World.Active.EntityManager.SetName(postEffectEntity, "PostEffect");
         World.Active.EntityManager.AddSharedComponentData(postEffectEntity, new PostEffectPresetComponent() {
             volume = postProcessVolume
         });

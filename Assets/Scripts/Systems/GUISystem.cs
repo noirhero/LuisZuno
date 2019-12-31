@@ -1,4 +1,4 @@
-﻿// Copyrighgt 2018-2019 TAP, Inc. All Rights Reserved.
+﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
 using System;
 using UnityEngine;

@@ -35,27 +35,38 @@ public class GUISystem : ComponentSystem {
     private void UpdateBubbleUI() {
         _guiPreset.HideBubble();
 
-        if (false == EntityManager.HasComponent<ReactiveComponent>(_playerEntity)) {
-            return;
-        }
-
-        SearchingComponent searchingComp = EntityManager.GetComponentData<SearchingComponent>(_playerEntity);
-        if (searchingComp.elapsedSearchingTime <= 0) {
+        var playerComp = EntityManager.GetComponentData<PlayerComponent>(_playerEntity);
+        if (0 == playerComp.currentBehaviors) {     // walking or doing nothing
             return;
         }
 
         // bubble default
         string bubbleMassage = "... ";
-        float timeRate = searchingComp.elapsedSearchingTime / searchingComp.searchingTime;
+        float timeRate = 0.0f;
+
+        // Searching
+        if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
+            var searchingComp = EntityManager.GetComponentData<SearchingComponent>(_playerEntity);
+            if (0 < searchingComp.elapsedSearchingTime) {
+                timeRate = searchingComp.elapsedSearchingTime / searchingComp.searchingTime;
+            }
+        }
+        // Panic
+        else if (BehaviorState.HasState(playerComp, BehaviorState.panic)) {
+            var panicComp = EntityManager.GetComponentData<PanicComponent>(_playerEntity);
+            if (0 < panicComp.elapsedPanicTime) {
+                bubbleMassage = "#$%^";
+                timeRate = panicComp.elapsedPanicTime / panicComp.panicTime;
+            }
+        }
+
+        if (0.0f >= timeRate) {
+            return;
+        }
 
         // bubble position
         Translation playerPos = EntityManager.GetComponentData<Translation>(_playerEntity);
         Vector3 convert2DPos = Camera.main.WorldToScreenPoint(playerPos.Value);
-
-        // panic check
-        if (EntityManager.HasComponent<PanicComponent>(_playerEntity)) {
-            bubbleMassage = "#$%^";
-        }
 
         // todo - temporary
         int showMessageLength = (int)((float)bubbleMassage.Length * timeRate);

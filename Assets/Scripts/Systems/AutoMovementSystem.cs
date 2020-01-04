@@ -69,7 +69,7 @@ public class AutoMovementSystem : ComponentSystem {
                 moveComp.value.x = 1.0f;
             }
 
-            //var statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(playerEntity);
+            //var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
             playerPos.Value.x += moveComp.value.x * Time.deltaTime;
         });
     }

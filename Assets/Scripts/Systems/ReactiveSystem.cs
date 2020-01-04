@@ -20,7 +20,7 @@ public class ReactiveSystem : ComponentSystem {
         private Entity _currentEntity = Entity.Null;
         private Entity _targetEntity = Entity.Null;
         private MovementComponent _currentMoveComp;
-        private AvatarStatusComponent _currentStatusComp;
+        private PlayerStatusComponent _currentStatusComp;
         private TargetingComponent _currentTargetComp;
         private ReactiveComponent _currentReactiveComp;
         private ReactiveComponent _targetReactiveComp;
@@ -46,12 +46,12 @@ public class ReactiveSystem : ComponentSystem {
             float targetMadness = 0.0f;
 
             // Non-avatar
-            if (EntityManager.HasComponent<NoneAvatarStatusComponent>(_targetEntity)) {
-                targetMadness = EntityManager.GetComponentData<NoneAvatarStatusComponent>(_targetEntity).madness;
+            if (EntityManager.HasComponent<NonePlayerStatusComponent>(_targetEntity)) {
+                targetMadness = EntityManager.GetComponentData<NonePlayerStatusComponent>(_targetEntity).madness;
             }
             // Avatar
-            else if (EntityManager.HasComponent<AvatarStatusComponent>(_targetEntity)) {
-                targetMadness = EntityManager.GetComponentData<AvatarStatusComponent>(_targetEntity).madness;
+            else if (EntityManager.HasComponent<PlayerStatusComponent>(_targetEntity)) {
+                targetMadness = EntityManager.GetComponentData<PlayerStatusComponent>(_targetEntity).madness;
             }
 
             if (targetMadness > 0) {
@@ -91,7 +91,7 @@ public class ReactiveSystem : ComponentSystem {
         private void AdjustAllModifiedComponents() {
             EntityManager.SetComponentData<TargetingComponent>(_currentEntity, _currentTargetComp);
             EntityManager.SetComponentData<MovementComponent>(_currentEntity, _currentMoveComp);
-            EntityManager.SetComponentData<AvatarStatusComponent>(_currentEntity, _currentStatusComp);
+            EntityManager.SetComponentData<PlayerStatusComponent>(_currentEntity, _currentStatusComp);
             EntityManager.SetComponentData<ReactiveComponent>(_currentEntity, _currentReactiveComp);
             EntityManager.SetComponentData<ReactiveComponent>(_targetEntity, _targetReactiveComp);
         }
@@ -139,7 +139,7 @@ public class ReactiveSystem : ComponentSystem {
                 _currentEntity = entity;
                 _currentTargetComp = targetComp;
                 _currentMoveComp = EntityManager.GetComponentData<MovementComponent>(_currentEntity);
-                _currentStatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_currentEntity);
+                _currentStatusComp = EntityManager.GetComponentData<PlayerStatusComponent>(_currentEntity);
                 _currentReactiveComp = reactiveComp;
                 _targetReactiveComp = EntityManager.GetComponentData<ReactiveComponent>(_targetEntity);
 

@@ -1190,23 +1190,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 148284771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e617b86b99f733746af66a40f339ff31, type: 3}
+  m_Script: {fileID: 11500000, guid: ebfc45093e7523d4584ccca7d4109113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
-  reactive:
-    searchingTime: 0
-    searchingAnim: 0
-    panicTime: 0
-    panicAnim: 0
-    madness: 0
-    madnessDuration: 0
-    itemID: 0
   passiveMadness:
-    value: 0.2
+    value: 0.3
     tickTime: 0.2
     duration: 60
-  type: 3
 --- !u!114 &148284774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2757,26 +2748,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 331034077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d071f0d75ae1cd40a6b101688b517b1, type: 3}
+  m_Script: {fileID: 11500000, guid: b736a51ee5d4fbb4bb3c9a043baa8bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
+  status:
+    search: 10
   reactive:
     searchingTime: 2
     searchingAnim: 2
     panicTime: 1
     panicAnim: 3
-    madness: 30
+    madness: 20
     madnessDuration: 2
     itemID: 1
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
-  type: 0
-  status:
-    madness: 10
-    search: 0
 --- !u!1 &336018378
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,26 +3115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 451163677}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d071f0d75ae1cd40a6b101688b517b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a000db2c8de1744b8f6af03851bdef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
-  reactive:
-    searchingTime: 0
-    searchingAnim: 0
-    panicTime: 0
-    panicAnim: 0
-    madness: 0
-    madnessDuration: 0
-    itemID: 0
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
-  type: 2
-  status:
-    madness: 0
-    search: 0
 --- !u!61 &451163680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8188,7 +8157,7 @@ GameObject:
   - component: {fileID: 1312177591}
   - component: {fileID: 1312177590}
   - component: {fileID: 1312177593}
-  - component: {fileID: 1312177589}
+  - component: {fileID: 1312177592}
   m_Layer: 0
   m_Name: Man
   m_TagString: Untagged
@@ -8196,42 +8165,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1312177589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312177588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a30164d5c17c44b8a180bca1d3381f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  preset: {fileID: 275111884}
-  reactive:
-    searchingTime: 0
-    searchingAnim: 0
-    panicTime: 0
-    panicAnim: 0
-    madness: 0
-    madnessDuration: 0
-    itemID: 0
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
-  type: 1
-  defaultInventory: []
-  status:
-    health: 0
-    madness: 0
-    maxMadness: 100
-    agility: 0
-    physical: 0
-    mentality: 0
-    search: 0
-    luck: 0
 --- !u!212 &1312177590
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8296,6 +8229,35 @@ Transform:
   m_Father: {fileID: 925548671}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1312177592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312177588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd6a2b8348da924d93d32b8953d3188, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preset: {fileID: 275111884}
+  defaultInventory:
+  - id: 0
+    addedTime: 0
+  - id: 0
+    addedTime: 0
+  - id: 0
+    addedTime: 0
+  status:
+    health: 100
+    madness: 0
+    maxMadness: 100
+    agility: 0
+    physical: 0
+    mentality: 0
+    search: 30
+    luck: 0
 --- !u!114 &1312177593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10213,26 +10175,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1808311616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d071f0d75ae1cd40a6b101688b517b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a000db2c8de1744b8f6af03851bdef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
-  reactive:
-    searchingTime: 0
-    searchingAnim: 0
-    panicTime: 0
-    panicAnim: 0
-    madness: 0
-    madnessDuration: 0
-    itemID: 0
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
-  type: 2
-  status:
-    madness: 0
-    search: 0
 --- !u!61 &1808311619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10848,26 +10794,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1843038004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d071f0d75ae1cd40a6b101688b517b1, type: 3}
+  m_Script: {fileID: 11500000, guid: b736a51ee5d4fbb4bb3c9a043baa8bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
+  status:
+    search: 40
   reactive:
     searchingTime: 2
     searchingAnim: 2
     panicTime: 1
     panicAnim: 3
-    madness: 20
-    madnessDuration: 1
+    madness: 40
+    madnessDuration: 3
     itemID: 2
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
-  type: 0
-  status:
-    madness: 0
-    search: 0
 --- !u!114 &1843038006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11991,26 +11931,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1959053449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d071f0d75ae1cd40a6b101688b517b1, type: 3}
+  m_Script: {fileID: 11500000, guid: b736a51ee5d4fbb4bb3c9a043baa8bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
-  reactive:
-    searchingTime: 0
-    searchingAnim: 0
-    panicTime: 0
-    panicAnim: 0
-    madness: 0
-    madnessDuration: 0
-    itemID: 0
-  passiveMadness:
-    value: 0
-    tickTime: 0
-    duration: 0
-  type: 0
   status:
-    madness: 0
     search: 0
+  reactive:
+    searchingTime: 1
+    searchingAnim: 2
+    panicTime: 1
+    panicAnim: 3
+    madness: 20
+    madnessDuration: 1
+    itemID: 3
 --- !u!114 &1959053451
 MonoBehaviour:
   m_ObjectHideFlags: 0

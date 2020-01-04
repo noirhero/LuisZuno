@@ -16,7 +16,7 @@ public class PanicSystem : ComponentSystem {
             // update
             if (EntityManager.HasComponent<MadnessComponent>(playerEntity)) {
                 var madnessComp = EntityManager.GetComponentData<MadnessComponent>(playerEntity);
-                var statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(playerEntity);
+                var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
 
                 // 남은 매드니스 저장
                 if (madnessComp.value > 0.0f) {

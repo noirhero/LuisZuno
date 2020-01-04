@@ -8,7 +8,6 @@ using Unity.Collections;
 using UnityEngine.Serialization;
 
 namespace GlobalDefine {
-    public enum EntityType { None, Player, Wall, MadnessEnvironment }
     public enum AnimationType { Walk, Idle, SomethingDoIt, NyoNyo }
     public enum BackgroundType { BackStreetBoy, Poem, VeteranSoldier, Priest, Professor, Detective }
     public enum ValuesType { Mercy, Greedy, Curiosity, SenseOfDuty }
@@ -17,12 +16,10 @@ namespace GlobalDefine {
     [Serializable]
     public struct ItemStruct {
         public Int64 id;
-        public int madness;
         [FormerlySerializedAs("AddedTime")] public Int64 addedTime;
         
         public void Empty() {
             id = 0;
-            madness = 0;
             addedTime = 0;
         }
     }

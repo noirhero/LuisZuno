@@ -53,11 +53,8 @@ public class GUISystem : ComponentSystem {
         Vector3 convert2DPos = Camera.main.WorldToScreenPoint(playerPos.Value);
 
         // panic check
-        if (EntityManager.HasComponent<PlayerStatusComponent>(_playerEntity)) {
-            PlayerStatusComponent avatarStatusComp = EntityManager.GetComponentData<PlayerStatusComponent>(_playerEntity);
-            if(avatarStatusComp.InPanic) {
-                bubbleMassage = "#$%^";
-            }
+        if (EntityManager.HasComponent<PanicComponent>(_playerEntity)) {
+            bubbleMassage = "#$%^";
         }
 
         // todo - temporary

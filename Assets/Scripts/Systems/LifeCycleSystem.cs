@@ -22,10 +22,6 @@ public class LifeCycleSystem : JobComponentSystem {
         public float deltaTime;
 
         public void Execute(Entity entity, int index, ref LifeCycleComponent lifeComp, [ReadOnly] ref Translation posComp) {
-            if (-1.0f == lifeComp.duration) {
-                return;
-            }
-
             if (lifeComp.duration >= lifeComp.lifetime) {
                 if (Entity.Null != lifeComp.destroyEffect) {
                     Utility.SpawnEffect(index, ref cmdBuf, lifeComp.destroyEffect, posComp.Value);

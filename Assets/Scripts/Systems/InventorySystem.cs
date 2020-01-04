@@ -35,6 +35,9 @@ public class InventorySystem : ComponentSystem {
         if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
             return;
         }
+        if (BehaviorState.HasState(playerComp, BehaviorState.panic)) {
+            return;
+        }
 
         PendingItemComponent pendingItemComp = EntityManager.GetComponentData<PendingItemComponent>(_playerEntity);
         Int64 pendingItemID = pendingItemComp.pendingItemID;

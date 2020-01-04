@@ -69,7 +69,15 @@ public class IntelligenceSystem : ComponentSystem {
                 });
                 playerComp.currentBehaviors |= BehaviorState.pendingItem;
             }
-            
+
+            // Spawning
+            bool shouldSpawn = (EntityManager.HasComponent<EntitySpawnInfoComponent>(targetEntity)) && (false == BehaviorState.HasState(playerComp, BehaviorState.spawning));
+            if (shouldSpawn) {
+                EntitySpawnInfoComponent spawnInfo = EntityManager.GetComponentData<EntitySpawnInfoComponent>(targetEntity);
+                EntityManager.AddComponentData(playerEntity, new EntitySpawnComponent(ref spawnInfo));
+                playerComp.currentBehaviors |= BehaviorState.spawning;
+            }
+
             if (playerComp.currentBehaviors > 0) {
                 intelComp.isWaitingForOtherSystems = true;
             }

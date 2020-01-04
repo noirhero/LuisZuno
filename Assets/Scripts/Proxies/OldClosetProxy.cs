@@ -1,13 +1,13 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
 using System.Collections.Generic;
-using Unity.Entities;
 using UnityEngine;
+using Unity.Entities;
 using UnityEngine.Serialization;
 
 [RequiresEntityConversion]
-public class EntitySpawnProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
-    [FormerlySerializedAs("SpawnInfo")] public EntitySpawnInfoComponent entitySpawn;
+public class OldClosetProxy : PropProxy, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
+    [FormerlySerializedAs("SpawnInfo")] public EntitySpawnInfoComponent spawnInfo;
     [FormerlySerializedAs("SpawnPreset")] public GameObject spawnPreset = null;
     [FormerlySerializedAs("SpawnEffectPreset")] public GameObject spawnEffectPreset = null;
     [FormerlySerializedAs("DestroyEffectPreset")] public GameObject destroyEffectPreset = null;
@@ -20,8 +20,10 @@ public class EntitySpawnProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConve
     }
 
 
-    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        dstManager.AddComponentData(entity, new EntitySpawnInfoComponent(ref entitySpawn) {
+    protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
+        base.SetupComponents(entity, dstManager, conversionSystem);
+
+        dstManager.AddComponentData(entity, new EntitySpawnInfoComponent(ref spawnInfo) {
             prefab = conversionSystem.GetPrimaryEntity(spawnPreset),
             spawnEffect = conversionSystem.GetPrimaryEntity(spawnEffectPreset),
             destroyEffect = conversionSystem.GetPrimaryEntity(destroyEffectPreset),

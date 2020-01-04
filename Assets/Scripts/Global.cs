@@ -57,12 +57,23 @@ namespace GlobalDefine {
             });
             return true;
         }
+        public static bool SetLifeCycle(int inIndex, ref EntityCommandBuffer.Concurrent inCmdBuf,
+            ref Entity inEntity, float inLifeTime, ref Entity inSpawnEffect, ref Entity inDestroyEffect) {
+            inCmdBuf.AddComponent(inIndex, inEntity, new LifeCycleComponent() {
+                spawnEffect = inSpawnEffect,
+                destroyEffect = inDestroyEffect,
+                lifetime = inLifeTime,
+                duration = 0.0f,
+            });
+            return true;
+        }
     }
 
     public static class BehaviorState {
         public const int searching = 0x1;
         public const int panic = 0x2;
         public const int pendingItem = 0x4;
+        public const int spawning = 0x8;
 
         public static bool HasState(PlayerComponent playerComp, int compareState) { return ((playerComp.currentBehaviors & compareState) != 0); }
     }

@@ -15,20 +15,22 @@ public class EntitySpawnSystem : JobComponentSystem {
         _cmdSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
         Enabled = false;
     }
-    
 
-    private struct EntitySpawnSystemJob : IJobForEachWithEntity<EntitySpawnComponent, LifeCycleComponent> {
+    
+    private struct EntitySpawnSystemJob : IJobForEachWithEntity<EntitySpawnComponent, Translation, PlayerComponent> {
         public EntityCommandBuffer.Concurrent cmdBuf;
 
-        public void Execute(Entity entity, int index, [ReadOnly] ref EntitySpawnComponent entityComp, ref LifeCycleComponent lifeComp) {
-            lifeComp.duration = 0.0f;
+        public void Execute(Entity entity, int index, [ReadOnly] ref EntitySpawnComponent entityComp, [ReadOnly] ref Translation pos, ref PlayerComponent playerComp) {
+            if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
+                return;
+            }
 
             var rand = new Random((uint)(entityComp.number));
             for (var i = 0; i < entityComp.number; ++i) {
                 var instantiateEntity = cmdBuf.Instantiate(index, entityComp.prefab);
                 var randPosOffset = new float3(rand.NextFloat(entityComp.posOffsetMin, entityComp.posOffsetMax), 0.0f, 0.0f);
                 cmdBuf.SetComponent(index, instantiateEntity, new Translation() {
-                    Value = entityComp.spawnPosition + randPosOffset,
+                    Value = pos.Value + randPosOffset,
                 });
                 
                 var randForward = rand.NextBool();
@@ -42,10 +44,13 @@ public class EntitySpawnSystem : JobComponentSystem {
                     velocity = randVel * randDir,
                 });
 
-                Utility.SetLifeCycle(index, ref cmdBuf, ref instantiateEntity, lifeComp.lifetime);
+                Utility.SetLifeCycle(index, ref cmdBuf, ref instantiateEntity, entityComp.lifetime, ref entityComp.spawnEffect, ref entityComp.destroyEffect);
             }
             
             cmdBuf.RemoveComponent<EntitySpawnComponent>(index, entity);
+
+            playerComp.currentBehaviors ^= BehaviorState.spawning;
+            cmdBuf.SetComponent<PlayerComponent>(index, entity, playerComp);
         }
     }
 

@@ -5645,7 +5645,6 @@ Transform:
   - {fileID: 451163681}
   - {fileID: 2026583857}
   - {fileID: 762941859}
-  - {fileID: 1235867369}
   - {fileID: 1831841433}
   - {fileID: 1547926061}
   - {fileID: 1813409001}
@@ -7658,73 +7657,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199406197}
   m_CullTransparentMesh: 0
---- !u!1 &1235867368
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1235867369}
-  - component: {fileID: 1235867370}
-  - component: {fileID: 1235867371}
-  m_Layer: 0
-  m_Name: Rats
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1235867369
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235867368}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.796, y: 1.714, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 925548671}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1235867370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235867368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConversionMode: 0
---- !u!114 &1235867371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1235867368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57308e8eadba91f4c9f845d64916dd35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 8745074425327356244, guid: 71603cc88cbf4c94b9a04874e14955fc, type: 3}
-  spawnEffect: {fileID: 0}
-  destroyEffect: {fileID: 7969398887402685004, guid: 4d04c30370a8b674a92f200675fd7867,
-    type: 3}
-  number: 100
-  lifetime: 5
-  velocityMin: 1
-  velocityMax: 2
-  posOffsetMin: -1
-  posOffsetMax: 1
 --- !u!1 &1244254207
 GameObject:
   m_ObjectHideFlags: 0
@@ -9388,7 +9320,7 @@ PrefabInstance:
     - target: {fileID: -7944639511062098446, guid: 2149fb2aefbeb9a4693f07fbe6c8f1fc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -7944639511062098446, guid: 2149fb2aefbeb9a4693f07fbe6c8f1fc,
         type: 3}
@@ -10269,7 +10201,7 @@ PrefabInstance:
     - target: {fileID: -5150462845133882282, guid: 3afe482c099fcc140a5475f667d04d74,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: -5150462845133882282, guid: 3afe482c099fcc140a5475f667d04d74,
         type: 3}
@@ -10659,7 +10591,7 @@ PrefabInstance:
     - target: {fileID: 750666506758258209, guid: baa15a8cb912a4d48ba122362b3bce7e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 750666506758258209, guid: baa15a8cb912a4d48ba122362b3bce7e,
         type: 3}
@@ -10794,12 +10726,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1843038004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b736a51ee5d4fbb4bb3c9a043baa8bd4, type: 3}
+  m_Script: {fileID: 11500000, guid: a64d12d1c8127a2458c5511deb4f09b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   status:
-    search: 40
+    search: 5
   reactive:
     searchingTime: 2
     searchingAnim: 2
@@ -10808,6 +10740,19 @@ MonoBehaviour:
     madness: 40
     madnessDuration: 3
     itemID: 2
+  spawnInfo:
+    number: 100
+    velocityMin: 1
+    velocityMax: 2
+    posOffsetMin: -1
+    posOffsetMax: 1
+    lifetime: 5
+  spawnPreset: {fileID: 8745074425327356244, guid: 71603cc88cbf4c94b9a04874e14955fc,
+    type: 3}
+  spawnEffectPreset: {fileID: 7969398887402685004, guid: 4d04c30370a8b674a92f200675fd7867,
+    type: 3}
+  destroyEffectPreset: {fileID: 7969398887402685004, guid: 4d04c30370a8b674a92f200675fd7867,
+    type: 3}
 --- !u!114 &1843038006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10834,7 +10779,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.13304687, y: 0.18073857}
+  m_Offset: {x: 0.04, y: 0.4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -10855,7 +10800,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843038004}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.161793, y: 1.9503993, z: 0}
+  m_LocalPosition: {x: 10.161793, y: 1.721, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 925548671}

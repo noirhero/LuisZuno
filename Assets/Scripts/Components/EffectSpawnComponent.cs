@@ -10,8 +10,3 @@ public struct EffectSpawnComponent : IComponentData {
     public float lifetime;
     public float duration;
 }
-
-[Serializable]
-public struct EffectSpawnExistComponent : IComponentData {
-    
-}

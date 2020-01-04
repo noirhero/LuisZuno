@@ -5,6 +5,7 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Transforms;
 using UnityEngine;
+using GlobalDefine;
 
 public class LifeCycleSystem : JobComponentSystem {
     private EndSimulationEntityCommandBufferSystem _cmdSystem;
@@ -27,32 +28,16 @@ public class LifeCycleSystem : JobComponentSystem {
 
             if (lifeComp.duration >= lifeComp.lifetime) {
                 if (Entity.Null != lifeComp.destroyEffect) {
-                    Entity effect = cmdBuf.CreateEntity(index);
-                    cmdBuf.AddComponent(index, effect, new Translation() {
-                        Value = posComp.Value,
-                    });
-                    cmdBuf.AddComponent(index, effect, new EffectSpawnComponent() {
-                        prefab = lifeComp.destroyEffect,
-                        lifetime = 0.4f,
-                        duration = 0.0f,
-                    });
-                    lifeComp.destroyEffect = Entity.Null;
+                    Utility.SpawnEffect(index, ref cmdBuf, lifeComp.destroyEffect, posComp.Value);
                 }
                 cmdBuf.RemoveComponent<LifeCycleComponent>(index, entity);
                 cmdBuf.DestroyEntity(index, entity);
             }
             else {
-                if (Entity.Null != lifeComp.spawnEffect) {
-                    Entity effect = cmdBuf.CreateEntity(index);
-                    cmdBuf.AddComponent(index, effect, new Translation() {
-                        Value = posComp.Value,
-                    });
-                    cmdBuf.AddComponent(index, effect, new EffectSpawnComponent() {
-                        prefab = lifeComp.spawnEffect,
-                        lifetime = 0.4f,
-                        duration = 0.0f,
-                    });
-                    lifeComp.spawnEffect = Entity.Null;
+                if (lifeComp.duration == 0.0f) {
+                    if (Entity.Null != lifeComp.spawnEffect) {
+                        Utility.SpawnEffect(index, ref cmdBuf, lifeComp.spawnEffect, posComp.Value);
+                    }
                 }
                 lifeComp.duration += deltaTime;
             }

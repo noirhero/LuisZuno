@@ -20,21 +20,11 @@ public class EffectSpawnSystem : JobComponentSystem {
 
         public void Execute(Entity entity, int index, ref EffectSpawnComponent effectComp, [ReadOnly] ref Translation posComp) {
             cmdBuf.RemoveComponent<EffectSpawnComponent>(index, entity);
-            cmdBuf.AddComponent(index, entity, new LifeCycleComponent() {
-                spawnEffect = Entity.Null,
-                destroyEffect = Entity.Null,
-                lifetime = 0.0f,
-                duration = 0.0f,
-            });
+            Utility.SetLifeCycle(index, ref cmdBuf, ref entity, 0.0f);
 
             var effectEntity = cmdBuf.Instantiate(index, effectComp.prefab);
             cmdBuf.SetComponent(index, effectEntity, posComp);
-            cmdBuf.AddComponent(index, effectEntity, new LifeCycleComponent() {
-                spawnEffect = Entity.Null,
-                destroyEffect = Entity.Null,
-                lifetime = effectComp.lifetime,
-                duration = effectComp.duration,
-            });
+            Utility.SetLifeCycle(index, ref cmdBuf, ref effectEntity, effectComp.lifetime);
         }
     }
 

@@ -5,6 +5,7 @@ using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
+using GlobalDefine;
 
 public class EntitySpawnSystem : JobComponentSystem {
     private EndSimulationEntityCommandBufferSystem _cmdSystem;
@@ -20,8 +21,9 @@ public class EntitySpawnSystem : JobComponentSystem {
         public EntityCommandBuffer.Concurrent cmdBuf;
 
         public void Execute(Entity entity, int index, [ReadOnly] ref EntitySpawnComponent entityComp, ref LifeCycleComponent lifeComp) {
-            var rand = new Random((uint)(entityComp.number));
+            lifeComp.duration = 0.0f;
 
+            var rand = new Random((uint)(entityComp.number));
             for (var i = 0; i < entityComp.number; ++i) {
                 var instantiateEntity = cmdBuf.Instantiate(index, entityComp.prefab);
                 var randPosOffset = new float3(rand.NextFloat(entityComp.posOffsetMin, entityComp.posOffsetMax), 0.0f, 0.0f);
@@ -40,15 +42,10 @@ public class EntitySpawnSystem : JobComponentSystem {
                     velocity = randVel * randDir,
                 });
 
-                cmdBuf.AddComponent(index, instantiateEntity, new LifeCycleComponent() {
-                    spawnEffect = lifeComp.spawnEffect,
-                    destroyEffect = lifeComp.destroyEffect,
-                    lifetime = lifeComp.lifetime,
-                    duration = 0.0f,
-                });
+                Utility.SetLifeCycle(index, ref cmdBuf, ref instantiateEntity, lifeComp.lifetime);
             }
+            
             cmdBuf.RemoveComponent<EntitySpawnComponent>(index, entity);
-            cmdBuf.RemoveComponent<LifeCycleComponent>(index, entity);
         }
     }
 

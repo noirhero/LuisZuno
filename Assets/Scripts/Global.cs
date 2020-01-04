@@ -34,7 +34,8 @@ namespace GlobalDefine {
         public static T ToEnum<T>(string inValue) {
             return (T)Enum.Parse(typeof(T), inValue);
         }
-        public static bool SpawnEffect(int inIndex, ref EntityCommandBuffer.Concurrent inCmdBuf, [ReadOnly] Entity inPrefabs, float3 inPos) {
+        public static bool SpawnEffect(int inIndex, ref EntityCommandBuffer.Concurrent inCmdBuf, 
+            [ReadOnly] Entity inPrefabs, float3 inPos) {
             if (Entity.Null == inPrefabs)
                 return false;
 
@@ -45,6 +46,16 @@ namespace GlobalDefine {
             inCmdBuf.AddComponent(inIndex, effect, new EffectSpawnComponent() {
                 prefab = inPrefabs,
                 lifetime = 0.4f,
+                duration = 0.0f,
+            });
+            return true;
+        }
+        public static bool SetLifeCycle(int inIndex, ref EntityCommandBuffer.Concurrent inCmdBuf, 
+            ref Entity inEntity, float inLifeTime) {
+            inCmdBuf.AddComponent(inIndex, inEntity, new LifeCycleComponent() {
+                spawnEffect = Entity.Null,
+                destroyEffect = Entity.Null,
+                lifetime = inLifeTime,
                 duration = 0.0f,
             });
             return true;

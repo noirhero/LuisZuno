@@ -1,6 +1,10 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
 using System;
+using Unity.Entities;
+using Unity.Transforms;
+using Unity.Mathematics;
+using Unity.Collections;
 using UnityEngine.Serialization;
 
 namespace GlobalDefine {
@@ -29,6 +33,21 @@ namespace GlobalDefine {
         }
         public static T ToEnum<T>(string inValue) {
             return (T)Enum.Parse(typeof(T), inValue);
+        }
+        public static bool SpawnEffect(int inIndex, ref EntityCommandBuffer.Concurrent inCmdBuf, [ReadOnly] Entity inPrefabs, float3 inPos) {
+            if (Entity.Null == inPrefabs)
+                return false;
+
+            Entity effect = inCmdBuf.CreateEntity(inIndex);
+            inCmdBuf.AddComponent(inIndex, effect, new Translation() {
+                Value = inPos,
+            });
+            inCmdBuf.AddComponent(inIndex, effect, new EffectSpawnComponent() {
+                prefab = inPrefabs,
+                lifetime = 0.4f,
+                duration = 0.0f,
+            });
+            return true;
         }
     }
 

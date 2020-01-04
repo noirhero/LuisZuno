@@ -1,11 +1,10 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
-using System.Linq;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
-using Unity.Mathematics;
 using Unity.Transforms;
+using GlobalDefine;
 
 [UpdateAfter(typeof(AutoMovementSystem))]
 public class EffectSpawnSystem : JobComponentSystem {
@@ -15,24 +14,26 @@ public class EffectSpawnSystem : JobComponentSystem {
         _cmdSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
         Enabled = false;
     }
-
-    [ExcludeComponent(typeof(EffectSpawnExistComponent))]
+    
     private struct EffectSpawnSystemJob : IJobForEachWithEntity<EffectSpawnComponent, Translation> {
         public EntityCommandBuffer.Concurrent cmdBuf;
 
         public void Execute(Entity entity, int index, ref EffectSpawnComponent effectComp, [ReadOnly] ref Translation posComp) {
-            if (Entity.Null == effectComp.prefab) {
-                return;
-            }
+            cmdBuf.RemoveComponent<EffectSpawnComponent>(index, entity);
+            cmdBuf.AddComponent(index, entity, new LifeCycleComponent() {
+                spawnEffect = Entity.Null,
+                destroyEffect = Entity.Null,
+                lifetime = 0.0f,
+                duration = 0.0f,
+            });
 
             var effectEntity = cmdBuf.Instantiate(index, effectComp.prefab);
             cmdBuf.SetComponent(index, effectEntity, posComp);
-            cmdBuf.AddComponent<EffectSpawnExistComponent>(index, entity);
             cmdBuf.AddComponent(index, effectEntity, new LifeCycleComponent() {
                 spawnEffect = Entity.Null,
                 destroyEffect = Entity.Null,
-                lifetime = 0.4f,
-                duration = 0.0f,
+                lifetime = effectComp.lifetime,
+                duration = effectComp.duration,
             });
         }
     }
@@ -41,7 +42,6 @@ public class EffectSpawnSystem : JobComponentSystem {
         var job = new EffectSpawnSystemJob() {
             cmdBuf = _cmdSystem.CreateCommandBuffer().ToConcurrent()
         };
-
         var handle = job.Schedule(this, inputDependencies);
         _cmdSystem.AddJobHandleForProducer(handle);
 

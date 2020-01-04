@@ -35,6 +35,8 @@ public class InventorySystem : ComponentSystem {
         if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
             return;
         }
+
+        // TODO : 임시(동시 접근 체크해봐야할듯)
         if (BehaviorState.HasState(playerComp, BehaviorState.panic)) {
             return;
         }

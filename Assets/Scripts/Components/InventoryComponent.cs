@@ -38,21 +38,18 @@ public struct InventoryComponent : IComponentData {
 
     public void SetSlot1(Int64 inID, ItemPresetData inData) {
         item1.id = inID;
-        item1.madness = inData.madness;
         item1.addedTime = DateTime.UtcNow.Ticks;
     }
 
 
     public void SetSlot2(Int64 inID, ItemPresetData inData) {
         item2.id = inID;
-        item2.madness = inData.madness;
         item2.addedTime = DateTime.UtcNow.Ticks;
     }
 
 
     public void SetSlot3(Int64 inID, ItemPresetData inData) {
         item3.id = inID;
-        item3.madness = inData.madness;
         item3.addedTime = DateTime.UtcNow.Ticks;
     }
 }

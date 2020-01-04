@@ -21,7 +21,7 @@ public class MadnessSystem : ComponentSystem {
                 playerEntity = e;
             });
 
-            var statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(playerEntity);
+            var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
 
             passiveMadnessComp.ElapsedTickTime += deltaTime;
 
@@ -42,7 +42,7 @@ public class MadnessSystem : ComponentSystem {
                 }
             }
 
-            EntityManager.SetComponentData<AvatarStatusComponent>(playerEntity, statusComp);
+            EntityManager.SetComponentData<PlayerStatusComponent>(playerEntity, statusComp);
 
             if (finished) {
                 EntityManager.RemoveComponent<PassiveMadnessComponent>(entity);
@@ -51,7 +51,7 @@ public class MadnessSystem : ComponentSystem {
             }
         });
 
-        Entities.ForEach((Entity playerEntity, ref AvatarStatusComponent statusComp, ref PlayerComponent playerComp) => {
+        Entities.ForEach((Entity playerEntity, ref PlayerStatusComponent statusComp, ref PlayerComponent playerComp) => {
             // 액티브
             if (EntityManager.HasComponent<MadnessComponent>(playerEntity)) {
                 var madnessComp = EntityManager.GetComponentData<MadnessComponent>(playerEntity);

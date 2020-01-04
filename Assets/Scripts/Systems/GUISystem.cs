@@ -53,8 +53,8 @@ public class GUISystem : ComponentSystem {
         Vector3 convert2DPos = Camera.main.WorldToScreenPoint(playerPos.Value);
 
         // panic check
-        if (EntityManager.HasComponent<AvatarStatusComponent>(_playerEntity)) {
-            AvatarStatusComponent avatarStatusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
+        if (EntityManager.HasComponent<PlayerStatusComponent>(_playerEntity)) {
+            PlayerStatusComponent avatarStatusComp = EntityManager.GetComponentData<PlayerStatusComponent>(_playerEntity);
             if(avatarStatusComp.InPanic) {
                 bubbleMassage = "#$%^";
             }
@@ -69,7 +69,7 @@ public class GUISystem : ComponentSystem {
 
 
     private void UpdateGaugeUI() {
-        AvatarStatusComponent statusComp = EntityManager.GetComponentData<AvatarStatusComponent>(_playerEntity);
+        PlayerStatusComponent statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(_playerEntity);
         _guiPreset.SetMadness(statusComp.madness / statusComp.maxMadness);
     }
 

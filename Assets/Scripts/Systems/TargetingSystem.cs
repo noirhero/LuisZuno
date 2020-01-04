@@ -21,10 +21,19 @@ public class TargetingSystem : ComponentSystem {
             var lastNearestDistance = float.PositiveInfinity;
             var playerComp = EntityManager.GetComponentData<PlayerComponent>(playerEntity);
             var playerPos = EntityManager.GetComponentData<Translation>(playerEntity).Value;
+            var playerStatus = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
 
             Entities.WithNone<PlayerComponent>().ForEach((Entity targetEntity) => {
                 if (false == EntityManager.HasComponent<ReactiveComponent>(targetEntity)) {
                     return;
+                }
+
+                // compare each status
+                if (EntityManager.HasComponent<PropStatusComponent>(targetEntity)) {
+                    var targetStatus = EntityManager.GetComponentData<PropStatusComponent>(targetEntity);
+
+                    if (playerStatus.search < targetStatus.search)
+                        return;
                 }
 
                 var targetPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;

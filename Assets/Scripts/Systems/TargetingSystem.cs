@@ -6,11 +6,6 @@ using Unity.Entities;
 using Unity.Mathematics;
 
 public class TargetingSystem : ComponentSystem {
-    protected override void OnCreate() {
-        Enabled = false;
-    }
-
-
     protected override void OnUpdate() {
         Entities.WithAll<PlayerComponent, TargetingComponent>().ForEach((Entity playerEntity) => {
             if (EntityManager.HasComponent<MovementComponent>(playerEntity)) {

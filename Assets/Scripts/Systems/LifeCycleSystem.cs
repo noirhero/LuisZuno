@@ -13,7 +13,6 @@ public class LifeCycleSystem : JobComponentSystem {
 
     protected override void OnCreate() {
         _cmdSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
-        Enabled = false;
     }
 
 

@@ -12,7 +12,6 @@ public class EffectSpawnSystem : JobComponentSystem {
 
     protected override void OnCreate() {
         _cmdSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
-        Enabled = false;
     }
     
     private struct EffectSpawnSystemJob : IJobForEachWithEntity<EffectSpawnComponent, Translation> {

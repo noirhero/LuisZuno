@@ -5,11 +5,6 @@ using Unity.Entities;
 using GlobalDefine;
 
 public class PanicSystem : ComponentSystem {
-
-    protected override void OnCreate() {
-        Enabled = false;
-    }
-
     protected void GetMadness(Entity playerEntity, ref PanicComponent panicComp) {
         bool shouldGetMadness = (panicComp.madness > 0);
         if (shouldGetMadness) {

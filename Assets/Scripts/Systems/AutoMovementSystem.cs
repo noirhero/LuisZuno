@@ -8,11 +8,6 @@ using GlobalDefine;
 
 [UpdateAfter(typeof(MovementSystem))]
 public class AutoMovementSystem : ComponentSystem {
-    protected override void OnCreate() {
-        Enabled = false;
-    }
-
-
     protected void OnUpdate_Velocity() {
         Entities.WithAll<VelocityComponent>().ForEach((Entity entity, ref Translation posComp) => {
             var velocityComp = EntityManager.GetComponentData<VelocityComponent>(entity);
@@ -48,6 +43,11 @@ public class AutoMovementSystem : ComponentSystem {
             // arrived !
             var at = targetPos.x - playerPos.Value.x;
             if (0.5f >= math.abs(at)) {
+                // 스테이지 종료
+                if (EntityManager.HasComponent<StageClearComponent>(targetEntity)) {
+                    EntityManager.AddComponentData<GameClearComponent>(playerEntity, new GameClearComponent());
+                }
+
                 // 벽꿍
                 if (EntityManager.HasComponent<TurningComponent>(targetEntity)) {
                     EntityManager.AddComponentData(playerEntity, new TargetingComponent());

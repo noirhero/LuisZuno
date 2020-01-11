@@ -5,12 +5,6 @@ using Unity.Entities;
 using GlobalDefine;
 
 public class SearchingSystem : ComponentSystem {
-
-    protected override void OnCreate() {
-        Enabled = false;
-    }
-
-
     protected override void OnUpdate() {
         Entities.ForEach((Entity playerEntity, ref SearchingComponent searchingComp, ref PlayerComponent playerComp) => {
             // initialize animation

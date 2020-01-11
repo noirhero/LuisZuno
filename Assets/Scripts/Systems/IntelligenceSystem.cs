@@ -5,11 +5,6 @@ using Unity.Transforms;
 using GlobalDefine;
 
 public class IntelligenceSystem : ComponentSystem {
-    protected override void OnCreate() {
-        Enabled = false;
-    }
-
-
     protected override void OnUpdate() {
 
         Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref IntelligenceComponent intelComp) => {

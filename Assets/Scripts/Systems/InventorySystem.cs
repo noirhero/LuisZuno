@@ -9,18 +9,14 @@ public class InventorySystem : ComponentSystem {
     private Entity _playerEntity = Entity.Null;
     private InventoryComponent _inventoryComp;
 
-
     protected override void OnStartRunning() {
-        Entities.ForEach((TablePresetComponent presetComp) => {
-            _tablePreset = presetComp.preset;
-        });
+        Entities.ForEach((TablePresetComponent presetComp) => { _tablePreset = presetComp.preset; });
 
         Entities.WithAll<PlayerComponent>().ForEach((Entity entity, ref InventoryComponent inventoryComp) => {
             _playerEntity = entity;
             _inventoryComp = inventoryComp;
         });
     }
-
 
     protected override void OnUpdate() {
         if (_playerEntity.Equals(Entity.Null)) {
@@ -33,11 +29,6 @@ public class InventorySystem : ComponentSystem {
 
         var playerComp = EntityManager.GetComponentData<PlayerComponent>(_playerEntity);
         if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
-            return;
-        }
-
-        // TODO : 임시(동시 접근 체크해봐야할듯)
-        if (BehaviorState.HasState(playerComp, BehaviorState.panic)) {
             return;
         }
 
@@ -64,12 +55,12 @@ public class InventorySystem : ComponentSystem {
         }
         else {
             // condition - time
-            if ((_inventoryComp.item1.addedTime < _inventoryComp.item2.addedTime) && 
+            if ((_inventoryComp.item1.addedTime < _inventoryComp.item2.addedTime) &&
                 (_inventoryComp.item1.addedTime < _inventoryComp.item3.addedTime)) {
-                    slotIndex = 1;
+                slotIndex = 1;
             }
             else if (_inventoryComp.item2.addedTime < _inventoryComp.item3.addedTime) {
-                    slotIndex = 2;
+                slotIndex = 2;
             }
             else {
                 slotIndex = 3;
@@ -80,11 +71,14 @@ public class InventorySystem : ComponentSystem {
         if (_tablePreset.itemDatas.TryGetValue(pendingItemID, out data)) {
             switch (slotIndex) {
                 case 1:
-                    _inventoryComp.SetSlot1(pendingItemID, data); break;
+                    _inventoryComp.SetSlot1(pendingItemID, data);
+                    break;
                 case 2:
-                    _inventoryComp.SetSlot2(pendingItemID, data); break;
+                    _inventoryComp.SetSlot2(pendingItemID, data);
+                    break;
                 case 3:
-                    _inventoryComp.SetSlot3(pendingItemID, data); break;
+                    _inventoryComp.SetSlot3(pendingItemID, data);
+                    break;
             }
         }
 

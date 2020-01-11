@@ -67,6 +67,15 @@ namespace GlobalDefine {
             });
             return true;
         }
+        public static bool SetLifeCycle(ref Entity inEntity, float inLifeTime, ref Entity inSpawnEffect, ref Entity inDestroyEffect) {
+            World.Active.EntityManager.AddComponentData(inEntity, new LifeCycleComponent() {
+                spawnEffect = inSpawnEffect,
+                destroyEffect = inDestroyEffect,
+                lifetime = inLifeTime,
+                duration = 0.0f,
+            });
+            return true;
+        }
     }
 
     public static class BehaviorState {

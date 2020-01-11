@@ -43,10 +43,10 @@ public class InventorySystem : ComponentSystem {
 
         PendingItemComponent pendingItemComp = EntityManager.GetComponentData<PendingItemComponent>(_playerEntity);
         Int64 pendingItemID = pendingItemComp.pendingItemID;
+        EntityManager.RemoveComponent<PendingItemComponent>(_playerEntity);
         if (false == Utility.IsValid(pendingItemID)) {
             return;
         }
-        EntityManager.RemoveComponent<PendingItemComponent>(_playerEntity);
 
         playerComp.currentBehaviors ^= BehaviorState.pendingItem;
         EntityManager.SetComponentData<PlayerComponent>(_playerEntity, playerComp);

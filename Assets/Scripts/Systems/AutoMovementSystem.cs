@@ -48,6 +48,14 @@ public class AutoMovementSystem : ComponentSystem {
                     EntityManager.AddComponentData<GameClearComponent>(playerEntity, new GameClearComponent());
                 }
 
+                // 위치 변경
+                if (EntityManager.HasComponent<TeleportInfoComponent>(targetEntity)) {
+
+                    var teleportInfoComp = EntityManager.GetComponentData<TeleportInfoComponent>(targetEntity);
+                    EntityManager.RemoveComponent<TeleportInfoComponent>(targetEntity);
+                    EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref teleportInfoComp));
+                }
+
                 // 벽꿍
                 if (EntityManager.HasComponent<TurningComponent>(targetEntity)) {
                     EntityManager.AddComponentData(playerEntity, new TargetingComponent());

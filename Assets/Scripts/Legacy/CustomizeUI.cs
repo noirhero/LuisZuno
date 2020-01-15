@@ -40,6 +40,8 @@ public class CustomizeUI : MonoBehaviour {
     private bool IsPlayerEntityHasCustomizeComponent() {
         return _EntityMng.HasComponent<CustomizeComponent>(_playerEntity);
     }
+
+
     void Start() {
         decision.SetActive(false);
 
@@ -63,6 +65,14 @@ public class CustomizeUI : MonoBehaviour {
     }
 
 
+    void Update() {
+        
+        if (Input.GetKey(KeyCode.P)) {
+            OnSelectedInConfirm();
+        }
+    }
+
+
     public void OnSelectedInBackground() {
         foreach (var toggle in backgroundGroup.ActiveToggles()) {
             backgroundText.text = toggle.name;
@@ -77,6 +87,7 @@ public class CustomizeUI : MonoBehaviour {
             break;
         }
     }
+
 
     public void OnSelectedInValues() {
         foreach (var toggle in valuesGroup.ActiveToggles()) {

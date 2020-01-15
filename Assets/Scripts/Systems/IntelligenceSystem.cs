@@ -74,7 +74,7 @@ public class IntelligenceSystem : ComponentSystem {
             }
 
             // Teleport
-            bool shouldTeleport = (EntityManager.HasComponent<EntitySpawnInfoComponent>(targetEntity)) && (false == BehaviorState.HasState(playerComp, BehaviorState.teleport));
+            bool shouldTeleport = (EntityManager.HasComponent<TeleportInfoComponent>(targetEntity)) && (false == BehaviorState.HasState(playerComp, BehaviorState.teleport));
             if (shouldTeleport) {
                 var teleportInfo = EntityManager.GetComponentData<TeleportInfoComponent>(targetEntity);
                 EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref teleportInfo));

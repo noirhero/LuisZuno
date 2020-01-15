@@ -1,10 +1,8 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved
 
-using UnityEngine;
 using Unity.Transforms;
 using Unity.Entities;
 using Unity.Mathematics;
-using GlobalDefine;
 
 public class CameraSystem : ComponentSystem {
     protected override void OnUpdate() {

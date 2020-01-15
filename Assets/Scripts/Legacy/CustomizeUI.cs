@@ -66,7 +66,7 @@ public class CustomizeUI : MonoBehaviour {
 
     void Update() {
         
-        if (Input.GetKey(KeyCode.P)) {
+        if (Input.GetKey(KeyCode.Escape)) {
             OnSelectedInConfirm();
         }
     }

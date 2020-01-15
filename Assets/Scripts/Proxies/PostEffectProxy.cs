@@ -12,8 +12,8 @@ public class PostEffectProxy : MonoBehaviour {
             return;
         }
 
-        var postEffectEntity = World.Active.EntityManager.CreateEntity();
-        World.Active.EntityManager.AddSharedComponentData(postEffectEntity, new PostEffectPresetComponent() {
+        var postEffectEntity = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntity();
+        World.DefaultGameObjectInjectionWorld.EntityManager.AddSharedComponentData(postEffectEntity, new PostEffectPresetComponent() {
             volume = postProcessVolume
         });
     }

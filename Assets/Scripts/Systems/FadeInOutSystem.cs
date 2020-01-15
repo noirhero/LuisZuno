@@ -34,7 +34,7 @@ public class FadeInOutSystem : ComponentSystem {
         Entities.ForEach((Entity entity) => {
             if (EntityManager.HasComponent<FadeInComponent>(entity)) {
                 var fadeInComp = EntityManager.GetComponentData<FadeInComponent>(entity);
-                fadeInComp.elapsedTime += Time.deltaTime;
+                fadeInComp.elapsedTime += Time.DeltaTime;
                 EntityManager.SetComponentData<FadeInComponent>(entity, fadeInComp);
 
                 if (fadeInComp.time < fadeInComp.elapsedTime) {
@@ -48,7 +48,7 @@ public class FadeInOutSystem : ComponentSystem {
             }
             else if (EntityManager.HasComponent<FadeOutComponent>(entity)) {
                 var fadeOutComp = EntityManager.GetComponentData<FadeOutComponent>(entity);
-                fadeOutComp.elapsedTime += Time.deltaTime;
+                fadeOutComp.elapsedTime += Time.DeltaTime;
                 EntityManager.SetComponentData<FadeOutComponent>(entity, fadeOutComp);
 
                 if (fadeOutComp.time < fadeOutComp.elapsedTime) {

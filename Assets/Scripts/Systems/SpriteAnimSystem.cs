@@ -5,7 +5,7 @@ using Unity.Entities;
 
 public class SpriteAnimSystem : ComponentSystem {
     protected override void OnUpdate() {
-        var deltaTime = Time.deltaTime;
+        var deltaTime = Time.DeltaTime;
 
         Entities.ForEach((SpritePresetComponent presetComp, ref SpriteAnimComponent animComp) => {
             if (false == presetComp.preset.datas.TryGetValue(animComp.nameHash, out var presetData)) {

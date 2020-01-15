@@ -11,7 +11,7 @@ public class AutoMovementSystem : ComponentSystem {
     protected void OnUpdate_Velocity() {
         Entities.WithAll<VelocityComponent>().ForEach((Entity entity, ref Translation posComp) => {
             var velocityComp = EntityManager.GetComponentData<VelocityComponent>(entity);
-            posComp.Value.x += velocityComp.velocity * Time.deltaTime;
+            posComp.Value.x += velocityComp.velocity * Time.DeltaTime;
         });
      }
 
@@ -70,7 +70,7 @@ public class AutoMovementSystem : ComponentSystem {
             }
 
             //var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
-            playerPos.Value.x += moveComp.value.x * Time.deltaTime;
+            playerPos.Value.x += moveComp.value.x * Time.DeltaTime;
         });
     }
 }

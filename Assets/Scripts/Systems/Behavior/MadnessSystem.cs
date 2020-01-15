@@ -6,7 +6,7 @@ using GlobalDefine;
 
 public class MadnessSystem : ComponentSystem {
     protected override void OnUpdate() {
-        var deltaTime = Time.deltaTime;
+        var deltaTime = Time.DeltaTime;
 
         // 패시브
         Entities.ForEach((Entity entity, ref PassiveMadnessComponent passiveMadnessComp) => {

@@ -12,7 +12,7 @@ public class SearchingSystem : ComponentSystem {
                 playerComp.currentAnim = searchingComp.searchingAnim;
             }
 
-            searchingComp.elapsedSearchingTime += Time.deltaTime;
+            searchingComp.elapsedSearchingTime += Time.DeltaTime;
             if (searchingComp.elapsedSearchingTime >= searchingComp.searchingTime) {
                 EntityManager.RemoveComponent<SearchingComponent>(playerEntity);
                 playerComp.currentBehaviors ^= BehaviorState.searching;

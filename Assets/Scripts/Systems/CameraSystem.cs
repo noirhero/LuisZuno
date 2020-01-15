@@ -13,7 +13,7 @@ public class CameraSystem : ComponentSystem {
             var currentPosX = presetComp.myTransform.position.x;
 
             Entities.WithAll<PlayerComponent>().ForEach((Entity entity, ref Translation pos) => {
-                var velocity = (currentPosX / pos.Value.x) * Time.deltaTime;
+                var velocity = (currentPosX / pos.Value.x) * Time.DeltaTime;
                 desiredPos.x = math.lerp(currentPosX, pos.Value.x, velocity);
             });
             presetComp.myTransform.position = desiredPos;

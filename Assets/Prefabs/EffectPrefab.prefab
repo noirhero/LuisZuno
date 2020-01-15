@@ -56,7 +56,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 1
+      isExpanded: 0
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -71,28 +71,26 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 1
-    _keyValues: 21040000
-    _keys: 21040000
+    isExpanded: 0
+    _keyValues: 8f010000
+    _keys: 8f010000
     _values:
-    - texture: {fileID: 2800000, guid: 05aaa1889a1a3cf4d85bac531df1bdae, type: 3}
-      length: 0.5
+    - texture: {fileID: 2800000, guid: 51b3bffa967bfeb42ab2781c12216dc6, type: 3}
+      length: 0.33333334
       frameRate: 0.083333336
       scale:
-        x: 0.39
-        y: 0.48999998
+        x: 0.28
+        y: 0.17
         z: 1
       posOffset:
         x: 0
-        y: 0.24499999
+        y: 0.085
         z: 0
       rects:
-      - {x: 0.3046875, y: 0.3828125, z: 0, w: 0.6171875}
-      - {x: 0.3046875, y: 0.3828125, z: 0.3046875, w: 0.6171875}
-      - {x: 0.3046875, y: 0.3828125, z: 0.609375, w: 0.6171875}
-      - {x: 0.3046875, y: 0.3828125, z: 0, w: 0.234375}
-      - {x: 0.3046875, y: 0.3828125, z: 0.3046875, w: 0.234375}
-      - {x: 0.3046875, y: 0.3828125, z: 0.609375, w: 0.234375}
+      - {x: 0.5, y: 0.5, z: 0, w: 0.5}
+      - {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+      - {x: 0.5, y: 0.5, z: 0, w: 0}
+      - {x: 0.5, y: 0.5, z: 0.5, w: 0}
 --- !u!114 &3080223846947227105
 MonoBehaviour:
   m_ObjectHideFlags: 0

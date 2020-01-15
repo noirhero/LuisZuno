@@ -26,11 +26,10 @@ public class CustomizeUI : MonoBehaviour {
 
     private Entity _playerEntity = Entity.Null;
     private EntityManager _cachedEntityMng;
-
     private EntityManager _EntityMng {
         get {
-            if (World.Active.EntityManager != _cachedEntityMng) {
-                _cachedEntityMng = World.Active.EntityManager;
+            if (World.DefaultGameObjectInjectionWorld.EntityManager != _cachedEntityMng) {
+                _cachedEntityMng = World.DefaultGameObjectInjectionWorld.EntityManager;
             }
 
             return _cachedEntityMng;

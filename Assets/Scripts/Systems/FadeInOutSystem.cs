@@ -13,7 +13,7 @@ public class FadeInOutSystem : ComponentSystem {
 
         Entities.ForEach((Entity entity) => {
             if (EntityManager.HasComponent<PostEffectPresetComponent>(entity)) {
-                fadeInOutPresetComp = World.Active.EntityManager.GetSharedComponentData<PostEffectPresetComponent>(entity);
+                fadeInOutPresetComp = World.DefaultGameObjectInjectionWorld.EntityManager.GetSharedComponentData<PostEffectPresetComponent>(entity);
             }
         });
 
@@ -26,7 +26,7 @@ public class FadeInOutSystem : ComponentSystem {
         if (null == fadeInOutPresetComp.volume) {
             Entities.ForEach((Entity entity) => {
                 if (EntityManager.HasComponent<PostEffectPresetComponent>(entity)) {
-                    fadeInOutPresetComp = World.Active.EntityManager.GetSharedComponentData<PostEffectPresetComponent>(entity);
+                    fadeInOutPresetComp = World.DefaultGameObjectInjectionWorld.EntityManager.GetSharedComponentData<PostEffectPresetComponent>(entity);
                 }
             });
         }

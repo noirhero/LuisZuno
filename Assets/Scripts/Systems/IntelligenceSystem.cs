@@ -73,6 +73,14 @@ public class IntelligenceSystem : ComponentSystem {
                 playerComp.currentBehaviors |= BehaviorState.spawning;
             }
 
+            // Teleport
+            bool shouldTeleport = (EntityManager.HasComponent<EntitySpawnInfoComponent>(targetEntity)) && (false == BehaviorState.HasState(playerComp, BehaviorState.teleport));
+            if (shouldTeleport) {
+                var teleportInfo = EntityManager.GetComponentData<TeleportInfoComponent>(targetEntity);
+                EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref teleportInfo));
+                playerComp.currentBehaviors |= BehaviorState.teleport;
+            }
+
             if (playerComp.currentBehaviors > 0) {
                 intelComp.isWaitingForOtherSystems = true;
             }

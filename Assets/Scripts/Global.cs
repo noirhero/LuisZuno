@@ -83,6 +83,7 @@ namespace GlobalDefine {
         public const int panic = 0x2;
         public const int pendingItem = 0x4;
         public const int spawning = 0x8;
+        public const int teleport = 0x16;
 
         public static bool HasState(PlayerComponent playerComp, int compareState) { return ((playerComp.currentBehaviors & compareState) != 0); }
     }

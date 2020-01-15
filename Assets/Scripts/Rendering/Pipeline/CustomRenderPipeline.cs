@@ -40,7 +40,7 @@ public class CustomRenderPipeline : RenderPipeline {
         BeginFrameRendering(context, cameras);
 
         foreach (var camera in cameras) {
-            BeginCameraRendering(camera);
+            BeginCameraRendering(context, camera);
 
             if (false == camera.TryGetCullingParameters(out _cullParam)) {
                 continue;

@@ -73,6 +73,9 @@ public class GameSystem : ComponentSystem {
             else if (system.GetType() == typeof(MadnessSystem)) {
                 system.Enabled = inEnable;
             }
+            else if (system.GetType() == typeof(FadeInOutSystem)) {
+                system.Enabled = inEnable;
+            }
         }
     }
 }

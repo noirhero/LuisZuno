@@ -16,6 +16,5 @@ public class PlayerProxy : EntityProxy {
         dstManager.AddComponentData(entity, new PlayerStatusComponent(ref status));
         dstManager.AddComponentData(entity, new InventoryComponent(defaultInventory));
         dstManager.AddComponentData(entity, new TargetingComponent());
-        dstManager.AddComponentData(entity, new FadeInComponent(5.0f));
     }
 }

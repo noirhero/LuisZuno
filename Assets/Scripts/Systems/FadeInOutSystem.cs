@@ -9,7 +9,7 @@ public class FadeInOutSystem : ComponentSystem {
     FloatParameter valueParam;
 
     protected override void OnCreate() {
-        Enabled = true;
+        Enabled = false;
 
         Entities.ForEach((Entity entity) => {
             if (EntityManager.HasComponent<PostEffectPresetComponent>(entity)) {
@@ -63,8 +63,7 @@ public class FadeInOutSystem : ComponentSystem {
 
             if (fadeInOutPresetComp.volume && fadeInOutPresetComp.volume.profile.HasSettings<FadeInOutEffect>()) {
                 var fadeInOutEffect = fadeInOutPresetComp.volume.profile.GetSetting<FadeInOutEffect>();
-                fadeInOutEffect.value = valueParam;
-                //Debug.Log("fadeInOutEffect.value : " + fadeInOutEffect.value.value);
+                fadeInOutEffect.value.value = valueParam.value;
             }
         });
     }

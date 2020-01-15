@@ -46,7 +46,7 @@ public class PanicSystem : ComponentSystem {
                 GetMadness(playerEntity, ref panicComp);
             }
 
-            panicComp.elapsedPanicTime += Time.deltaTime;
+            panicComp.elapsedPanicTime += Time.DeltaTime;
             if (panicComp.elapsedPanicTime >= panicComp.panicTime) {
                 EntityManager.RemoveComponent<PanicComponent>(playerEntity);
                 playerComp.currentBehaviors ^= BehaviorState.panic;

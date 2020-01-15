@@ -40,7 +40,7 @@ public class MovementSystem : JobComponentSystem {
 
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
         var job = new MovementSystemJob {
-            deltaTime = Time.deltaTime
+            deltaTime = Time.DeltaTime
         };
 
         return job.Schedule(this, inputDependencies);

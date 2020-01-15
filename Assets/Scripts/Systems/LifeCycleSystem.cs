@@ -43,7 +43,7 @@ public class LifeCycleSystem : JobComponentSystem {
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
         var job = new EntityLifeCycleSystem() {
             cmdBuf = _cmdSystem.CreateCommandBuffer().ToConcurrent(),
-            deltaTime = Time.deltaTime,
+            deltaTime = Time.DeltaTime,
         };
 
         var handle = job.Schedule(this, inputDependencies);

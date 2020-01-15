@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -36,6 +35,9 @@ namespace SuperTiled2Unity.Editor
 
         [ReadOnly]
         public bool m_IsInternal;
+
+        [ReadOnly]
+        public float m_PixelsPerUnit;
 
         [ReadOnly]
         public bool m_IsImageCollection;

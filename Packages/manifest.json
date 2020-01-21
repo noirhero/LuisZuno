@@ -1,8 +1,7 @@
 {
   "dependencies": {
-    "com.unity.entities": "0.4.0-preview.10",
+    "com.unity.entities": "0.5.0-preview.17",
     "com.unity.ide.rider": "1.1.4",
-    "com.unity.inputsystem": "1.0.0-preview.3",
     "com.unity.postprocessing": "2.2.2",
     "com.unity.render-pipelines.core": "7.1.7",
     "com.unity.ugui": "1.0.0",

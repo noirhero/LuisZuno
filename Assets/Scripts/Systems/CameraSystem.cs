@@ -2,19 +2,22 @@
 
 using Unity.Transforms;
 using Unity.Entities;
-using Unity.Mathematics;
+using UnityEngine;
 
 public class CameraSystem : ComponentSystem {
-    protected override void OnUpdate() {
-        Entities.ForEach((CameraPresetComponent presetComp, ref CameraComopnent cameraComp) => {
-            var desiredPos = presetComp.defaultPos;
-            var currentPosX = presetComp.myTransform.position.x;
+    private Transform _cameraTransform;
+    protected override void OnStartRunning() {
+        _cameraTransform = Camera.main?.transform;
+    }
 
-            Entities.WithAll<PlayerComponent>().ForEach((Entity entity, ref Translation pos) => {
-                var velocity = (currentPosX / pos.Value.x) * Time.DeltaTime;
-                desiredPos.x = math.lerp(currentPosX, pos.Value.x, velocity);
+    protected override void OnUpdate() {
+        var deltaTime = Time.DeltaTime;
+        Entities
+            .WithAll<PlayerComponent>()
+            .ForEach((ref Translation pos) => {
+                var newPos = _cameraTransform.position;
+                newPos.x += (pos.Value.x - newPos.x) * deltaTime;
+                _cameraTransform.position = newPos;
             });
-            presetComp.myTransform.position = desiredPos;
-        });
     }
 }

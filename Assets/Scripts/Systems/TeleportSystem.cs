@@ -28,11 +28,6 @@ public class TeleportSystem : ComponentSystem {
                 // player
                 pos.Value = desiredPos;
 
-                // camera
-                Entities.ForEach((CameraPresetComponent presetComp, ref CameraComopnent cameraComp) => {
-                    presetComp.myTransform.position = desiredPos;
-                });
-
                 // end
                 EntityManager.RemoveComponent<TeleportComponent>(playerEntity);
                 playerComp.currentBehaviors ^= BehaviorState.teleport;

@@ -1,7 +1,7 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
-using System;
 using Unity.Entities;
+
 public class GameSystem : ComponentSystem {
     private Entity _playerEntity = Entity.Null;
 
@@ -44,9 +44,6 @@ public class GameSystem : ComponentSystem {
                 system.Enabled = inEnable;
             }
             else if (system.GetType() == typeof(AutoMovementSystem)) {
-                system.Enabled = inEnable;
-            }
-            else if (system.GetType() == typeof(MovementSystem)) {
                 system.Enabled = inEnable;
             }
             else if (system.GetType() == typeof(IntelligenceSystem)) {

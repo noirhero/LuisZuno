@@ -7,7 +7,6 @@ using UnityEngine;
 using GlobalDefine;
 using Unity.Collections;
 
-[UpdateAfter(typeof(MovementSystem))]
 public class AutoMovementSystem : ComponentSystem {
     private EntityQuery _nonePlayerQuery;
     protected override void OnCreate() {

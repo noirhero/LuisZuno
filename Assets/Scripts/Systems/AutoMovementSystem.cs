@@ -5,13 +5,22 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 using GlobalDefine;
+using Unity.Collections;
 
 [UpdateAfter(typeof(MovementSystem))]
 public class AutoMovementSystem : ComponentSystem {
-    protected void OnUpdate_Velocity() {
-        Entities.WithAll<VelocityComponent>().ForEach((Entity entity, ref Translation posComp) => {
-            var velocityComp = EntityManager.GetComponentData<VelocityComponent>(entity);
-            posComp.Value.x += velocityComp.velocity * Time.DeltaTime;
+    private EntityQuery _nonePlayerQuery;
+    protected override void OnCreate() {
+        _nonePlayerQuery = GetEntityQuery(new EntityQueryDesc() {
+            None = new ComponentType[] {
+                typeof(PlayerComponent)
+            }
+        });
+    }
+
+    private void OnUpdate_Velocity() {
+        Entities.ForEach((Entity entity, ref Translation posComp, ref VelocityComponent velComp) => {
+            posComp.Value.x += velComp.velocity * Time.DeltaTime;
         });
      }
 
@@ -19,23 +28,26 @@ public class AutoMovementSystem : ComponentSystem {
     protected override void OnUpdate() {
         OnUpdate_Velocity();
 
-        Entities.WithAll<MovementComponent>(). ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref Translation playerPos) => {
+        Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref Translation playerPos, ref MovementComponent moveComp) => {
             // initialize
             if (playerComp.currentAnim != AnimationType.Walk) {
                 playerComp.currentAnim = AnimationType.Walk;
             }
 
-            var moveComp = EntityManager.GetComponentData<MovementComponent>(playerEntity);
-
             var targetEntity = Entity.Null;
             var targetPos = float3.zero;
-            Entities.WithNone<PlayerComponent>().ForEach((Entity entity) => {
-                if (moveComp.targetEntityIndex == entity.Index) {
-                    targetEntity = entity;
-                    targetPos = EntityManager.GetComponentData<Translation>(entity).Value;
-                    return;
+
+            var nonePlayerEntities = _nonePlayerQuery.ToEntityArray(Allocator.TempJob);
+            foreach (var entity in nonePlayerEntities) {
+                if (moveComp.targetEntityIndex != entity.Index) {
+                    continue;
                 }
-            });
+
+                targetEntity = entity;
+                targetPos = EntityManager.GetComponentData<Translation>(entity).Value;
+                break;
+            }
+            nonePlayerEntities.Dispose();
 
             // DebugDraw
             Debug.DrawLine(new Vector2(targetPos.x, targetPos.y), new Vector2(playerPos.Value.x, playerPos.Value.y), Color.red);

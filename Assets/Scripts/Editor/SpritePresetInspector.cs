@@ -8,7 +8,7 @@ using UnityEditor;
 
 [CustomEditor(typeof(SpritePreset))]
 [CanEditMultipleObjects]
-public class SpritePresetIncpector : Editor {
+public class SpritePresetInspector : Editor {
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
 

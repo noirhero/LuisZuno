@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -120,6 +121,65 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &99591200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 99591203}
+  - component: {fileID: 99591202}
+  - component: {fileID: 99591201}
+  m_Layer: 0
+  m_Name: SpriteMeshPreset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &99591201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99591200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b968196fe7b5af344a1404962b218c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!114 &99591202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99591200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 0
+--- !u!4 &99591203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99591200}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &123788032
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +272,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 140572404}
+  - component: {fileID: 140572405}
   m_Layer: 0
   m_Name: ManPreset
   m_TagString: Untagged
@@ -231,8 +292,131 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &140572405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140572403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33abdd7c52b13554a8eaf5d0fc0348b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 3785346611751468176, guid: 6da84f7079214de4893e68c7015bfbed, type: 3}
+  - {fileID: 5585313934033079357, guid: 6da84f7079214de4893e68c7015bfbed, type: 3}
+  - {fileID: -1927257860620512126, guid: 6da84f7079214de4893e68c7015bfbed, type: 3}
+  - {fileID: -2320187487769383930, guid: 6da84f7079214de4893e68c7015bfbed, type: 3}
+  datas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues: 7e0100008f0100001e0500006c020000
+    _keys: 7e0100008f0100001e0500006c020000
+    _values:
+    - name: Idle
+      length: 0.4
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: -203240354404265435, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: 861414517179527391, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: 4179347620025215907, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.3
+        end: 0.4
+        texture: {fileID: 4262682419758877389, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+    - name: Walk
+      length: 0.8000001
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: -1016836697139780919, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: -4080305747084251549, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: 558865516167433619, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.3
+        end: 0.4
+        texture: {fileID: -3524514532053061591, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.4
+        end: 0.5
+        texture: {fileID: -2784898502108692302, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.5
+        end: 0.6
+        texture: {fileID: 5358772996296165767, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.6
+        end: 0.70000005
+        texture: {fileID: -8568373475950935303, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.70000005
+        end: 0.8000001
+        texture: {fileID: 3645565186439445573, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+    - name: SomethingDoIt
+      length: 0.3
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: -5053709615932764328, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: -7305736570326834005, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: 5324478386252406633, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+    - name: NyoNyo
+      length: 0.2
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: 4122548568091571540, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: -8397134753792039159, guid: 6da84f7079214de4893e68c7015bfbed,
+          type: 3}
 --- !u!1 &2128241831
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,5 +445,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
-public class NewSpritePresetComponent : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+using System;
+using Unity.Entities;
+
+[Serializable]
+public struct NewSpritePresetComponent : ISharedComponentData, IEquatable<NewSpritePresetComponent> {
+    public NewSpritePreset preset;
+
+    public bool Equals(NewSpritePresetComponent other) {
+        return ReferenceEquals(other.preset, preset);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override int GetHashCode() {
+        return ReferenceEquals(null, preset) ? 0 : preset.GetHashCode();
     }
 }

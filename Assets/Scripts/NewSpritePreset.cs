@@ -27,7 +27,7 @@ public class NewSpritePreset : MonoBehaviour {
     public List<AnimationClip> clips = new List<AnimationClip>();
     public SpriteAnimDataDictionary datas = new SpriteAnimDataDictionary();
 
-    public Texture2D GetFrame(int id, float accumTime) {
+    public Texture2D GetTexture(int id, float accumTime) {
         if (false == datas.TryGetValue(id, out var animData)) {
             Debug.LogError($"Find animation data failed : {id}");
             return null;

@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8745074425327356245}
-  - component: {fileID: 8745074425327356246}
+  - component: {fileID: 2407258817637199254}
   - component: {fileID: 8745074425327356247}
   - component: {fileID: 8745074425327356240}
+  - component: {fileID: 5575636776017683371}
   m_Layer: 0
-  m_Name: RatsPreset
+  m_Name: RatsPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +34,58 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8745074425327356246
+--- !u!212 &2407258817637199254
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745074425327356244}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -3793871465680247041, guid: e64b32e4bc9e7cb43ab6e98b1ee13f11,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.28, y: 0.17}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &8745074425327356247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,13 +94,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 8745074425327356244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 487afbc3e18e65145adabdef0826f2ad, type: 3}
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: f465191987c564b459808e81a9ea7fea, type: 2}
+  ConversionMode: 1
+--- !u!114 &8745074425327356240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745074425327356244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 952d80f28efca1d42a8911aea72caa1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preset: {fileID: 5575636776017683371}
+--- !u!114 &5575636776017683371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8745074425327356244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33abdd7c52b13554a8eaf5d0fc0348b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   clips:
-  - {fileID: 7400000, guid: 089d352fbc7f5ad4788c078493cf5d69, type: 2}
+  - {fileID: -6867898394826439119, guid: e64b32e4bc9e7cb43ab6e98b1ee13f11, type: 3}
   datas:
     reorderableList:
       canAdd: 1
@@ -75,45 +151,22 @@ MonoBehaviour:
     _keyValues: 8f010000
     _keys: 8f010000
     _values:
-    - texture: {fileID: 2800000, guid: 51b3bffa967bfeb42ab2781c12216dc6, type: 3}
-      length: 0.33333334
-      frameRate: 0.083333336
-      scale:
-        x: 0.28
-        y: 0.17
-        z: 1
-      posOffset:
-        x: 0
-        y: 0.085
-        z: 0
-      rects:
-      - {x: 0.5, y: 0.5, z: 0, w: 0.5}
-      - {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-      - {x: 0.5, y: 0.5, z: 0, w: 0}
-      - {x: 0.5, y: 0.5, z: 0.5, w: 0}
---- !u!114 &8745074425327356247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8745074425327356244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ConversionMode: 1
---- !u!114 &8745074425327356240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8745074425327356244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952d80f28efca1d42a8911aea72caa1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  preset: {fileID: 8745074425327356246}
+    - name: Walk
+      length: 0.32
+      timelines:
+      - start: 0
+        end: 0.08
+        texture: {fileID: 2325924288581631024, guid: e64b32e4bc9e7cb43ab6e98b1ee13f11,
+          type: 3}
+      - start: 0.08
+        end: 0.16
+        texture: {fileID: 8535835553660394575, guid: e64b32e4bc9e7cb43ab6e98b1ee13f11,
+          type: 3}
+      - start: 0.16
+        end: 0.24
+        texture: {fileID: 3785037417503518694, guid: e64b32e4bc9e7cb43ab6e98b1ee13f11,
+          type: 3}
+      - start: 0.24
+        end: 0.32
+        texture: {fileID: -2789205585118400888, guid: e64b32e4bc9e7cb43ab6e98b1ee13f11,
+          type: 3}

@@ -1,82 +1,32 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
 using System;
-using System.Text;
+using System.Linq;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Jobs;
-using Unity.Mathematics;
+using Unity.Collections;
 using GlobalDefine;
 
 public class AnimStateSystem : JobComponentSystem {
-    private EntityQuery _group;
     private int[] _animNameHashes;
-
     protected override void OnCreate() {
-        var query = new EntityQueryDesc() {
-            All = new ComponentType[] {
-                typeof(SpriteAnimComponent),
-                typeof(PlayerComponent)
-            },
-            Options = EntityQueryOptions.FilterWriteGroup
-        };
-        _group = GetEntityQuery(query);
-
-        // caching anim information
-        int totalAnimCount = Enum.GetNames(typeof(AnimationType)).Length;
-        _animNameHashes = new int[totalAnimCount];
-
-        foreach (AnimationType type in Enum.GetValues(typeof(AnimationType))) {
-            int nameHash = 0;
-            foreach (var b in Encoding.ASCII.GetBytes(type.ToString())) {
-                nameHash += b;
-            }
-            _animNameHashes[(int)type] = nameHash;
-        }
-    }
-
-    [BurstCompile]
-    struct AnimStateSystemJob : IJobChunk {
-        public ArchetypeChunkComponentType<SpriteAnimComponent> animCompType;
-        public ArchetypeChunkComponentType<PlayerComponent> playerCompType;
-        public int idleNameHash;
-        public int walkNameHash;
-        public int somethingDoItNameHash;
-        public int nyonyoNameHash;
-
-        public void Execute(ArchetypeChunk chunk, int chunkIndex, int firstEntityIndex) {
-            var animations = chunk.GetNativeArray(animCompType);
-            var playerData = chunk.GetNativeArray(playerCompType);
-            var nameHash = idleNameHash;
-
-            for (var i = 0; i < chunk.Count; ++i) {
-                switch (playerData[i].currentAnim) {
-                    case AnimationType.Idle: { nameHash = idleNameHash; } break;
-                    case AnimationType.Walk: { nameHash = walkNameHash; } break;
-                    case AnimationType.SomethingDoIt: { nameHash = somethingDoItNameHash; } break;
-                    case AnimationType.NyoNyo: { nameHash = nyonyoNameHash; } break;
-                }
-            }
-
-            for (var i = 0; i < chunk.Count; ++i) {
-                var animComp = animations[i];
-                if (animComp.nameHash != nameHash) {
-                    animComp.nameHash = nameHash;
-                    animations[i] = animComp;
-                }
-            }
+        var animTypes = Enum.GetValues(typeof(AnimationType));
+        _animNameHashes = new int[animTypes.Length];
+        foreach (AnimationType type in animTypes) {
+            _animNameHashes[(int) type] = type.ToString().Sum(Convert.ToInt32);
         }
     }
 
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
-        var job = new AnimStateSystemJob() {
-            animCompType = GetArchetypeChunkComponentType<SpriteAnimComponent>(),
-            playerCompType = GetArchetypeChunkComponentType<PlayerComponent>(),
-            idleNameHash = _animNameHashes[(int)AnimationType.Idle],
-            walkNameHash = _animNameHashes[(int)AnimationType.Walk],
-            somethingDoItNameHash = _animNameHashes[(int)AnimationType.SomethingDoIt],
-            nyonyoNameHash = _animNameHashes[(int)AnimationType.NyoNyo]
-        };
-        return job.Schedule(_group, inputDependencies);
+        var animNameHashes = new NativeArray<int>(_animNameHashes, Allocator.TempJob);
+        return Entities
+            .WithName("AnimStateSystem")
+            .WithBurst(FloatMode.Default, FloatPrecision.Standard, true)
+            .ForEach((ref SpriteStateComponent state, in PlayerComponent player) => {
+                state.hash = animNameHashes[(int) player.currentAnim];
+            })
+            .WithDeallocateOnJobCompletion(animNameHashes)
+            .Schedule(inputDependencies);
     }
 }

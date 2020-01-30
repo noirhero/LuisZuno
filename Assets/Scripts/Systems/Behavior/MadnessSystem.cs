@@ -2,7 +2,6 @@
 
 using UnityEngine;
 using Unity.Entities;
-using GlobalDefine;
 
 public class MadnessSystem : ComponentSystem {
     protected override void OnUpdate() {
@@ -20,10 +19,7 @@ public class MadnessSystem : ComponentSystem {
 
             passiveMadnessComp.ElapsedTickTime += deltaTime;
 
-            var finished = false;
-            if (passiveMadnessComp.ElapsedDuration >= passiveMadnessComp.duration) {    // 광기에 영향을 주는 총 시간이 지남
-                finished = true;
-            }
+            var finished = passiveMadnessComp.ElapsedDuration >= passiveMadnessComp.duration;
 
             if (passiveMadnessComp.ElapsedTickTime >= passiveMadnessComp.tickTime) {    // 광기 받을 시간이 왔어요
                 passiveMadnessComp.ElapsedDuration += passiveMadnessComp.tickTime;

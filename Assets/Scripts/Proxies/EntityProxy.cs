@@ -31,6 +31,10 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
             Value = spriteScale
         });
 
+        dstManager.AddComponentData(entity, new SpritePivotComponent() {
+            Value = new float3((sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit, 0.0f)
+        }); 
+
         dstManager.AddSharedComponentData(entity, new NewSpritePresetComponent() {
             preset = preset
         });

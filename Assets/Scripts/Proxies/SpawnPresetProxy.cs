@@ -10,7 +10,7 @@ public class SpawnPresetProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public NewSpritePreset preset = null;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        if (null == preset) {
+        if (ReferenceEquals(null, preset)) {
             Debug.LogError("Set preset, now!!!!!!");
             return;
         }
@@ -27,6 +27,10 @@ public class SpawnPresetProxy : MonoBehaviour, IConvertGameObjectToEntity {
         dstManager.AddComponentData(entity, new NonUniformScale() {
             Value = spriteScale
         });
+
+        dstManager.AddComponentData(entity, new SpritePivotComponent() {
+            Value = new float3((sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit, 0.0f)
+        }); 
 
         dstManager.AddSharedComponentData(entity, new NewSpritePresetComponent() {
             preset = preset

@@ -14,10 +14,22 @@ public struct PlayerStatusComponent : IComponentData {
     public float search;        // 아이템을 찾아내는 능력
     public float luck;          // 시나리오 선택 하고 진입시에 몇몇 랜덤 리스폰 영향
     private float _moveSpeed;
+    private float _madnessWeight;
+    private float _searchingWeight;
 
     public float MoveSpeed {
         get => _moveSpeed;
         set => _moveSpeed = value;
+    }
+
+    public float MadnessWeight {
+        get => _madnessWeight;
+        set => _madnessWeight = value;
+    }
+
+    public float SearchingWeight {
+        get => _searchingWeight;
+        set => _searchingWeight = value;
     }
 
     public PlayerStatusComponent(ref PlayerStatusComponent rhs) {
@@ -30,5 +42,7 @@ public struct PlayerStatusComponent : IComponentData {
         search = rhs.search;
         luck = rhs.luck;
         _moveSpeed = 1.0f;
+        _madnessWeight = 1.0f;
+        _searchingWeight = 1.0f;
     }
 }

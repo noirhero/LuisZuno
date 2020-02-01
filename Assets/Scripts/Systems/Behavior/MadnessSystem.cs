@@ -20,9 +20,10 @@ public class MadnessSystem : ComponentSystem {
             passiveMadnessComp.ElapsedTickTime += deltaTime;
 
             var finished = passiveMadnessComp.ElapsedDuration >= passiveMadnessComp.duration;
+            var calculatedTickTime = passiveMadnessComp.tickTime / statusComp.MadnessWeight;
 
-            if (passiveMadnessComp.ElapsedTickTime >= passiveMadnessComp.tickTime) {    // 광기 받을 시간이 왔어요
-                passiveMadnessComp.ElapsedDuration += passiveMadnessComp.tickTime;
+            if (passiveMadnessComp.ElapsedTickTime >= calculatedTickTime) {    // 광기 받을 시간이 왔어요
+                passiveMadnessComp.ElapsedDuration += calculatedTickTime;
                 passiveMadnessComp.ElapsedTickTime = 0.0f;
 
                 statusComp.madness += passiveMadnessComp.value;
@@ -62,7 +63,7 @@ public class MadnessSystem : ComponentSystem {
 
                 madnessComp.elapsedTransitionTime += deltaTime;
 
-                float dest = madnessComp.transitionStartValue + madnessComp.value;
+                float dest = madnessComp.transitionStartValue + (madnessComp.value * statusComp.MadnessWeight);
                 float speed = madnessComp.elapsedTransitionTime / madnessComp.duration;
 
                 statusComp.madness = Mathf.Lerp(madnessComp.transitionStartValue, dest, speed);

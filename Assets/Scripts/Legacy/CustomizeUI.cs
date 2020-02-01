@@ -130,6 +130,19 @@ public class CustomizeUI : MonoBehaviour {
         this.gameObject.SetActive(false);
 
         _EntityMng.AddComponentData<GameStartComponent>(_playerEntity, new GameStartComponent());
+
+        // the player must have these components
+        var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+        var playerStatusComp = _EntityMng.GetComponentData<PlayerStatusComponent>(_playerEntity);
+
+        playerStatusComp.luck += customizeComp.luck * 10.0f;
+        playerStatusComp.agility += customizeComp.agility * 10.0f;
+        playerStatusComp.physical += customizeComp.physical * 10.0f;
+        playerStatusComp.search += customizeComp.search * 10.0f;
+        playerStatusComp.mentality += customizeComp.mentality * 10.0f;
+        _EntityMng.SetComponentData<PlayerStatusComponent>(_playerEntity, playerStatusComp);
+
+        CalcPlayerStatus();
     }
 
 
@@ -255,5 +268,16 @@ public class CustomizeUI : MonoBehaviour {
 
         remainText.text = customizeComp.remain.ToString();
         luckText.text = customizeComp.luck.ToString();
+    }
+
+
+    public void CalcPlayerStatus() {
+        var playerStatusComp = _EntityMng.GetComponentData<PlayerStatusComponent>(_playerEntity);
+
+        playerStatusComp.MoveSpeed = Mathf.Clamp(1.0f + playerStatusComp.agility * 0.005f, 1.0f, 1.5f); // 1배 ~ 1.5배
+        playerStatusComp.MadnessWeight = Mathf.Clamp(1.0f - playerStatusComp.mentality * 0.005f, 0.5f, 1.0f);    // 1배 ~ 0.5배
+        playerStatusComp.SearchingWeight = Mathf.Clamp(1.0f - playerStatusComp.physical * 0.005f, 0.0f, 1.0f);    // 1배 ~ 0.5배
+
+        _EntityMng.SetComponentData<PlayerStatusComponent>(_playerEntity, playerStatusComp);
     }
 }

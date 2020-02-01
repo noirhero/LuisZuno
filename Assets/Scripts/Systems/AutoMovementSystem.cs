@@ -73,15 +73,10 @@ public class AutoMovementSystem : ComponentSystem {
                 return;
             }
 
-            if (0.0f > playerComp.playerDirection) {
-                moveComp.value.x = -1.0f;
-            }
-            else {
-                moveComp.value.x = 1.0f;
-            }
+            moveComp.value.x = (0.0f > playerComp.playerDirection) ? -1.0f : 1.0f;
 
-            //var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
-            playerPos.Value.x += moveComp.value.x * Time.DeltaTime;
+            var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
+            playerPos.Value.x += moveComp.value.x * Time.DeltaTime * statusComp.MoveSpeed;
         });
     }
 }

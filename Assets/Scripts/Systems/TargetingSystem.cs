@@ -37,16 +37,15 @@ public class TargetingSystem : ComponentSystem {
                 if (0.5f > Mathf.Abs(xDistance)) {
                     return;
                 }
-                
-                var isHeadingForward = (playerComp.playerDirection * xDistance > 0.0f) ? true : false;
+
+                var isHeadingForward = playerComp.playerDirection * xDistance > 0.0f;
                 if (false == isHeadingForward) {
                     return;
                 }
 
-                var distance = Vector2.Distance(new Vector2(targetPos.x, targetPos.y), new Vector2(playerPos.x, playerPos.y));
-                if (Mathf.Abs(distance) < lastNearestDistance) {
+                if (Mathf.Abs(xDistance) < lastNearestDistance) {
                     lastNearestEntityIndex = targetEntity.Index;
-                    lastNearestDistance = Mathf.Abs(distance);
+                    lastNearestDistance = Mathf.Abs(xDistance);
                 }
             });
 

@@ -31,11 +31,14 @@ public class TargetingSystem : ComponentSystem {
                         return;
                 }
 
+                // AutoMovementSystem에서 멈추게 되는 최소 거리 0.5f보다 멀리 있는 오브젝트를 타겟으로 지정
                 var targetPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
                 var xDistance = targetPos.x - playerPos.x;
-
-                // AutoMovementSystem에서 멈추게 되는 최소 거리 0.5f보다 멀리 있는 오브젝트를 타겟으로 지정
-                var isHeadingForward = (playerComp.playerDirection < 0.0f && xDistance < 0.5f) || (playerComp.playerDirection > 0.0f && xDistance > 0.5f);
+                if (0.5f > Mathf.Abs(xDistance)) {
+                    return;
+                }
+                
+                var isHeadingForward = (playerComp.playerDirection * xDistance > 0.0f) ? true : false;
                 if (false == isHeadingForward) {
                     return;
                 }

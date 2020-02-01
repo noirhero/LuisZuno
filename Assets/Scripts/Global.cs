@@ -31,8 +31,8 @@ namespace GlobalDefine {
         public static T ToEnum<T>(string inValue) {
             return (T)Enum.Parse(typeof(T), inValue);
         }
-        public static bool SpawnEffect(int inIndex, ref EntityCommandBuffer.Concurrent inCmdBuf, 
-            [ReadOnly] Entity inPrefabs, float3 inPos) {
+        public static bool SpawnEffect(int inIndex, [ReadOnly] Entity inPrefabs, float3 inPos,
+            in EntityCommandBuffer.Concurrent inCmdBuf) {
             if (Entity.Null == inPrefabs)
                 return false;
 
@@ -47,18 +47,8 @@ namespace GlobalDefine {
             });
             return true;
         }
-        public static bool SetLifeCycle(int inIndex, ref EntityCommandBuffer.Concurrent inCmdBuf, 
-            ref Entity inEntity, float inLifeTime) {
-            inCmdBuf.AddComponent(inIndex, inEntity, new LifeCycleComponent() {
-                spawnEffect = Entity.Null,
-                destroyEffect = Entity.Null,
-                lifetime = inLifeTime,
-                duration = 0.0f,
-            });
-            return true;
-        }
-        public static bool SetLifeCycle(int inIndex, ref EntityCommandBuffer.Concurrent inCmdBuf,
-            ref Entity inEntity, float inLifeTime, ref Entity inSpawnEffect, ref Entity inDestroyEffect) {
+        public static bool SetLifeCycle(int inIndex, in Entity inEntity, float inLifeTime,
+            in Entity inSpawnEffect, in Entity inDestroyEffect, in EntityCommandBuffer.Concurrent inCmdBuf) {
             inCmdBuf.AddComponent(inIndex, inEntity, new LifeCycleComponent() {
                 spawnEffect = inSpawnEffect,
                 destroyEffect = inDestroyEffect,
@@ -67,7 +57,8 @@ namespace GlobalDefine {
             });
             return true;
         }
-        public static bool SetLifeCycle(ref Entity inEntity, float inLifeTime, ref Entity inSpawnEffect, ref Entity inDestroyEffect) {
+        public static bool SetLifeCycle(in Entity inEntity, float inLifeTime, 
+            in Entity inSpawnEffect, in Entity inDestroyEffect) {
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(inEntity, new LifeCycleComponent() {
                 spawnEffect = inSpawnEffect,
                 destroyEffect = inDestroyEffect,

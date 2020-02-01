@@ -1,5 +1,6 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Transforms;
@@ -12,21 +13,22 @@ public class EffectSpawnSystem : JobComponentSystem {
         _cmdSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
     }
 
+
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
         var cmdBuf = _cmdSystem.CreateCommandBuffer().ToConcurrent();
-        var jobHandle = Entities
-            .WithoutBurst()
-            .ForEach((Entity entity, int entityInQueryIndex, ref EffectSpawnComponent effect, in Translation pos) => {
+        return Entities
+            .WithName("EffectSpawnSystem")
+            .WithBurst(FloatMode.Default, FloatPrecision.Standard, true)
+            .ForEach((Entity entity, int entityInQueryIndex, in EffectSpawnComponent effect, in Translation pos) => {
                 cmdBuf.RemoveComponent<EffectSpawnComponent>(entityInQueryIndex, entity);
-                Utility.SetLifeCycle(entityInQueryIndex, ref cmdBuf, ref entity, 0.0f);
+                Utility.SetLifeCycle(entityInQueryIndex, in entity, 0.0f, 
+                    Entity.Null, Entity.Null, in cmdBuf);
 
                 var effectEntity = cmdBuf.Instantiate(entityInQueryIndex, effect.prefab);
                 cmdBuf.SetComponent(entityInQueryIndex, effectEntity, pos);
-                Utility.SetLifeCycle(entityInQueryIndex, ref cmdBuf, ref effectEntity, effect.lifetime);
+                Utility.SetLifeCycle(entityInQueryIndex, in effectEntity, effect.lifetime, 
+                    Entity.Null, Entity.Null, in cmdBuf);
             })
             .Schedule(inputDependencies);
-        _cmdSystem.AddJobHandleForProducer(jobHandle);
-
-        return jobHandle;
     }
 }

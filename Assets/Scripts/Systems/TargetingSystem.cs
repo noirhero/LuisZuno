@@ -32,6 +32,7 @@ public class TargetingSystem : ComponentSystem {
                 }
 
                 var targetPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
+                // 높이 상수로 제한
                 var yDistance = targetPos.y - playerPos.y;
                 if (2.0f < Mathf.Abs(yDistance)) {
                     return;

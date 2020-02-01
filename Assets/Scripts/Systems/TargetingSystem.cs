@@ -3,7 +3,7 @@
 using UnityEngine;
 using Unity.Transforms;
 using Unity.Entities;
-using Unity.Mathematics;
+using GlobalDefine;
 
 public class TargetingSystem : ComponentSystem {
     protected override void OnUpdate() {
@@ -31,8 +31,13 @@ public class TargetingSystem : ComponentSystem {
                         return;
                 }
 
-                // AutoMovementSystem에서 멈추게 되는 최소 거리 0.5f보다 멀리 있는 오브젝트를 타겟으로 지정
                 var targetPos = EntityManager.GetComponentData<Translation>(targetEntity).Value;
+                var yDistance = targetPos.y - playerPos.y;
+                if (2.0f < Mathf.Abs(yDistance)) {
+                    return;
+                }
+
+                // AutoMovementSystem에서 멈추게 되는 최소 거리 0.5f보다 멀리 있는 오브젝트를 타겟으로 지정
                 var xDistance = targetPos.x - playerPos.x;
                 if (0.5f > Mathf.Abs(xDistance)) {
                     return;
@@ -42,11 +47,10 @@ public class TargetingSystem : ComponentSystem {
                 if (false == isHeadingForward) {
                     return;
                 }
-
-                var distance = Vector2.Distance(new Vector2(targetPos.x, targetPos.y), new Vector2(playerPos.x, playerPos.y));
-                if (Mathf.Abs(distance) < lastNearestDistance) {
+                
+                if (Mathf.Abs(xDistance) < lastNearestDistance) {
                     lastNearestEntityIndex = targetEntity.Index;
-                    lastNearestDistance = Mathf.Abs(distance);
+                    lastNearestDistance = Mathf.Abs(xDistance);
                 }
             });
 

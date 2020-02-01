@@ -11,7 +11,7 @@ public class CameraSystem : ComponentSystem {
     protected override void OnStartRunning() {
         _cameraTransform = Camera.main?.transform;
         Entities.WithAll<PlayerComponent>().ForEach((ref Translation pos) => {
-            _height = pos.Value.y - _cameraTransform.position.y;
+            _height = _cameraTransform.position.y - pos.Value.y;
         });
     }
 
@@ -19,8 +19,8 @@ public class CameraSystem : ComponentSystem {
         var deltaTime = Time.DeltaTime;
         Entities.WithAll<PlayerComponent>().ForEach((ref Translation pos) => {
             var newPos = _cameraTransform.position;
-            newPos.x += (pos.Value.x - newPos.x) * deltaTime;             
-            newPos.y += (pos.Value.y - (newPos.y+ _height)) * deltaTime * 100.0f;
+            newPos.x += (pos.Value.x - newPos.x) * deltaTime;
+            newPos.y = pos.Value.y + _height;
             _cameraTransform.position = newPos;
         });
     }

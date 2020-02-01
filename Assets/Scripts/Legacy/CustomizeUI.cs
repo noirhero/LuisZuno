@@ -276,6 +276,7 @@ public class CustomizeUI : MonoBehaviour {
 
         playerStatusComp.MoveSpeed = Mathf.Clamp(1.0f + playerStatusComp.agility * 0.005f, 1.0f, 1.5f); // 1배 ~ 1.5배
         playerStatusComp.MadnessWeight = Mathf.Clamp(1.0f - playerStatusComp.mentality * 0.005f, 0.5f, 1.0f);    // 1배 ~ 0.5배
+        playerStatusComp.SearchingWeight = Mathf.Clamp(1.0f - playerStatusComp.physical * 0.005f, 0.0f, 1.0f);    // 1배 ~ 0.5배
 
         _EntityMng.SetComponentData<PlayerStatusComponent>(_playerEntity, playerStatusComp);
     }

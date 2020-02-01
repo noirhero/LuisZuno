@@ -7,9 +7,12 @@ using GlobalDefine;
 public class SearchingSystem : ComponentSystem {
     protected override void OnUpdate() {
         Entities.ForEach((Entity playerEntity, ref SearchingComponent searchingComp, ref PlayerComponent playerComp) => {
-            // initialize animation
+            // initialize
             if (searchingComp.elapsedSearchingTime == 0.0f) {
                 playerComp.currentAnim = searchingComp.searchingAnim;
+
+                var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
+                searchingComp.searchingTime *= statusComp.SearchingWeight;
             }
 
             searchingComp.elapsedSearchingTime += Time.DeltaTime;

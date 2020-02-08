@@ -67,6 +67,7 @@ public class GUISystem : ComponentSystem {
         // bubble position
         Translation playerPos = EntityManager.GetComponentData<Translation>(_playerEntity);
         Vector3 convert2DPos = Camera.main.WorldToScreenPoint(playerPos.Value);
+        convert2DPos.y += 30.0f;
 
         // todo - temporary
         int showMessageLength = (int)((float)bubbleMassage.Length * timeRate);

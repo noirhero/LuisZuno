@@ -3,7 +3,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using GlobalDefine;
 using UnityEngine.Serialization;
 
 [Serializable]
@@ -27,7 +26,13 @@ public class GUIPreset : MonoBehaviour {
     [Header("Customize Info")]
     public Transform customize;
 
+    [Header("ScenarioSelect Info")]
+    public Transform scenarioSelect;
+
+
     public void Initialize() {
+        ShowCustomize();
+        HideScenarioSelect();
         HideEnding();
         HideBubble();
         SetMadness(0.0f);
@@ -36,8 +41,26 @@ public class GUIPreset : MonoBehaviour {
         item1.gameObject.SetActive(false);
         item2.gameObject.SetActive(false);
         item3.gameObject.SetActive(false);
+    }
 
+
+    public void ShowCustomize() {
         customize.gameObject.SetActive(true);
+    }
+
+
+    public void HideCustomize() {
+        customize.gameObject.SetActive(false);
+    }
+
+
+    public void ShowScenarioSelect() {
+        scenarioSelect.gameObject.SetActive(true);
+    }
+
+
+    public void HideScenarioSelect() {
+        scenarioSelect.gameObject.SetActive(false);
     }
 
 

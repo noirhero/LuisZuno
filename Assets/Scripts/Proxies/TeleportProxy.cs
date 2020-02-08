@@ -12,6 +12,7 @@ public class TeleportProxy : EntityProxy, IDeclareReferencedPrefabs {
     [FormerlySerializedAs("TeleportTime")] public float teleportTime;
     [FormerlySerializedAs("StartEffectPreset")] public GameObject startEffectPreset = null;
     [FormerlySerializedAs("EndEffectPreset")] public GameObject endEffectPreset = null;
+    [FormerlySerializedAs("Status")] public PropStatusComponent status;
 
 
     public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs) {
@@ -30,6 +31,7 @@ public class TeleportProxy : EntityProxy, IDeclareReferencedPrefabs {
         }
 
         dstManager.AddComponentData(entity, new ReactiveComponent());
+        dstManager.AddComponentData(entity, new PropStatusComponent(ref status));
 
         var destPos = dstManager.GetComponentData<Translation>(conversionSystem.GetPrimaryEntity(teleportSpot));
         dstManager.AddComponentData(entity, new TeleportInfoComponent(destPos.Value, teleportTime) {

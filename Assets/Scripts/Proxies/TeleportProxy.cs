@@ -10,6 +10,7 @@ using UnityEngine.Serialization;
 public class TeleportProxy : EntityProxy, IDeclareReferencedPrefabs {
     [FormerlySerializedAs("TeleportSpot")] public GameObject teleportSpot;
     [FormerlySerializedAs("TeleportTime")] public float teleportTime;
+    [FormerlySerializedAs("FadeInOutTime")] public float fadeInOutTime;
     [FormerlySerializedAs("StartEffectPreset")] public GameObject startEffectPreset = null;
     [FormerlySerializedAs("EndEffectPreset")] public GameObject endEffectPreset = null;
     [FormerlySerializedAs("Status")] public PropStatusComponent status;
@@ -34,7 +35,7 @@ public class TeleportProxy : EntityProxy, IDeclareReferencedPrefabs {
         dstManager.AddComponentData(entity, new PropStatusComponent(ref status));
 
         var destPos = dstManager.GetComponentData<Translation>(conversionSystem.GetPrimaryEntity(teleportSpot));
-        dstManager.AddComponentData(entity, new TeleportInfoComponent(destPos.Value, teleportTime) {
+        dstManager.AddComponentData(entity, new TeleportInfoComponent(destPos.Value, teleportTime, fadeInOutTime) {
             startEffect = conversionSystem.GetPrimaryEntity(startEffectPreset),
             endEffect = conversionSystem.GetPrimaryEntity(endEffectPreset),
         });

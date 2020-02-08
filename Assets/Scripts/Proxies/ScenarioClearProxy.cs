@@ -3,12 +3,12 @@
 using Unity.Entities;
 
 [RequiresEntityConversion]
-public class StageClearProxy : EntityProxy {
+public class ScenarioClearProxy : EntityProxy {
 
     protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
 
         dstManager.AddComponentData(entity, new ReactiveComponent());
-        dstManager.AddComponentData(entity, new StageClearComponent());
+        dstManager.AddComponentData(entity, new ScenarioClearComponent());
     }
 }

@@ -55,7 +55,7 @@ public class AutoMovementSystem : ComponentSystem {
             var at = targetPos.x - playerPos.Value.x;
             if (0.5f >= math.abs(at)) {
                 // 스테이지 종료
-                if (EntityManager.HasComponent<StageClearComponent>(targetEntity)) {
+                if (EntityManager.HasComponent<ScenarioClearComponent>(targetEntity)) {
                     EntityManager.AddComponentData<GameClearComponent>(playerEntity, new GameClearComponent());
                 }
 

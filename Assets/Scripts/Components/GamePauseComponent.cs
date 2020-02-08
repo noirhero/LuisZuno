@@ -5,6 +5,6 @@ using Unity.Entities;
 
 
 [Serializable]
-public struct StageClearComponent : IComponentData {
+public class GamePauseComponent : IComponentData {
 
 }

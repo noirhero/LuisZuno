@@ -1774,7 +1774,7 @@ GameObject:
   - component: {fileID: 251617874}
   - component: {fileID: 251617873}
   m_Layer: 0
-  m_Name: StageClear_1
+  m_Name: ScenarioClear_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3266,7 +3266,7 @@ GameObject:
   - component: {fileID: 451163678}
   - component: {fileID: 451163679}
   m_Layer: 0
-  m_Name: Wall_1
+  m_Name: Wall_0R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10120,7 +10120,7 @@ GameObject:
   - component: {fileID: 1808311617}
   - component: {fileID: 1808311618}
   m_Layer: 0
-  m_Name: Wall_0
+  m_Name: Wall_0L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11335,7 +11335,7 @@ GameObject:
   - component: {fileID: 1900995773}
   - component: {fileID: 1900995772}
   m_Layer: 0
-  m_Name: StageClear_0
+  m_Name: ScenarioClear_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

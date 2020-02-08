@@ -5,6 +5,6 @@ using Unity.Entities;
 
 
 [Serializable]
-public class GamePauseComponent : IComponentData {
+public struct GamePauseComponent : IComponentData {
 
 }

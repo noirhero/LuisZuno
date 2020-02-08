@@ -23,5 +23,13 @@ public class CameraSystem : ComponentSystem {
             newPos.y = pos.Value.y + _height;
             _cameraTransform.position = newPos;
         });
+
+        Entities.ForEach((Entity entity, ref CameraSyncComponent pos) => {
+            var newPos = _cameraTransform.position;
+            newPos.x = pos.syncPos.x;
+            newPos.y += _height;
+            _cameraTransform.position = newPos;
+            EntityManager.RemoveComponent<CameraSyncComponent>(entity);
+        });
     }
 }

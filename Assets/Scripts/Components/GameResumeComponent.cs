@@ -5,6 +5,6 @@ using Unity.Entities;
 
 
 [Serializable]
-public class GameResumeComponent : IComponentData {
+public struct GameResumeComponent : IComponentData {
 
 }

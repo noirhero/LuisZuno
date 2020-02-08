@@ -36,6 +36,18 @@ public class GameSystem : ComponentSystem {
             EnableSystem(false);
             return;
         }
+
+        if (EntityManager.HasComponent<GamePauseComponent>(_playerEntity)) {
+            EntityManager.RemoveComponent<GamePauseComponent>(_playerEntity);
+            EnableSystem(false);
+            return;
+        }
+
+        if (EntityManager.HasComponent<GameResumeComponent>(_playerEntity)) {
+            EntityManager.RemoveComponent<GameResumeComponent>(_playerEntity);
+            EnableSystem(true);
+            return;
+        }
     }
 
     private void EnableSystem(bool inEnable) {

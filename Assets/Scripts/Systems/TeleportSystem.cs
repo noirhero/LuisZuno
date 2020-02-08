@@ -19,19 +19,23 @@ public class TeleportSystem : ComponentSystem {
             return;
         }
 
-        Entities.ForEach((Entity playerEntity, ref TeleportComponent teleportComp, ref PlayerComponent playerComp, ref Translation pos) => {
-            teleportComp.elapsedTeleportTime += Time.DeltaTime;
-
-            if (teleportComp.elapsedTeleportTime >= teleportComp.teleportTime) {
+        Entities.ForEach((ref TeleportComponent teleportComp, ref PlayerComponent playerComp, ref Translation pos) => {
+            if (teleportComp.elapsedTeleportTime <= 0.0f) {
                 var desiredPos = teleportComp.destination.Value;
+
+                EntityManager.AddComponentData(_playerEntity, new CameraSyncComponent(desiredPos));
+                EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());
 
                 // player
                 pos.Value = desiredPos;
+            }
 
-                // end
-                EntityManager.RemoveComponent<TeleportComponent>(playerEntity);
+            if (teleportComp.elapsedTeleportTime >= teleportComp.teleportTime) {
+                EntityManager.AddComponentData(_playerEntity, new GameResumeComponent());
+                EntityManager.RemoveComponent<TeleportComponent>(_playerEntity);
                 playerComp.currentBehaviors ^= BehaviorState.teleport;
             }
+            teleportComp.elapsedTeleportTime += Time.DeltaTime;
         });
     }
 }

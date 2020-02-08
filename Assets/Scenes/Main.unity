@@ -3029,6 +3029,7 @@ MonoBehaviour:
   preset: {fileID: 0}
   teleportSpot: {fileID: 1264894800}
   teleportTime: 1
+  fadeInOutTime: 1
   startEffectPreset: {fileID: 0}
   endEffectPreset: {fileID: 0}
   status:
@@ -6881,6 +6882,7 @@ MonoBehaviour:
   preset: {fileID: 0}
   teleportSpot: {fileID: 1485068395}
   teleportTime: 3
+  fadeInOutTime: 1
   startEffectPreset: {fileID: 0}
   endEffectPreset: {fileID: 0}
   status:

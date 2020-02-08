@@ -27,7 +27,7 @@ public class TeleportSystem : ComponentSystem {
             // start
             if (_desiredPos.Equals(float3.zero)) {
                 EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());
-                EntityManager.AddComponentData(_playerEntity, new FadeInComponent(1.0f));
+                EntityManager.AddComponentData(_playerEntity, new FadeInComponent(teleportComp.fadeInOutTime));
                 _desiredPos = teleportComp.destination.Value;
             }
             // finish
@@ -45,7 +45,7 @@ public class TeleportSystem : ComponentSystem {
                 pos.Value = _desiredPos;
 
                 EntityManager.AddComponentData(_playerEntity, new CameraSyncComponent(_desiredPos));
-                EntityManager.AddComponentData(_playerEntity, new FadeOutComponent(1.0f));
+                EntityManager.AddComponentData(_playerEntity, new FadeOutComponent(teleportComp.fadeInOutTime));
             }
         });
     }

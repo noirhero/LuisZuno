@@ -22,7 +22,6 @@ public class TeleportSystem : ComponentSystem {
         Entities.ForEach((ref TeleportComponent teleportComp, ref PlayerComponent playerComp, ref Translation pos) => {
             if (teleportComp.elapsedTeleportTime <= 0.0f) {
                 var desiredPos = teleportComp.destination.Value;
-
                 EntityManager.AddComponentData(_playerEntity, new CameraSyncComponent(desiredPos));
                 EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());
 

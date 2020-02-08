@@ -3010,6 +3010,8 @@ MonoBehaviour:
   teleportTime: 1
   startEffectPreset: {fileID: 0}
   endEffectPreset: {fileID: 0}
+  status:
+    search: 0
 --- !u!114 &409457392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6860,9 +6862,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   preset: {fileID: 0}
   teleportSpot: {fileID: 1485068395}
-  teleportTime: 1
+  teleportTime: 3
   startEffectPreset: {fileID: 0}
   endEffectPreset: {fileID: 0}
+  status:
+    search: 0
 --- !u!114 &1085415015
 MonoBehaviour:
   m_ObjectHideFlags: 0

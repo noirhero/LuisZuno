@@ -9,8 +9,6 @@ public class FadeInOutSystem : ComponentSystem {
     FloatParameter valueParam;
 
     protected override void OnCreate() {
-        Enabled = false;
-
         Entities.ForEach((Entity entity) => {
             if (EntityManager.HasComponent<PostEffectPresetComponent>(entity)) {
                 fadeInOutPresetComp = World.DefaultGameObjectInjectionWorld.EntityManager.GetSharedComponentData<PostEffectPresetComponent>(entity);

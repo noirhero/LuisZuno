@@ -8,11 +8,11 @@ using GlobalDefine;
 using Unity.Collections;
 
 public class NPCAutoMovementSystem : ComponentSystem {
-    private EntityQuery _nonePlayerQuery;
+    private EntityQuery _wallQuery;
     protected override void OnCreate() {
-        _nonePlayerQuery = GetEntityQuery(new EntityQueryDesc() {
-            None = new ComponentType[] {
-                typeof(NPCComponent)
+        _wallQuery = GetEntityQuery(new EntityQueryDesc() {
+            Any = new ComponentType[] {
+                typeof(TurningComponent)
             }
         });
     }
@@ -27,8 +27,35 @@ public class NPCAutoMovementSystem : ComponentSystem {
     protected override void OnUpdate() {
         OnUpdate_Velocity();
 
-        Entities.ForEach((Entity entity, ref NPCComponent npcComp, ref Translation npcPos, ref NPCMovementComponent moveComp) => {
-           
+        Entities.ForEach((Entity entity, ref NPCComponent npcComp, ref Translation npcPos) => {
+            if(AnimationType.Idle == npcComp.currentAnim) {
+                if (EntityManager.HasComponent<VelocityComponent>(entity)) {
+                    EntityManager.RemoveComponent<VelocityComponent>(entity);
+                }
+            }
+            else {
+                // add
+                if (false == EntityManager.HasComponent<VelocityComponent>(entity)) {
+                    EntityManager.AddComponentData<VelocityComponent>(entity, new VelocityComponent());
+                }
+
+                // 벽꿍 검출
+                var wallQuery = _wallQuery.ToEntityArray(Allocator.TempJob);
+                foreach (var wallEntity in wallQuery) {
+                    var targetPos = EntityManager.GetComponentData<Translation>(wallEntity).Value;
+                    var at = targetPos.x - npcPos.Value.x;
+                    if (0.5f >= math.abs(at)) {
+                        npcComp.npcDirection *= -1.0f;
+                        break;
+                    }
+                }
+                wallQuery.Dispose();
+
+                // set
+                var velocityComp = EntityManager.GetComponentData<VelocityComponent>(entity);
+                velocityComp.velocity = npcComp.npcDirection * npcComp.speed;
+                EntityManager.SetComponentData(entity, velocityComp);
+            }           
         });
     }
 }

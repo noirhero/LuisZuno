@@ -12,7 +12,7 @@ public class PlayerProxy : EntityProxy {
     protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
 
-        dstManager.AddComponentData(entity, new PlayerComponent(-1.0f));
+        dstManager.AddComponentData(entity, new PlayerComponent(1.0f));
         dstManager.AddComponentData(entity, new PlayerStatusComponent(ref status));
         dstManager.AddComponentData(entity, new InventoryComponent(defaultInventory));
         dstManager.AddComponentData(entity, new TargetingComponent());

@@ -6,11 +6,13 @@ using GlobalDefine;
 
 [Serializable]
 public struct NPCComponent : IComponentData {
-    public float npcDirection;        // -1 or 1
+    public float npcDirection;
+    public float speed;
     public AnimationType currentAnim;
 
-    public NPCComponent(float initialDir) {
+    public NPCComponent(float initialDir, float inSpeed) {
         npcDirection = initialDir;
-        currentAnim = AnimationType.Idle;
+        speed = inSpeed;
+        currentAnim = AnimationType.Walk;
     }
 }

@@ -2,9 +2,10 @@
 
 using System;
 using Unity.Entities;
-using GlobalDefine;
+using Unity.Mathematics;
 
 [Serializable]
-public struct NonePlayerComponent : IComponentData {
-    public AnimationType currentAnim;
+public struct NPCMovementComponent : IComponentData {
+    public float3 value;
 }
+

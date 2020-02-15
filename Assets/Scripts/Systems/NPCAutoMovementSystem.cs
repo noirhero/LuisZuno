@@ -44,7 +44,7 @@ public class NPCAutoMovementSystem : ComponentSystem {
                 foreach (var wallEntity in wallQuery) {
                     var targetPos = EntityManager.GetComponentData<Translation>(wallEntity).Value;
                     var at = targetPos.x - npcPos.Value.x;
-                    if (npcComp.speed >= math.abs(at)) {
+                    if (0.5f >= math.abs(at)) {
                         npcComp.npcDirection *= -1.0f;
                         break;
                     }

@@ -5,17 +5,26 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using System.Collections.Generic;
 
 [RequiresEntityConversion]
-public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
-    public NewSpritePreset preset = null;
+public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
+    public GameObject preset = null;
+
+    public void DeclareReferencedPrefabs(List<GameObject> referencedPresets) {
+        referencedPresets.Add(preset);
+    }
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
     }
 
     protected virtual void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        if (ReferenceEquals(null, preset)) {
+        if (null == preset)
+            return;
+
+        var spritePreset = preset.GetComponent<NewSpritePreset>();
+        if (ReferenceEquals(null, spritePreset)) {
             return;
         }
 
@@ -36,10 +45,10 @@ public class EntityProxy : MonoBehaviour, IConvertGameObjectToEntity {
         }); 
 
         dstManager.AddSharedComponentData(entity, new NewSpritePresetComponent() {
-            preset = preset
+            preset = spritePreset
         });
         dstManager.AddComponentData(entity, new SpriteStateComponent() {
-            hash = preset.datas.Keys.First()
+            hash = spritePreset.datas.Keys.First()
         });
     }
 }

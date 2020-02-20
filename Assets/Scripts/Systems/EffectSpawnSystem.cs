@@ -1,6 +1,5 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
-using Unity.Burst;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Transforms;
@@ -16,9 +15,8 @@ public class EffectSpawnSystem : JobComponentSystem {
 
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
         var cmdBuf = _cmdSystem.CreateCommandBuffer().ToConcurrent();
-        return Entities
+        var jobHandle = Entities
             .WithName("EffectSpawnSystem")
-            .WithBurst(FloatMode.Default, FloatPrecision.Standard, true)
             .ForEach((Entity entity, int entityInQueryIndex, in EffectSpawnComponent effect, in Translation pos) => {
                 cmdBuf.RemoveComponent<EffectSpawnComponent>(entityInQueryIndex, entity);
                 Utility.SetLifeCycle(entityInQueryIndex, in entity, 0.0f, 
@@ -30,5 +28,8 @@ public class EffectSpawnSystem : JobComponentSystem {
                     Entity.Null, Entity.Null, in cmdBuf);
             })
             .Schedule(inputDependencies);
+
+        _cmdSystem.AddJobHandleForProducer(jobHandle);
+        return jobHandle;
     }
 }

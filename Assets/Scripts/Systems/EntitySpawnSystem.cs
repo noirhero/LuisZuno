@@ -1,7 +1,5 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
-using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Mathematics;
@@ -14,12 +12,10 @@ public class EntitySpawnSystem : JobComponentSystem {
         _cmdSystem = World.GetOrCreateSystem<EndSimulationEntityCommandBufferSystem>();
     }
 
-
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
         var cmdBuf = _cmdSystem.CreateCommandBuffer().ToConcurrent();
-        return Entities
+        var jobHandle = Entities
             .WithName("EntitySpawnSystem")
-            .WithBurst(FloatMode.Default, FloatPrecision.Standard, true)
             .ForEach((Entity entity, int entityInQueryIndex, ref PlayerComponent playerComp, in EntitySpawnComponent entityComp, in Translation pos) => {
 
                 if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
@@ -53,5 +49,8 @@ public class EntitySpawnSystem : JobComponentSystem {
                 playerComp.currentBehaviors ^= BehaviorState.spawning;
             })
             .Schedule(inputDependencies);
+
+        _cmdSystem.AddJobHandleForProducer(jobHandle);
+        return jobHandle;
     }
 }

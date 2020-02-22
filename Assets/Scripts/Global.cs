@@ -15,6 +15,17 @@ namespace GlobalDefine {
     public enum GoalType { TraceOfParents, CreateOfMasterpiece, Rich }
 
     [Serializable]
+    public struct CharacterBackground {
+        public BackgroundType type;
+        public float madness;
+        public float agility;
+        public float physical;
+        public float mentality;
+        public float search;
+        public float luck;
+    }
+
+    [Serializable]
     public struct ItemStruct {
         public Int64 id;
         [FormerlySerializedAs("AddedTime")] public Int64 addedTime;

@@ -1,5 +1,6 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
+using System;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine;
@@ -35,6 +36,7 @@ public class CustomizeUI : MonoBehaviour {
             return _cachedEntityMng;
         }
     }
+    private CharacterBackground[] _defaultBackgrounds;
 
     private bool IsPlayerEntityHasCustomizeComponent() {
         return _EntityMng.HasComponent<CustomizeComponent>(_playerEntity);
@@ -53,6 +55,8 @@ public class CustomizeUI : MonoBehaviour {
             break;
         }
 
+        InitializeDefaultBackgrounds();
+
         OnSelectedInBackground();
         OnSelectedInValues();
         OnSelectedInGoal();
@@ -61,6 +65,89 @@ public class CustomizeUI : MonoBehaviour {
         OnSelectedInPhysical(0);
         OnSelectedInSearch(0);
         OnSelectedInLuck(0);
+    }
+
+
+    void InitializeDefaultBackgrounds() {
+        var types = Enum.GetValues(typeof(BackgroundType));
+        _defaultBackgrounds = new CharacterBackground[types.Length];
+
+        foreach (BackgroundType type in types) {
+            switch (type) {
+                case BackgroundType.BackStreetBoy: {
+                        _defaultBackgrounds[(int)type] = new CharacterBackground() {
+                            type = BackgroundType.BackStreetBoy,
+                            madness = 0,
+                            mentality = 120,
+                            agility = 120,
+                            physical = 70,
+                            search = 110,
+                            luck = 0
+                        };
+                    }
+                    break;
+                case BackgroundType.Poem: {
+                        _defaultBackgrounds[(int)type] = new CharacterBackground() {
+                            type = BackgroundType.Poem,
+                            madness = 0,
+                            mentality = 100,
+                            agility = 110,
+                            physical = 90,
+                            search = 85,
+                            luck = 20
+                        };
+                    }
+                    break;
+                case BackgroundType.VeteranSoldier: {
+                        _defaultBackgrounds[(int)type] = new CharacterBackground() {
+                            type = BackgroundType.VeteranSoldier,
+                            madness = 0,
+                            mentality = 90,
+                            agility = 90,
+                            physical = 160,
+                            search = 80,
+                            luck = 0
+                        };
+                    }
+                    break;
+                case BackgroundType.Priest: {
+                        _defaultBackgrounds[(int)type] = new CharacterBackground() {
+                            type = BackgroundType.Priest,
+                            madness = 0,
+                            mentality = 105,
+                            agility = 100,
+                            physical = 90,
+                            search = 100,
+                            luck = 5
+                        };
+                    }
+                    break;
+                case BackgroundType.Professor: {
+                        _defaultBackgrounds[(int)type] = new CharacterBackground() {
+                            type = BackgroundType.Professor,
+                            madness = 20,
+                            mentality = 150,
+                            agility = 70,
+                            physical = 85,
+                            search = 120,
+                            luck = 0
+                        };
+                    }
+                    break;
+                case BackgroundType.Detective: {
+                        _defaultBackgrounds[(int)type] = new CharacterBackground() {
+                            type = BackgroundType.Detective,
+                            madness = 0,
+                            mentality = 100,
+                            agility = 110,
+                            physical = 100,
+                            search = 150,
+                            luck = 0
+                        };
+                    }
+                    break;
+            }
+        }
     }
 
 
@@ -127,19 +214,7 @@ public class CustomizeUI : MonoBehaviour {
 
     public void OnSelectedInConfirm() {
         decision.SetActive(false);
-
-        // the player must have these components
-        var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
-        var playerStatusComp = _EntityMng.GetComponentData<PlayerStatusComponent>(_playerEntity);
-
-        playerStatusComp.luck += customizeComp.luck * 10.0f;
-        playerStatusComp.agility += customizeComp.agility * 10.0f;
-        playerStatusComp.physical += customizeComp.physical * 10.0f;
-        playerStatusComp.search += customizeComp.search * 10.0f;
-        playerStatusComp.mentality += customizeComp.mentality * 10.0f;
-        _EntityMng.SetComponentData<PlayerStatusComponent>(_playerEntity, playerStatusComp);
-
-        CalcPlayerStatus();
+        AdjustPlayerStatus();
 
         foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
             if (system is GUISystem) {
@@ -275,12 +350,23 @@ public class CustomizeUI : MonoBehaviour {
     }
 
 
-    public void CalcPlayerStatus() {
+    public void AdjustPlayerStatus() {
+        // the player must have these components
         var playerStatusComp = _EntityMng.GetComponentData<PlayerStatusComponent>(_playerEntity);
+        var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
 
-        playerStatusComp.MoveSpeed = Mathf.Clamp(1.0f + playerStatusComp.agility * 0.005f, 1.0f, 1.5f); // 1배 ~ 1.5배
-        playerStatusComp.MadnessWeight = Mathf.Clamp(1.0f - playerStatusComp.mentality * 0.005f, 0.5f, 1.0f);    // 1배 ~ 0.5배
-        playerStatusComp.SearchingWeight = Mathf.Clamp(1.0f - playerStatusComp.physical * 0.005f, 0.0f, 1.0f);    // 1배 ~ 0.5배
+        var defaultBackground = _defaultBackgrounds[(int)customizeComp.backgroundType];
+        playerStatusComp.madness = defaultBackground.madness;
+        playerStatusComp.mentality = defaultBackground.mentality;
+        playerStatusComp.agility = defaultBackground.agility;
+        playerStatusComp.physical = defaultBackground.physical;
+        playerStatusComp.mentality = defaultBackground.mentality;
+        playerStatusComp.search = defaultBackground.search;
+        playerStatusComp.luck = defaultBackground.luck;
+
+        playerStatusComp.MoveSpeed = playerStatusComp.agility * 0.01f;
+        playerStatusComp.MadnessWeight = playerStatusComp.mentality * 0.01f;
+        playerStatusComp.SearchingWeight = playerStatusComp.search * 0.01f;
 
         _EntityMng.SetComponentData<PlayerStatusComponent>(_playerEntity, playerStatusComp);
     }

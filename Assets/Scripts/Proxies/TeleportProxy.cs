@@ -17,6 +17,8 @@ public class TeleportProxy : EntityProxy {
 
 
     protected override void SetupPrefabs(List<GameObject> referencedPrefabs) {
+        base.SetupPrefabs(referencedPrefabs);
+
         referencedPrefabs.Add(teleportSpot);
         referencedPrefabs.Add(startEffectPreset);
         referencedPrefabs.Add(endEffectPreset);

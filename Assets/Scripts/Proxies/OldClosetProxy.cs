@@ -14,6 +14,8 @@ public class OldClosetProxy : PropProxy {
 
 
     protected override void SetupPrefabs(List<GameObject> referencedPrefabs) {
+        base.SetupPrefabs(referencedPrefabs);
+
         referencedPrefabs.Add(spawnPreset);
         referencedPrefabs.Add(spawnEffectPreset);
         referencedPrefabs.Add(destroyEffectPreset);

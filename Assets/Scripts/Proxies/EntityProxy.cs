@@ -12,11 +12,15 @@ public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGam
     public GameObject preset = null;
 
     public void DeclareReferencedPrefabs(List<GameObject> referencedPresets) {
-        referencedPresets.Add(preset);
+        SetupPrefabs(referencedPresets);
     }
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
+    }
+
+    protected virtual void SetupPrefabs(List<GameObject> referencedPresets) {
+        referencedPresets.Add(preset);
     }
 
     protected virtual void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {

@@ -6,14 +6,14 @@ using Unity.Entities;
 using UnityEngine.Serialization;
 
 [RequiresEntityConversion]
-public class OldClosetProxy : PropProxy, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
+public class OldClosetProxy : PropProxy {
     [FormerlySerializedAs("SpawnInfo")] public EntitySpawnInfoComponent spawnInfo;
     [FormerlySerializedAs("SpawnPreset")] public GameObject spawnPreset = null;
     [FormerlySerializedAs("SpawnEffectPreset")] public GameObject spawnEffectPreset = null;
     [FormerlySerializedAs("DestroyEffectPreset")] public GameObject destroyEffectPreset = null;
 
 
-    public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs) {
+    protected override void SetupPrefabs(List<GameObject> referencedPrefabs) {
         referencedPrefabs.Add(spawnPreset);
         referencedPrefabs.Add(spawnEffectPreset);
         referencedPrefabs.Add(destroyEffectPreset);

@@ -7,7 +7,7 @@ using Unity.Transforms;
 using UnityEngine.Serialization;
 
 [RequiresEntityConversion]
-public class TeleportProxy : EntityProxy, IDeclareReferencedPrefabs {
+public class TeleportProxy : EntityProxy {
     [FormerlySerializedAs("TeleportSpot")] public GameObject teleportSpot;
     [FormerlySerializedAs("TeleportTime")] public float teleportTime;
     [FormerlySerializedAs("FadeInOutTime")] public float fadeInOutTime;
@@ -16,7 +16,7 @@ public class TeleportProxy : EntityProxy, IDeclareReferencedPrefabs {
     [FormerlySerializedAs("Status")] public PropStatusComponent status;
 
 
-    public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs) {
+    protected override void SetupPrefabs(List<GameObject> referencedPrefabs) {
         referencedPrefabs.Add(teleportSpot);
         referencedPrefabs.Add(startEffectPreset);
         referencedPrefabs.Add(endEffectPreset);

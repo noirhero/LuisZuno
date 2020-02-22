@@ -3454,7 +3454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 1213431426}
-  speed: 0.5
+  speed: 0.2
 --- !u!212 &429810453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7630,7 +7630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 1898101011}
-  speed: 0.7
+  speed: 0.5
 --- !u!212 &1135269235
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8319,6 +8319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1213431427}
   - component: {fileID: 1213431428}
+  - component: {fileID: 1213431429}
   m_Layer: 0
   m_Name: OldManPreset
   m_TagString: Untagged
@@ -8467,6 +8468,48 @@ MonoBehaviour:
         end: 1.2000002
         texture: {fileID: -710794942173886652, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
           type: 3}
+--- !u!114 &1213431429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213431426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682391998acdc8a458c645e78db2e83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIDatas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 00000000000000000100000000000000
+    _keys: 00000000000000000100000000000000
+    _values:
+    - animation: 0
+      time: 1
+    - animation: 1
+      time: 1
 --- !u!1 &1244254207
 GameObject:
   m_ObjectHideFlags: 0
@@ -10831,7 +10874,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 1
+      isExpanded: 0
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -10846,7 +10889,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 1
+    isExpanded: 0
     _keyValues: 7e0100008f010000
     _keys: 7e0100008f010000
     _values:
@@ -10939,9 +10982,9 @@ MonoBehaviour:
     _keys: 00000000000000000100000000000000
     _values:
     - animation: 0
-      time: 5
+      time: 1
     - animation: 1
-      time: 3
+      time: 2
 --- !u!1 &1658415983
 GameObject:
   m_ObjectHideFlags: 0
@@ -11048,6 +11091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1718250713}
   - component: {fileID: 1718250714}
+  - component: {fileID: 1718250715}
   m_Layer: 0
   m_Name: HatBoyPreset
   m_TagString: Untagged
@@ -11156,6 +11200,48 @@ MonoBehaviour:
         end: 0.6
         texture: {fileID: -9209117481950961993, guid: f1ba66844965e86419229b78fa87db9b,
           type: 3}
+--- !u!114 &1718250715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718250712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682391998acdc8a458c645e78db2e83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIDatas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 00000000000000000100000000000000
+    _keys: 00000000000000000100000000000000
+    _values:
+    - animation: 0
+      time: 3
+    - animation: 1
+      time: 3
 --- !u!1 &1731131847
 GameObject:
   m_ObjectHideFlags: 0
@@ -12824,6 +12910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1898101012}
   - component: {fileID: 1898101013}
+  - component: {fileID: 1898101014}
   m_Layer: 0
   m_Name: HatWomanPreset
   m_TagString: Untagged
@@ -12944,6 +13031,48 @@ MonoBehaviour:
         end: 0.6
         texture: {fileID: -7478378858322901680, guid: 34902d5f94658d941826aca366151c26,
           type: 3}
+--- !u!114 &1898101014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898101011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682391998acdc8a458c645e78db2e83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIDatas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 00000000000000000100000000000000
+    _keys: 00000000000000000100000000000000
+    _values:
+    - animation: 1
+      time: 3
+    - animation: 0
+      time: 2
 --- !u!1 &1900995770
 GameObject:
   m_ObjectHideFlags: 0

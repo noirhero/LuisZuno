@@ -9,12 +9,6 @@ using GlobalDefine;
 public struct NPCAIPresetData {
     public AnimationType animation;
     public float time;
-    private float _elapsedTime;
-
-    public float ElapsedTime {
-        get => _elapsedTime;
-        set => _elapsedTime = value;
-    }
 }
 
 [Serializable]

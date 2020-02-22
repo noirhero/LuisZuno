@@ -11,19 +11,19 @@ public class NPCAISystem : ComponentSystem {
     }
 
     protected override void OnUpdate() {
-        Entities.ForEach((Entity entity, NPCAIPresetComponent AIPresetComp, ref NPCComponent NPCComp) => {
-            var preset = AIPresetComp.preset;
-            var currentData = preset.AIDatas[AIPresetComp.CurrentIndex];
-            currentData.ElapsedTime += Time.DeltaTime;
+        Entities.ForEach((Entity entity, NPCAIPresetComponent aiPresetComp, ref NPCComponent npcComp) => {
+            var preset = aiPresetComp.preset;
+            var currentData = preset.AIDatas[npcComp.AICurrentIndex];
+            npcComp.AIElapsedTIme += Time.DeltaTime;
 
-            if (currentData.ElapsedTime >= currentData.time) {
-                currentData.ElapsedTime = 0.0f;
-                if (preset.AIDatas.Count <= ++AIPresetComp.CurrentIndex) {
-                    AIPresetComp.CurrentIndex = 0;
+            if (currentData.time < npcComp.AIElapsedTIme) {
+                npcComp.AIElapsedTIme = 0.0f;
+                if (++npcComp.AICurrentIndex >= preset.AIDatas.Count) {
+                    npcComp.AICurrentIndex = 0;
                 }
 
-                currentData = preset.AIDatas[AIPresetComp.CurrentIndex];
-                NPCComp.currentAnim = currentData.animation;
+                currentData = preset.AIDatas[npcComp.AICurrentIndex];    // updated data
+                npcComp.currentAnim = currentData.animation;
             }
         });
     }

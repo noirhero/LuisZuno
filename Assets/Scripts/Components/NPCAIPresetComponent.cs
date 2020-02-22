@@ -7,12 +7,6 @@ using GlobalDefine;
 [Serializable]
 public struct NPCAIPresetComponent : ISharedComponentData, IEquatable<NPCAIPresetComponent> {
     public NPCAIPreset preset;
-    private int _currentIndex;
-
-    public int CurrentIndex {
-        get => _currentIndex;
-        set => _currentIndex = value;
-    }
 
     public bool Equals(NPCAIPresetComponent other) {
         return ReferenceEquals(other.preset, preset);

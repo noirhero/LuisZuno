@@ -20,13 +20,21 @@ public class AnimStateSystem : JobComponentSystem {
 
     protected override JobHandle OnUpdate(JobHandle inputDependencies) {
         var animNameHashes = new NativeArray<int>(_animNameHashes, Allocator.TempJob);
-        return Entities
-            .WithName("AnimStateSystem")
+        var playerAnimHandle = Entities
+            .WithName("AnimStateSystem_Player")
             .WithBurst(FloatMode.Default, FloatPrecision.Standard, true)
             .ForEach((ref SpriteStateComponent state, in PlayerComponent player) => {
-                state.hash = animNameHashes[(int) player.currentAnim];
+                state.hash = animNameHashes[(int)player.currentAnim];
+            })
+            .Schedule(inputDependencies);
+
+        return Entities
+            .WithName("AnimStateSystem_NPC")
+            .WithBurst(FloatMode.Default, FloatPrecision.Standard, true)
+            .ForEach((ref SpriteStateComponent state, in NPCComponent npc) => {
+                state.hash = animNameHashes[(int)npc.currentAnim];
             })
             .WithDeallocateOnJobCompletion(animNameHashes)
-            .Schedule(inputDependencies);
+            .Schedule(playerAnimHandle);
     }
 }

@@ -23,6 +23,27 @@ public class GUISystem : ComponentSystem {
     }
 
 
+    public void ActiveCustomize(bool inActive) {
+        if (inActive) {
+            EntityManager.AddComponentData<GamePauseComponent>(_playerEntity, new GamePauseComponent());
+        }
+        else {
+            EntityManager.AddComponentData<GameResumeComponent>(_playerEntity, new GameResumeComponent());
+        }
+
+        if (null != _guiPreset) {
+            _guiPreset.ActiveCustomize(inActive);
+        }
+    }
+
+
+    public void ActiveScenarioSelect(bool inActive) {
+        if (null != _guiPreset) {
+            _guiPreset.ActiveScenarioSelect(inActive);
+        }
+    }
+
+
     private void SetItemSprite(Int64 inID, Image inImg) {
         ItemPresetData data;
         if (_tablePreset.itemDatas.TryGetValue(inID, out data)) {
@@ -95,6 +116,11 @@ public class GUISystem : ComponentSystem {
         Entities.WithAll<PlayerComponent>().ForEach((Entity entity) => {
             _playerEntity = entity;
         });
+
+        EntityManager.AddComponentData<GameStartComponent>(_playerEntity, new GameStartComponent());
+
+        ActiveCustomize(false);
+        ActiveScenarioSelect(true);
 
         if (null != _guiPreset) {
             _guiPreset.Initialize();

@@ -127,9 +127,6 @@ public class CustomizeUI : MonoBehaviour {
 
     public void OnSelectedInConfirm() {
         decision.SetActive(false);
-        this.gameObject.SetActive(false);
-
-        _EntityMng.AddComponentData<GameStartComponent>(_playerEntity, new GameStartComponent());
 
         // the player must have these components
         var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
@@ -143,6 +140,13 @@ public class CustomizeUI : MonoBehaviour {
         _EntityMng.SetComponentData<PlayerStatusComponent>(_playerEntity, playerStatusComp);
 
         CalcPlayerStatus();
+
+        foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
+            if (system is GUISystem) {
+                GUISystem guiSystem = system as GUISystem;
+                guiSystem.ActiveCustomize(false);
+            }
+        }
     }
 
 

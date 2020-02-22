@@ -5,6 +5,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using Unity.Mathematics;
 using Unity.Collections;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace GlobalDefine {
@@ -17,11 +18,18 @@ namespace GlobalDefine {
     public struct ItemStruct {
         public Int64 id;
         [FormerlySerializedAs("AddedTime")] public Int64 addedTime;
-        
+
         public void Empty() {
             id = 0;
             addedTime = 0;
         }
+    }
+
+    [Serializable]
+    public struct ScenarioStruct {
+        public string name;
+        public Transform uiPivot;
+        public Transform startPoint;
     }
 
     public static class Utility {

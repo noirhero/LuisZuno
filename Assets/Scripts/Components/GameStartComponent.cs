@@ -8,3 +8,27 @@ using Unity.Entities;
 public struct GameStartComponent : IComponentData {
 
 }
+
+
+[Serializable]
+public struct GameResumeComponent : IComponentData {
+
+}
+
+
+[Serializable]
+public struct GamePauseComponent : IComponentData {
+
+}
+
+
+[Serializable]
+public struct GameOverComponent : IComponentData {
+
+}
+
+
+[Serializable]
+public struct GameClearComponent : IComponentData {
+
+}

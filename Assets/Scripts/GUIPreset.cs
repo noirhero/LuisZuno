@@ -31,8 +31,6 @@ public class GUIPreset : MonoBehaviour {
 
 
     public void Initialize() {
-        ShowCustomize();
-        HideScenarioSelect();
         HideEnding();
         HideBubble();
         SetMadness(0.0f);
@@ -44,23 +42,13 @@ public class GUIPreset : MonoBehaviour {
     }
 
 
-    public void ShowCustomize() {
-        customize.gameObject.SetActive(true);
+    public void ActiveCustomize(bool inActive) {
+        customize.gameObject.SetActive(inActive);
     }
 
 
-    public void HideCustomize() {
-        customize.gameObject.SetActive(false);
-    }
-
-
-    public void ShowScenarioSelect() {
-        scenarioSelect.gameObject.SetActive(true);
-    }
-
-
-    public void HideScenarioSelect() {
-        scenarioSelect.gameObject.SetActive(false);
+    public void ActiveScenarioSelect(bool inActive) {
+        scenarioSelect.gameObject.SetActive(inActive);
     }
 
 

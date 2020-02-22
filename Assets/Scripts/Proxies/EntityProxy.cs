@@ -27,7 +27,7 @@ public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGam
         if (null == preset)
             return;
 
-        var spritePreset = preset.GetComponent<NewSpritePreset>();
+        var spritePreset = preset.GetComponent<SpritePreset>();
         if (ReferenceEquals(null, spritePreset)) {
             return;
         }
@@ -48,7 +48,7 @@ public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGam
             Value = new float3((sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit, 0.0f)
         }); 
 
-        dstManager.AddSharedComponentData(entity, new NewSpritePresetComponent() {
+        dstManager.AddSharedComponentData(entity, new SpritePresetComponent() {
             preset = spritePreset
         });
         dstManager.AddComponentData(entity, new SpriteStateComponent() {

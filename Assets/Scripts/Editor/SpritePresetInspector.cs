@@ -4,19 +4,19 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(NewSpritePreset))]
+[CustomEditor(typeof(SpritePreset))]
 [CanEditMultipleObjects]
-public class NewSpritePresetInspector : Editor {
+public class SpritePresetInspector : Editor {
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
 
         GUILayout.Space(10);
         if (GUILayout.Button("Set prefab and then click")) {
-            InitializePresetData(target as NewSpritePreset);
+            InitializePresetData(target as SpritePreset);
         }
     }
 
-    private void InitializePresetData(NewSpritePreset preset) {
+    private void InitializePresetData(SpritePreset preset) {
         preset.datas.Clear();
 
         foreach (var clip in preset.clips) {

@@ -3358,7 +3358,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 429810450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3660011, y: -2.5650015, z: 0}
+  m_LocalPosition: {x: 6.25, y: -2.5650015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1982473973}
@@ -6132,7 +6132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 1718250712}
-  speed: 2
+  speed: 0.7
 --- !u!212 &945507453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7490,7 +7490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135269232}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.6070004, y: -2.5350008, z: 0}
+  m_LocalPosition: {x: 0.73, y: -2.5350008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1982473973}
@@ -7509,7 +7509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 1898101011}
-  speed: 0.5
+  speed: 0.1
 --- !u!212 &1135269235
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10167,7 +10167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449593344}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.893, y: -2.5500004, z: 0}
+  m_LocalPosition: {x: 14.447, y: -2.5500004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1982473973}
@@ -10186,7 +10186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   preset: {fileID: 1656082515}
-  speed: 1
+  speed: 0.5
 --- !u!212 &1449593347
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10932,9 +10932,9 @@ MonoBehaviour:
     _keys: 00000000000000000100000000000000
     _values:
     - animation: 0
-      time: 1
+      time: 3
     - animation: 1
-      time: 2
+      time: 3
 --- !u!1 &1658415983
 GameObject:
   m_ObjectHideFlags: 0
@@ -11191,7 +11191,7 @@ MonoBehaviour:
     - animation: 0
       time: 3
     - animation: 1
-      time: 3
+      time: 1
 --- !u!1 &1731131847
 GameObject:
   m_ObjectHideFlags: 0
@@ -12764,7 +12764,7 @@ MonoBehaviour:
     - animation: 1
       time: 3
     - animation: 0
-      time: 2
+      time: 10
 --- !u!1 &1900995770
 GameObject:
   m_ObjectHideFlags: 0

@@ -13445,6 +13445,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnPreset: {fileID: 5964704129610097323, guid: f8082ecc4bd857044abcea3300a99f8a,
     type: 3}
+  teleportTime: 3
+  fadeInOutTime: 0.5
   scenarios:
   - name: Scenario001
     uiPivot: {fileID: 838907206}

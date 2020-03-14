@@ -26,12 +26,16 @@ public class TeleportSystem : ComponentSystem {
 
             // start
             if (_desiredPos.Equals(float3.zero)) {
+                EntityManager.RemoveComponent<MovementComponent>(_playerEntity);
+                playerComp.currentAnim = AnimationType.Idle;
+                
                 EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());
                 EntityManager.AddComponentData(_playerEntity, new FadeInComponent(teleportComp.fadeInOutTime));
                 _desiredPos = teleportComp.destination.Value;
             }
             // finish
             else if (pos.Value.Equals(_desiredPos)) {
+                EntityManager.AddComponentData(_playerEntity, new TargetingComponent());
                 EntityManager.AddComponentData(_playerEntity, new GameResumeComponent());
                 EntityManager.RemoveComponent<TeleportComponent>(_playerEntity);
                 playerComp.currentBehaviors ^= BehaviorState.teleport;

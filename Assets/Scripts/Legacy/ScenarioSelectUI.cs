@@ -1,13 +1,16 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
 using Unity.Entities;
 using Unity.Mathematics;
 using GlobalDefine;
+using UnityEditor.Events;
 
 public class ScenarioSelectUI : MonoBehaviour {
     public Button btnPreset;
@@ -44,7 +47,9 @@ public class ScenarioSelectUI : MonoBehaviour {
             }
 
             Button cachedBtn = GameObject.Instantiate<Button>(btnPreset);
-            cachedBtn.onClick.AddListener(delegate { OnSelectedInScenario(i); });
+            
+            UnityAction<int> action = Delegate.CreateDelegate(typeof(UnityAction<int>), this, "OnSelectedInScenario") as UnityAction<int>;
+            UnityEventTools.AddIntPersistentListener(cachedBtn.onClick, action, i);
 
             Text cachedText = cachedBtn.GetComponentInChildren<Text>();
             cachedText.text = scenarios[i].name;
@@ -70,7 +75,8 @@ public class ScenarioSelectUI : MonoBehaviour {
 
     public void OnSelectedInScenario(int inType) {
         var destPos = scenarios[inType].startPoint.position;
-        _EntityMng.AddComponentData(_playerEntity, new ScenarioTeleportComponent(
+
+        _EntityMng.AddComponentData(_playerEntity, new TeleportInfoComponent(
             new float3(destPos.x, destPos.y, destPos.z), teleportTime, fadeInOutTime));
 
         foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {

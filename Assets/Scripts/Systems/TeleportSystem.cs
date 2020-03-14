@@ -27,6 +27,7 @@ public class TeleportSystem : ComponentSystem {
             // start
             if (_desiredPos.Equals(float3.zero)) {
                 EntityManager.RemoveComponent<MovementComponent>(_playerEntity);
+                EntityManager.RemoveComponent<TargetingComponent>(_playerEntity);
                 playerComp.currentAnim = AnimationType.Idle;
                 
                 EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());

@@ -23,7 +23,7 @@ public class SpriteAnimData {
 public class SpriteAnimDataDictionary : SerializableDictionaryBase<int, SpriteAnimData> {
 }
 
-public class NewSpritePreset : MonoBehaviour {
+public class SpritePreset : MonoBehaviour {
     public List<AnimationClip> clips = new List<AnimationClip>();
     public SpriteAnimDataDictionary datas = new SpriteAnimDataDictionary();
 

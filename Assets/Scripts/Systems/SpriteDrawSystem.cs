@@ -4,7 +4,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 
-public class NewSpriteDrawSystem : ComponentSystem {
+public class SpriteDrawSystem : ComponentSystem {
     private static readonly int _mainTex = Shader.PropertyToID("_MainTex");
 
     private Mesh _mesh;
@@ -20,7 +20,7 @@ public class NewSpriteDrawSystem : ComponentSystem {
     protected override void OnUpdate() {
         var propertyBlock = new MaterialPropertyBlock();
         Entities
-            .ForEach((NewSpritePresetComponent spritePreset, ref SpriteStateComponent state, ref LocalToWorld transform) => {
+            .ForEach((SpritePresetComponent spritePreset, ref SpriteStateComponent state, ref LocalToWorld transform) => {
                 propertyBlock.SetTexture(_mainTex, spritePreset.preset.GetTexture(state.hash, state.frame));
                 Graphics.DrawMesh(_mesh, transform.Value, _material, 0, Camera.current, 0, propertyBlock);
             });

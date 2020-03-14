@@ -7,7 +7,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 
 public class SpawnPresetProxy : MonoBehaviour, IConvertGameObjectToEntity {
-    public NewSpritePreset preset = null;
+    public SpritePreset preset = null;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         if (ReferenceEquals(null, preset)) {
@@ -32,7 +32,7 @@ public class SpawnPresetProxy : MonoBehaviour, IConvertGameObjectToEntity {
             Value = new float3((sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit, 0.0f)
         }); 
 
-        dstManager.AddSharedComponentData(entity, new NewSpritePresetComponent() {
+        dstManager.AddSharedComponentData(entity, new SpritePresetComponent() {
             preset = preset
         });
         dstManager.AddComponentData(entity, new SpriteStateComponent() {

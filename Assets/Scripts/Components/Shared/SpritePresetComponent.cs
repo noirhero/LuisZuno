@@ -4,10 +4,10 @@ using System;
 using Unity.Entities;
 
 [Serializable]
-public struct NewSpritePresetComponent : ISharedComponentData, IEquatable<NewSpritePresetComponent> {
-    public NewSpritePreset preset;
+public struct SpritePresetComponent : ISharedComponentData, IEquatable<SpritePresetComponent> {
+    public SpritePreset preset;
 
-    public bool Equals(NewSpritePresetComponent other) {
+    public bool Equals(SpritePresetComponent other) {
         return ReferenceEquals(other.preset, preset);
     }
 

@@ -1,14 +1,18 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
 using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Serialization;
 using Unity.Entities;
+using Unity.Mathematics;
 using GlobalDefine;
-using System.Collections.Generic;
 
 public class ScenarioSelectUI : MonoBehaviour {
     public Button btnPreset;
+    [FormerlySerializedAs("TeleportTime")] public float teleportTime;
+    [FormerlySerializedAs("FadeInOutTime")] public float fadeInOutTime;
     public List<ScenarioStruct> scenarios;
     public Dictionary<int, RectTransform> btns = new Dictionary<int, RectTransform>();
 
@@ -65,6 +69,15 @@ public class ScenarioSelectUI : MonoBehaviour {
 
 
     public void OnSelectedInScenario(int inType) {
+        var destPos = scenarios[inType].startPoint.position;
+        _EntityMng.AddComponentData(_playerEntity, new ScenarioTeleportComponent(
+            new float3(destPos.x, destPos.y, destPos.z), teleportTime, fadeInOutTime));
 
+        foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
+            if (system is GUISystem) {
+                GUISystem guiSystem = system as GUISystem;
+                guiSystem.ActiveScenarioSelect(false);
+            }
+        }
     }
 }

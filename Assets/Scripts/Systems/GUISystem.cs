@@ -137,6 +137,23 @@ public class GUISystem : ComponentSystem {
             return;
         }
 
+
+        Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref ScenarioTeleportComponent teleportComp) => {
+            if (playerComp.currentBehaviors > 0)
+                return;
+
+            //// Teleport
+            //bool shouldTeleport = (EntityManager.HasComponent<ScenarioTeleportComponent>(_playerEntity)));
+            //if (shouldTeleport) {
+            //    var teleportInfo = EntityManager.GetComponentData<TeleportInfoComponent>(targetEntity);
+            //    EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref teleportInfo));
+            //    playerComp.currentBehaviors |= BehaviorState.teleport;
+            //}
+
+            //if (playerComp.currentBehaviors > 0) {
+            //    intelComp.isWaitingForOtherSystems = true;
+            //}
+        });
         // set gui - inventory
         UpdateInventoryUI();
 

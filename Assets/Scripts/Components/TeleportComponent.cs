@@ -40,3 +40,20 @@ public struct TeleportInfoComponent : IComponentData {
         endEffect = Entity.Null;
     }
 }
+
+[Serializable]
+public struct ScenarioTeleportComponent : IComponentData {
+    public float teleportTime;
+    public float fadeInOutTime;
+    public Translation destination;
+    public Entity startEffect;
+    public Entity endEffect;
+
+    public ScenarioTeleportComponent(float3 inDest, float inTime, float inFadeTime) {
+        teleportTime = inTime;
+        fadeInOutTime = inFadeTime;
+        destination.Value = inDest;
+        startEffect = Entity.Null;
+        endEffect = Entity.Null;
+    }
+}

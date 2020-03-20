@@ -22,8 +22,7 @@ public class SubSceneControlProxy : MonoBehaviour, IConvertGameObjectToEntity {
         dstManager.AddSharedComponentData(entity, new SubScenePresetComponent() {
             preset = preset
         });
-        
-        // 현재, 게임 시작시에 바로 시나리오 셀렉트 이기 때문에 바로 넣어준다.
+
         dstManager.AddComponentData(entity, new SubSceneLoadComponent() {
             type = (int) SubSceneType.ScenarioSelect
         });

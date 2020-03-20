@@ -37,15 +37,18 @@ public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGam
             Debug.LogError("Add 'SpriteRenderer' component, now!!!!!");
             return;
         }
+
+        var localScale = GetComponent<Transform>().localScale;
         var spriteScale = new float3(sprite.rect.width, sprite.rect.height, 1.0f) / sprite.pixelsPerUnit;
-        spriteScale *= GetComponent<Transform>().localScale;
+        spriteScale *= localScale;
         spriteScale.z = 1.0f;
         dstManager.AddComponentData(entity, new NonUniformScale() {
             Value = spriteScale
         });
 
+        var applyPivot = (sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit * localScale;
         dstManager.AddComponentData(entity, new SpritePivotComponent() {
-            Value = new float3((sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit, 0.0f)
+            Value = new float3(applyPivot, 0.0f)
         }); 
 
         dstManager.AddSharedComponentData(entity, new SpritePresetComponent() {

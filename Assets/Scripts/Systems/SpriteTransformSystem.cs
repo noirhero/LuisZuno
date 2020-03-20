@@ -39,8 +39,7 @@ public class SpriteTransformSystem : JobComponentSystem {
         return Entities
             .WithName("SpriteTransformSystem")
             .WithBurst(FloatMode.Default, FloatPrecision.Standard, true)
-            .WithNone<PlayerComponent>()
-            .WithNone<NPCComponent>()
+            .WithNone<PlayerComponent, NPCComponent>()
             .ForEach((ref LocalToWorld transform, in SpritePivotComponent pivot, in Translation pos, in Rotation rot, in NonUniformScale scale) => {
                 transform.Value = float4x4.TRS(pos.Value, rot.Value, scale.Value);
                 var rotationApplyPivot = math.mul(rot.Value, pivot.Value);

@@ -1,0 +1,231 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1251893785456981887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1251893785456981886}
+  - component: {fileID: 1251893785456981881}
+  - component: {fileID: 1251893785456981880}
+  m_Layer: 0
+  m_Name: OldManPreset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1251893785456981886
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251893785456981887}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -20, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1251893785456981881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251893785456981887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33abdd7c52b13554a8eaf5d0fc0348b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: -894782174785663571, guid: ef5b447bc1e24f343b7e7121f4f4cc30, type: 3}
+  - {fileID: 5322674991313855651, guid: ef5b447bc1e24f343b7e7121f4f4cc30, type: 3}
+  datas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues: 7e0100008f010000
+    _keys: 7e0100008f010000
+    _values:
+    - name: Idle
+      length: 2.25
+      timelines:
+      - start: 0
+        end: 0.15
+        texture: {fileID: -2028219951375383741, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.15
+        end: 0.3
+        texture: {fileID: 6180790761216131720, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.3
+        end: 0.45000002
+        texture: {fileID: -2372526300067489948, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.45000002
+        end: 0.6
+        texture: {fileID: -254133632872285828, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.6
+        end: 0.75
+        texture: {fileID: 1946568087369524302, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.75
+        end: 0.9
+        texture: {fileID: 7170713438128676356, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.9
+        end: 1.05
+        texture: {fileID: 3513445194033141039, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 1.05
+        end: 1.1999999
+        texture: {fileID: 3929185405393999693, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 1.1999999
+        end: 1.3499999
+        texture: {fileID: 7319917744067002093, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 1.3499999
+        end: 1.4999999
+        texture: {fileID: 6828884975506311392, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 1.4999999
+        end: 1.6499999
+        texture: {fileID: 790949288426313350, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 1.6499999
+        end: 1.7999998
+        texture: {fileID: 7882343867461792007, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 1.7999998
+        end: 1.9499998
+        texture: {fileID: -6943712059069995976, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 1.9499998
+        end: 2.1
+        texture: {fileID: 3252511734691507419, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 2.1
+        end: 2.25
+        texture: {fileID: -2645364012174640402, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+    - name: Walk
+      length: 1.2000002
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: -8411831481500547021, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: 7211159150875626752, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: -3930435568983084755, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.3
+        end: 0.4
+        texture: {fileID: -2927329205963532230, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.4
+        end: 0.5
+        texture: {fileID: -710794942173886652, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.5
+        end: 0.6
+        texture: {fileID: 6492949399205353025, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.6
+        end: 0.70000005
+        texture: {fileID: 3296748347298478274, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.70000005
+        end: 0.8000001
+        texture: {fileID: -2810025811870029684, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.8000001
+        end: 0.9000001
+        texture: {fileID: 1707010513707680104, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 0.9000001
+        end: 1.0000001
+        texture: {fileID: -6224571493174838692, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 1.0000001
+        end: 1.1000001
+        texture: {fileID: -2435060167185954353, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+      - start: 1.1000001
+        end: 1.2000002
+        texture: {fileID: 4329385741895840255, guid: ef5b447bc1e24f343b7e7121f4f4cc30,
+          type: 3}
+--- !u!114 &1251893785456981880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251893785456981887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682391998acdc8a458c645e78db2e83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIDatas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 0
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 0
+    _keyValues: 00000000000000000100000000000000
+    _keys: 00000000000000000100000000000000
+    _values:
+    - animation: 0
+      time: 5
+    - animation: 1
+      time: 2.25

@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8495252401563962246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8495252401563962241}
+  - component: {fileID: 8495252401563962240}
+  - component: {fileID: 8495252401563962243}
+  m_Layer: 0
+  m_Name: BeardedPreset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8495252401563962241
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495252401563962246}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -20, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8495252401563962240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495252401563962246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33abdd7c52b13554a8eaf5d0fc0348b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 4411200541051266247, guid: 6673a7e84cf1ac0489b15004a5c82176, type: 3}
+  - {fileID: -8080407183833162515, guid: 6673a7e84cf1ac0489b15004a5c82176, type: 3}
+  datas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 7e0100008f010000
+    _keys: 7e0100008f010000
+    _values:
+    - name: Idle
+      length: 0.5
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: 4652029973046518524, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: 4431788355210791860, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: -3072682854018287517, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+      - start: 0.3
+        end: 0.4
+        texture: {fileID: 4224660863201037901, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+      - start: 0.4
+        end: 0.5
+        texture: {fileID: -6630979743849591720, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+    - name: Walk
+      length: 0.6
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: -2751289042025480147, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: -4532639687549224593, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: 7667267968050265024, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+      - start: 0.3
+        end: 0.4
+        texture: {fileID: 2631098148245889692, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+      - start: 0.4
+        end: 0.5
+        texture: {fileID: -5316941057673700553, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+      - start: 0.5
+        end: 0.6
+        texture: {fileID: -956094377366254079, guid: 6673a7e84cf1ac0489b15004a5c82176,
+          type: 3}
+--- !u!114 &8495252401563962243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8495252401563962246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682391998acdc8a458c645e78db2e83c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AIDatas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 00000000000000000100000000000000
+    _keys: 00000000000000000100000000000000
+    _values:
+    - animation: 0
+      time: 3
+    - animation: 1
+      time: 3

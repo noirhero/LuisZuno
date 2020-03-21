@@ -166,7 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetPath: Assets/Prefabs/CharacterPreset/OldManPreset.prefab
-  preset: {fileID: 0}
   speed: 0.2
 --- !u!212 &429810453
 SpriteRenderer:
@@ -264,7 +263,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetPath: Assets/Prefabs/CharacterPreset/HatBoyPreset.prefab
-  preset: {fileID: 0}
   speed: 0.7
 --- !u!212 &945507453
 SpriteRenderer:
@@ -362,7 +360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetPath: Assets/Prefabs/CharacterPreset/HatWomanPreset.prefab
-  preset: {fileID: 0}
   speed: 0.1
 --- !u!212 &1135269235
 SpriteRenderer:
@@ -460,7 +457,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetPath: 
-  preset: {fileID: 0}
 --- !u!61 &1275242749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -532,7 +528,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetPath: 
-  preset: {fileID: 0}
 --- !u!61 &1358991293
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -604,7 +599,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetPath: Assets/Prefabs/CharacterPreset/BeardedPreset.prefab
-  preset: {fileID: 0}
   speed: 0.5
 --- !u!212 &1449593347
 SpriteRenderer:
@@ -657,33 +651,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2060524104
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2060524105}
-  m_Layer: 0
-  m_Name: Town_StartPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2060524105
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060524104}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.39, y: -2.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

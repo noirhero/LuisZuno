@@ -22,7 +22,7 @@ public class EntitySpawnProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConve
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         dstManager.AddComponentData(entity, new EntitySpawnInfoComponent(ref entitySpawn) {
-            prefab = conversionSystem.GetPrimaryEntity(spawnPreset),
+            preset = conversionSystem.GetPrimaryEntity(spawnPreset),
             spawnEffect = conversionSystem.GetPrimaryEntity(spawnEffectPreset),
             destroyEffect = conversionSystem.GetPrimaryEntity(destroyEffectPreset),
         });

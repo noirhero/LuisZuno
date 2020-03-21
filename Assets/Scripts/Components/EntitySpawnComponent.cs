@@ -16,7 +16,7 @@ public struct EntitySpawnComponent : IComponentData {
     public Entity destroyEffect;
 
     public EntitySpawnComponent(ref EntitySpawnInfoComponent rhs) {
-        prefab = rhs.prefab;
+        prefab = rhs.preset;
         number = rhs.number;
         velocityMin = rhs.velocityMin;
         velocityMax = rhs.velocityMax;
@@ -30,7 +30,7 @@ public struct EntitySpawnComponent : IComponentData {
 
 [Serializable]
 public struct EntitySpawnInfoComponent : IComponentData {
-    public Entity prefab;
+    public Entity preset;
     public int number;
     public float velocityMin;
     public float velocityMax;
@@ -41,7 +41,7 @@ public struct EntitySpawnInfoComponent : IComponentData {
     public Entity destroyEffect;
 
     public EntitySpawnInfoComponent(ref EntitySpawnInfoComponent rhs) {
-        prefab = Entity.Null;
+        preset = Entity.Null;
         number = rhs.number;
         velocityMin = rhs.velocityMin;
         velocityMax = rhs.velocityMax;

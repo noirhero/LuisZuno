@@ -9,6 +9,7 @@ public class PlayerProxy : EntityProxy {
     public ItemStruct[] defaultInventory = new ItemStruct[0];
     [FormerlySerializedAs("Status")] public PlayerStatusComponent status;
 
+
     protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
 

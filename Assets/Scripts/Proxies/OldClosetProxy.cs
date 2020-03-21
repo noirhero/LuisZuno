@@ -4,21 +4,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using UnityEngine.Serialization;
+using UnityEditor;
 
 [RequiresEntityConversion]
 public class OldClosetProxy : PropProxy {
     [FormerlySerializedAs("SpawnInfo")] public EntitySpawnInfoComponent spawnInfo;
-    [FormerlySerializedAs("SpawnPreset")] public GameObject spawnPreset = null;
-    [FormerlySerializedAs("SpawnEffectPreset")] public GameObject spawnEffectPreset = null;
-    [FormerlySerializedAs("DestroyEffectPreset")] public GameObject destroyEffectPreset = null;
+    public string spawnPresetPath;
+    public string spawnEffectPath;
+    public string destroyEffectPath;
+
+    private GameObject _spawnPreset = null;
+    private GameObject _spawnEffectPreset = null;
+    private GameObject _destroyEffectPreset = null;
+
+
+    protected override void LoadAssets() {
+        base.LoadAssets();
+
+        if (0 < spawnPresetPath.Length) {
+            _spawnPreset = AssetDatabase.LoadAssetAtPath<GameObject>(spawnPresetPath);
+        }
+        if (0 < spawnEffectPath.Length) {
+            _spawnEffectPreset = AssetDatabase.LoadAssetAtPath<GameObject>(spawnEffectPath);
+        }
+        if (0 < destroyEffectPath.Length) {
+            _destroyEffectPreset = AssetDatabase.LoadAssetAtPath<GameObject>(destroyEffectPath);
+        }
+    }
 
 
     protected override void SetupPrefabs(List<GameObject> referencedPrefabs) {
         base.SetupPrefabs(referencedPrefabs);
 
-        referencedPrefabs.Add(spawnPreset);
-        referencedPrefabs.Add(spawnEffectPreset);
-        referencedPrefabs.Add(destroyEffectPreset);
+        if (null != _spawnPreset) {
+            referencedPrefabs.Add(_spawnPreset);
+        }
+
+        if (null != _spawnEffectPreset) {
+            referencedPrefabs.Add(_spawnEffectPreset);
+        }
+
+        if (null != _destroyEffectPreset) {
+            referencedPrefabs.Add(_destroyEffectPreset);
+        }
     }
 
 
@@ -26,9 +54,9 @@ public class OldClosetProxy : PropProxy {
         base.SetupComponents(entity, dstManager, conversionSystem);
 
         dstManager.AddComponentData(entity, new EntitySpawnInfoComponent(ref spawnInfo) {
-            prefab = conversionSystem.GetPrimaryEntity(spawnPreset),
-            spawnEffect = conversionSystem.GetPrimaryEntity(spawnEffectPreset),
-            destroyEffect = conversionSystem.GetPrimaryEntity(destroyEffectPreset),
+            preset = conversionSystem.GetPrimaryEntity(_spawnPreset),
+            spawnEffect = conversionSystem.GetPrimaryEntity(_spawnEffectPreset),
+            destroyEffect = conversionSystem.GetPrimaryEntity(_destroyEffectPreset),
         });
     }
 }

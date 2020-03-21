@@ -5,27 +5,49 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEditor;
 using System.Collections.Generic;
 
 [RequiresEntityConversion]
 public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
-    public GameObject preset = null;
+    public string presetPath;
+
+    protected GameObject preset = null;
+
+
+    public void Awake() {
+        LoadAssets();
+    }
+
 
     public void DeclareReferencedPrefabs(List<GameObject> referencedPresets) {
         SetupPrefabs(referencedPresets);
     }
 
+
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         SetupComponents(entity, dstManager, conversionSystem);
     }
+    
 
-    protected virtual void SetupPrefabs(List<GameObject> referencedPresets) {
-        referencedPresets.Add(preset);
+    protected virtual void LoadAssets() {
+        if (0 < presetPath.Length) {
+            preset = AssetDatabase.LoadAssetAtPath<GameObject>(presetPath);
+        }
     }
 
+
+    protected virtual void SetupPrefabs(List<GameObject> referencedPresets) {
+        if (null != preset) {
+        	referencedPresets.Add(preset);
+        }
+    }
+
+
     protected virtual void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        if (null == preset)
+        if (null == preset) {
             return;
+        }
 
         var spritePreset = preset.GetComponent<SpritePreset>();
         if (ReferenceEquals(null, spritePreset)) {

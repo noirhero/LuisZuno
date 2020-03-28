@@ -4,6 +4,14 @@ using System;
 using Unity.Entities;
 using Unity.Transforms;
 using Unity.Mathematics;
+using UnityEngine;
+
+[Serializable]
+public class TeleportPointComponent : IComponentData {
+    public Int64 id;
+    public float3 point;
+    public Color color;
+}
 
 [Serializable]
 public struct TeleportComponent : IComponentData {

@@ -43,13 +43,6 @@ namespace GlobalDefine {
         public Transform startPoint;
     }
 
-    [Serializable]
-    public struct TeleportPointStruct {
-        public Int64 id;
-        public float3 point;
-        public Color color;
-    }
-
     public static class Utility {
         public static bool IsValid(Int64 index) {
             return index != 0;

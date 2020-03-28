@@ -7,7 +7,9 @@ public enum SubSceneType {
     Crafting,
     Housing,
     ScenarioSelect,
-    Scenario
+    Scenario001_Hallway,
+    Scenario001_Basement,
+    Scenario001_LegacyOfClan
 }
 
 [Serializable]

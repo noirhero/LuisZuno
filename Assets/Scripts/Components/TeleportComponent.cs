@@ -7,10 +7,9 @@ using Unity.Mathematics;
 using UnityEngine;
 
 [Serializable]
-public class TeleportPointComponent : IComponentData {
+public struct TeleportPointComponent : IComponentData {
     public Int64 id;
     public float3 point;
-    public Color color;
 }
 
 [Serializable]

@@ -2,9 +2,8 @@
 
 using System;
 using Unity.Entities;
-using Unity.Transforms;
 using Unity.Mathematics;
-using UnityEngine;
+using GlobalDefine;
 
 [Serializable]
 public struct TeleportPointComponent : IComponentData {
@@ -14,28 +13,32 @@ public struct TeleportPointComponent : IComponentData {
 
 [Serializable]
 public struct TeleportComponent : IComponentData {
+    public ScenarioType scenarioType;
+    public int pointID;
     public float elapsedTeleportTime;
     public float teleportTime;
     public float fadeInOutTime;
-    public Translation destination;
 
     public TeleportComponent(ref TeleportInfoComponent rhs) {
+        scenarioType = rhs.scenarioType;
+        pointID = rhs.pointID;
         elapsedTeleportTime = 0.0f;
         teleportTime = rhs.teleportTime;
         fadeInOutTime = rhs.fadeInOutTime;
-        destination = rhs.destination;
     }
 }
 
 [Serializable]
 public struct TeleportInfoComponent : IComponentData {
+    public ScenarioType scenarioType;
+    public int pointID;
     public float teleportTime;
     public float fadeInOutTime;
-    public Translation destination;
 
-    public TeleportInfoComponent(float3 inDest, float inTime, float inFadeTime) {
+    public TeleportInfoComponent(ScenarioType inType, int inPoint, float inTime, float inFadeTime) {
+        scenarioType = inType;
+        pointID = inPoint;
         teleportTime = inTime;
         fadeInOutTime = inFadeTime;
-        destination.Value = inDest;
     }
 }

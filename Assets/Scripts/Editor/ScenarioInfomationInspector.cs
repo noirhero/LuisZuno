@@ -4,31 +4,31 @@ using UnityEditor;
 using UnityEngine;
 
 
-[CustomEditor(typeof(TeleportPointsPreset))]
+[CustomEditor(typeof(ScenarioInfomationPreset))]
 [CanEditMultipleObjects]
-public class TeleportPointsPresetInspector : Editor {
+public class ScenarioInfomationPresetInspector : Editor {
     private bool _bConvertData = false;
 
 
     public override void OnInspectorGUI() {
-        bool cachedState = GUILayout.Toggle(_bConvertData, "ConvertToPosition");
+        base.OnInspectorGUI();
+
+        bool cachedState = GUILayout.Toggle(_bConvertData, "ConvertToTeleportPoint");
         if (cachedState != _bConvertData) {
             _bConvertData = cachedState;
 
             if (_bConvertData) {
-                ConvertToPosition(target as TeleportPointsPreset);
+                ConvertToPosition(target as ScenarioInfomationPreset);
             }
             else {
-                ConvertToGameObject(target as TeleportPointsPreset);
+                ConvertToGameObject(target as ScenarioInfomationPreset);
             }
         }
-
-        base.OnInspectorGUI();
     }
 
 
-    private void ConvertToPosition(TeleportPointsPreset inPreset) {
-        inPreset.points.Clear();
+    private void ConvertToPosition(ScenarioInfomationPreset inPreset) {
+        ConvertToGameObject(inPreset);
 
         Transform[] childs = inPreset.GetTransform().GetComponentsInChildren<Transform>();
         for (int i = childs.Length-1; i >= 0 ; --i) {
@@ -36,15 +36,15 @@ public class TeleportPointsPresetInspector : Editor {
                 continue;
             }
 
-            if (inPreset.points.Find(t => t.position == childs[i].position) == null) {
-                inPreset.points.Add(new TeleportPointData(childs[i].name, childs[i].position));
+            if (inPreset.IsNewPosition(childs[i].position)) {
+                inPreset.points.Add(inPreset.points.Count, new TeleportPointData(childs[i].name, childs[i].position));
             }
             GameObject.DestroyImmediate(childs[i].gameObject);
         }
     }
 
 
-    private void ConvertToGameObject(TeleportPointsPreset inPreset) {
+    private void ConvertToGameObject(ScenarioInfomationPreset inPreset) {
         for (int i = inPreset.points.Count-1; i >= 0; --i) {
             GameObject cachedObject = new GameObject(inPreset.points[i].name);
 

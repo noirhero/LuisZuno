@@ -8,15 +8,13 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine.Serialization;
 using Unity.Entities;
-using Unity.Mathematics;
-using GlobalDefine;
 using UnityEditor.Events;
 
 public class ScenarioSelectUI : MonoBehaviour {
     public Button btnPreset;
     [FormerlySerializedAs("TeleportTime")] public float teleportTime;
     [FormerlySerializedAs("FadeInOutTime")] public float fadeInOutTime;
-    public List<ScenarioStruct> scenarios;
+    public List<ScenarioSelectInfo> scenarios;
     public Dictionary<int, RectTransform> btns = new Dictionary<int, RectTransform>();
 
     private Entity _playerEntity = Entity.Null;
@@ -42,17 +40,13 @@ public class ScenarioSelectUI : MonoBehaviour {
         }
 
         for (int i=0; i< scenarios.Count; ++i) {
-            if (null == scenarios[i].uiPivot) {
-                continue;
-            }
-
             Button cachedBtn = GameObject.Instantiate<Button>(btnPreset);
             
             UnityAction<int> action = Delegate.CreateDelegate(typeof(UnityAction<int>), this, "OnSelectedInScenario") as UnityAction<int>;
             UnityEventTools.AddIntPersistentListener(cachedBtn.onClick, action, i);
 
             Text cachedText = cachedBtn.GetComponentInChildren<Text>();
-            cachedText.text = scenarios[i].name;
+            cachedText.text = scenarios[i].GetDisplayName();
 
             RectTransform cachedTrans = cachedBtn.GetComponentInChildren<RectTransform>();
             cachedTrans.SetParent(this.transform);
@@ -64,7 +58,7 @@ public class ScenarioSelectUI : MonoBehaviour {
     void Update() {
         foreach (var btn in btns) {
             int index = btn.Key;
-            Vector3 pivot = scenarios[btn.Key].uiPivot.position;
+            Vector3 pivot = scenarios[btn.Key].GetPivot();
             Vector3 convert2DPos = Camera.main.WorldToScreenPoint(pivot);
             
             RectTransform btnTrans = btn.Value;
@@ -74,10 +68,8 @@ public class ScenarioSelectUI : MonoBehaviour {
 
 
     public void OnSelectedInScenario(int inType) {
-        var destPos = scenarios[inType].startPoint.position;
-
         _EntityMng.AddComponentData(_playerEntity, new TeleportInfoComponent(
-            new float3(destPos.x, destPos.y, destPos.z), teleportTime, fadeInOutTime));
+            scenarios[inType].scenarioType, scenarios[inType].pointID, teleportTime, fadeInOutTime));
 
         foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
             if (system is GUISystem) {

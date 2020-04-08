@@ -13,6 +13,7 @@ namespace GlobalDefine {
     public enum BackgroundType { BackStreetBoy, Poem, VeteranSoldier, Priest, Professor, Detective }
     public enum ValuesType { Mercy, Greedy, Curiosity, SenseOfDuty }
     public enum GoalType { TraceOfParents, CreateOfMasterpiece, Rich }
+    public enum ScenarioType { None, Scenario001 }
 
     [Serializable]
     public struct CharacterBackground {
@@ -34,13 +35,6 @@ namespace GlobalDefine {
             id = 0;
             addedTime = 0;
         }
-    }
-
-    [Serializable]
-    public struct ScenarioStruct {
-        public string name;
-        public Transform uiPivot;
-        public Transform startPoint;
     }
 
     public static class Utility {

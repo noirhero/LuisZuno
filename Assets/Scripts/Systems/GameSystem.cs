@@ -50,6 +50,7 @@ public class GameSystem : ComponentSystem {
         }
     }
 
+    
     private void EnableSystem(bool inEnable) {
         foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
             if (system.GetType() == typeof(TargetingSystem)) {

@@ -4,7 +4,6 @@ using System;
 using Unity.Mathematics;
 using Unity.Entities;
 
-
 [Serializable]
 public struct CameraSyncComponent : IComponentData {
     public float3 syncPos;

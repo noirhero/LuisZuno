@@ -1679,7 +1679,7 @@ MonoBehaviour:
   item2: {fileID: 84418562}
   item3: {fileID: 1946033145}
   customize: {fileID: 1152165959}
-  sceneSelect: {fileID: 0}
+  sceneSelect: {fileID: 2116970451}
 --- !u!1 &262320674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,7 +1709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafb850d5cdc165478354ea73fc2ed17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneType: 0
+  sceneType: 1
   points:
     reorderableList:
       canAdd: 1
@@ -5200,7 +5200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  sceneType: 0
+  sceneType: 1
   pointID: 2
 --- !u!1 &869601292
 GameObject:
@@ -7933,7 +7933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  sceneType: 0
+  sceneType: 1
   pointID: 0
 --- !u!1 &1347235417
 GameObject:
@@ -10446,7 +10446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  sceneType: 0
+  sceneType: 1
   pointID: 1
 --- !u!1 &1915889163
 GameObject:

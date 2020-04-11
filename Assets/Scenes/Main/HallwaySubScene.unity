@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetPath: 
-  scenarioType: 1
+  sceneType: 1
   pointID: 3
   teleportTime: 1
   fadeInOutTime: 1

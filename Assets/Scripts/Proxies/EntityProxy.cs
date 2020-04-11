@@ -5,7 +5,7 @@ using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEditor;
+using GlobalDefine;
 using System.Collections.Generic;
 
 [RequiresEntityConversion]
@@ -31,9 +31,7 @@ public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGam
     
 
     protected virtual void LoadAssets() {
-        if (0 < presetPath.Length) {
-            preset = AssetDatabase.LoadAssetAtPath<GameObject>(presetPath);
-        }
+        preset = Utility.LoadObjectAtPath<GameObject>(presetPath);
     }
 
 

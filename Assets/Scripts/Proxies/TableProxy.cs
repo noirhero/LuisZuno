@@ -1,9 +1,9 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
 using UnityEngine;
-using UnityEditor;
 using Unity.Entities;
 using System.Collections.Generic;
+using GlobalDefine;
 
 [RequiresEntityConversion]
 public class TableProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
@@ -28,9 +28,7 @@ public class TableProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGame
 
 
     protected virtual void LoadAssets() {
-        if (0 < presetPath.Length) {
-            _preset = AssetDatabase.LoadAssetAtPath<TablePreset>(presetPath);
-        }
+        _preset = Utility.LoadObjectAtPath<TablePreset>(presetPath);
     }
 
 

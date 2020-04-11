@@ -5263,6 +5263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: 
   sceneType: 1
+  curSubSceneType: 2
   nextSubSceneType: 3
   pointID: 2
 --- !u!1 &869601292
@@ -7997,6 +7998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: 
   sceneType: 1
+  curSubSceneType: 2
   nextSubSceneType: 3
   pointID: 0
 --- !u!1 &1347235417
@@ -10569,6 +10571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: 
   sceneType: 1
+  curSubSceneType: 2
   nextSubSceneType: 3
   pointID: 1
 --- !u!1 &1915889163

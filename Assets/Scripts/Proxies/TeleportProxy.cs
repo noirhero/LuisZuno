@@ -9,6 +9,7 @@ using GlobalDefine;
 public class TeleportProxy : EntityProxy {
     // 맵정보 방식 정리되기전까지 임시
     public SceneType sceneType;
+    public SubSceneType curSubSceneType;
     public SubSceneType nextSubSceneType;
     public int pointID;
     //
@@ -22,6 +23,6 @@ public class TeleportProxy : EntityProxy {
 
         dstManager.AddComponentData(entity, new ReactiveComponent());
         dstManager.AddComponentData(entity, new PropStatusComponent(ref status));        
-        dstManager.AddComponentData(entity, new TeleportInfoComponent(sceneType, nextSubSceneType, pointID, teleportTime, fadeInOutTime));
+        dstManager.AddComponentData(entity, new TeleportInfoComponent(sceneType, curSubSceneType, nextSubSceneType, pointID, teleportTime, fadeInOutTime));
     }
 }

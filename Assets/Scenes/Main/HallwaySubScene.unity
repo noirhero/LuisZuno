@@ -319,6 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   presetPath: 
   sceneType: 1
+  curSubSceneType: 3
   nextSubSceneType: 4
   pointID: 3
   teleportTime: 1

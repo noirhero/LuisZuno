@@ -44,6 +44,7 @@ public class TeleportSystem : ComponentSystem {
                 EntityManager.AddComponentData(_playerEntity, new GameResumeComponent());
                 EntityManager.RemoveComponent<TeleportComponent>(_playerEntity);
                 EntityManager.RemoveComponent<SubSceneControlComponent>(_playerEntity);
+                
                 playerComp.currentBehaviors ^= BehaviorState.teleport;
                 _desiredPos = float3.zero;
                 return;
@@ -56,6 +57,7 @@ public class TeleportSystem : ComponentSystem {
 
                 EntityManager.AddComponentData(_playerEntity, new CameraSyncComponent(_desiredPos));
                 EntityManager.AddComponentData(_playerEntity, new FadeOutComponent(teleportComp.fadeInOutTime));
+                EntityManager.AddComponentData(_playerEntity, new SubSceneUnLoadComponent() { type = (int)teleportComp.curSubSceneType });
             }
         });
     }

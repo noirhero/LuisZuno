@@ -34,6 +34,8 @@ public class TeleportSystem : ComponentSystem {
                 
                 EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());
                 EntityManager.AddComponentData(_playerEntity, new FadeInComponent(teleportComp.fadeInOutTime));
+                EntityManager.AddComponentData(_playerEntity, new SubSceneControlComponent());
+                EntityManager.AddComponentData(_playerEntity, new SubSceneLoadComponent() { type = (int)teleportComp.nextSubSceneType });
                 _desiredPos = GetTeleportPoint(teleportComp.sceneType, teleportComp.pointID);
             }
             // finish
@@ -41,6 +43,7 @@ public class TeleportSystem : ComponentSystem {
                 EntityManager.AddComponentData(_playerEntity, new TargetingComponent());
                 EntityManager.AddComponentData(_playerEntity, new GameResumeComponent());
                 EntityManager.RemoveComponent<TeleportComponent>(_playerEntity);
+                EntityManager.RemoveComponent<SubSceneControlComponent>(_playerEntity);
                 playerComp.currentBehaviors ^= BehaviorState.teleport;
                 _desiredPos = float3.zero;
                 return;

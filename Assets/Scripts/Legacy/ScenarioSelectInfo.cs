@@ -8,6 +8,7 @@ public class ScenarioSelectInfo : MonoBehaviour {
     
     // 맵정보 방식 정리되기전까지 임시
     public SceneType sceneType;
+    public SubSceneType nextSubSceneType;
     public int pointID;
     //
 

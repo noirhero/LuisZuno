@@ -20,6 +20,15 @@ public class SubSceneControlSystem : ComponentSystem {
                     case SubSceneType.sceneSelect:
                         loadSubScene = _preset.scenarioSelectSubScene;
                         break;
+                    case SubSceneType.Scenario001_Hallway:
+                        loadSubScene = _preset.scenario001_HallWay;
+                        break;
+                    case SubSceneType.Scenario001_Basement:
+                        loadSubScene = _preset.scenario001_Basement;
+                        break;
+                    case SubSceneType.Scenario001_LegacyOfClan:
+                        loadSubScene = _preset.scenario001_LegacyOfClan;
+                        break;
                     default:
                         return;
                 }

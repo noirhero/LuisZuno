@@ -14,6 +14,7 @@ public struct TeleportPointComponent : IComponentData {
 [Serializable]
 public struct TeleportComponent : IComponentData {
     public SceneType sceneType;
+    public SubSceneType nextSubSceneType;
     public int pointID;
     public float elapsedTeleportTime;
     public float teleportTime;
@@ -21,6 +22,7 @@ public struct TeleportComponent : IComponentData {
 
     public TeleportComponent(ref TeleportInfoComponent rhs) {
         sceneType = rhs.sceneType;
+        nextSubSceneType = rhs.nextSubSceneType;
         pointID = rhs.pointID;
         elapsedTeleportTime = 0.0f;
         teleportTime = rhs.teleportTime;
@@ -31,12 +33,14 @@ public struct TeleportComponent : IComponentData {
 [Serializable]
 public struct TeleportInfoComponent : IComponentData {
     public SceneType sceneType;
+    public SubSceneType nextSubSceneType;
     public int pointID;
     public float teleportTime;
     public float fadeInOutTime;
 
-    public TeleportInfoComponent(SceneType inType, int inPoint, float inTime, float inFadeTime) {
+    public TeleportInfoComponent(SceneType inType, SubSceneType inSubSceneType, int inPoint, float inTime, float inFadeTime) {
         sceneType = inType;
+        nextSubSceneType = inSubSceneType;
         pointID = inPoint;
         teleportTime = inTime;
         fadeInOutTime = inFadeTime;

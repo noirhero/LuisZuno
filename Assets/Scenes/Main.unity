@@ -1728,11 +1728,11 @@ MonoBehaviour:
     - name: Scenario001_StartPoint_Temporary1
       position: {x: 3, y: -1.94, z: 0}
     - name: Hallway_Teleport
-      position: {x: 0.97, y: -1.8999999, z: 0}
+      position: {x: 0.9700001, y: -1.8999999, z: 0}
     - name: Basement_StartPoint
       position: {x: 0.5, y: 2.9399996, z: 0}
     - name: LegacyOfClan_StartPoint
-      position: {x: 0.61, y: 7.9985867, z: 0}
+      position: {x: 0.6100001, y: 7.9985867, z: 0}
 --- !u!4 &262320676
 Transform:
   m_ObjectHideFlags: 0
@@ -2713,6 +2713,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scenarioSelectSubScene: {fileID: 52821550}
+  scenario001_HallWay: {fileID: 1844412155}
+  scenario001_Basement: {fileID: 608244630}
+  scenario001_LegacyOfClan: {fileID: 695086319}
 --- !u!114 &414862769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3970,7 +3973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SceneAsset: {fileID: 102900000, guid: 56ba0456ebf87934c8dcf74c3e07fe13, type: 3}
   _HierarchyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  AutoLoadScene: 1
+  AutoLoadScene: 0
   _SceneGUID:
     Value:
       x: 1698736997
@@ -4459,7 +4462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SceneAsset: {fileID: 102900000, guid: 486626a6c7e945846b67fdf523871bec, type: 3}
   _HierarchyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  AutoLoadScene: 1
+  AutoLoadScene: 0
   _SceneGUID:
     Value:
       x: 1784833668
@@ -5188,6 +5191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: 
   sceneType: 1
+  nextSubSceneType: 3
   pointID: 2
 --- !u!1 &869601292
 GameObject:
@@ -7921,6 +7925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: 
   sceneType: 1
+  nextSubSceneType: 3
   pointID: 0
 --- !u!1 &1347235417
 GameObject:
@@ -10135,7 +10140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SceneAsset: {fileID: 102900000, guid: 44967975b4ba66f4287da0b374ae9a8a, type: 3}
   _HierarchyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  AutoLoadScene: 1
+  AutoLoadScene: 0
   _SceneGUID:
     Value:
       x: 1469540676
@@ -10434,6 +10439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: 
   sceneType: 1
+  nextSubSceneType: 3
   pointID: 1
 --- !u!1 &1915889163
 GameObject:

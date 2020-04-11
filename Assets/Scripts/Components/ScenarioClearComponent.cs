@@ -7,3 +7,13 @@ using Unity.Entities;
 public struct ScenarioClearComponent : IComponentData {
 
 }
+
+[Serializable]
+public struct ScenarioSelectComponent : IComponentData {
+
+}
+
+[Serializable]
+public struct ScenarioSelectCompleteComponent : IComponentData {
+
+}

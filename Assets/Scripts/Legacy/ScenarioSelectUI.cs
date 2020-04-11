@@ -71,11 +71,7 @@ public class ScenarioSelectUI : MonoBehaviour {
         _EntityMng.AddComponentData(_playerEntity, new TeleportInfoComponent(
             scenarios[inType].sceneType, scenarios[inType].nextSubSceneType, scenarios[inType].pointID, teleportTime, fadeInOutTime));
 
-        foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
-            if (system is GUISystem) {
-                GUISystem guiSystem = system as GUISystem;
-                guiSystem.ActiveScenarioSelect(false);
-            }
-        }
+        _EntityMng.RemoveComponent<ScenarioSelectComponent>(_playerEntity);
+        _EntityMng.AddComponentData(_playerEntity, new ScenarioSelectCompleteComponent());
     }
 }

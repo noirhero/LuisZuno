@@ -13,7 +13,7 @@ namespace GlobalDefine {
     public enum BackgroundType { BackStreetBoy, Poem, VeteranSoldier, Priest, Professor, Detective }
     public enum ValuesType { Mercy, Greedy, Curiosity, SenseOfDuty }
     public enum GoalType { TraceOfParents, CreateOfMasterpiece, Rich }
-    public enum SceneType { None, Scenario001 }
+    public enum SceneType { None, Town, Scenario001 }
 
     [Serializable]
     public struct CharacterBackground {

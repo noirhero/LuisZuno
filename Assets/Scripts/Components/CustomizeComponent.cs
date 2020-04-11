@@ -29,3 +29,8 @@ public struct CustomizeComponent : IComponentData {
         luck = 0;
     }
 }
+
+[Serializable]
+public struct CustomizeCompleteComponent : IComponentData {
+
+}

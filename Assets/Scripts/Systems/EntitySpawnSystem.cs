@@ -22,6 +22,10 @@ public class EntitySpawnSystem : JobComponentSystem {
                     return;
                 }
 
+                if (null == entityComp.prefab) {
+                    return;
+                }
+
                 var rand = new Random((uint)(entityComp.number));
                 for (var i = 0; i < entityComp.number; ++i) {
                     var instantiateEntity = cmdBuf.Instantiate(entityInQueryIndex, entityComp.prefab);

@@ -50,7 +50,6 @@ public class CustomizeUI : MonoBehaviour {
             .Where(entity => _EntityMng.HasComponent(entity, typeof(PlayerComponent)));
 
         foreach (var entity in playerEntities) {
-            _EntityMng.AddComponentData(entity, new CustomizeComponent(10));
             _playerEntity = entity;
             break;
         }
@@ -216,12 +215,8 @@ public class CustomizeUI : MonoBehaviour {
         decision.SetActive(false);
         AdjustPlayerStatus();
 
-        foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
-            if (system is GUISystem) {
-                GUISystem guiSystem = system as GUISystem;
-                guiSystem.ActiveCustomize(false);
-            }
-        }
+        _EntityMng.RemoveComponent<CustomizeComponent>(_playerEntity);
+        _EntityMng.AddComponentData(_playerEntity, new CustomizeCompleteComponent());
     }
 
 

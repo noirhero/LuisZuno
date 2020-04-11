@@ -11,19 +11,85 @@ public class GUISystem : ComponentSystem {
     private TablePreset _tablePreset;
     private GUIPreset _guiPreset;
     private Entity _playerEntity = Entity.Null;
-    
 
-    private void UpdateInventoryUI() {
-        if (EntityManager.HasComponent<InventoryComponent>(_playerEntity)) {
-            InventoryComponent inventoryComp = EntityManager.GetComponentData<InventoryComponent>(_playerEntity);
-            SetItemSprite(inventoryComp.item1.id, _guiPreset.item1);
-            SetItemSprite(inventoryComp.item2.id, _guiPreset.item2);
-            SetItemSprite(inventoryComp.item3.id, _guiPreset.item3);
+
+    protected override void OnStartRunning() {
+        Entities.ForEach((TablePresetComponent presetComp) => {
+            _tablePreset = presetComp.preset;
+        });
+
+        Entities.ForEach((GUIPresetComponent presetComp) => {
+            _guiPreset = presetComp.preset;
+        });
+
+        Entities.WithAll<PlayerComponent>().ForEach((Entity entity) => {
+            _playerEntity = entity;
+        });
+
+        EntityManager.AddComponentData<GameStartComponent>(_playerEntity, new GameStartComponent());
+        EntityManager.AddComponentData(_playerEntity, new ScenarioSelectComponent());
+
+        ActiveCustomize(false);
+        ActiveScenarioSelect(false);
+
+        if (null != _guiPreset) {
+            _guiPreset.Initialize();
         }
     }
 
 
-    public void ActiveCustomize(bool inActive) {
+    protected override void OnUpdate() {
+        if (null == _guiPreset) {
+            return;
+        }
+
+        if (_playerEntity.Equals(Entity.Null)) {
+            return;
+        }
+
+        // Teleport
+        if (EntityManager.HasComponent<TeleportInfoComponent>(_playerEntity)) {
+            Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref TeleportInfoComponent teleportInfoComp) => {
+                if (playerComp.currentBehaviors > 0) {
+                    return;
+                }
+                EntityManager.RemoveComponent<TeleportInfoComponent>(playerEntity);
+                EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref teleportInfoComp));
+                playerComp.currentBehaviors |= BehaviorState.teleport;
+            });
+        }
+
+        // Customize
+        if (EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+            ActiveCustomize(true);
+        }
+        if (EntityManager.HasComponent<CustomizeCompleteComponent>(_playerEntity)) {
+            EntityManager.RemoveComponent<CustomizeCompleteComponent>(_playerEntity);
+            EntityManager.AddComponentData(_playerEntity, new ScenarioSelectComponent());
+            ActiveCustomize(false);
+        }
+
+        // Scenario
+        if (EntityManager.HasComponent<ScenarioSelectComponent>(_playerEntity)) {
+            ActiveScenarioSelect(true);
+        }
+        if (EntityManager.HasComponent<ScenarioSelectCompleteComponent>(_playerEntity)) {
+            EntityManager.RemoveComponent<ScenarioSelectCompleteComponent>(_playerEntity);
+            ActiveScenarioSelect(false);
+        }
+
+        // set gui - inventory
+        UpdateInventoryUI();
+
+        // set gui - bubble
+        UpdateBubbleUI();
+
+        // set gui - madness
+        UpdateGaugeUI();
+    }
+
+
+    protected void ActiveCustomize(bool inActive) {
         if (inActive) {
             EntityManager.AddComponentData<GamePauseComponent>(_playerEntity, new GamePauseComponent());
         }
@@ -37,7 +103,7 @@ public class GUISystem : ComponentSystem {
     }
 
 
-    public void ActiveScenarioSelect(bool inActive) {
+    protected void ActiveScenarioSelect(bool inActive) {
         if (null != _guiPreset) {
             _guiPreset.ActiveScenarioSelect(inActive);
         }
@@ -49,6 +115,16 @@ public class GUISystem : ComponentSystem {
         if (_tablePreset.itemDatas.TryGetValue(inID, out data)) {
             inImg.gameObject.SetActive(Utility.IsValid(inID));
             inImg.sprite = data.sprite;
+        }
+    }
+
+
+    private void UpdateInventoryUI() {
+        if (EntityManager.HasComponent<InventoryComponent>(_playerEntity)) {
+            InventoryComponent inventoryComp = EntityManager.GetComponentData<InventoryComponent>(_playerEntity);
+            SetItemSprite(inventoryComp.item1.id, _guiPreset.item1);
+            SetItemSprite(inventoryComp.item2.id, _guiPreset.item2);
+            SetItemSprite(inventoryComp.item3.id, _guiPreset.item3);
         }
     }
 
@@ -101,59 +177,5 @@ public class GUISystem : ComponentSystem {
     private void UpdateGaugeUI() {
         PlayerStatusComponent statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(_playerEntity);
         _guiPreset.SetMadness(statusComp.madness / statusComp.maxMadness);
-    }
-
-
-    protected override void OnStartRunning() {
-        Entities.ForEach((TablePresetComponent presetComp) => {
-            _tablePreset = presetComp.preset;
-        });
-
-        Entities.ForEach((GUIPresetComponent presetComp) => {
-            _guiPreset = presetComp.preset;
-        });
-
-        Entities.WithAll<PlayerComponent>().ForEach((Entity entity) => {
-            _playerEntity = entity;
-        });
-
-        EntityManager.AddComponentData<GameStartComponent>(_playerEntity, new GameStartComponent());
-
-        ActiveCustomize(false);
-        ActiveScenarioSelect(true);
-
-        if (null != _guiPreset) {
-            _guiPreset.Initialize();
-        }
-    }
-
-
-    protected override void OnUpdate() {
-        if (null == _guiPreset) {
-            return;
-        }
-
-        if (_playerEntity.Equals(Entity.Null)) {
-            return;
-        }
-
-        // Teleport
-        Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref TeleportInfoComponent teleportInfoComp) => {
-            if (playerComp.currentBehaviors > 0) {
-                    return;
-            }
-            EntityManager.RemoveComponent<TeleportInfoComponent>(playerEntity);
-            EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref teleportInfoComp));
-            playerComp.currentBehaviors |= BehaviorState.teleport;
-        });
-
-        // set gui - inventory
-        UpdateInventoryUI();
-
-        // set gui - bubble
-        UpdateBubbleUI();
-
-        // set gui - madness
-        UpdateGaugeUI();
     }
 }

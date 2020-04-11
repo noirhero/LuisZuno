@@ -34,7 +34,7 @@ public class TeleportSystem : ComponentSystem {
                 
                 EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());
                 EntityManager.AddComponentData(_playerEntity, new FadeInComponent(teleportComp.fadeInOutTime));
-                _desiredPos = GetTeleportPoint(teleportComp.scenarioType, teleportComp.pointID);
+                _desiredPos = GetTeleportPoint(teleportComp.sceneType, teleportComp.pointID);
             }
             // finish
             else if (pos.Value.Equals(_desiredPos)) {
@@ -58,11 +58,11 @@ public class TeleportSystem : ComponentSystem {
     }
 
 
-    protected float3 GetTeleportPoint(ScenarioType inType, int inPoint) {
+    protected float3 GetTeleportPoint(SceneType inType, int inPoint) {
         float3 cachedPoint = new float3();
 
-        Entities.ForEach((ScenarioInformationPresetComponent presetComp) => {
-            if (inType == presetComp.preset.scenarioType) {
+        Entities.ForEach((SceneInformationPresetComponent presetComp) => {
+            if (inType == presetComp.preset.sceneType) {
                 cachedPoint = presetComp.preset.GetPoint(inPoint);
             }
         });

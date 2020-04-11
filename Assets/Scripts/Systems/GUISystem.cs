@@ -138,12 +138,12 @@ public class GUISystem : ComponentSystem {
         }
 
         // Teleport
-        Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref TeleportInfoComponent scenarioComp) => {
+        Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref TeleportInfoComponent teleportInfoComp) => {
             if (playerComp.currentBehaviors > 0) {
                     return;
             }
             EntityManager.RemoveComponent<TeleportInfoComponent>(playerEntity);
-            EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref scenarioComp));
+            EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref teleportInfoComp));
             playerComp.currentBehaviors |= BehaviorState.teleport;
         });
 

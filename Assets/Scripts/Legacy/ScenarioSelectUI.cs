@@ -69,7 +69,7 @@ public class ScenarioSelectUI : MonoBehaviour {
 
     public void OnSelectedInScenario(int inType) {
         _EntityMng.AddComponentData(_playerEntity, new TeleportInfoComponent(
-            scenarios[inType].scenarioType, scenarios[inType].pointID, teleportTime, fadeInOutTime));
+            scenarios[inType].sceneType, scenarios[inType].pointID, teleportTime, fadeInOutTime));
 
         foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
             if (system is GUISystem) {

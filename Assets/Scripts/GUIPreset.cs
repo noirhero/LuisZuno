@@ -26,8 +26,8 @@ public class GUIPreset : MonoBehaviour {
     [Header("Customize Info")]
     public Transform customize;
 
-    [Header("ScenarioSelect Info")]
-    public Transform scenarioSelect;
+    [Header("SceneSelect Info")]
+    public Transform sceneSelect;
 
 
     public void Initialize() {
@@ -48,7 +48,7 @@ public class GUIPreset : MonoBehaviour {
 
 
     public void ActiveScenarioSelect(bool inActive) {
-        scenarioSelect.gameObject.SetActive(inActive);
+        sceneSelect.gameObject.SetActive(inActive);
     }
 
 

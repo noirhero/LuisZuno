@@ -4,14 +4,14 @@ using System;
 using Unity.Entities;
 
 [Serializable]
-public struct ScenarioInformationPresetComponent : ISharedComponentData, IEquatable<ScenarioInformationPresetComponent> {
-    public readonly ScenarioInfomationPreset preset;
+public struct SceneInformationPresetComponent : ISharedComponentData, IEquatable<SceneInformationPresetComponent> {
+    public readonly SceneInfomationPreset preset;
 
-    public ScenarioInformationPresetComponent(ScenarioInfomationPreset inPreset) {
+    public SceneInformationPresetComponent(SceneInfomationPreset inPreset) {
         preset = inPreset;
     }
 
-    public bool Equals(ScenarioInformationPresetComponent other) {
+    public bool Equals(SceneInformationPresetComponent other) {
         return other.preset == preset;
     }
 

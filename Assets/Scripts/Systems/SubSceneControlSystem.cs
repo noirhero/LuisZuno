@@ -17,7 +17,7 @@ public class SubSceneControlSystem : ComponentSystem {
             .ForEach((Entity subSceneControlEntity, ref SubSceneLoadComponent subSceneLoad) => {
                 SubScene loadSubScene = null;
                 switch ((SubSceneType) subSceneLoad.type) {
-                    case SubSceneType.ScenarioSelect:
+                    case SubSceneType.sceneSelect:
                         loadSubScene = _preset.scenarioSelectSubScene;
                         break;
                     default:

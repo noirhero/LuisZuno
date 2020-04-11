@@ -24,7 +24,7 @@ public class SubSceneControlProxy : MonoBehaviour, IConvertGameObjectToEntity {
         });
 
         dstManager.AddComponentData(entity, new SubSceneLoadComponent() {
-            type = (int) SubSceneType.ScenarioSelect
+            type = (int) SubSceneType.sceneSelect
         });
     }
 }

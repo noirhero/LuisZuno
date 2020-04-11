@@ -6,7 +6,7 @@ using Unity.Entities;
 public enum SubSceneType {
     Crafting,
     Housing,
-    ScenarioSelect,
+    sceneSelect,
     Scenario001_Hallway,
     Scenario001_Basement,
     Scenario001_LegacyOfClan

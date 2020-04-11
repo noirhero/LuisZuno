@@ -13,14 +13,14 @@ public struct TeleportPointComponent : IComponentData {
 
 [Serializable]
 public struct TeleportComponent : IComponentData {
-    public ScenarioType scenarioType;
+    public SceneType sceneType;
     public int pointID;
     public float elapsedTeleportTime;
     public float teleportTime;
     public float fadeInOutTime;
 
     public TeleportComponent(ref TeleportInfoComponent rhs) {
-        scenarioType = rhs.scenarioType;
+        sceneType = rhs.sceneType;
         pointID = rhs.pointID;
         elapsedTeleportTime = 0.0f;
         teleportTime = rhs.teleportTime;
@@ -30,13 +30,13 @@ public struct TeleportComponent : IComponentData {
 
 [Serializable]
 public struct TeleportInfoComponent : IComponentData {
-    public ScenarioType scenarioType;
+    public SceneType sceneType;
     public int pointID;
     public float teleportTime;
     public float fadeInOutTime;
 
-    public TeleportInfoComponent(ScenarioType inType, int inPoint, float inTime, float inFadeTime) {
-        scenarioType = inType;
+    public TeleportInfoComponent(SceneType inType, int inPoint, float inTime, float inFadeTime) {
+        sceneType = inType;
         pointID = inPoint;
         teleportTime = inTime;
         fadeInOutTime = inFadeTime;

@@ -8,7 +8,7 @@ using GlobalDefine;
 [RequiresEntityConversion]
 public class TeleportProxy : EntityProxy {
     // 맵정보 방식 정리되기전까지 임시
-    public ScenarioType scenarioType;
+    public SceneType sceneType;
     public int pointID;
     //
     [FormerlySerializedAs("TeleportTime")] public float teleportTime;
@@ -21,6 +21,6 @@ public class TeleportProxy : EntityProxy {
 
         dstManager.AddComponentData(entity, new ReactiveComponent());
         dstManager.AddComponentData(entity, new PropStatusComponent(ref status));        
-        dstManager.AddComponentData(entity, new TeleportInfoComponent(scenarioType, pointID, teleportTime, fadeInOutTime));
+        dstManager.AddComponentData(entity, new TeleportInfoComponent(sceneType, pointID, teleportTime, fadeInOutTime));
     }
 }

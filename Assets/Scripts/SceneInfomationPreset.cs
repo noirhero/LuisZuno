@@ -23,8 +23,8 @@ public class TeleportPointData {
 public class TeleportPointDataDictionary : SerializableDictionaryBase<int, TeleportPointData> {
 }
 
-public class ScenarioInfomationPreset : MonoBehaviour {
-    public ScenarioType scenarioType;
+public class SceneInfomationPreset : MonoBehaviour {
+    public SceneType sceneType;
     public TeleportPointDataDictionary points = new TeleportPointDataDictionary();
 
     private Transform _myTrans;

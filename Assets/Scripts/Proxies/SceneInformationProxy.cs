@@ -5,8 +5,8 @@ using Unity.Entities;
 using System.Collections.Generic;
 
 [RequiresEntityConversion]
-public class ScenarioInformationProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
-    public ScenarioInfomationPreset preset;
+public class SceneInformationProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
+    public SceneInfomationPreset preset;
 
     public void DeclareReferencedPrefabs(List<GameObject> referencedPresets) {
         referencedPresets.Add(preset.gameObject);
@@ -14,6 +14,6 @@ public class ScenarioInformationProxy : MonoBehaviour, IDeclareReferencedPrefabs
 
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        dstManager.AddSharedComponentData(entity, new ScenarioInformationPresetComponent(preset));
+        dstManager.AddSharedComponentData(entity, new SceneInformationPresetComponent(preset));
     }
 }

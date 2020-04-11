@@ -1731,6 +1731,43 @@ MonoBehaviour:
       elementNameProperty: 
       elementNameOverride: 
       elementIcon: {fileID: 0}
+      controlID: 3337
+      elementRects:
+      - x: 18
+        y: 64
+        width: 357
+        height: 92
+      - x: 18
+        y: 156
+        width: 357
+        height: 92
+      - x: 18
+        y: 248
+        width: 357
+        height: 92
+      - x: 18
+        y: 340
+        width: 357
+        height: 92
+      - x: 18
+        y: 432
+        width: 357
+        height: 92
+      elementLabel:
+        m_Text: Element 4
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      pressIndex: 0
+      dragging: 0
+      pressPosition: 0
+      dragPosition: 0
+      dragDirection: 0
+      dragDropControlID: 3338
+      enablePages: 0
+      perPageCount: 15
+      currentPage: 0
+      pagesCount: 1
+      showPage: 0
     reqReferences: {fileID: 0}
     isExpanded: 1
     _keyValues: 0000000001000000020000000300000004000000
@@ -1739,13 +1776,14 @@ MonoBehaviour:
     - name: Scenario001_StartPoint_Temporary2
       position: {x: 10.71, y: -1.94, z: 0}
     - name: Scenario001_StartPoint_Temporary1
-      position: {x: 3, y: -1.94, z: 0}
+      position: {x: 3, y: -0.6, z: 0}
     - name: Hallway_Teleport
       position: {x: 0.97, y: -1.8999999, z: 0}
     - name: Basement_StartPoint
       position: {x: 0.5, y: 2.9399996, z: 0}
     - name: LegacyOfClan_StartPoint
-      position: {x: 0.2364254, y: 7.9985867, z: 0}
+      position: {x: 0.61, y: 7.9985867, z: 0}
+  _myTrans: {fileID: 262320676}
 --- !u!4 &262320676
 Transform:
   m_ObjectHideFlags: 0
@@ -10148,7 +10186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SceneAsset: {fileID: 102900000, guid: 44967975b4ba66f4287da0b374ae9a8a, type: 3}
   _HierarchyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  AutoLoadScene: 0
+  AutoLoadScene: 1
   _SceneGUID:
     Value:
       x: 1469540676

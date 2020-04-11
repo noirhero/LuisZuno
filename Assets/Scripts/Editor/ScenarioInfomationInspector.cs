@@ -4,9 +4,9 @@ using UnityEditor;
 using UnityEngine;
 
 
-[CustomEditor(typeof(ScenarioInfomationPreset))]
+[CustomEditor(typeof(SceneInfomationPreset))]
 [CanEditMultipleObjects]
-public class ScenarioInfomationPresetInspector : Editor {
+public class SceneInfomationPresetInspector : Editor {
     private bool _bConvertData = false;
 
 
@@ -18,16 +18,16 @@ public class ScenarioInfomationPresetInspector : Editor {
             _bConvertData = cachedState;
 
             if (_bConvertData) {
-                ConvertToPosition(target as ScenarioInfomationPreset);
+                ConvertToPosition(target as SceneInfomationPreset);
             }
             else {
-                ConvertToGameObject(target as ScenarioInfomationPreset);
+                ConvertToGameObject(target as SceneInfomationPreset);
             }
         }
     }
 
 
-    private void ConvertToPosition(ScenarioInfomationPreset inPreset) {
+    private void ConvertToPosition(SceneInfomationPreset inPreset) {
         ConvertToGameObject(inPreset);
 
         Transform[] childs = inPreset.GetTransform().GetComponentsInChildren<Transform>();
@@ -44,7 +44,7 @@ public class ScenarioInfomationPresetInspector : Editor {
     }
 
 
-    private void ConvertToGameObject(ScenarioInfomationPreset inPreset) {
+    private void ConvertToGameObject(SceneInfomationPreset inPreset) {
         for (int i = inPreset.points.Count-1; i >= 0; --i) {
             GameObject cachedObject = new GameObject(inPreset.points[i].name);
 

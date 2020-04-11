@@ -39,9 +39,9 @@ public class SceneInfomationPreset : MonoBehaviour {
 
     private void OnDrawGizmosSelected() {
         for (int i = 0; i < points.Count; ++i) {
-            Gizmos.DrawWireCube(
+            Gizmos.DrawWireSphere(
                 GetTransform().position + points[i].position, 
-                GetTransform().lossyScale);
+                GetTransform().lossyScale.x);
         }
     }
 

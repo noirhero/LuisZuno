@@ -1698,7 +1698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fafb850d5cdc165478354ea73fc2ed17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneType: 1
+  sceneType: 2
   points:
     reorderableList:
       canAdd: 1
@@ -5262,7 +5262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  sceneType: 1
+  sceneType: 2
   curSubSceneType: 2
   nextSubSceneType: 3
   pointID: 2
@@ -7997,7 +7997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  sceneType: 1
+  sceneType: 2
   curSubSceneType: 2
   nextSubSceneType: 3
   pointID: 0
@@ -10570,7 +10570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  sceneType: 1
+  sceneType: 2
   curSubSceneType: 2
   nextSubSceneType: 3
   pointID: 1

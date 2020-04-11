@@ -27,7 +27,7 @@ public class GUISystem : ComponentSystem {
         });
 
         EntityManager.AddComponentData<GameStartComponent>(_playerEntity, new GameStartComponent());
-        EntityManager.AddComponentData(_playerEntity, new ScenarioSelectComponent());
+        EntityManager.AddComponentData(_playerEntity, new CustomizeComponent());
 
         ActiveCustomize(false);
         ActiveScenarioSelect(false);

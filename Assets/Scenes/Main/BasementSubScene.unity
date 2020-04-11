@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetPath: 
-  sceneType: 1
+  sceneType: 2
   curSubSceneType: 4
   nextSubSceneType: 5
   pointID: 4

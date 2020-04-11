@@ -2,6 +2,14 @@
 
 using System;
 using Unity.Entities;
+using UnityEngine.Serialization;
+
+[Serializable]
+public struct EffectSpawnComponent : IComponentData {
+    public Entity prefab;
+    public float lifetime;
+    public float duration;
+}
 
 [Serializable]
 public struct EntitySpawnComponent : IComponentData {
@@ -51,4 +59,12 @@ public struct EntitySpawnInfoComponent : IComponentData {
         spawnEffect = Entity.Null;
         destroyEffect = Entity.Null;
     }
+}
+
+[Serializable]
+public struct LifeCycleComponent : IComponentData {
+    public Entity spawnEffect;
+    public Entity destroyEffect;
+    public float lifetime;
+    public float duration;
 }

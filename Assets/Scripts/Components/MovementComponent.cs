@@ -14,3 +14,8 @@ public struct MovementComponent : IComponentData {
         targetEntityIndex = targetIndex;
     }
 }
+
+[Serializable]
+public struct VelocityComponent : IComponentData {
+    public float velocity;
+}

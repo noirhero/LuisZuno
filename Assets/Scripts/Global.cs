@@ -5,7 +5,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using Unity.Mathematics;
 using Unity.Collections;
-using UnityEngine;
+using UnityEditor;
 using UnityEngine.Serialization;
 
 namespace GlobalDefine {
@@ -41,9 +41,13 @@ namespace GlobalDefine {
         public static bool IsValid(Int64 index) {
             return index != 0;
         }
+
+
         public static T ToEnum<T>(string inValue) {
             return (T)Enum.Parse(typeof(T), inValue);
         }
+
+
         public static bool SpawnEffect(int inIndex, [ReadOnly] Entity inPrefabs, float3 inPos,
             in EntityCommandBuffer.Concurrent inCmdBuf) {
             if (Entity.Null == inPrefabs)
@@ -60,6 +64,8 @@ namespace GlobalDefine {
             });
             return true;
         }
+
+
         public static bool SetLifeCycle(int inIndex, in Entity inEntity, float inLifeTime,
             in Entity inSpawnEffect, in Entity inDestroyEffect, in EntityCommandBuffer.Concurrent inCmdBuf) {
             inCmdBuf.AddComponent(inIndex, inEntity, new LifeCycleComponent() {
@@ -70,6 +76,8 @@ namespace GlobalDefine {
             });
             return true;
         }
+
+
         public static bool SetLifeCycle(in Entity inEntity, float inLifeTime, 
             in Entity inSpawnEffect, in Entity inDestroyEffect) {
             World.DefaultGameObjectInjectionWorld.EntityManager.AddComponentData(inEntity, new LifeCycleComponent() {
@@ -79,6 +87,15 @@ namespace GlobalDefine {
                 duration = 0.0f,
             });
             return true;
+        }
+
+
+        public static T LoadObjectAtPath<T> (string inPath) where T : UnityEngine.Object {
+            if (0 >= inPath.Length) {
+                return null;
+            }
+
+            return AssetDatabase.LoadAssetAtPath<T>(inPath);
         }
     }
 

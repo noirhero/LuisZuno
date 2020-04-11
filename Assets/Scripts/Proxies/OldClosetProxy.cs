@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using UnityEngine.Serialization;
-using UnityEditor;
+using GlobalDefine;
 
 [RequiresEntityConversion]
 public class OldClosetProxy : PropProxy {
@@ -21,15 +21,9 @@ public class OldClosetProxy : PropProxy {
     protected override void LoadAssets() {
         base.LoadAssets();
 
-        if (0 < spawnPresetPath.Length) {
-            _spawnPreset = AssetDatabase.LoadAssetAtPath<GameObject>(spawnPresetPath);
-        }
-        if (0 < spawnEffectPath.Length) {
-            _spawnEffectPreset = AssetDatabase.LoadAssetAtPath<GameObject>(spawnEffectPath);
-        }
-        if (0 < destroyEffectPath.Length) {
-            _destroyEffectPreset = AssetDatabase.LoadAssetAtPath<GameObject>(destroyEffectPath);
-        }
+        _spawnPreset = Utility.LoadObjectAtPath<GameObject>(spawnPresetPath);
+        _spawnEffectPreset = Utility.LoadObjectAtPath<GameObject>(spawnEffectPath);
+        _destroyEffectPreset = Utility.LoadObjectAtPath<GameObject>(destroyEffectPath);
     }
 
 

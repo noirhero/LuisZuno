@@ -15,7 +15,7 @@ public class PanicSystem : ComponentSystem {
 
                 // 남은 매드니스 저장
                 if (madnessComp.value > 0.0f) {
-                    madnessComp.valueForInterrupted = (madnessComp.transitionStartValue + madnessComp.value) - statusComp.madness;
+                    madnessComp.valueForInterrupted = (madnessComp.transitionStartValue + madnessComp.value) - statusComp.status.madness;
                 }
 
                 madnessComp.value = panicComp.madness;

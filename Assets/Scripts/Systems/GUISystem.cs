@@ -176,6 +176,6 @@ public class GUISystem : ComponentSystem {
 
     private void UpdateGaugeUI() {
         PlayerStatusComponent statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(_playerEntity);
-        _guiPreset.SetMadness(statusComp.madness / statusComp.maxMadness);
+        _guiPreset.SetMadness(statusComp.status.madness / statusComp.maxMadness);
     }
 }

@@ -76,7 +76,7 @@ public class AutoMovementSystem : ComponentSystem {
             moveComp.value.x = (0.0f > playerComp.playerDirection) ? -1.0f : 1.0f;
 
             var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
-            playerPos.Value.x += moveComp.value.x * Time.DeltaTime * statusComp.MoveSpeed;
+            playerPos.Value.x += moveComp.value.x * Time.DeltaTime * statusComp.moveSpeed;
         });
     }
 }

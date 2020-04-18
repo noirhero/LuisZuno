@@ -1,0 +1,176 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &195009788420759019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 195009788420759021}
+  - component: {fileID: 195009788420759020}
+  m_Layer: 0
+  m_Name: DetectivePreset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &195009788420759021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195009788420759019}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &195009788420759020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195009788420759019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33abdd7c52b13554a8eaf5d0fc0348b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 3456538930164555505, guid: bbc975b17061d5749ac67b7eb86ab3eb, type: 3}
+  - {fileID: -422475864229466945, guid: bbc975b17061d5749ac67b7eb86ab3eb, type: 3}
+  - {fileID: -1014730552553689474, guid: bbc975b17061d5749ac67b7eb86ab3eb, type: 3}
+  - {fileID: -7896189917808587996, guid: bbc975b17061d5749ac67b7eb86ab3eb, type: 3}
+  datas:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 7e0100008f010000b90400006c020000
+    _keys: 7e0100008f010000b90400006c020000
+    _values:
+    - name: Idle
+      length: 0.8000001
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: 3400099605689048438, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: 7300365265741240313, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: 3567152413462546489, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.3
+        end: 0.4
+        texture: {fileID: 5714012776652385757, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.4
+        end: 0.5
+        texture: {fileID: 2585913126014328494, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.5
+        end: 0.6
+        texture: {fileID: -3040452348787440564, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.6
+        end: 0.70000005
+        texture: {fileID: 3557677332292221586, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.70000005
+        end: 0.8000001
+        texture: {fileID: 2464987471228367592, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+    - name: Walk
+      length: 0.8000001
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: -885233378716810737, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: 7662743878903126965, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: -8593595103724300532, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.3
+        end: 0.4
+        texture: {fileID: -819803484303872060, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.4
+        end: 0.5
+        texture: {fileID: -749847693343214628, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.5
+        end: 0.6
+        texture: {fileID: 2754172041845471916, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.6
+        end: 0.70000005
+        texture: {fileID: 8554619169227222673, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.70000005
+        end: 0.8000001
+        texture: {fileID: -2414315453933261103, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+    - name: SomthingDoIt
+      length: 0.3
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: 562644211377280909, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: -7018797560196327727, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: 2494633752055194784, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+    - name: NyoNyo
+      length: 0.3
+      timelines:
+      - start: 0
+        end: 0.1
+        texture: {fileID: 1441003944594614824, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: 281009663708645943, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: 202591300021951916, guid: bbc975b17061d5749ac67b7eb86ab3eb,
+          type: 3}

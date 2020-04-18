@@ -12,7 +12,7 @@ public class SearchingSystem : ComponentSystem {
                 playerComp.currentAnim = searchingComp.searchingAnim;
 
                 var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
-                searchingComp.searchingTime *= statusComp.SearchingWeight;
+                searchingComp.searchingTime *= statusComp.searchingWeight;
             }
 
             searchingComp.elapsedSearchingTime += Time.DeltaTime;

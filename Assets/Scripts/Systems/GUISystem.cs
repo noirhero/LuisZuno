@@ -26,11 +26,13 @@ public class GUISystem : ComponentSystem {
             _playerEntity = entity;
         });
 
-        EntityManager.AddComponentData<GameStartComponent>(_playerEntity, new GameStartComponent());
-        EntityManager.AddComponentData(_playerEntity, new CustomizeComponent());
+        if (Entity.Null != _playerEntity) {
+            EntityManager.AddComponentData(_playerEntity, new GameStartComponent());
+            EntityManager.AddComponentData(_playerEntity, new CustomizeComponent());
 
-        ActiveCustomize(false);
-        ActiveScenarioSelect(false);
+            ActiveCustomize(false);
+            ActiveScenarioSelect(false);   
+        }
 
         if (null != _guiPreset) {
             _guiPreset.Initialize();
@@ -91,10 +93,10 @@ public class GUISystem : ComponentSystem {
 
     protected void ActiveCustomize(bool inActive) {
         if (inActive) {
-            EntityManager.AddComponentData<GamePauseComponent>(_playerEntity, new GamePauseComponent());
+            EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());
         }
         else {
-            EntityManager.AddComponentData<GameResumeComponent>(_playerEntity, new GameResumeComponent());
+            EntityManager.AddComponentData(_playerEntity, new GameResumeComponent());
         }
 
         if (null != _guiPreset) {

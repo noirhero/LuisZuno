@@ -4,6 +4,7 @@ Library
 Logs
 obj
 Temp
+UserSettings
 Assets/SceneDependencyCache
 Assets/SceneDependencyCache/*
 Assets/SceneDependencyCache.meta

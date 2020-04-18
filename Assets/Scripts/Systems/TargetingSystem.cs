@@ -27,7 +27,7 @@ public class TargetingSystem : ComponentSystem {
                 if (EntityManager.HasComponent<PropStatusComponent>(targetEntity)) {
                     var targetStatus = EntityManager.GetComponentData<PropStatusComponent>(targetEntity);
 
-                    if (playerStatus.search < targetStatus.search)
+                    if (playerStatus.status.search < targetStatus.search)
                         return;
                 }
 

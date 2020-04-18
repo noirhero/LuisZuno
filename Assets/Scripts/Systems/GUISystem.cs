@@ -184,6 +184,6 @@ public class GUISystem : ComponentSystem {
 
     private float GetMadnessRate() {
         PlayerStatusComponent statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(_playerEntity);
-        return statusComp.madness / statusComp.maxMadness;
+        return statusComp.status.madness / statusComp.maxMadness;
     }
 }

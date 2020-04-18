@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 
 namespace GlobalDefine {
     public enum AnimationType { Walk, Idle, SomethingDoIt, NyoNyo }
-    public enum BackgroundType { BackStreetBoy, Poem, VeteranSoldier, Priest, Professor, Detective }
+    public enum BackgroundType { BackStreetBoy, Poet, VeteranSoldier, Priest, Professor, Detective }
     public enum ValuesType { Mercy, Greedy, Curiosity, SenseOfDuty }
     public enum GoalType { TraceOfParents, CreateOfMasterpiece, Rich }
     public enum SceneType { None, Cenetery, Town, Scenario001 }

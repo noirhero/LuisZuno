@@ -69,7 +69,7 @@ public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGam
         var applyPivot = (sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit * localScale;
         dstManager.AddComponentData(entity, new SpritePivotComponent() {
             Value = new float3(applyPivot, 0.0f)
-        }); 
+        });
 
         dstManager.AddSharedComponentData(entity, new SpritePresetComponent() {
             preset = spritePreset

@@ -20,16 +20,16 @@ public class MadnessSystem : ComponentSystem {
             passiveMadnessComp.ElapsedTickTime += deltaTime;
 
             var finished = passiveMadnessComp.ElapsedDuration >= passiveMadnessComp.duration;
-            var calculatedTickTime = passiveMadnessComp.tickTime / statusComp.MadnessWeight;
+            var calculatedTickTime = passiveMadnessComp.tickTime / statusComp.madnessWeight;
 
             if (passiveMadnessComp.ElapsedTickTime >= calculatedTickTime) {    // 광기 받을 시간이 왔어요
                 passiveMadnessComp.ElapsedDuration += calculatedTickTime;
                 passiveMadnessComp.ElapsedTickTime = 0.0f;
 
-                statusComp.madness += passiveMadnessComp.value;
+                statusComp.status.madness += passiveMadnessComp.value;
 
-                if (statusComp.madness >= statusComp.maxMadness) {
-                    statusComp.madness = statusComp.maxMadness;
+                if (statusComp.status.madness >= statusComp.maxMadness) {
+                    statusComp.status.madness = statusComp.maxMadness;
                     finished = true;
                 }
             }
@@ -50,29 +50,29 @@ public class MadnessSystem : ComponentSystem {
 
                 // 이미 올라갈 매드니스가 있는데 또 들어왔을 경우 이전값 바로 적용
                 if (madnessComp.valueForInterrupted > 0.0f) {
-                    statusComp.madness += madnessComp.valueForInterrupted;
+                    statusComp.status.madness += madnessComp.valueForInterrupted;
                     madnessComp.valueForInterrupted = 0.0f;
                     madnessComp.elapsedTransitionTime = 0.0f;
-                    madnessComp.transitionStartValue = statusComp.madness;
+                    madnessComp.transitionStartValue = statusComp.status.madness;
                 }
 
                 // initialize
                 if (madnessComp.transitionStartValue <= 0.0f) {
-                    madnessComp.transitionStartValue = statusComp.madness;
+                    madnessComp.transitionStartValue = statusComp.status.madness;
                 }
 
                 madnessComp.elapsedTransitionTime += deltaTime;
 
-                float dest = madnessComp.transitionStartValue + (madnessComp.value * statusComp.MadnessWeight);
+                float dest = madnessComp.transitionStartValue + (madnessComp.value * statusComp.madnessWeight);
                 float speed = madnessComp.elapsedTransitionTime / madnessComp.duration;
 
-                statusComp.madness = Mathf.Lerp(madnessComp.transitionStartValue, dest, speed);
+                statusComp.status.madness = Mathf.Lerp(madnessComp.transitionStartValue, dest, speed);
 
                 EntityManager.SetComponentData<MadnessComponent>(playerEntity, madnessComp);
 
                 // finished
-                if ((statusComp.madness >= dest) || (madnessComp.elapsedTransitionTime >= madnessComp.duration)) {
-                    statusComp.madness = dest;
+                if ((statusComp.status.madness >= dest) || (madnessComp.elapsedTransitionTime >= madnessComp.duration)) {
+                    statusComp.status.madness = dest;
                     EntityManager.RemoveComponent<MadnessComponent>(playerEntity);
                 }
             }

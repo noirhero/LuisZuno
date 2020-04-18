@@ -27,11 +27,13 @@ public class GUISystem : ComponentSystem {
         });
 
         if (Entity.Null != _playerEntity) {
+            int presetUI = 0;
+            presetUI |= GUIState.customize;
+            
             EntityManager.AddComponentData(_playerEntity, new GameStartComponent());
-            EntityManager.AddComponentData(_playerEntity, new CustomizeComponent());
-
-            ActiveCustomize(false);
-            ActiveScenarioSelect(false);   
+            EntityManager.AddComponentData(_playerEntity, new GUIComponent(){
+                currentUI = presetUI,
+            });
         }
 
         if (null != _guiPreset) {
@@ -49,6 +51,70 @@ public class GUISystem : ComponentSystem {
             return;
         }
 
+        Entities.ForEach((Entity playerEntity, ref GUIComponent guiComp) => { 
+            // Customize
+            if (GUIState.HasState(guiComp, GUIState.customize)) {
+                if (false == EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+                    EntityManager.AddComponentData(_playerEntity, new CustomizeComponent());
+                    EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());
+                    _guiPreset.ShowCustomize();
+                }
+            }
+            else {
+                if (EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
+                    EntityManager.RemoveComponent<CustomizeComponent>(_playerEntity);
+                    EntityManager.AddComponentData(_playerEntity, new GameResumeComponent());
+                    _guiPreset.HideCustomize();
+                }
+            }
+            
+            // ScenarioSelect
+            if (GUIState.HasState(guiComp, GUIState.scenarioSelect)) {
+                _guiPreset.ShowScenarioSelect();
+            }
+            else {
+                _guiPreset.HideScenarioSelect();
+            }
+            
+            // Inventory
+            if (GUIState.HasState(guiComp, GUIState.inventory)) {
+                if (EntityManager.HasComponent<InventoryComponent>(_playerEntity)) {
+                    InventoryComponent inventoryComp = EntityManager.GetComponentData<InventoryComponent>(_playerEntity);
+                    SetItemSprite(inventoryComp.item1.id, _guiPreset.item1);
+                    SetItemSprite(inventoryComp.item2.id, _guiPreset.item2);
+                    SetItemSprite(inventoryComp.item3.id, _guiPreset.item3);
+                }
+                _guiPreset.ShowInventory();
+            }
+            else {
+                _guiPreset.HideInventory();
+            }
+            
+            // Madness
+            if (GUIState.HasState(guiComp, GUIState.madness)) {
+                _guiPreset.ShowMadness(GetMadnessRate());
+            }
+            else {
+                _guiPreset.HideMadness();
+            }
+            
+            // Bubble
+            if (GUIState.HasState(guiComp, GUIState.bubble)) {
+                _guiPreset.ShowBubble();
+            }
+            else {
+                _guiPreset.HideBubble();
+            }
+
+            // Ending
+            if (GUIState.HasState(guiComp, GUIState.ending)) {
+                _guiPreset.ShowEnding();
+            }
+            else {
+                _guiPreset.HideEnding();
+            }
+        });
+
         // Teleport
         if (EntityManager.HasComponent<TeleportInfoComponent>(_playerEntity)) {
             Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref TeleportInfoComponent teleportInfoComp) => {
@@ -59,55 +125,6 @@ public class GUISystem : ComponentSystem {
                 EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref teleportInfoComp));
                 playerComp.currentBehaviors |= BehaviorState.teleport;
             });
-        }
-
-        // Customize
-        if (EntityManager.HasComponent<CustomizeComponent>(_playerEntity)) {
-            ActiveCustomize(true);
-        }
-        if (EntityManager.HasComponent<CustomizeCompleteComponent>(_playerEntity)) {
-            EntityManager.RemoveComponent<CustomizeCompleteComponent>(_playerEntity);
-            EntityManager.AddComponentData(_playerEntity, new ScenarioSelectComponent());
-            ActiveCustomize(false);
-        }
-
-        // Scenario
-        if (EntityManager.HasComponent<ScenarioSelectComponent>(_playerEntity)) {
-            ActiveScenarioSelect(true);
-        }
-        if (EntityManager.HasComponent<ScenarioSelectCompleteComponent>(_playerEntity)) {
-            EntityManager.RemoveComponent<ScenarioSelectCompleteComponent>(_playerEntity);
-            ActiveScenarioSelect(false);
-        }
-
-        // set gui - inventory
-        UpdateInventoryUI();
-
-        // set gui - bubble
-        UpdateBubbleUI();
-
-        // set gui - madness
-        UpdateGaugeUI();
-    }
-
-
-    protected void ActiveCustomize(bool inActive) {
-        if (inActive) {
-            EntityManager.AddComponentData(_playerEntity, new GamePauseComponent());
-        }
-        else {
-            EntityManager.AddComponentData(_playerEntity, new GameResumeComponent());
-        }
-
-        if (null != _guiPreset) {
-            _guiPreset.ActiveCustomize(inActive);
-        }
-    }
-
-
-    protected void ActiveScenarioSelect(bool inActive) {
-        if (null != _guiPreset) {
-            _guiPreset.ActiveScenarioSelect(inActive);
         }
     }
 
@@ -121,22 +138,17 @@ public class GUISystem : ComponentSystem {
     }
 
 
-    private void UpdateInventoryUI() {
-        if (EntityManager.HasComponent<InventoryComponent>(_playerEntity)) {
-            InventoryComponent inventoryComp = EntityManager.GetComponentData<InventoryComponent>(_playerEntity);
-            SetItemSprite(inventoryComp.item1.id, _guiPreset.item1);
-            SetItemSprite(inventoryComp.item2.id, _guiPreset.item2);
-            SetItemSprite(inventoryComp.item3.id, _guiPreset.item3);
-        }
+    private Vector3 GetPlayerPosToGUIPos() {
+        Translation playerPos = EntityManager.GetComponentData<Translation>(_playerEntity);
+        Vector3 convert2DPos = Camera.main.WorldToScreenPoint(playerPos.Value);
+        return convert2DPos;
     }
-
-
-    private void UpdateBubbleUI() {
-        _guiPreset.HideBubble();
-
+    
+    
+    private string GetBubbleMessage() {
         var playerComp = EntityManager.GetComponentData<PlayerComponent>(_playerEntity);
         if (0 == playerComp.currentBehaviors) {     // walking or doing nothing
-            return;
+            return string.Empty;
         }
 
         // bubble default
@@ -160,24 +172,18 @@ public class GUISystem : ComponentSystem {
         }
 
         if (0.0f >= timeRate) {
-            return;
+            return string.Empty;
         }
-
-        // bubble position
-        Translation playerPos = EntityManager.GetComponentData<Translation>(_playerEntity);
-        Vector3 convert2DPos = Camera.main.WorldToScreenPoint(playerPos.Value);
-        convert2DPos.y += 30.0f;
 
         // todo - temporary
         int showMessageLength = (int)((float)bubbleMassage.Length * timeRate);
 
-        // set
-        _guiPreset.ShowBubble(convert2DPos, bubbleMassage.Substring(0, showMessageLength));
+        return bubbleMassage.Substring(0, showMessageLength);
     }
 
 
-    private void UpdateGaugeUI() {
+    private float GetMadnessRate() {
         PlayerStatusComponent statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(_playerEntity);
-        _guiPreset.SetMadness(statusComp.madness / statusComp.maxMadness);
+        return statusComp.madness / statusComp.maxMadness;
     }
 }

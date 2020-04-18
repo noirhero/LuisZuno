@@ -3,15 +3,6 @@
 using System;
 using Unity.Entities;
 
-public enum SubSceneType {
-    Crafting,
-    Housing,
-    sceneSelect,
-    Scenario001_Hallway,
-    Scenario001_Basement,
-    Scenario001_LegacyOfClan
-}
-
 [Serializable]
 public struct SubScenePresetComponent : ISharedComponentData, IEquatable<SubScenePresetComponent> {
     public SubScenePreset preset;

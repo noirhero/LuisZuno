@@ -2,6 +2,7 @@
 
 using Unity.Entities;
 using Unity.Scenes;
+using GlobalDefine;
 
 public class SubSceneControlSystem : ComponentSystem {
     private SubScenePreset _preset;

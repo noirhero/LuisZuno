@@ -8,7 +8,7 @@ using Unity.Mathematics;
 public class TeleportSystem : ComponentSystem {
     private Entity _playerEntity = Entity.Null;
     private float3 _desiredPos = float3.zero;
-
+    private SubSceneType _curSubSceneType = SubSceneType.sceneSelect;
 
     protected override void OnStartRunning() {
         Entities.WithAll<PlayerComponent>().ForEach((Entity entity, ref InventoryComponent inventoryComp) => {
@@ -40,13 +40,15 @@ public class TeleportSystem : ComponentSystem {
             }
             // finish
             else if (pos.Value.Equals(_desiredPos)) {
+                _curSubSceneType = teleportComp.nextSubSceneType;
+                
                 EntityManager.AddComponentData(_playerEntity, new TargetingComponent());
                 EntityManager.AddComponentData(_playerEntity, new GameResumeComponent());
                 EntityManager.RemoveComponent<TeleportComponent>(_playerEntity);
                 EntityManager.RemoveComponent<SubSceneControlComponent>(_playerEntity);
-                
                 playerComp.currentBehaviors ^= BehaviorState.teleport;
                 _desiredPos = float3.zero;
+                
                 return;
             }
 

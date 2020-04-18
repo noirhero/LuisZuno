@@ -3,7 +3,7 @@
 using UnityEngine;
 using GlobalDefine;
 
-public class ScenarioSelectInfo : MonoBehaviour {
+public class ScenarioSelectInfo : LegacyUI {
     public string displayName;
     
     // 맵정보 방식 정리되기전까지 임시
@@ -12,15 +12,6 @@ public class ScenarioSelectInfo : MonoBehaviour {
     public SubSceneType nextSubSceneType;
     public int pointID;
     //
-
-    private Transform _myTrans;
-    public Transform GetTransform() {
-        if (null ==  _myTrans) {
-            _myTrans = transform;
-        }
-
-        return _myTrans;
-    }
 
 
     public string GetDisplayName() {

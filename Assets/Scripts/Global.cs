@@ -13,7 +13,8 @@ namespace GlobalDefine {
     public enum BackgroundType { BackStreetBoy, Poem, VeteranSoldier, Priest, Professor, Detective }
     public enum ValuesType { Mercy, Greedy, Curiosity, SenseOfDuty }
     public enum GoalType { TraceOfParents, CreateOfMasterpiece, Rich }
-    public enum SceneType { None, Town, Scenario001 }
+    public enum SceneType { None, Cenetery, Town, Scenario001 }
+    public enum SubSceneType { None, Crafting, Housing, sceneSelect, Scenario001_Hallway, Scenario001_Basement, Scenario001_LegacyOfClan }
 
     [Serializable]
     public struct CharacterBackground {
@@ -104,8 +105,20 @@ namespace GlobalDefine {
         public const int panic = 0x2;
         public const int pendingItem = 0x4;
         public const int spawning = 0x8;
-        public const int teleport = 0x10;
+        public const int teleport = 0x16;
 
         public static bool HasState(PlayerComponent playerComp, int compareState) { return ((playerComp.currentBehaviors & compareState) != 0); }
+    }
+    
+    public static class GUIState {
+        public const int none = 0x1;
+        public const int customize = 0x2;
+        public const int scenarioSelect = 0x4;
+        public const int inventory = 0x8;
+        public const int madness = 0x16;
+        public const int bubble = 0x32;
+        public const int ending = 0x64;
+
+        public static bool HasState(GUIComponent guiComp, int compareState) { return ((guiComp.currentUI & compareState) != 0); }
     }
 }

@@ -10,45 +10,66 @@ public class GUIPreset : MonoBehaviour {
     public Canvas rootCanvas;    
     public Text endingMsg;
 
-    [Header("Taking Info")]
-    public Transform bubble;
-    public Text bubbleMsg;
-    [FormerlySerializedAs("Pivot")] public Vector3 pivot = new Vector3(20.0f, 170.0f, 0.0f);
-
-    [Header("Status Info")]
+    [Header("Taking UI")]
+    public BubbleUI bubble;
+    
+    [Header("Status UI")]
     public Slider madness;
 
-    [Header("Inventory Info")]
+    [Header("Inventory UI")] 
+    public Transform inventory;
     public Image item1;
     public Image item2;
     public Image item3;
        
-    [Header("Customize Info")]
+    [Header("Customize UI")]
     public Transform customize;
 
-    [Header("SceneSelect Info")]
+    [Header("SceneSelect UI")]
     public Transform sceneSelect;
 
 
     public void Initialize() {
-        HideEnding();
-        HideBubble();
-        SetMadness(0.0f);
+    }
+
+
+    public void ShowCustomize() {
+        customize.gameObject.SetActive(true);
+    }
+
+    
+    public void HideCustomize() {
+        customize.gameObject.SetActive(false);
+    }
+
+
+    public void ShowScenarioSelect() {
+        sceneSelect.gameObject.SetActive(true);
+    }
+
+    
+    public void HideScenarioSelect() {
+        sceneSelect.gameObject.SetActive(false);
+    }
+
+
+    public void ShowInventory() {
+        inventory.gameObject.SetActive(true);
+
+        // items
+        item1.gameObject.SetActive(true);
+        item2.gameObject.SetActive(true);
+        item3.gameObject.SetActive(true);
+    }
+
+
+    public void HideInventory() {
+        inventory.gameObject.SetActive(false);
 
         // items
         item1.gameObject.SetActive(false);
         item2.gameObject.SetActive(false);
         item3.gameObject.SetActive(false);
-    }
-
-
-    public void ActiveCustomize(bool inActive) {
-        customize.gameObject.SetActive(inActive);
-    }
-
-
-    public void ActiveScenarioSelect(bool inActive) {
-        sceneSelect.gameObject.SetActive(inActive);
     }
 
 
@@ -62,10 +83,8 @@ public class GUIPreset : MonoBehaviour {
     }
 
 
-    public void ShowBubble(Vector3 inPos, string inMsg = "...") {
+    public void ShowBubble() {
         bubble.gameObject.SetActive(true);
-        bubble.position = inPos + pivot;
-        bubbleMsg.text = inMsg;
     }
 
 
@@ -74,7 +93,13 @@ public class GUIPreset : MonoBehaviour {
     }
 
 
-    public void SetMadness(float inValue) {
+    public void ShowMadness(float inValue) {
+        madness.gameObject.SetActive(true);
         madness.value = inValue;
+    }
+
+
+    public void HideMadness() {
+        madness.gameObject.SetActive(false);
     }
 }

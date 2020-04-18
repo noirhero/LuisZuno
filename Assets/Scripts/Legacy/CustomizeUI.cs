@@ -7,7 +7,7 @@ using UnityEngine;
 using Unity.Entities;
 using GlobalDefine;
 
-public class CustomizeUI : MonoBehaviour {
+public class CustomizeUI : LegacyUI {
     public ToggleGroup backgroundGroup;
     public ToggleGroup valuesGroup;
     public ToggleGroup goalGroup;
@@ -215,8 +215,10 @@ public class CustomizeUI : MonoBehaviour {
         decision.SetActive(false);
         AdjustPlayerStatus();
 
-        _EntityMng.RemoveComponent<CustomizeComponent>(_playerEntity);
-        _EntityMng.AddComponentData(_playerEntity, new CustomizeCompleteComponent());
+        var guiComp = _EntityMng.GetComponentData<GUIComponent>(_playerEntity);
+        guiComp.currentUI ^= GUIState.customize;
+        guiComp.currentUI |= GUIState.scenarioSelect;
+        _EntityMng.SetComponentData(_playerEntity, guiComp);
     }
 
 

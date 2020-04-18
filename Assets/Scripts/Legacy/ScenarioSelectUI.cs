@@ -9,8 +9,9 @@ using UnityEngine.UI;
 using UnityEngine.Serialization;
 using Unity.Entities;
 using UnityEditor.Events;
+using  GlobalDefine;
 
-public class ScenarioSelectUI : MonoBehaviour {
+public class ScenarioSelectUI : LegacyUI {
     public Button btnPreset;
     [FormerlySerializedAs("TeleportTime")] public float teleportTime;
     [FormerlySerializedAs("FadeInOutTime")] public float fadeInOutTime;
@@ -71,7 +72,8 @@ public class ScenarioSelectUI : MonoBehaviour {
         _EntityMng.AddComponentData(_playerEntity, new TeleportInfoComponent(
             scenarios[inType].sceneType, scenarios[inType].curSubSceneType, scenarios[inType].nextSubSceneType, scenarios[inType].pointID, teleportTime, fadeInOutTime));
 
-        _EntityMng.RemoveComponent<ScenarioSelectComponent>(_playerEntity);
-        _EntityMng.AddComponentData(_playerEntity, new ScenarioSelectCompleteComponent());
+        var guiComp = _EntityMng.GetComponentData<GUIComponent>(_playerEntity);
+        guiComp.currentUI ^= GUIState.scenarioSelect;
+        _EntityMng.SetComponentData(_playerEntity, guiComp);
     }
 }

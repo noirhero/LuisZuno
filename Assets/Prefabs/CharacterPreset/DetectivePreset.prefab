@@ -46,7 +46,7 @@ MonoBehaviour:
   clips:
   - {fileID: 3456538930164555505, guid: bbc975b17061d5749ac67b7eb86ab3eb, type: 3}
   - {fileID: -422475864229466945, guid: bbc975b17061d5749ac67b7eb86ab3eb, type: 3}
-  - {fileID: -1014730552553689474, guid: bbc975b17061d5749ac67b7eb86ab3eb, type: 3}
+  - {fileID: 4228620560430324369, guid: bbc975b17061d5749ac67b7eb86ab3eb, type: 3}
   - {fileID: -7896189917808587996, guid: bbc975b17061d5749ac67b7eb86ab3eb, type: 3}
   datas:
     reorderableList:
@@ -71,8 +71,8 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 1
-    _keyValues: 7e0100008f010000b90400006c020000
-    _keys: 7e0100008f010000b90400006c020000
+    _keyValues: 7e0100008f0100001e0500006c020000
+    _keys: 7e0100008f0100001e0500006c020000
     _values:
     - name: Idle
       length: 0.8000001
@@ -144,7 +144,7 @@ MonoBehaviour:
         end: 0.8000001
         texture: {fileID: -2414315453933261103, guid: bbc975b17061d5749ac67b7eb86ab3eb,
           type: 3}
-    - name: SomthingDoIt
+    - name: SomethingDoIt
       length: 0.3
       timelines:
       - start: 0

@@ -102,31 +102,63 @@ MonoBehaviour:
         texture: {fileID: -3013300411407570011, guid: 113b87703f140a441901561d1bb5ac9d,
           type: 3}
     - name: Walk
-      length: 0.47
+      length: 1.4000002
       timelines:
       - start: 0
-        end: 0.08
-        texture: {fileID: 5681089369689682907, guid: 8d50252b48417fb41bdae6730471784a,
+        end: 0.1
+        texture: {fileID: -4713893536101594823, guid: 113b87703f140a441901561d1bb5ac9d,
           type: 3}
-      - start: 0.08
-        end: 0.16
-        texture: {fileID: -6854916911633356280, guid: 8d50252b48417fb41bdae6730471784a,
+      - start: 0.1
+        end: 0.2
+        texture: {fileID: -1275050732151238865, guid: 113b87703f140a441901561d1bb5ac9d,
           type: 3}
-      - start: 0.16
-        end: 0.24
-        texture: {fileID: 8465929322028390746, guid: 8d50252b48417fb41bdae6730471784a,
+      - start: 0.2
+        end: 0.3
+        texture: {fileID: 8082450378201999198, guid: 113b87703f140a441901561d1bb5ac9d,
           type: 3}
-      - start: 0.24
-        end: 0.32
-        texture: {fileID: -5281765490928628333, guid: 8d50252b48417fb41bdae6730471784a,
-          type: 3}
-      - start: 0.32
+      - start: 0.3
         end: 0.4
-        texture: {fileID: -4283137464709524117, guid: 8d50252b48417fb41bdae6730471784a,
+        texture: {fileID: -261551237462576856, guid: 113b87703f140a441901561d1bb5ac9d,
           type: 3}
       - start: 0.4
-        end: 0.47
-        texture: {fileID: -1844519590901242142, guid: 8d50252b48417fb41bdae6730471784a,
+        end: 0.5
+        texture: {fileID: -3710844166666180326, guid: 113b87703f140a441901561d1bb5ac9d,
+          type: 3}
+      - start: 0.5
+        end: 0.6
+        texture: {fileID: -4450252134741721452, guid: 113b87703f140a441901561d1bb5ac9d,
+          type: 3}
+      - start: 0.6
+        end: 0.70000005
+        texture: {fileID: -4965753511610238113, guid: 113b87703f140a441901561d1bb5ac9d,
+          type: 3}
+      - start: 0.70000005
+        end: 0.8000001
+        texture: {fileID: 5141467054413607562, guid: 113b87703f140a441901561d1bb5ac9d,
+          type: 3}
+      - start: 0.8000001
+        end: 0.9000001
+        texture: {fileID: -1666017754441966807, guid: 113b87703f140a441901561d1bb5ac9d,
+          type: 3}
+      - start: 0.9000001
+        end: 1.0000001
+        texture: {fileID: 2634468352663052197, guid: 113b87703f140a441901561d1bb5ac9d,
+          type: 3}
+      - start: 1.0000001
+        end: 1.1000001
+        texture: {fileID: 6830857720831382278, guid: 113b87703f140a441901561d1bb5ac9d,
+          type: 3}
+      - start: 1.1000001
+        end: 1.2000002
+        texture: {fileID: 4487406364457959720, guid: 113b87703f140a441901561d1bb5ac9d,
+          type: 3}
+      - start: 1.2000002
+        end: 1.3000002
+        texture: {fileID: 4735636477799181788, guid: 113b87703f140a441901561d1bb5ac9d,
+          type: 3}
+      - start: 1.3000002
+        end: 1.4000002
+        texture: {fileID: 214736638115813205, guid: 113b87703f140a441901561d1bb5ac9d,
           type: 3}
     - name: SomethingDoIt
       length: 0.3

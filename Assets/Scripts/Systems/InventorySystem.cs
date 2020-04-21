@@ -9,33 +9,33 @@ public class InventorySystem : ComponentSystem {
 
     
     protected override void OnStartRunning() {
-        _inventoryComp = EntityManager.GetComponentData<InventoryComponent>(Utility._playerEntity);
+        _inventoryComp = EntityManager.GetComponentData<InventoryComponent>(Utility.playerEntity);
     }
 
     
     protected override void OnUpdate() {
-        if (Utility._playerEntity.Equals(Entity.Null)) {
+        if (Utility.playerEntity.Equals(Entity.Null)) {
             return;
         }
 
-        if (false == EntityManager.HasComponent<PendingItemComponent>(Utility._playerEntity)) {
+        if (false == EntityManager.HasComponent<PendingItemComponent>(Utility.playerEntity)) {
             return;
         }
 
-        var playerComp = EntityManager.GetComponentData<PlayerComponent>(Utility._playerEntity);
+        var playerComp = EntityManager.GetComponentData<PlayerComponent>(Utility.playerEntity);
         if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
             return;
         }
 
-        PendingItemComponent pendingItemComp = EntityManager.GetComponentData<PendingItemComponent>(Utility._playerEntity);
+        PendingItemComponent pendingItemComp = EntityManager.GetComponentData<PendingItemComponent>(Utility.playerEntity);
         Int64 pendingItemID = pendingItemComp.pendingItemID;
-        EntityManager.RemoveComponent<PendingItemComponent>(Utility._playerEntity);
+        EntityManager.RemoveComponent<PendingItemComponent>(Utility.playerEntity);
         if (false == Utility.IsValid(pendingItemID)) {
             return;
         }
 
         playerComp.currentBehaviors ^= BehaviorState.pendingItem;
-        EntityManager.SetComponentData<PlayerComponent>(Utility._playerEntity, playerComp);
+        EntityManager.SetComponentData<PlayerComponent>(Utility.playerEntity, playerComp);
 
         //
         UInt16 slotIndex = 0;
@@ -63,7 +63,7 @@ public class InventorySystem : ComponentSystem {
         }
 
         ItemPresetData data;
-        if (Utility._tablePreset.itemDatas.TryGetValue(pendingItemID, out data)) {
+        if (Utility.tablePreset.itemDatas.TryGetValue(pendingItemID, out data)) {
             switch (slotIndex) {
                 case 1:
                     _inventoryComp.SetSlot1(pendingItemID, data);
@@ -77,6 +77,6 @@ public class InventorySystem : ComponentSystem {
             }
         }
 
-        EntityManager.SetComponentData<InventoryComponent>(Utility._playerEntity, _inventoryComp);
+        EntityManager.SetComponentData<InventoryComponent>(Utility.playerEntity, _inventoryComp);
     }
 }

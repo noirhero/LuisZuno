@@ -13,8 +13,8 @@ public class GUISystem : ComponentSystem {
             _guiPreset.Initialize();
         });
         
-        EntityManager.AddComponentData(Utility._playerEntity, new GameStartComponent());
-        EntityManager.AddComponentData(Utility._playerEntity, new GUIComponent(){
+        EntityManager.AddComponentData(Utility.playerEntity, new GameStartComponent());
+        EntityManager.AddComponentData(Utility.playerEntity, new GUIComponent(){
             currentUI = GUIState.customize,
         });
     }
@@ -24,16 +24,16 @@ public class GUISystem : ComponentSystem {
         Entities.ForEach((Entity playerEntity, ref GUIComponent guiComp) => { 
             // Customize
             if (GUIState.HasState(guiComp, GUIState.customize)) {
-                if (false == EntityManager.HasComponent<CustomizeComponent>(Utility._playerEntity)) {
-                    EntityManager.AddComponentData(Utility._playerEntity, new CustomizeComponent());
-                    EntityManager.AddComponentData(Utility._playerEntity, new GamePauseComponent());
+                if (false == EntityManager.HasComponent<CustomizeComponent>(Utility.playerEntity)) {
+                    EntityManager.AddComponentData(Utility.playerEntity, new CustomizeComponent());
+                    EntityManager.AddComponentData(Utility.playerEntity, new GamePauseComponent());
                     _guiPreset.customize.Show();
                 }
             }
             else {
-                if (EntityManager.HasComponent<CustomizeComponent>(Utility._playerEntity)) {
-                    EntityManager.RemoveComponent<CustomizeComponent>(Utility._playerEntity);
-                    EntityManager.AddComponentData(Utility._playerEntity, new GameResumeComponent());
+                if (EntityManager.HasComponent<CustomizeComponent>(Utility.playerEntity)) {
+                    EntityManager.RemoveComponent<CustomizeComponent>(Utility.playerEntity);
+                    EntityManager.AddComponentData(Utility.playerEntity, new GameResumeComponent());
                     _guiPreset.customize.Hide();
                 }
             }
@@ -47,7 +47,7 @@ public class GUISystem : ComponentSystem {
             }
             
             // Inventory
-            if (EntityManager.HasComponent<InventoryComponent>(Utility._playerEntity)) {
+            if (EntityManager.HasComponent<InventoryComponent>(Utility.playerEntity)) {
                 if (GUIState.HasState(guiComp, GUIState.inventory)) {
                     _guiPreset.inventory.Show();
                 }
@@ -82,7 +82,7 @@ public class GUISystem : ComponentSystem {
         });
 
         // Teleport
-        if (EntityManager.HasComponent<TeleportInfoComponent>(Utility._playerEntity)) {
+        if (EntityManager.HasComponent<TeleportInfoComponent>(Utility.playerEntity)) {
             Entities.ForEach((Entity playerEntity, ref PlayerComponent playerComp, ref TeleportInfoComponent teleportInfoComp) => {
                 if (playerComp.currentBehaviors > 0) {
                     return;

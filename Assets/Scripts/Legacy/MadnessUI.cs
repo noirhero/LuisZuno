@@ -8,7 +8,7 @@ public class MadnessUI : LegacyUI {
 
 
     private void Update() {
-        PlayerStatusComponent statusComp = Utility._entityMng.GetComponentData<PlayerStatusComponent>(Utility._playerEntity);
+        PlayerStatusComponent statusComp = Utility.entityMng.GetComponentData<PlayerStatusComponent>(Utility.playerEntity);
         SetGauge(statusComp.status.madness / statusComp.maxMadness);
     }
 

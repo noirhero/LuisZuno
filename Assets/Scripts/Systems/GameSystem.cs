@@ -5,36 +5,36 @@ using GlobalDefine;
 
 public class GameSystem : ComponentSystem {
     protected override void OnUpdate() {
-        if (Utility._playerEntity.Equals(Entity.Null)) {
+        if (Utility.playerEntity.Equals(Entity.Null)) {
             return;
         }
 
-        if (EntityManager.HasComponent<GameStartComponent>(Utility._playerEntity)) {
-            EntityManager.RemoveComponent<GameStartComponent>(Utility._playerEntity);
+        if (EntityManager.HasComponent<GameStartComponent>(Utility.playerEntity)) {
+            EntityManager.RemoveComponent<GameStartComponent>(Utility.playerEntity);
             EnableSystem(true);
             return;
         }
 
-        if (EntityManager.HasComponent<GameClearComponent>(Utility._playerEntity)) {
-            EntityManager.RemoveComponent<GameClearComponent>(Utility._playerEntity);
+        if (EntityManager.HasComponent<GameClearComponent>(Utility.playerEntity)) {
+            EntityManager.RemoveComponent<GameClearComponent>(Utility.playerEntity);
             EnableSystem(false);
             return;
         }
 
-        if (EntityManager.HasComponent<GameOverComponent>(Utility._playerEntity)) {
-            EntityManager.RemoveComponent<GameOverComponent>(Utility._playerEntity);
+        if (EntityManager.HasComponent<GameOverComponent>(Utility.playerEntity)) {
+            EntityManager.RemoveComponent<GameOverComponent>(Utility.playerEntity);
             EnableSystem(false);
             return;
         }
 
-        if (EntityManager.HasComponent<GamePauseComponent>(Utility._playerEntity)) {
-            EntityManager.RemoveComponent<GamePauseComponent>(Utility._playerEntity);
+        if (EntityManager.HasComponent<GamePauseComponent>(Utility.playerEntity)) {
+            EntityManager.RemoveComponent<GamePauseComponent>(Utility.playerEntity);
             EnableSystem(false);
             return;
         }
 
-        if (EntityManager.HasComponent<GameResumeComponent>(Utility._playerEntity)) {
-            EntityManager.RemoveComponent<GameResumeComponent>(Utility._playerEntity);
+        if (EntityManager.HasComponent<GameResumeComponent>(Utility.playerEntity)) {
+            EntityManager.RemoveComponent<GameResumeComponent>(Utility.playerEntity);
             EnableSystem(true);
             UpdateUI();
             return;
@@ -82,7 +82,7 @@ public class GameSystem : ComponentSystem {
         // 이동후 게임재개시 보여질 ui
         foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
             if (system is TeleportSystem) {
-                var guiComp = Utility._entityMng.GetComponentData<GUIComponent>(Utility._playerEntity);
+                var guiComp = Utility.entityMng.GetComponentData<GUIComponent>(Utility.playerEntity);
                 TeleportSystem teleportSystem = system as TeleportSystem;
                 switch (teleportSystem.CurSubSceneType) {
                     case SubSceneType.sceneSelect :
@@ -102,7 +102,7 @@ public class GameSystem : ComponentSystem {
                         guiComp.currentUI = GUIState.none;
                         break;
                 }
-                Utility._entityMng.SetComponentData(Utility._playerEntity, guiComp);
+                Utility.entityMng.SetComponentData(Utility.playerEntity, guiComp);
             }
         }
     }

@@ -11,17 +11,17 @@ public class InventoryUI : LegacyUI {
     
     public override void Show() {
         base.Show();
-        _inventoryComp = Utility._entityMng.GetComponentData<InventoryComponent>(Utility._playerEntity);
+        _inventoryComp = Utility.entityMng.GetComponentData<InventoryComponent>(Utility.playerEntity);
     }
 
     
     private void Update() {
         ItemPresetData data;
-        Utility._tablePreset.itemDatas.TryGetValue(_inventoryComp.item1.id, out data);
+        Utility.tablePreset.itemDatas.TryGetValue(_inventoryComp.item1.id, out data);
         SetItemSprite(0, data.sprite);
-        Utility._tablePreset.itemDatas.TryGetValue(_inventoryComp.item2.id, out data);
+        Utility.tablePreset.itemDatas.TryGetValue(_inventoryComp.item2.id, out data);
         SetItemSprite(1, data.sprite);
-        Utility._tablePreset.itemDatas.TryGetValue(_inventoryComp.item3.id, out data);
+        Utility.tablePreset.itemDatas.TryGetValue(_inventoryComp.item3.id, out data);
         SetItemSprite(2, data.sprite);
     }
 

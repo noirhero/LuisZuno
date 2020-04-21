@@ -46,11 +46,11 @@ public class ScenarioSelectUI : LegacyUI {
 
 
     public void OnSelectedInScenario(int inType) {
-        Utility._entityMng.AddComponentData(Utility._playerEntity, new TeleportInfoComponent(
+        Utility.entityMng.AddComponentData(Utility.playerEntity, new TeleportInfoComponent(
             scenarios[inType].sceneType, scenarios[inType].curSubSceneType, scenarios[inType].nextSubSceneType, scenarios[inType].pointID, teleportTime, fadeInOutTime));
 
-        var guiComp = Utility._entityMng.GetComponentData<GUIComponent>(Utility._playerEntity);
+        var guiComp = Utility.entityMng.GetComponentData<GUIComponent>(Utility.playerEntity);
         guiComp.currentUI ^= GUIState.scenarioSelect;
-        Utility._entityMng.SetComponentData(Utility._playerEntity, guiComp);
+        Utility.entityMng.SetComponentData(Utility.playerEntity, guiComp);
     }
 }

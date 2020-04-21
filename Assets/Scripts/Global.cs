@@ -102,7 +102,7 @@ namespace GlobalDefine {
         
         
         private static EntityManager _cachedEntityMng = null;
-        public static EntityManager _entityMng {
+        public static EntityManager entityMng {
             get {
                 if (World.DefaultGameObjectInjectionWorld.EntityManager != _cachedEntityMng) {
                     _cachedEntityMng = World.DefaultGameObjectInjectionWorld.EntityManager;
@@ -113,11 +113,11 @@ namespace GlobalDefine {
         
         
         private static Entity _cachedPlayerEntity = Entity.Null;
-        public static Entity _playerEntity {
+        public static Entity playerEntity {
             get {
                 if (Entity.Null == _cachedPlayerEntity) {
-                    var cachedEntities = _entityMng.GetAllEntities()
-                        .Where(entity => _entityMng.HasComponent(entity, typeof(PlayerComponent)));
+                    var cachedEntities = entityMng.GetAllEntities()
+                        .Where(entity => entityMng.HasComponent(entity, typeof(PlayerComponent)));
 
                     foreach (var entity in cachedEntities) {
                         _cachedPlayerEntity = entity;
@@ -130,13 +130,13 @@ namespace GlobalDefine {
         
         
         private static TablePreset _cachedTablePreset = null;
-        public static TablePreset _tablePreset {
+        public static TablePreset tablePreset {
             get {
                 if (null == _cachedTablePreset) {
-                    var cachedEntities = _entityMng.GetAllEntities()
-                        .Where(entity => _entityMng.HasComponent(entity, typeof(TablePresetComponent)));
+                    var cachedEntities = entityMng.GetAllEntities()
+                        .Where(entity => entityMng.HasComponent(entity, typeof(TablePresetComponent)));
                     foreach (var entity in cachedEntities) {
-                        _cachedTablePreset = _entityMng.GetSharedComponentData<TablePresetComponent>(entity).preset;
+                        _cachedTablePreset = entityMng.GetSharedComponentData<TablePresetComponent>(entity).preset;
                         break;
                     }
                 }

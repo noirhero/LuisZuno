@@ -12,8 +12,8 @@ public class PostEffectProxy : MonoBehaviour {
             return;
         }
 
-        var postEffectEntity = Utility._entityMng.CreateEntity();
-        Utility._entityMng.AddSharedComponentData(postEffectEntity, new PostEffectPresetComponent() {
+        var postEffectEntity = Utility.entityMng.CreateEntity();
+        Utility.entityMng.AddSharedComponentData(postEffectEntity, new PostEffectPresetComponent() {
             volume = postProcessVolume
         });
     }

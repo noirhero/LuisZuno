@@ -18,7 +18,7 @@ public class BubbleUI : LegacyUI {
         }
         else {
             bubbleImg.color = Color.white;
-            Translation playerPos = Utility._entityMng.GetComponentData<Translation>(Utility._playerEntity);
+            Translation playerPos = Utility.entityMng.GetComponentData<Translation>(Utility.playerEntity);
             Vector3 convert2DPos = Camera.main.WorldToScreenPoint(playerPos.Value);
             convert2DPos += pivot;
             GetTransform().SetPositionAndRotation(convert2DPos, Quaternion.identity);
@@ -29,7 +29,7 @@ public class BubbleUI : LegacyUI {
     
     
     private string GetBubbleMessage() {
-        var playerComp = Utility._entityMng.GetComponentData<PlayerComponent>(Utility._playerEntity);
+        var playerComp = Utility.entityMng.GetComponentData<PlayerComponent>(Utility.playerEntity);
         if (0 == playerComp.currentBehaviors) {     // walking or doing nothing
             return string.Empty;
         }
@@ -40,14 +40,14 @@ public class BubbleUI : LegacyUI {
 
         // Searching
         if (BehaviorState.HasState(playerComp, BehaviorState.searching)) {
-            var searchingComp = Utility._entityMng.GetComponentData<SearchingComponent>(Utility._playerEntity);
+            var searchingComp = Utility.entityMng.GetComponentData<SearchingComponent>(Utility.playerEntity);
             if (0 < searchingComp.elapsedSearchingTime) {
                 timeRate = searchingComp.elapsedSearchingTime / searchingComp.searchingTime;
             }
         }
         // Panic
         else if (BehaviorState.HasState(playerComp, BehaviorState.panic)) {
-            var panicComp = Utility._entityMng.GetComponentData<PanicComponent>(Utility._playerEntity);
+            var panicComp = Utility.entityMng.GetComponentData<PanicComponent>(Utility.playerEntity);
             if (0 < panicComp.elapsedPanicTime) {
                 bubbleMassage = "#$%^";
                 timeRate = panicComp.elapsedPanicTime / panicComp.panicTime;

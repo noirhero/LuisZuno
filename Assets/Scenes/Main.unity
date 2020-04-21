@@ -1632,10 +1632,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 2075827277}
-  - {fileID: 278837672}
-  - {fileID: 813633665}
   - {fileID: 1043247764}
+  - {fileID: 813633665}
+  - {fileID: 278837672}
+  - {fileID: 2075827277}
   - {fileID: 1152165959}
   - {fileID: 2116970451}
   m_Father: {fileID: 320582311}
@@ -1659,16 +1659,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootCanvas: {fileID: 233822090}
-  endingMsg: {fileID: 1043247765}
-  bubble: {fileID: 813633665}
-  bubbleMsg: {fileID: 1080996637}
-  pivot: {x: 20, y: 170, z: 0}
-  madness: {fileID: 278837674}
-  item1: {fileID: 743405256}
-  item2: {fileID: 84418562}
-  item3: {fileID: 1946033145}
-  customize: {fileID: 1152165959}
-  sceneSelect: {fileID: 2116970451}
+  ending: {fileID: 1043247767}
+  bubble: {fileID: 813633670}
+  madness: {fileID: 278837675}
+  inventory: {fileID: 2075827280}
+  customize: {fileID: 1152165963}
+  scenarioSelect: {fileID: 2116970454}
 --- !u!1 &262320674
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,6 +1756,7 @@ GameObject:
   - component: {fileID: 278837672}
   - component: {fileID: 278837674}
   - component: {fileID: 278837673}
+  - component: {fileID: 278837675}
   m_Layer: 5
   m_Name: MadnessGauge
   m_TagString: Untagged
@@ -1781,7 +1778,7 @@ RectTransform:
   - {fileID: 1199406198}
   - {fileID: 2121997192}
   m_Father: {fileID: 233822091}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1854,6 +1851,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &278837675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278837671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4da4abab701a6e4b9815a06597b3d62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gauge: {fileID: 278837674}
 --- !u!1 &281181225
 GameObject:
   m_ObjectHideFlags: 0
@@ -5115,8 +5125,9 @@ GameObject:
   - component: {fileID: 813633668}
   - component: {fileID: 813633667}
   - component: {fileID: 813633666}
+  - component: {fileID: 813633670}
   m_Layer: 5
-  m_Name: PleaseWait
+  m_Name: Bubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5135,7 +5146,7 @@ RectTransform:
   m_Children:
   - {fileID: 1080996636}
   m_Father: {fileID: 233822091}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5217,6 +5228,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813633664}
   m_CullTransparentMesh: 0
+--- !u!114 &813633670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813633664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cd41ef3d547584bab88fca084299b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleMsg: {fileID: 1080996637}
+  pivot: {x: 20, y: 170, z: 0}
 --- !u!1 &825825485
 GameObject:
   m_ObjectHideFlags: 0
@@ -6251,6 +6276,7 @@ GameObject:
   - component: {fileID: 1043247764}
   - component: {fileID: 1043247766}
   - component: {fileID: 1043247765}
+  - component: {fileID: 1043247767}
   m_Layer: 5
   m_Name: EndingMessage
   m_TagString: Untagged
@@ -6270,7 +6296,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 233822091}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -6320,6 +6346,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1043247763}
   m_CullTransparentMesh: 0
+--- !u!114 &1043247767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043247763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b94b95382045464087a7220fc832a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endingMsg: {fileID: 1043247765}
 --- !u!1 &1054566691
 GameObject:
   m_ObjectHideFlags: 0
@@ -7052,7 +7091,7 @@ GameObject:
   - component: {fileID: 1152165960}
   - component: {fileID: 1152165963}
   m_Layer: 5
-  m_Name: AvatarStatus
+  m_Name: Customize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12090,6 +12129,7 @@ GameObject:
   - component: {fileID: 2075827277}
   - component: {fileID: 2075827279}
   - component: {fileID: 2075827278}
+  - component: {fileID: 2075827280}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -12112,7 +12152,7 @@ RectTransform:
   - {fileID: 84418561}
   - {fileID: 1946033144}
   m_Father: {fileID: 233822091}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -12155,6 +12195,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075827276}
   m_CullTransparentMesh: 0
+--- !u!114 &2075827280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075827276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bebbd098eb7564e49b966026936452d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+  - {fileID: 743405256}
+  - {fileID: 84418562}
+  - {fileID: 1946033145}
 --- !u!1 &2116970450
 GameObject:
   m_ObjectHideFlags: 0
@@ -12168,7 +12224,7 @@ GameObject:
   - component: {fileID: 2116970452}
   - component: {fileID: 2116970454}
   m_Layer: 5
-  m_Name: SelectScenario
+  m_Name: ScenarioSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

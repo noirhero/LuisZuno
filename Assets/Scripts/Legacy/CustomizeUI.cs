@@ -4,7 +4,6 @@ using System;
 using System.Linq;
 using UnityEngine.UI;
 using UnityEngine;
-using Unity.Entities;
 using GlobalDefine;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -27,35 +26,17 @@ public class CustomizeUI : LegacyUI {
 
     public GameObject decision;
 
-    private Entity _playerEntity = Entity.Null;
-    private EntityManager _cachedEntityMng;
-    private EntityManager _EntityMng {
-        get {
-            if (World.DefaultGameObjectInjectionWorld.EntityManager != _cachedEntityMng) {
-                _cachedEntityMng = World.DefaultGameObjectInjectionWorld.EntityManager;
-            }
-
-            return _cachedEntityMng;
-        }
-    }
     private CharacterBackground[] _defaultBackgrounds;
 
+    
     private bool IsPlayerEntityHasCustomizeComponent() {
-        return _EntityMng.HasComponent<CustomizeComponent>(_playerEntity);
+        return Utility._entityMng.HasComponent<CustomizeComponent>(Utility._playerEntity);
     }
 
-
+    
     void Start() {
         decision.SetActive(false);
-
-        var playerEntities = _EntityMng.GetAllEntities()
-            .Where(entity => _EntityMng.HasComponent(entity, typeof(PlayerComponent)));
-
-        foreach (var entity in playerEntities) {
-            _playerEntity = entity;
-            break;
-        }
-
+        
         InitializeDefaultBackgrounds();
 
         OnSelectedInBackground();
@@ -168,9 +149,9 @@ public class CustomizeUI : LegacyUI {
                 continue;
             }
 
-            var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+            var customizeComp = Utility._entityMng.GetComponentData<CustomizeComponent>(Utility._playerEntity);
             customizeComp.backgroundType = Utility.ToEnum<BackgroundType>(toggle.name);
-            _EntityMng.SetComponentData(_playerEntity, customizeComp);
+            Utility._entityMng.SetComponentData(Utility._playerEntity, customizeComp);
             break;
         }
     }
@@ -184,9 +165,9 @@ public class CustomizeUI : LegacyUI {
                 continue;
             }
 
-            var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+            var customizeComp = Utility._entityMng.GetComponentData<CustomizeComponent>(Utility._playerEntity);
             customizeComp.valuesType = Utility.ToEnum<ValuesType>(toggle.name);
-            _EntityMng.SetComponentData(_playerEntity, customizeComp);
+            Utility._entityMng.SetComponentData(Utility._playerEntity, customizeComp);
             break;
         }
     }
@@ -200,9 +181,9 @@ public class CustomizeUI : LegacyUI {
                 continue;
             }
 
-            var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+            var customizeComp = Utility._entityMng.GetComponentData<CustomizeComponent>(Utility._playerEntity);
             customizeComp.goalType = Utility.ToEnum<GoalType>(toggle.name);
-            _EntityMng.SetComponentData(_playerEntity, customizeComp);
+            Utility._entityMng.SetComponentData(Utility._playerEntity, customizeComp);
             break;
         }
     }
@@ -217,10 +198,9 @@ public class CustomizeUI : LegacyUI {
         decision.SetActive(false);
         AdjustPlayerStatus();
 
-        var guiComp = _EntityMng.GetComponentData<GUIComponent>(_playerEntity);
+        var guiComp = Utility._entityMng.GetComponentData<GUIComponent>(Utility._playerEntity);
         guiComp.currentUI ^= GUIState.customize;
-        guiComp.currentUI |= GUIState.scenarioSelect;
-        _EntityMng.SetComponentData(_playerEntity, guiComp);
+        Utility._entityMng.SetComponentData(Utility._playerEntity, guiComp);
     }
 
 
@@ -234,7 +214,7 @@ public class CustomizeUI : LegacyUI {
             return;
         }
 
-        var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+        var customizeComp = Utility._entityMng.GetComponentData<CustomizeComponent>(Utility._playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;
         }
@@ -246,7 +226,7 @@ public class CustomizeUI : LegacyUI {
 
         customizeComp.remain -= inValue;
         customizeComp.mentality = pendingValue;
-        _EntityMng.SetComponentData(_playerEntity, customizeComp);
+        Utility._entityMng.SetComponentData(Utility._playerEntity, customizeComp);
 
         remainText.text = customizeComp.remain.ToString();
         mentalityText.text = customizeComp.mentality.ToString();
@@ -258,7 +238,7 @@ public class CustomizeUI : LegacyUI {
             return;
         }
 
-        var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+        var customizeComp = Utility._entityMng.GetComponentData<CustomizeComponent>(Utility._playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;
         }
@@ -270,7 +250,7 @@ public class CustomizeUI : LegacyUI {
 
         customizeComp.remain -= inValue;
         customizeComp.agility = pendingValue;
-        _EntityMng.SetComponentData(_playerEntity, customizeComp);
+        Utility._entityMng.SetComponentData(Utility._playerEntity, customizeComp);
 
         remainText.text = customizeComp.remain.ToString();
         agilityText.text = customizeComp.agility.ToString();
@@ -282,7 +262,7 @@ public class CustomizeUI : LegacyUI {
             return;
         }
 
-        var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+        var customizeComp = Utility._entityMng.GetComponentData<CustomizeComponent>(Utility._playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;
         }
@@ -294,7 +274,7 @@ public class CustomizeUI : LegacyUI {
 
         customizeComp.remain -= inValue;
         customizeComp.physical = pendingValue;
-        _EntityMng.SetComponentData(_playerEntity, customizeComp);
+        Utility._entityMng.SetComponentData(Utility._playerEntity, customizeComp);
 
         remainText.text = customizeComp.remain.ToString();
         physicalText.text = customizeComp.physical.ToString();
@@ -306,7 +286,7 @@ public class CustomizeUI : LegacyUI {
             return;
         }
 
-        var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+        var customizeComp = Utility._entityMng.GetComponentData<CustomizeComponent>(Utility._playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;
         }
@@ -318,7 +298,7 @@ public class CustomizeUI : LegacyUI {
 
         customizeComp.remain -= inValue;
         customizeComp.search = pendingValue;
-        _EntityMng.SetComponentData(_playerEntity, customizeComp);
+        Utility._entityMng.SetComponentData(Utility._playerEntity, customizeComp);
 
         remainText.text = customizeComp.remain.ToString();
         searchText.text = customizeComp.search.ToString();
@@ -330,7 +310,7 @@ public class CustomizeUI : LegacyUI {
             return;
         }
 
-        var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+        var customizeComp = Utility._entityMng.GetComponentData<CustomizeComponent>(Utility._playerEntity);
         if (-inValue < 0 && customizeComp.remain <= 0) {
             return;
         }
@@ -342,7 +322,7 @@ public class CustomizeUI : LegacyUI {
 
         customizeComp.remain -= inValue;
         customizeComp.luck = pendingValue;
-        _EntityMng.SetComponentData(_playerEntity, customizeComp);
+        Utility._entityMng.SetComponentData(Utility._playerEntity, customizeComp);
 
         remainText.text = customizeComp.remain.ToString();
         luckText.text = customizeComp.luck.ToString();
@@ -351,20 +331,20 @@ public class CustomizeUI : LegacyUI {
 
     public void AdjustPlayerStatus() {
         // the player must have these components
-        var playerStatusComp = _EntityMng.GetComponentData<PlayerStatusComponent>(_playerEntity);
-        var customizeComp = _EntityMng.GetComponentData<CustomizeComponent>(_playerEntity);
+        var playerStatusComp = Utility._entityMng.GetComponentData<PlayerStatusComponent>(Utility._playerEntity);
+        var customizeComp = Utility._entityMng.GetComponentData<CustomizeComponent>(Utility._playerEntity);
 
         playerStatusComp.status = _defaultBackgrounds[(int)customizeComp.backgroundType];
         playerStatusComp.moveSpeed = playerStatusComp.status.agility * 0.01f;
         playerStatusComp.madnessWeight = playerStatusComp.status.mentality * 0.01f;
         playerStatusComp.searchingWeight = playerStatusComp.status.search * 0.01f;
 
-        var playerPresetComp = _EntityMng.GetSharedComponentData<PlayerPresetComponent>(_playerEntity);
+        var playerPresetComp = Utility._entityMng.GetSharedComponentData<PlayerPresetComponent>(Utility._playerEntity);
         string prefabPath;
         playerPresetComp.preset.prefabPaths.TryGetValue(customizeComp.backgroundType, out prefabPath);
         AdjustPlayerSprite(ref prefabPath, ref playerPresetComp.sprite);
 
-        _EntityMng.SetComponentData<PlayerStatusComponent>(_playerEntity, playerStatusComp);
+        Utility._entityMng.SetComponentData<PlayerStatusComponent>(Utility._playerEntity, playerStatusComp);
     }
 
 
@@ -379,26 +359,26 @@ public class CustomizeUI : LegacyUI {
         var spriteScale = new float3(sprite.rect.width, sprite.rect.height, 1.0f) / sprite.pixelsPerUnit;
         spriteScale *= localScale;
         spriteScale.z = 1.0f;
-        _EntityMng.AddComponentData(_playerEntity, new NonUniformScale() {
+        Utility._entityMng.AddComponentData(Utility._playerEntity, new NonUniformScale() {
             Value = spriteScale
         });
 
         var applyPivot = (sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit * localScale;
-        _EntityMng.AddComponentData(_playerEntity, new SpritePivotComponent() {
+        Utility._entityMng.AddComponentData(Utility._playerEntity, new SpritePivotComponent() {
             Value = new float3(applyPivot, 0.0f)
         });
 
-        if (_EntityMng.HasComponent<SpritePresetComponent>(_playerEntity)) {
-            var spiretPresetComp = _EntityMng.GetSharedComponentData<SpritePresetComponent>(_playerEntity);
+        if (Utility._entityMng.HasComponent<SpritePresetComponent>(Utility._playerEntity)) {
+            var spiretPresetComp = Utility._entityMng.GetSharedComponentData<SpritePresetComponent>(Utility._playerEntity);
             spiretPresetComp.preset = spritePreset;
         }
         else {
-            _EntityMng.AddSharedComponentData(_playerEntity, new SpritePresetComponent() {
+            Utility._entityMng.AddSharedComponentData(Utility._playerEntity, new SpritePresetComponent() {
                 preset = spritePreset
             });
         }
         
-        _EntityMng.AddComponentData(_playerEntity, new SpriteStateComponent() {
+        Utility._entityMng.AddComponentData(Utility._playerEntity, new SpriteStateComponent() {
             hash = spritePreset.datas.Keys.First()
         });
     }

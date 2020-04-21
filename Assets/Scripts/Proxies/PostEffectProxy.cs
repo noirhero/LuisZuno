@@ -1,8 +1,8 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
 using UnityEngine;
-using Unity.Entities;
 using UnityEngine.Rendering.PostProcessing;
+using GlobalDefine;
 
 public class PostEffectProxy : MonoBehaviour {
     void Start() {
@@ -12,8 +12,8 @@ public class PostEffectProxy : MonoBehaviour {
             return;
         }
 
-        var postEffectEntity = World.DefaultGameObjectInjectionWorld.EntityManager.CreateEntity();
-        World.DefaultGameObjectInjectionWorld.EntityManager.AddSharedComponentData(postEffectEntity, new PostEffectPresetComponent() {
+        var postEffectEntity = Utility._entityMng.CreateEntity();
+        Utility._entityMng.AddSharedComponentData(postEffectEntity, new PostEffectPresetComponent() {
             volume = postProcessVolume
         });
     }

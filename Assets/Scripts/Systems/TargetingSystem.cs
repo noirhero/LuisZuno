@@ -3,7 +3,6 @@
 using UnityEngine;
 using Unity.Transforms;
 using Unity.Entities;
-using GlobalDefine;
 
 public class TargetingSystem : ComponentSystem {
     protected override void OnUpdate() {

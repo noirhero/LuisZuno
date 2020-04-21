@@ -1,12 +1,11 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
 using Unity.Entities;
-using UnityEngine.Serialization;
 
 [RequiresEntityConversion]
 public class PropProxy : EntityProxy {
-    [FormerlySerializedAs("Status")] public PropStatusComponent status;
-    [FormerlySerializedAs("Reactive")] public ReactiveComponent reactive;
+    public PropStatusComponent status;
+    public ReactiveComponent reactive;
 
     protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);

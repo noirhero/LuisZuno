@@ -3,14 +3,13 @@
 using System.Collections.Generic;
 using Unity.Entities;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequiresEntityConversion]
 public class EntitySpawnProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGameObjectToEntity {
-    [FormerlySerializedAs("SpawnInfo")] public EntitySpawnInfoComponent entitySpawn;
-    [FormerlySerializedAs("SpawnPreset")] public GameObject spawnPreset = null;
-    [FormerlySerializedAs("SpawnEffectPreset")] public GameObject spawnEffectPreset = null;
-    [FormerlySerializedAs("DestroyEffectPreset")] public GameObject destroyEffectPreset = null;
+    public EntitySpawnInfoComponent entitySpawn;
+    public GameObject spawnPreset = null;
+    public GameObject spawnEffectPreset = null;
+    public GameObject destroyEffectPreset = null;
 
 
     public void DeclareReferencedPrefabs(List<GameObject> referencedPrefabs) {

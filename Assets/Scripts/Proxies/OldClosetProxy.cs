@@ -3,12 +3,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
-using UnityEngine.Serialization;
 using GlobalDefine;
 
 [RequiresEntityConversion]
 public class OldClosetProxy : PropProxy {
-    [FormerlySerializedAs("SpawnInfo")] public EntitySpawnInfoComponent spawnInfo;
+    public EntitySpawnInfoComponent spawnInfo;
     public string spawnPresetPath;
     public string spawnEffectPath;
     public string destroyEffectPath;

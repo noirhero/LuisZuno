@@ -1,8 +1,6 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
 using Unity.Entities;
-using Unity.Transforms;
-using UnityEngine.Serialization;
 using GlobalDefine;
 
 [RequiresEntityConversion]
@@ -13,9 +11,9 @@ public class TeleportProxy : EntityProxy {
     public SubSceneType nextSubSceneType;
     public int pointID;
     //
-    [FormerlySerializedAs("TeleportTime")] public float teleportTime;
-    [FormerlySerializedAs("FadeInOutTime")] public float fadeInOutTime;
-    [FormerlySerializedAs("Status")] public PropStatusComponent status;
+    public float teleportTime;
+    public float fadeInOutTime;
+    public PropStatusComponent status;
 
 
     protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {

@@ -12,4 +12,17 @@ public class LegacyUI : MonoBehaviour  {
 
         return _myTrans;
     }
+    
+    
+    public virtual void Initialize() { }
+
+    
+    public virtual void Show() {
+        gameObject.SetActive(true);
+    }
+
+    
+    public virtual void Hide() {
+        gameObject.SetActive(false);
+    }
 }

@@ -5,6 +5,7 @@ using Unity.Jobs;
 using Unity.Transforms;
 using GlobalDefine;
 
+[UpdateAfter(typeof(GameSystem))]
 [UpdateAfter(typeof(AutoMovementSystem))]
 public class EffectSpawnSystem : JobComponentSystem {
     private EndSimulationEntityCommandBufferSystem _cmdSystem;

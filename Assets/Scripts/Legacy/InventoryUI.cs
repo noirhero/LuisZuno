@@ -1,5 +1,6 @@
 ﻿// Copyright 2018-2019 TAP, Inc. All Rights Reserved.
 
+using System;
 using GlobalDefine;
 using UnityEngine.UI;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class InventoryUI : LegacyUI {
     public Image[] item = new Image[3];
     private InventoryComponent _inventoryComp;
 
-    
+
     public override void Show() {
         base.Show();
         _inventoryComp = Utility.entityMng.GetComponentData<InventoryComponent>(Utility.playerEntity);
@@ -27,8 +28,8 @@ public class InventoryUI : LegacyUI {
 
     
     protected void SetItemSprite(int index, Sprite inImg) {
-        if (item.Length >= index || index < 0) {
-            return;
+        if (item.Length <= index || index < 0) {
+            return;    
         }
         
         if (null == inImg) {

@@ -7,7 +7,6 @@ using Unity.Transforms;
 using Unity.Mathematics;
 using Unity.Collections;
 using UnityEditor;
-using UnityEngine;
 
 namespace GlobalDefine {
     public enum AnimationType { Walk, Idle, SomethingDoIt, NyoNyo }

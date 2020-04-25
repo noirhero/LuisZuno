@@ -5,6 +5,7 @@ using Unity.Jobs;
 using Unity.Transforms;
 using GlobalDefine;
 
+[UpdateAfter(typeof(GameSystem))]
 public class LifeCycleSystem : JobComponentSystem {
     private EndSimulationEntityCommandBufferSystem _cmdSystem;
     protected override void OnCreate() {

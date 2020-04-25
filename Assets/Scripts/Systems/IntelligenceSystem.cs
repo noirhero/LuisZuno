@@ -4,6 +4,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using GlobalDefine;
 
+[UpdateAfter(typeof(GameSystem))]
 public class IntelligenceSystem : ComponentSystem {
     protected override void OnUpdate() {
 

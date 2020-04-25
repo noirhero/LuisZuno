@@ -1,9 +1,9 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
-using UnityEngine;
 using Unity.Entities;
 using GlobalDefine;
 
+[UpdateAfter(typeof(GameSystem))]
 public class PanicSystem : ComponentSystem {
     protected void GetMadness(Entity playerEntity, ref PanicComponent panicComp) {
         bool shouldGetMadness = (panicComp.madness > 0);

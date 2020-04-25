@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Transforms;
 using Unity.Entities;
 
+[UpdateAfter(typeof(GameSystem))]
 public class TargetingSystem : ComponentSystem {
     protected override void OnUpdate() {
         Entities.WithAll<PlayerComponent, TargetingComponent>().ForEach((Entity playerEntity) => {

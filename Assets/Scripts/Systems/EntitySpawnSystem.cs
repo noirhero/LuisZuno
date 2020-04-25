@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using GlobalDefine;
 
+[UpdateAfter(typeof(GameSystem))]
 public class EntitySpawnSystem : JobComponentSystem {
     private EndSimulationEntityCommandBufferSystem _cmdSystem;
     protected override void OnCreate() {

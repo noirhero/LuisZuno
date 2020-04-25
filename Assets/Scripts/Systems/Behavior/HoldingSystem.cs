@@ -2,6 +2,7 @@
 
 using Unity.Entities;
 
+[UpdateAfter(typeof(GameSystem))]
 public class HoldingSystem : ComponentSystem {
     protected override void OnUpdate() {
     }

@@ -1,9 +1,9 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
-using UnityEngine;
 using Unity.Entities;
 using GlobalDefine;
 
+[UpdateAfter(typeof(GameSystem))]
 public class SearchingSystem : ComponentSystem {
     protected override void OnUpdate() {
         Entities.ForEach((Entity playerEntity, ref SearchingComponent searchingComp, ref PlayerComponent playerComp) => {

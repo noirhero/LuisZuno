@@ -36,6 +36,7 @@ public class CustomizeUI : LegacyUI {
     
     void Start() {
         decision.SetActive(false);
+        Utility.entityMng.AddComponentData(Utility.playerEntity, new GamePauseComponent());
         
         InitializeDefaultBackgrounds();
 
@@ -134,10 +135,21 @@ public class CustomizeUI : LegacyUI {
 
 
     void Update() {
-        
         if (Input.GetKey(KeyCode.Escape)) {
             OnSelectedInConfirm();
         }
+    }
+
+
+    public override void Show() {
+        base.Show();
+        Utility.entityMng.AddComponentData(Utility.playerEntity, new CustomizeComponent());
+    }
+
+
+    public override void Hide() {
+        base.Hide();
+        Utility.entityMng.RemoveComponent<CustomizeComponent>(Utility.playerEntity);
     }
 
 
@@ -195,12 +207,14 @@ public class CustomizeUI : LegacyUI {
 
 
     public void OnSelectedInConfirm() {
-        decision.SetActive(false);
         AdjustPlayerStatus();
 
         var guiComp = Utility.entityMng.GetComponentData<GUIComponent>(Utility.playerEntity);
         guiComp.currentUI ^= GUIState.customize;
         Utility.entityMng.SetComponentData(Utility.playerEntity, guiComp);
+        
+        decision.SetActive(false);
+        Utility.entityMng.AddComponentData(Utility.playerEntity, new GameResumeComponent());
     }
 
 

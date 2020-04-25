@@ -1,21 +1,17 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
+using GlobalDefine;
 using UnityEngine;
 using Unity.Entities;
 
+[UpdateAfter(typeof(GameSystem))]
 public class MadnessSystem : ComponentSystem {
     protected override void OnUpdate() {
         var deltaTime = Time.DeltaTime;
 
         // 패시브
         Entities.ForEach((Entity entity, ref PassiveMadnessComponent passiveMadnessComp) => {
-            // Get Player entity
-            Entity playerEntity = Entity.Null;
-            Entities.WithAll<PlayerComponent>().ForEach((Entity e) => {
-                playerEntity = e;
-            });
-
-            var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(playerEntity);
+            var statusComp = EntityManager.GetComponentData<PlayerStatusComponent>(Utility.playerEntity);
 
             passiveMadnessComp.ElapsedTickTime += deltaTime;
 
@@ -34,7 +30,7 @@ public class MadnessSystem : ComponentSystem {
                 }
             }
 
-            EntityManager.SetComponentData<PlayerStatusComponent>(playerEntity, statusComp);
+            EntityManager.SetComponentData<PlayerStatusComponent>(Utility.playerEntity, statusComp);
 
             if (finished) {
                 EntityManager.RemoveComponent<PassiveMadnessComponent>(entity);

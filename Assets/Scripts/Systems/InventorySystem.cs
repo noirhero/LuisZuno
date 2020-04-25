@@ -4,6 +4,7 @@ using System;
 using Unity.Entities;
 using GlobalDefine;
 
+[UpdateAfter(typeof(GameSystem))]
 public class InventorySystem : ComponentSystem {
     private InventoryComponent _inventoryComp;
 
@@ -14,10 +15,6 @@ public class InventorySystem : ComponentSystem {
 
     
     protected override void OnUpdate() {
-        if (Utility.playerEntity.Equals(Entity.Null)) {
-            return;
-        }
-
         if (false == EntityManager.HasComponent<PendingItemComponent>(Utility.playerEntity)) {
             return;
         }

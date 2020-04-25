@@ -3,19 +3,15 @@
 using Unity.Entities;
 using GlobalDefine;
 
+[UpdateAfter(typeof(GameSystem))]
 public class GUISystem : ComponentSystem {
     private GUIPreset _guiPreset;
 
-
+    
     protected override void OnStartRunning() {
         Entities.ForEach((GUIPresetComponent presetComp) => {
             _guiPreset = presetComp.preset;
             _guiPreset.Initialize();
-        });
-        
-        EntityManager.AddComponentData(Utility.playerEntity, new GameStartComponent());
-        EntityManager.AddComponentData(Utility.playerEntity, new GUIComponent(){
-            currentUI = GUIState.customize,
         });
     }
 
@@ -24,18 +20,10 @@ public class GUISystem : ComponentSystem {
         Entities.ForEach((Entity playerEntity, ref GUIComponent guiComp) => { 
             // Customize
             if (GUIState.HasState(guiComp, GUIState.customize)) {
-                if (false == EntityManager.HasComponent<CustomizeComponent>(Utility.playerEntity)) {
-                    EntityManager.AddComponentData(Utility.playerEntity, new CustomizeComponent());
-                    EntityManager.AddComponentData(Utility.playerEntity, new GamePauseComponent());
-                    _guiPreset.customize.Show();
-                }
+                _guiPreset.customize.Show();
             }
             else {
-                if (EntityManager.HasComponent<CustomizeComponent>(Utility.playerEntity)) {
-                    EntityManager.RemoveComponent<CustomizeComponent>(Utility.playerEntity);
-                    EntityManager.AddComponentData(Utility.playerEntity, new GameResumeComponent());
-                    _guiPreset.customize.Hide();
-                }
+                _guiPreset.customize.Hide();
             }
             
             // ScenarioSelect

@@ -4,8 +4,21 @@ using Unity.Entities;
 using GlobalDefine;
 
 public class GameSystem : ComponentSystem {
+    protected override void OnStartRunning() {
+        if (Entity.Null == Utility.playerEntity || null == Utility.tablePreset) {
+            EnableSystem(false);
+        }
+        else {
+            EntityManager.AddComponentData(Utility.playerEntity, new GameStartComponent());
+            EntityManager.AddComponentData(Utility.playerEntity, new GUIComponent() {
+                currentUI = GUIState.customize,
+            });
+        }
+    }
+
+    
     protected override void OnUpdate() {
-        if (Utility.playerEntity.Equals(Entity.Null)) {
+        if (Entity.Null == Utility.playerEntity || null == Utility.tablePreset)  {
             return;
         }
 
@@ -72,6 +85,12 @@ public class GameSystem : ComponentSystem {
                 system.Enabled = inEnable;
             }
             else if (system.GetType() == typeof(MadnessSystem)) {
+                system.Enabled = inEnable;
+            }
+            else if (system.GetType() == typeof(GUISystem)) {
+                system.Enabled = inEnable;
+            }
+            else if (system.GetType() == typeof(InventorySystem)) {
                 system.Enabled = inEnable;
             }
         }

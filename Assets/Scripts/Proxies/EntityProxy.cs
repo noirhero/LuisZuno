@@ -37,45 +37,36 @@ public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGam
 
     protected virtual void SetupPrefabs(List<GameObject> referencedPresets) {
         if (null != preset) {
-        	referencedPresets.Add(preset);
+            referencedPresets.Add(preset);
         }
     }
 
 
     protected virtual void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        if (null == preset) {
-            return;
-        }
-
-        var spritePreset = preset.GetComponent<SpritePreset>();
-        if (ReferenceEquals(null, spritePreset)) {
-            return;
-        }
-
         var sprite = GetComponent<SpriteRenderer>()?.sprite;
-        if (ReferenceEquals(null, sprite)) {
-            Debug.LogError("Add 'SpriteRenderer' component, now!!!!!");
-            return;
+        if (false == ReferenceEquals(null, sprite)) {
+            var localScale = GetComponent<Transform>().localScale;
+            var spriteScale = new float3(sprite.rect.width, sprite.rect.height, 1.0f) / sprite.pixelsPerUnit;
+            spriteScale *= localScale;
+            spriteScale.z = 1.0f;
+            dstManager.AddComponentData(entity, new NonUniformScale() {
+                Value = spriteScale
+            });
+
+            var applyPivot = (sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit * localScale;
+            dstManager.AddComponentData(entity, new SpritePivotComponent() {
+                Value = new float3(applyPivot, 0.0f)
+            });
         }
 
-        var localScale = GetComponent<Transform>().localScale;
-        var spriteScale = new float3(sprite.rect.width, sprite.rect.height, 1.0f) / sprite.pixelsPerUnit;
-        spriteScale *= localScale;
-        spriteScale.z = 1.0f;
-        dstManager.AddComponentData(entity, new NonUniformScale() {
-            Value = spriteScale
-        });
-
-        var applyPivot = (sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit * localScale;
-        dstManager.AddComponentData(entity, new SpritePivotComponent() {
-            Value = new float3(applyPivot, 0.0f)
-        });
-
-        dstManager.AddSharedComponentData(entity, new SpritePresetComponent() {
-            preset = spritePreset
-        });
-        dstManager.AddComponentData(entity, new SpriteStateComponent() {
-            hash = spritePreset.datas.Keys.First()
-        });
+        var spritePreset = preset ? preset.GetComponent<SpritePreset>() : null;
+        if (false == ReferenceEquals(null, spritePreset)) {
+            dstManager.AddSharedComponentData(entity, new SpritePresetComponent() {
+                preset = spritePreset
+            });
+            dstManager.AddComponentData(entity, new SpriteStateComponent() {
+                hash = spritePreset.datas.Keys.First()
+            });
+        }
     }
 }

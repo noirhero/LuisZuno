@@ -11,17 +11,6 @@ public class NPCProxy : EntityProxy {
     protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
 
-        if (null == preset) {
-            return;
-        }
-
-        var AIPreset = preset.GetComponent<NPCAIPreset>();
-        if (null != AIPreset) {
-            dstManager.AddSharedComponentData(entity, new NPCAIPresetComponent() {
-                preset = AIPreset
-            });
-        }
-
         dstManager.AddComponentData(entity, new NPCComponent(1.0f, speed));
     }
 }

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1251893785456981886}
   - component: {fileID: 1251893785456981881}
   - component: {fileID: 1251893785456981880}
+  - component: {fileID: 5359420710777172689}
+  - component: {fileID: 8162348833816048118}
   m_Layer: 0
   m_Name: OldManPreset
   m_TagString: Untagged
@@ -229,3 +231,29 @@ MonoBehaviour:
       time: 5
     - animation: 1
       time: 2.25
+--- !u!114 &5359420710777172689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251893785456981887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 1
+--- !u!114 &8162348833816048118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251893785456981887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3246f923221573c4cb136ee3e59e1374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 1

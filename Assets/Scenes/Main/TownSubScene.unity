@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 429810451}
   - component: {fileID: 429810453}
   - component: {fileID: 429810452}
+  - component: {fileID: 429810454}
   m_Layer: 0
   m_Name: Town_OldMan
   m_TagString: Untagged
@@ -218,6 +219,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &429810454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429810450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5d859d4add39142903c050e8588470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 1
 --- !u!1 &945507450
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +243,7 @@ GameObject:
   - component: {fileID: 945507451}
   - component: {fileID: 945507453}
   - component: {fileID: 945507452}
+  - component: {fileID: 945507454}
   m_Layer: 0
   m_Name: Town_HatBoy
   m_TagString: Untagged
@@ -315,6 +330,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &945507454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945507450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5d859d4add39142903c050e8588470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 3
 --- !u!1 &1135269232
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,6 +354,7 @@ GameObject:
   - component: {fileID: 1135269233}
   - component: {fileID: 1135269235}
   - component: {fileID: 1135269234}
+  - component: {fileID: 1135269236}
   m_Layer: 0
   m_Name: Town_HatWoman
   m_TagString: Untagged
@@ -412,6 +441,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1135269236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135269232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5d859d4add39142903c050e8588470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 2
 --- !u!1 &1275242745
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +484,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1275242747
 MonoBehaviour:
@@ -456,7 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a000db2c8de1744b8f6af03851bdef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presetPath: 
 --- !u!61 &1275242749
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -513,7 +554,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1358991291
 MonoBehaviour:
@@ -527,7 +568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a000db2c8de1744b8f6af03851bdef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  presetPath: 
 --- !u!61 &1358991293
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -565,6 +605,7 @@ GameObject:
   - component: {fileID: 1449593345}
   - component: {fileID: 1449593347}
   - component: {fileID: 1449593346}
+  - component: {fileID: 1449593348}
   m_Layer: 0
   m_Name: Town_Bearded
   m_TagString: Untagged
@@ -651,3 +692,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1449593348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449593344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5d859d4add39142903c050e8588470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 4

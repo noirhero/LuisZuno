@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2051339946127364197}
   - component: {fileID: 2051339946127364196}
   - component: {fileID: 2051339946127364199}
+  - component: {fileID: 5164596583449174088}
+  - component: {fileID: 5698457145732304629}
   m_Layer: 0
   m_Name: HatWomanPreset
   m_TagString: Untagged
@@ -173,3 +175,29 @@ MonoBehaviour:
       time: 3
     - animation: 0
       time: 10
+--- !u!114 &5164596583449174088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051339946127364194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConversionMode: 1
+--- !u!114 &5698457145732304629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051339946127364194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3246f923221573c4cb136ee3e59e1374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 2

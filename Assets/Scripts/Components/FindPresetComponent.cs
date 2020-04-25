@@ -5,6 +5,6 @@ using Unity.Entities;
 
 [Serializable]
 [GenerateAuthoringComponent]
-public struct FindSpritePresetComponent : IComponentData {
+public struct FindPresetComponent : IComponentData {
     public int guid;
 }

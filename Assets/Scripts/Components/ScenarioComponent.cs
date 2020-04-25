@@ -5,7 +5,7 @@ using Unity.Entities;
 
 [Serializable]
 public struct ScenarioClearComponent : IComponentData {
-
+    public TeleportInfoComponent teleportInfoComp;
 }
 
 [Serializable]

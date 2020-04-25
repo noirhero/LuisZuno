@@ -4,11 +4,12 @@ using Unity.Entities;
 
 [RequiresEntityConversion]
 public class ScenarioClearProxy : EntityProxy {
+    public TeleportInfoComponent teleportInfo;
 
     protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         base.SetupComponents(entity, dstManager, conversionSystem);
 
         dstManager.AddComponentData(entity, new ReactiveComponent());
-        dstManager.AddComponentData(entity, new ScenarioClearComponent());
+        dstManager.AddComponentData(entity, new ScenarioClearComponent() { teleportInfoComp = teleportInfo });
     }
 }

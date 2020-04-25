@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7969398887402685002}
   - component: {fileID: 6888314152961134305}
-  - component: {fileID: 3080223846947227105}
-  - component: {fileID: 5742716925167419505}
-  - component: {fileID: 1301329694653221801}
+  - component: {fileID: 6533959525852430270}
+  - component: {fileID: 4097549723668836293}
+  - component: {fileID: 2312252707113227621}
   m_Layer: 0
   m_Name: EffectPrefab
   m_TagString: Untagged
@@ -85,7 +85,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3080223846947227105
+--- !u!114 &6533959525852430270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969398887402685004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e617b86b99f733746af66a40f339ff31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  presetPath: 
+--- !u!114 &4097549723668836293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969398887402685004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5d859d4add39142903c050e8588470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guid: 5
+--- !u!114 &2312252707113227621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,84 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7d7495833204790ba1d3a8755397f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConversionMode: 1
---- !u!114 &5742716925167419505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969398887402685004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952d80f28efca1d42a8911aea72caa1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  preset: {fileID: 1301329694653221801}
---- !u!114 &1301329694653221801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7969398887402685004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33abdd7c52b13554a8eaf5d0fc0348b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clips:
-  - {fileID: -5765309492801591168, guid: dea74fa952be6964dbeb08b52e0fa474, type: 3}
-  datas:
-    reorderableList:
-      canAdd: 1
-      canRemove: 1
-      draggable: 1
-      expandable: 1
-      multipleSelection: 1
-      isExpanded: 0
-      label:
-        m_Text: Keys
-        m_Image: {fileID: 0}
-        m_Tooltip: 
-      headerHeight: 18
-      footerHeight: 13
-      slideEasing: 0.15
-      verticalSpacing: 2
-      showDefaultBackground: 1
-      elementDisplayType: 0
-      elementNameProperty: 
-      elementNameOverride: 
-      elementIcon: {fileID: 0}
-    reqReferences: {fileID: 0}
-    isExpanded: 0
-    _keyValues: 2f030000
-    _keys: 2f030000
-    _values:
-    - name: Untagged
-      length: 0.6
-      timelines:
-      - start: 0
-        end: 0.1
-        texture: {fileID: -4767751489194210193, guid: dea74fa952be6964dbeb08b52e0fa474,
-          type: 3}
-      - start: 0.1
-        end: 0.2
-        texture: {fileID: 4388900151411905914, guid: dea74fa952be6964dbeb08b52e0fa474,
-          type: 3}
-      - start: 0.2
-        end: 0.3
-        texture: {fileID: 4458901722575886556, guid: dea74fa952be6964dbeb08b52e0fa474,
-          type: 3}
-      - start: 0.3
-        end: 0.4
-        texture: {fileID: -1264365724127171659, guid: dea74fa952be6964dbeb08b52e0fa474,
-          type: 3}
-      - start: 0.4
-        end: 0.5
-        texture: {fileID: 9193563466643716464, guid: dea74fa952be6964dbeb08b52e0fa474,
-          type: 3}
-      - start: 0.5
-        end: 0.6
-        texture: {fileID: -2078486421766456559, guid: dea74fa952be6964dbeb08b52e0fa474,
-          type: 3}
+  ConversionMode: 0

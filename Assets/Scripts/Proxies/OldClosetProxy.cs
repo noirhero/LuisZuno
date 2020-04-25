@@ -6,7 +6,7 @@ using Unity.Entities;
 using GlobalDefine;
 
 [RequiresEntityConversion]
-public class OldClosetProxy : PropProxy {
+public class OldClosetProxy : EntityProxy {
     public EntitySpawnInfoComponent spawnInfo;
     public string spawnPresetPath;
     public string spawnEffectPath;

@@ -3,14 +3,13 @@
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine.Serialization;
+using UnityEngine;
 
 [RequiresEntityConversion]
-public class MadnessEnvironmentProxy : EntityProxy {
+public class MadnessEnvironmentProxy : MonoBehaviour, IConvertGameObjectToEntity {
     [FormerlySerializedAs("Environment")] public PassiveMadnessComponent passiveMadness;
 
-    protected override void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        base.SetupComponents(entity, dstManager, conversionSystem);
-
+    public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
         dstManager.RemoveComponent<LocalToWorld>(entity);
         dstManager.RemoveComponent<Rotation>(entity);
         dstManager.RemoveComponent<Translation>(entity);

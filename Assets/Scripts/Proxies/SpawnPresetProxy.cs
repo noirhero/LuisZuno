@@ -1,42 +1,26 @@
 ﻿// Copyright 2018-2020 TAP, Inc. All Rights Reserved.
 
-using System.Linq;
 using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
 public class SpawnPresetProxy : MonoBehaviour, IConvertGameObjectToEntity {
-    public SpritePreset preset = null;
-
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        if (ReferenceEquals(null, preset)) {
-            Debug.LogError("Set preset, now!!!!!!");
-            return;
-        }
-        
         var sprite = GetComponent<SpriteRenderer>()?.sprite;
-        if (ReferenceEquals(null, sprite)) {
-            Debug.LogError("Add 'SpriteRenderer' component, now!!!!!");
-            dstManager.DestroyEntity(entity);
-            return;
+        if (false == ReferenceEquals(null, sprite)) {
+            var localScale = GetComponent<Transform>().localScale;
+            var spriteScale = new float3(sprite.rect.width, sprite.rect.height, 1.0f) / sprite.pixelsPerUnit;
+            spriteScale *= localScale;
+            spriteScale.z = 1.0f;
+            dstManager.AddComponentData(entity, new NonUniformScale() {
+                Value = spriteScale
+            });
+
+            var applyPivot = (sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit * localScale;
+            dstManager.AddComponentData(entity, new SpritePivotComponent() {
+                Value = new float3(applyPivot, 0.0f)
+            });
         }
-        var spriteScale = new float3(sprite.rect.width, sprite.rect.height, 1.0f) / sprite.pixelsPerUnit;
-        spriteScale *= GetComponent<Transform>().localScale;
-        spriteScale.z = 1.0f;
-        dstManager.AddComponentData(entity, new NonUniformScale() {
-            Value = spriteScale
-        });
-
-        dstManager.AddComponentData(entity, new SpritePivotComponent() {
-            Value = new float3((sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit, 0.0f)
-        }); 
-
-        dstManager.AddSharedComponentData(entity, new SpritePresetComponent() {
-            preset = preset
-        });
-        dstManager.AddComponentData(entity, new SpriteStateComponent() {
-            hash = preset.datas.Keys.First()
-        });
     }
 }

@@ -7,7 +7,8 @@ using Unity.Transforms;
 
 public class SpawnPresetProxy : MonoBehaviour, IConvertGameObjectToEntity {
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        var sprite = GetComponent<SpriteRenderer>()?.sprite;
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        var sprite = spriteRenderer ? spriteRenderer.sprite : null;
         if (false == ReferenceEquals(null, sprite)) {
             var localScale = GetComponent<Transform>().localScale;
             var spriteScale = new float3(sprite.rect.width, sprite.rect.height, 1.0f) / sprite.pixelsPerUnit;

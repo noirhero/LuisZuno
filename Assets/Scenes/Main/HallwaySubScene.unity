@@ -450,6 +450,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetPath: 
+  status:
+    search: 0
+  reactive:
+    searchingTime: 2
+    searchingAnim: 2
+    panicTime: 1
+    panicAnim: 3
+    madness: 20
+    madnessDuration: 2
+    itemID: 2
   spawnInfo:
     number: 100
     velocityMin: 1

@@ -15,12 +15,8 @@ public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGam
     protected GameObject preset = null;
 
 
-    public void Awake() {
-        LoadAssets();
-    }
-
-
     public void DeclareReferencedPrefabs(List<GameObject> referencedPresets) {
+        LoadAssets();
         SetupPrefabs(referencedPresets);
     }
 
@@ -43,7 +39,8 @@ public class EntityProxy : MonoBehaviour, IDeclareReferencedPrefabs, IConvertGam
 
 
     protected virtual void SetupComponents(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem) {
-        var sprite = GetComponent<SpriteRenderer>()?.sprite;
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        var sprite = spriteRenderer ? spriteRenderer.sprite : null;
         if (false == ReferenceEquals(null, sprite)) {
             var localScale = GetComponent<Transform>().localScale;
             var spriteScale = new float3(sprite.rect.width, sprite.rect.height, 1.0f) / sprite.pixelsPerUnit;

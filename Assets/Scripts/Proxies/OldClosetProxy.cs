@@ -7,6 +7,9 @@ using GlobalDefine;
 
 [RequiresEntityConversion]
 public class OldClosetProxy : EntityProxy {
+    public PropStatusComponent status;
+    public ReactiveComponent reactive;
+
     public EntitySpawnInfoComponent spawnInfo;
     public string spawnPresetPath;
     public string spawnEffectPath;
@@ -51,5 +54,8 @@ public class OldClosetProxy : EntityProxy {
             spawnEffect = conversionSystem.GetPrimaryEntity(_spawnEffectPreset),
             destroyEffect = conversionSystem.GetPrimaryEntity(_destroyEffectPreset),
         });
+
+        dstManager.AddComponentData(entity, new PropStatusComponent(ref status));
+        dstManager.AddComponentData(entity, new ReactiveComponent(ref reactive));
     }
 }

@@ -27,6 +27,8 @@ public class MadnessSystem : ComponentSystem {
                 if (statusComp.status.madness >= statusComp.maxMadness) {
                     statusComp.status.madness = statusComp.maxMadness;
                     finished = true;
+
+                    EntityManager.AddComponentData<GameOverComponent>(Utility.playerEntity, new GameOverComponent());
                 }
             }
 

@@ -36,6 +36,14 @@ public class GameSystem : ComponentSystem {
 
         if (EntityManager.HasComponent<GameOverComponent>(Utility.playerEntity)) {
             EntityManager.RemoveComponent<GameOverComponent>(Utility.playerEntity);
+            EntityManager.RemoveComponent<MovementComponent>(Utility.playerEntity);
+            EntityManager.RemoveComponent<TargetingComponent>(Utility.playerEntity);
+
+            var playerComp = EntityManager.GetComponentData<PlayerComponent>(Utility.playerEntity);
+            playerComp.currentAnim = AnimationType.Idle;
+            EntityManager.SetComponentData<PlayerComponent>(Utility.playerEntity, playerComp);
+
+            EntityManager.AddComponentData<FadeInComponent>(Utility.playerEntity, new FadeInComponent(1.0f));
             EnableSystem(false);
             return;
         }

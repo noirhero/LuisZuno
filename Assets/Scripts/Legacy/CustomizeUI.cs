@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine.UI;
 using UnityEngine;
 using GlobalDefine;
+using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
@@ -354,46 +355,55 @@ public class CustomizeUI : LegacyUI {
         playerStatusComp.searchingWeight = playerStatusComp.status.search * 0.01f;
 
         var playerPresetComp = Utility.entityMng.GetSharedComponentData<PlayerPresetComponent>(Utility.playerEntity);
-        string prefabPath;
-        playerPresetComp.preset.prefabPaths.TryGetValue(customizeComp.backgroundType, out prefabPath);
-        AdjustPlayerSprite(ref prefabPath, ref playerPresetComp.sprite);
+        playerPresetComp.preset.prefabPaths.TryGetValue(customizeComp.backgroundType, out var prefabPath);
+        AdjustPlayerSprite(ref prefabPath, in playerPresetComp.sprite);
 
         Utility.entityMng.SetComponentData<PlayerStatusComponent>(Utility.playerEntity, playerStatusComp);
     }
 
 
-    public void AdjustPlayerSprite(ref string prefabPath, ref Sprite sprite) {
+    private void AdjustPlayerSprite(ref string prefabPath, in Sprite sprite) {
         var preset = Utility.LoadObjectAtPath<GameObject>(prefabPath);
-        var spritePreset = preset.GetComponent<SpritePreset>();
-        if (ReferenceEquals(null, spritePreset)) {
+        if (ReferenceEquals(null, preset)) {
+            Debug.LogError($"Player preset load failed : {prefabPath}");
             return;
         }
 
-        var localScale = GetComponent<Transform>().localScale;
-        var spriteScale = new float3(sprite.rect.width, sprite.rect.height, 1.0f) / sprite.pixelsPerUnit;
-        spriteScale *= localScale;
-        spriteScale.z = 1.0f;
-        Utility.entityMng.AddComponentData(Utility.playerEntity, new NonUniformScale() {
-            Value = spriteScale
-        });
-
-        var applyPivot = (sprite.rect.center - sprite.pivot) / sprite.pixelsPerUnit * localScale;
-        Utility.entityMng.AddComponentData(Utility.playerEntity, new SpritePivotComponent() {
-            Value = new float3(applyPivot, 0.0f)
-        });
-
-        if (Utility.entityMng.HasComponent<SpritePresetComponent>(Utility.playerEntity)) {
-            var spiretPresetComp = Utility.entityMng.GetSharedComponentData<SpritePresetComponent>(Utility.playerEntity);
-            spiretPresetComp.preset = spritePreset;
+        var spritePreset = preset.GetComponent<SpritePreset>();
+        if (false == ReferenceEquals(null, spritePreset)) {
+            if (Utility.entityMng.HasComponent<SpritePresetComponent>(Utility.playerEntity)) {
+                Utility.entityMng.SetSharedComponentData(Utility.playerEntity, new SpritePresetComponent() {
+                    preset = spritePreset
+                });
+                Utility.entityMng.SetComponentData(Utility.playerEntity, new SpriteStateComponent() {
+                    hash = spritePreset.datas.Keys.First()
+                });
+            }
+            else {
+                Utility.entityMng.AddSharedComponentData(Utility.playerEntity, new SpritePresetComponent() {
+                    preset = spritePreset
+                });
+                Utility.entityMng.AddComponentData(Utility.playerEntity, new SpriteStateComponent() {
+                    hash = spritePreset.datas.Keys.First()
+                });
+            }
         }
-        else {
-            Utility.entityMng.AddSharedComponentData(Utility.playerEntity, new SpritePresetComponent() {
-                preset = spritePreset
+
+        var presetSpriteRenderer = preset.GetComponent<SpriteRenderer>();
+        var presetSprite = presetSpriteRenderer ? presetSpriteRenderer.sprite : null;
+        if (false == ReferenceEquals(null, presetSprite)) {
+            var localScale = preset.GetComponent<Transform>().localScale;
+            var spriteScale = new float3(presetSprite.rect.width, presetSprite.rect.height, 1.0f) / presetSprite.pixelsPerUnit;
+            spriteScale *= localScale;
+            spriteScale.z = 1.0f;
+            Utility.entityMng.AddComponentData(Utility.playerEntity, new NonUniformScale() {
+                Value = spriteScale
+            });
+
+            var applyPivot = (presetSprite.rect.center - presetSprite.pivot) / presetSprite.pixelsPerUnit * localScale;
+            Utility.entityMng.AddComponentData(Utility.playerEntity, new SpritePivotComponent() {
+                Value = new float3(applyPivot, 0.0f)
             });
         }
-        
-        Utility.entityMng.AddComponentData(Utility.playerEntity, new SpriteStateComponent() {
-            hash = spritePreset.datas.Keys.First()
-        });
     }
 }

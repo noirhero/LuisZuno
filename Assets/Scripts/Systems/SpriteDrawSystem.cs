@@ -4,6 +4,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 
+[UpdateInGroup(typeof(LateSimulationSystemGroup))]
 public class SpriteDrawSystem : ComponentSystem {
     private static readonly int _mainTex = Shader.PropertyToID("_MainTex");
 

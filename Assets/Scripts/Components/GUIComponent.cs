@@ -25,3 +25,11 @@ public struct GUIPresetComponent : ISharedComponentData, IEquatable<GUIPresetCom
 public struct GUIComponent : IComponentData {
     public int currentUI;
 }
+
+public struct GUISyncComponent : IComponentData {
+    public GUIGroupType currentGroup;
+
+    public GUISyncComponent(GUIGroupType inType) {
+        currentGroup = inType;
+    }
+}

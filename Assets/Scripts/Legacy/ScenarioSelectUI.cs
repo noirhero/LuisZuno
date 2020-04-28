@@ -30,10 +30,16 @@ public class ScenarioSelectUI : LegacyUI {
             cachedTrans.SetParent(this.transform);
             btns.Add(i, cachedTrans);
         }
+        SyncPosition();
     }
 
 
     private void Update() {
+        SyncPosition();
+    }
+
+
+    private void SyncPosition() {
         foreach (var btn in btns) {
             var index = btn.Key;
             var pivot = scenarios[btn.Key].GetPivot();
@@ -43,13 +49,9 @@ public class ScenarioSelectUI : LegacyUI {
             btnTrans.position = convert2DPos;
         }
     }
-
+    
 
     public void OnSelectedInScenario(int inType) {
-        var guiComp = Utility.entityMng.GetComponentData<GUIComponent>(Utility.playerEntity);
-        guiComp.currentUI ^= GUIState.scenarioSelect;
-        Utility.entityMng.SetComponentData(Utility.playerEntity, guiComp);
-        
         Utility.entityMng.AddComponentData(Utility.playerEntity, new TeleportInfoComponent(
             scenarios[inType].sceneType, scenarios[inType].curSubSceneType, scenarios[inType].nextSubSceneType, scenarios[inType].pointID, teleportTime, fadeInOutTime));
     }

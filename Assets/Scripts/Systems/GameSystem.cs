@@ -10,9 +10,7 @@ public class GameSystem : ComponentSystem {
         }
         else {
             EntityManager.AddComponentData(Utility.playerEntity, new GameStartComponent());
-            EntityManager.AddComponentData(Utility.playerEntity, new GUIComponent() {
-                currentUI = GUIState.customize,
-            });
+            EntityManager.AddComponentData(Utility.playerEntity, new GUIComponent());
         }
     }
 
@@ -24,40 +22,40 @@ public class GameSystem : ComponentSystem {
 
         if (EntityManager.HasComponent<GameStartComponent>(Utility.playerEntity)) {
             EntityManager.RemoveComponent<GameStartComponent>(Utility.playerEntity);
-            EnableSystem(true);
+            EntityManager.AddComponentData(Utility.playerEntity, new GUISyncComponent(GUIGroupType.GameStart));
+            EnableSystem(false);
             return;
         }
 
         if (EntityManager.HasComponent<GameClearComponent>(Utility.playerEntity)) {
             EntityManager.RemoveComponent<GameClearComponent>(Utility.playerEntity);
+            EntityManager.AddComponentData(Utility.playerEntity, new GUISyncComponent(GUIGroupType.GameClear));
             EnableSystem(false);
+            TemporaryPauseMove();
             return;
         }
 
         if (EntityManager.HasComponent<GameOverComponent>(Utility.playerEntity)) {
             EntityManager.RemoveComponent<GameOverComponent>(Utility.playerEntity);
-            EntityManager.RemoveComponent<MovementComponent>(Utility.playerEntity);
-            EntityManager.RemoveComponent<TargetingComponent>(Utility.playerEntity);
-
-            var playerComp = EntityManager.GetComponentData<PlayerComponent>(Utility.playerEntity);
-            playerComp.currentAnim = AnimationType.Idle;
-            EntityManager.SetComponentData<PlayerComponent>(Utility.playerEntity, playerComp);
-
-            EntityManager.AddComponentData<FadeInComponent>(Utility.playerEntity, new FadeInComponent(1.0f));
+            EntityManager.AddComponentData(Utility.playerEntity, new GUISyncComponent(GUIGroupType.GameOver));
             EnableSystem(false);
+            TemporaryPauseMove();
             return;
         }
 
         if (EntityManager.HasComponent<GamePauseComponent>(Utility.playerEntity)) {
             EntityManager.RemoveComponent<GamePauseComponent>(Utility.playerEntity);
+            EntityManager.AddComponentData(Utility.playerEntity, new GUISyncComponent(GUIGroupType.None));
             EnableSystem(false);
+            TemporaryPauseMove();
             return;
         }
 
         if (EntityManager.HasComponent<GameResumeComponent>(Utility.playerEntity)) {
             EntityManager.RemoveComponent<GameResumeComponent>(Utility.playerEntity);
+            EntityManager.AddComponentData(Utility.playerEntity, new GUISyncComponent(GUIGroupType.GamePlay));
             EnableSystem(true);
-            UpdateUI();
+            TemporaryResumeMove();
             return;
         }
     }
@@ -95,9 +93,6 @@ public class GameSystem : ComponentSystem {
             else if (system.GetType() == typeof(MadnessSystem)) {
                 system.Enabled = inEnable;
             }
-            else if (system.GetType() == typeof(GUISystem)) {
-                system.Enabled = inEnable;
-            }
             else if (system.GetType() == typeof(InventorySystem)) {
                 system.Enabled = inEnable;
             }
@@ -105,32 +100,17 @@ public class GameSystem : ComponentSystem {
     }
 
 
-    private void UpdateUI() {
-        // 이동후 게임재개시 보여질 ui
-        foreach (var system in World.DefaultGameObjectInjectionWorld.Systems) {
-            if (system is TeleportSystem) {
-                var guiComp = Utility.entityMng.GetComponentData<GUIComponent>(Utility.playerEntity);
-                TeleportSystem teleportSystem = system as TeleportSystem;
-                switch (teleportSystem.CurSubSceneType) {
-                    case SubSceneType.sceneSelect :
-                        guiComp.currentUI = GUIState.scenarioSelect;
-                        break;
-                    case SubSceneType.Scenario001_Hallway :
-                    case SubSceneType.Scenario001_Basement :
-                        guiComp.currentUI = GUIState.inventory;
-                        guiComp.currentUI |= GUIState.bubble;
-                        break;
-                    case SubSceneType.Scenario001_LegacyOfClan :
-                        guiComp.currentUI = GUIState.inventory;
-                        guiComp.currentUI |= GUIState.bubble;
-                        guiComp.currentUI |= GUIState.madness;
-                        break;
-                    default:
-                        guiComp.currentUI = GUIState.none;
-                        break;
-                }
-                Utility.entityMng.SetComponentData(Utility.playerEntity, guiComp);
-            }
-        }
+    private void TemporaryPauseMove() { 
+        EntityManager.RemoveComponent<MovementComponent>(Utility.playerEntity);
+        EntityManager.RemoveComponent<TargetingComponent>(Utility.playerEntity);
+
+        var playerComp = EntityManager.GetComponentData<PlayerComponent>(Utility.playerEntity);
+        playerComp.currentAnim = AnimationType.Idle;
+        EntityManager.SetComponentData(Utility.playerEntity, playerComp);
+    }
+
+
+    private void TemporaryResumeMove() {
+        EntityManager.AddComponentData(Utility.playerEntity, new TargetingComponent());
     }
 }

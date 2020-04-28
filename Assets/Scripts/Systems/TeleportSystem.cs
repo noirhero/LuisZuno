@@ -4,10 +4,11 @@ using Unity.Transforms;
 using Unity.Entities;
 using GlobalDefine;
 using Unity.Mathematics;
+using UnityEngine;
 
 public class TeleportSystem : ComponentSystem {
     private float3 _desiredPos = float3.zero;
-    private SubSceneType _curSubSceneType = SubSceneType.sceneSelect;
+    private SubSceneType _curSubSceneType = SubSceneType.None;
     public SubSceneType CurSubSceneType { get { return _curSubSceneType; } }
 
     protected override void OnUpdate() {
@@ -21,10 +22,6 @@ public class TeleportSystem : ComponentSystem {
 
             // start
             if (_desiredPos.Equals(float3.zero)) {
-                EntityManager.RemoveComponent<MovementComponent>(Utility.playerEntity);
-                EntityManager.RemoveComponent<TargetingComponent>(Utility.playerEntity);
-                playerComp.currentAnim = AnimationType.Idle;
-                
                 EntityManager.AddComponentData(Utility.playerEntity, new GamePauseComponent());
                 EntityManager.AddComponentData(Utility.playerEntity, new FadeInComponent(teleportComp.fadeInOutTime));
                 EntityManager.AddComponentData(Utility.playerEntity, new SubSceneControlComponent());
@@ -35,7 +32,6 @@ public class TeleportSystem : ComponentSystem {
             else if (pos.Value.Equals(_desiredPos)) {
                 _curSubSceneType = teleportComp.nextSubSceneType;
                 
-                EntityManager.AddComponentData(Utility.playerEntity, new TargetingComponent());
                 EntityManager.AddComponentData(Utility.playerEntity, new GameResumeComponent());
                 EntityManager.RemoveComponent<TeleportComponent>(Utility.playerEntity);
                 EntityManager.RemoveComponent<SubSceneControlComponent>(Utility.playerEntity);

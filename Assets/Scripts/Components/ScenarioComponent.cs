@@ -10,14 +10,10 @@ public struct ScenarioClearComponent : IComponentData {
 
 [Serializable]
 public struct SceneInformationPresetComponent : ISharedComponentData, IEquatable<SceneInformationPresetComponent> {
-    public readonly SceneInfomationPreset preset;
-
-    public SceneInformationPresetComponent(SceneInfomationPreset inPreset) {
-        preset = inPreset;
-    }
+    public SceneInfomationPreset preset;
 
     public bool Equals(SceneInformationPresetComponent other) {
-        return other.preset == preset;
+        return ReferenceEquals(other.preset, preset);
     }
 
     public override int GetHashCode() {

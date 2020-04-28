@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class CameraSystem : ComponentSystem {
     private Transform _cameraTransform;
-    private float _height;
+    private float _height = 1.0f;
 
     protected override void OnStartRunning() {
         _cameraTransform = Camera.main?.transform;
         Entities.WithAll<PlayerComponent>().ForEach((ref Translation pos) => {
-            _height = _cameraTransform.position.y - pos.Value.y;
+            //_height = _cameraTransform.position.y - pos.Value.y;
         });
     }
 
@@ -27,7 +27,7 @@ public class CameraSystem : ComponentSystem {
         Entities.ForEach((Entity entity, ref CameraSyncComponent pos) => {
             var newPos = _cameraTransform.position;
             newPos.x = pos.syncPos.x;
-            newPos.y += _height;
+            newPos.y = pos.syncPos.y + _height;
             _cameraTransform.position = newPos;
             EntityManager.RemoveComponent<CameraSyncComponent>(entity);
         });

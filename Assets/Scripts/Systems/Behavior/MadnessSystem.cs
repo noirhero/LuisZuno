@@ -27,8 +27,6 @@ public class MadnessSystem : ComponentSystem {
                 if (statusComp.status.madness >= statusComp.maxMadness) {
                     statusComp.status.madness = statusComp.maxMadness;
                     finished = true;
-
-                    EntityManager.AddComponentData<GameOverComponent>(Utility.playerEntity, new GameOverComponent());
                 }
             }
 
@@ -76,5 +74,11 @@ public class MadnessSystem : ComponentSystem {
             }
 
         });
+
+        // 패시브가 아니더라도 체크되도록 위로 빼놓음(임시)
+        var tempStatusComp = EntityManager.GetComponentData<PlayerStatusComponent>(Utility.playerEntity);
+        if (tempStatusComp.status.madness >= tempStatusComp.maxMadness) {
+            EntityManager.AddComponentData<GameOverComponent>(Utility.playerEntity, new GameOverComponent());
+        }
     }
 }

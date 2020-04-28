@@ -58,13 +58,8 @@ public class AutoMovementSystem : ComponentSystem {
                 // 스테이지 종료
                 if (EntityManager.HasComponent<ScenarioClearComponent>(targetEntity)) {
                     var scenarioClearComp = EntityManager.GetComponentData<ScenarioClearComponent>(targetEntity);
-                    if (scenarioClearComp.teleportInfoComp.nextSubSceneType == SubSceneType.None) {
-                        EntityManager.AddComponentData(playerEntity, new GameClearComponent());
-                    }
-                    else {
-                        EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref scenarioClearComp.teleportInfoComp));
-                        playerComp.currentBehaviors |= BehaviorState.teleport;
-                    }
+                    EntityManager.AddComponentData(playerEntity, new TeleportComponent(ref scenarioClearComp.teleportInfoComp));
+                    playerComp.currentBehaviors |= BehaviorState.teleport;
                 }
 
                 // 벽꿍

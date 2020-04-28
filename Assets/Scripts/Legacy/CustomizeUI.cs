@@ -37,7 +37,6 @@ public class CustomizeUI : LegacyUI {
     
     void Start() {
         decision.SetActive(false);
-        Utility.entityMng.AddComponentData(Utility.playerEntity, new GamePauseComponent());
         
         InitializeDefaultBackgrounds();
 
@@ -210,12 +209,10 @@ public class CustomizeUI : LegacyUI {
     public void OnSelectedInConfirm() {
         AdjustPlayerStatus();
 
-        var guiComp = Utility.entityMng.GetComponentData<GUIComponent>(Utility.playerEntity);
-        guiComp.currentUI ^= GUIState.customize;
-        Utility.entityMng.SetComponentData(Utility.playerEntity, guiComp);
-        
         decision.SetActive(false);
-        Utility.entityMng.AddComponentData(Utility.playerEntity, new GameResumeComponent());
+        
+        Utility.entityMng.AddComponentData(Utility.playerEntity, new TeleportInfoComponent(
+            SceneType.Town, SubSceneType.None, SubSceneType.sceneSelect,0, 0.0f, 0.0f));
     }
 
 

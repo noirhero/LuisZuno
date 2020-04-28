@@ -15,7 +15,8 @@ namespace GlobalDefine {
     public enum GoalType { TraceOfParents, CreateOfMasterpiece, Rich }
     public enum SceneType { None, Cenetery, Town, Scenario001 }
     public enum SubSceneType { None, Crafting, Housing, sceneSelect, Scenario001_Hallway, Scenario001_Basement, Scenario001_LegacyOfClan }
-
+    public enum GUIGroupType { None, GameStart, GamePlay, GameClear, GameOver }
+    
     [Serializable]
     public struct CharacterBackground {
         public BackgroundType type;
@@ -162,6 +163,7 @@ namespace GlobalDefine {
         public const int madness = 0x10;
         public const int bubble = 0x20;
         public const int ending = 0x40;
+        public const int clear = 0x80;
 
         public static bool HasState(GUIComponent guiComp, int compareState) { return ((guiComp.currentUI & compareState) != 0); }
     }
